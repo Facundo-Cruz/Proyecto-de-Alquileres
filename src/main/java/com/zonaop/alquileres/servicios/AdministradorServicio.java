@@ -37,6 +37,6 @@ public class AdministradorServicio {
        administrador.setFoto(imagen);
        
        administradorRepositorio.save(administrador);
-                
+       //comentario para que me deje hacer pull Request        
     }
 }

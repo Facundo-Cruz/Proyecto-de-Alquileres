@@ -27,9 +27,9 @@ public class ServicioServicio {
     private ServicioRepositorio serviciorepo;
     
     @Transactional
-    public void crearServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad,boolean limpieza,boolean desayuno,boolean accesoPiscina,boolean transporte) throws MiException{
+    public void crearServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad) throws MiException{
     
-      validarServicio(id,nombre,descripcion,precio,disponibilidad,limpieza,desayuno,accesoPiscina,transporte);  
+      validarServicio(id,nombre,descripcion,precio,disponibilidad);  
         
         
     Optional<Servicio>servi=serviciorepo.findById(id);
@@ -41,10 +41,7 @@ public class ServicioServicio {
     servicio.setDescripcion(descripcion);
     servicio.setPrecio(0);
     servicio.setDisponibilidad(disponibilidad);
-    servicio.setAccesoPiscina(accesoPiscina);
-    servicio.setDesayuno(desayuno);
-    servicio.setLimpieza(limpieza);
-    servicio.setTransporte(transporte);
+  
     
     serviciorepo.save(servicio);
     
@@ -52,9 +49,9 @@ public class ServicioServicio {
     
 
    @Transactional
-   public void modificarServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad,boolean limpieza,boolean desayuno,boolean accesoPiscina,boolean transporte) throws MiException{
+   public void modificarServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad) throws MiException{
    
-    validarServicio(id,nombre,descripcion,precio,disponibilidad,limpieza,desayuno,accesoPiscina,transporte);  
+    validarServicio(id,nombre,descripcion,precio,disponibilidad);  
        
        
     Optional<Servicio>servi=serviciorepo.findById(id);
@@ -67,11 +64,7 @@ public class ServicioServicio {
         servicio.setDescripcion(descripcion);
         servicio.setPrecio(0);
         servicio.setDisponibilidad(disponibilidad);
-        servicio.setAccesoPiscina(accesoPiscina);
-        servicio.setDesayuno(desayuno);
-        servicio.setTransporte(transporte);
-        servicio.setLimpieza(limpieza);
-        
+       
         serviciorepo.save(servicio);
     
     };
@@ -102,7 +95,7 @@ public class ServicioServicio {
         
     }
   
-    private void validarServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad,boolean limpieza,boolean desayuno,boolean accesoPiscina,boolean transporte)  throws MiException{
+    private void validarServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad)  throws MiException{
         
         
         
@@ -134,29 +127,7 @@ public class ServicioServicio {
     
     
  
-    if(transporte==true || transporte==false){
-    
-       throw new MiException("el transporte puede ser verdadero o falso");
-    
-    };
-    
-     if(limpieza==true || limpieza==false){
-    
-       throw new MiException("el transporte puede ser verdadero o falso");
-    
-    };
-    
-     if(accesoPiscina==true || accesoPiscina==false){
-    
-       throw new MiException("el transporte puede ser verdadero o falso");
-    
-    };
-    
-     if(desayuno==true || desayuno==false){
-    
-       throw new MiException("el transporte puede ser verdadero o falso");
-    
-    };
+
     
   
     

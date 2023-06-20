@@ -1,5 +1,6 @@
 package com.zonaop.alquileres.entidades;
 
+import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class Propiedad {
     private List<Imagen> fotos;
     private double precio;
     private boolean estado;
-//    private TipoPropiedad tipo;
+    private TipoPropiedad tipo;
     private int calificacion;
 
     public Propiedad() {

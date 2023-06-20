@@ -13,48 +13,48 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ClienteServicio {
     
-    @Autowired
-    public ClienteRepositorio clienteRepositorio;
-    
-    @Autowired
-    public ImagenServicio imagenServicio;
-    
-    @Autowired
-    public UsuarioServicio usuarioServicio;
-    
-    @Transactional
-    public void registrar(Usuario user) throws MiException {
-        
-        Cliente cliente = (Cliente) user;
-        
-        clienteRepositorio.save(cliente);
-        
-    }
-    
-    @Transactional
-    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
-        
-        Optional<Cliente> respuesta = clienteRepositorio.findById(id);
-        
-        if (respuesta.isPresent()) {
-            
-            Cliente cliente = respuesta.get();
-            
-            usuarioServicio.modificar(cliente, nombre, apellido, email, contrasena, archivo);
-            
-        }
-        
-    }
-    @Transactional
-    public void darBaja(String id) throws MiException{
-        
-        usuarioServicio.darBaja(getOne(id));
-        
-    }
-    
-    public Cliente getOne(String id){
-        
-        return  clienteRepositorio.getOne(id);
-        
-    }
+//    @Autowired
+//    public ClienteRepositorio clienteRepositorio;
+//    
+//    @Autowired
+//    public ImagenServicio imagenServicio;
+//    
+//    @Autowired
+//    public UsuarioServicio usuarioServicio;
+//    
+//    @Transactional
+//    public void registrar(Usuario user) throws MiException {
+//        
+//        Cliente cliente = (Cliente) user;
+//        
+//        clienteRepositorio.save(cliente);
+//        
+//    }
+//    
+//    @Transactional
+//    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
+//        
+//        Optional<Cliente> respuesta = clienteRepositorio.findById(id);
+//        
+//        if (respuesta.isPresent()) {
+//            
+//            Cliente cliente = respuesta.get();
+//            
+//            usuarioServicio.modificar(cliente, nombre, apellido, email, contrasena, archivo);
+//            
+//        }
+//        
+//    }
+//    @Transactional
+//    public void darBaja(String id) throws MiException{
+//        
+//        usuarioServicio.darBaja(getOne(id));
+//        
+//    }
+//    
+//    public Cliente getOne(String id){
+//        
+//        return  clienteRepositorio.getOne(id);
+//        
+//    }
 }

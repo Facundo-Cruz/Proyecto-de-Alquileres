@@ -6,7 +6,7 @@
 package com.zonaop.alquileres.enumeraciones;
 
 /**
- *
+ 
  * @author Joaquin
  */
 public enum TipoServicio {

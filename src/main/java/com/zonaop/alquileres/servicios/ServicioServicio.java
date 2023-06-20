@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author JOAQUIN
  */
 
@@ -32,7 +31,7 @@ public class ServicioServicio {
     @Transactional
     public void crearServicio(String id,String nombre,String descripcion,Double precio,boolean disponibilidad) throws MiException{
     
-      validarServicio(id,nombre,descripcion,precio,disponibilidad);  
+    validarServicio(id,nombre,descripcion,precio,disponibilidad);  
         
         
     Optional<Servicio>servi=serviciorepo.findById(id);

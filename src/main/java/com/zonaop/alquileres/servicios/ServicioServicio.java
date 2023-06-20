@@ -9,6 +9,7 @@ package com.zonaop.alquileres.servicios;
 import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.ServicioRepositorio;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ServicioServicio {
     
+
+        
     @Autowired
     private ServicioRepositorio serviciorepo;
     
@@ -65,11 +68,17 @@ public class ServicioServicio {
         servicio.setPrecio(0);
         servicio.setDisponibilidad(disponibilidad);
        
+       
         serviciorepo.save(servicio);
     
     };
     
    }
+   
+   
+   
+   
+   
    
    @Transactional
     public void eliminarServicio(String id){
@@ -126,12 +135,9 @@ public class ServicioServicio {
     };
     
     
- 
+    } 
 
     
   
     
   } 
-    
-    
-}

@@ -19,18 +19,16 @@ public class Opinion {
     @Id
     private String id;
     private String huesped;
-    @ManyToOne
     private String comentario;
     @OneToMany
     private List<Imagen> fotos;
-    @OneToOne
-    private int calificacion;
+    private double calificacion;
     
     
     public Opinion() {
     }
 
-    public Opinion(String id, String huesped, String comentario, List<Imagen> fotos, int calificacion) {
+    public Opinion(String id, String huesped, String comentario, List<Imagen> fotos, double calificacion) {
         this.id = id;
         this.huesped = huesped;
         this.comentario = comentario;
@@ -70,11 +68,11 @@ public class Opinion {
         this.fotos = fotos;
     }
 
-    public int getCalificacion() {
+    public double getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(int calificacion) {
+    public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
     }
 

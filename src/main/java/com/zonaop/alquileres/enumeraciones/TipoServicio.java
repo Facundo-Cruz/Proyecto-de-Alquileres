@@ -10,12 +10,12 @@ package com.zonaop.alquileres.enumeraciones;
  * @author Joaquin
  */
 public enum TipoServicio {
-LIMPIEZA;
-PILETA;
-TRANSPORTE;
-SEGURIDAD;
-BARRALIBRE;
-SERVICIODJ; 
-CATERING;
+LIMPIEZA,
+PILETA,
+TRANSPORTE,
+SEGURIDAD,
+BARRALIBRE,
+SERVICIODJ,
+CATERING,
     
 }

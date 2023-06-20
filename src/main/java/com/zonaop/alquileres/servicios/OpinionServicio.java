@@ -61,11 +61,11 @@ public class OpinionServicio {
         
      }
    
-    public List<Opinion>listarOpinionesDesc(){
+    public List<Opinion>listarOpinionesPorCalificacionDesc(){
 
         List<Opinion> opi= new ArrayList();
         
-        opi=opinionrepo.findAllOrderByidDesc();
+        opi=opinionrepo.findAllOrderByCalificacionDesc();
         
         return opi;
         

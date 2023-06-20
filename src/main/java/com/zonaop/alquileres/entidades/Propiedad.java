@@ -1,5 +1,6 @@
 package com.zonaop.alquileres.entidades;
 
+import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -22,14 +23,17 @@ public class Propiedad {
     private Date fechaDesde;
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;
-    private List<String> redesSociales;
-    private List<String> telefonos;
-    private List<String> mails;
+//    @OneToMany
+//    private List<String> redesSociales;
+//    @OneToMany
+//    private List<String> telefonos;
+//    @OneToMany
+//    private List<String> mails;
     @OneToMany
     private List<Imagen> fotos;
     private double precio;
     private boolean estado;
-//    private TipoPropiedad tipo;
+    private TipoPropiedad tipo;
     private int calificacion;
 
     public Propiedad() {
@@ -75,29 +79,29 @@ public class Propiedad {
         this.fechaHasta = fechaHasta;
     }
 
-    public List<String> getRedesSociales() {
-        return redesSociales;
-    }
+//    public List<String> getRedesSociales() {
+//        return redesSociales;
+//    }
 
-    public void setRedesSociales(List<String> redesSociales) {
-        this.redesSociales = redesSociales;
-    }
-
-    public List<String> getTelefonos() {
-        return telefonos;
-    }
-
-    public void setTelefonos(List<String> telefonos) {
-        this.telefonos = telefonos;
-    }
-
-    public List<String> getMails() {
-        return mails;
-    }
-
-    public void setMails(List<String> mails) {
-        this.mails = mails;
-    }
+//    public void setRedesSociales(List<String> redesSociales) {
+//        this.redesSociales = redesSociales;
+//    }
+//
+//    public List<String> getTelefonos() {
+//        return telefonos;
+//    }
+//
+//    public void setTelefonos(List<String> telefonos) {
+//        this.telefonos = telefonos;
+//    }
+//
+//    public List<String> getMails() {
+//        return mails;
+//    }
+//
+//    public void setMails(List<String> mails) {
+//        this.mails = mails;
+//    }
 
     public List<Imagen> getFotos() {
         return fotos;

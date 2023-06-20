@@ -25,6 +25,7 @@ public class Reserva {
  
   private String id;
   private String huesped;
+  @OneToOne
   private Opinion opinion;
   @Temporal(TemporalType.DATE)
   private Date fechaHasta;
@@ -32,7 +33,7 @@ public class Reserva {
   private Date fechaDesde;
   @OneToOne
   private Propiedad propiedad;
-  @OneToMany
+  @OneToOne
   private Cliente cliente;
   @OneToMany
   private List <Servicio>servicios;

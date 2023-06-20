@@ -19,11 +19,9 @@ public class Opinion {
     @Id
     private String id;
     private String huesped;
-    @ManyToOne
     private String comentario;
     @OneToMany
     private List<Imagen> fotos;
-    @OneToOne
     private int calificacion;
     
     

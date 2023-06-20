@@ -5,7 +5,7 @@ public enum TipoPropiedad {
  QUINTA,
  CASA,
  QUINCHO,
- CABAÑA,
+ CABANA,
  SALON,
  CHALET,
  FINCA,

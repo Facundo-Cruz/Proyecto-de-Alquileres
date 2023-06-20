@@ -19,9 +19,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 //Anotacion para persistir la entidad
 @Entity
-//@Inheritance se utiliza para especificar la estrategia de herencia que se va a utilizar. En este caso, se utiliza InheritanceType.TABLE_PER_CLASS, que significa que cada clase concreta que herede de la entidad abstracta tendrá su propia tabla en la base de datos.
+//Anotacón para decir cual es la estrategia de la herencia y que se cree tambien una tabla de usuarioen la base de datos.
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
+public class Usuario {
     @Id
     //Genera id de forma automatica
     @GeneratedValue(generator = "uuid")
@@ -43,6 +43,71 @@ public abstract class Usuario {
     protected Rol rol;
 
     public Usuario() {
+    }
+    
+    //Getters y Setters que utilizaran las hijas a la hora de recibir datos mediante el formulario
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public Imagen getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Imagen foto) {
+        this.foto = foto;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
     
     

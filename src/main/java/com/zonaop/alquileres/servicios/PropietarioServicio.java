@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class PropietarioServicio {
 
-<<<<<<< HEAD
+
     @Autowired
     public PropietarioRepositorio propietarioRepositorio;
 
@@ -99,51 +99,5 @@ public class PropietarioServicio {
         return propietarioRepositorio.getOne(id);
 
     }
-=======
-//    @Autowired
-//    public PropietarioRepositorio propietarioRepositorio;
-//
-//    @Autowired
-//    public ImagenServicio imagenServicio;
-//
-//    @Autowired
-//    public UsuarioServicio usuarioServicio;
-//
-//    @Transactional
-//    public void registrar(Usuario user) throws MiException {
-//
-//        Propietario propietario = (Propietario) user;
-//
-//        propietarioRepositorio.save(propietario);
-//
-//    }
-//
-//    @Transactional
-//    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
-//
-//        Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
-//
-//        if (respuesta.isPresent()) {
-//
-//            Propietario propietario = respuesta.get();
-//
-//            usuarioServicio.modificar(propietario, nombre, apellido, email, contrasena, archivo);
-//
-//        }
-//
-//    }
-//
-//    @Transactional
-//    public void darBaja(String id) throws MiException {
-//
-//        usuarioServicio.darBaja(getOne(id));
-//
-//    }
-//
-//    public Propietario getOne(String id) {
-//
-//        return propietarioRepositorio.getOne(id);
-//
-//    }
->>>>>>> 62cfdbf0c8ceff4bac6025b1a821425e2a64d72e
+
 }

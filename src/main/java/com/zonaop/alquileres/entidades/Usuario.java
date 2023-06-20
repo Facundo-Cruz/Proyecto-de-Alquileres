@@ -19,9 +19,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 //Anotacion para persistir la entidad
 @Entity
-//@Inheritance se utiliza para especificar la estrategia de herencia que se va a utilizar. En este caso, se utiliza InheritanceType.TABLE_PER_CLASS, que significa que cada clase concreta que herede de la entidad abstracta tendrá su propia tabla en la base de datos.
+//Anotacón para decir cual es la estrategia de la herencia y que se cree tambien una tabla de usuarioen la base de datos.
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario {
+public class Usuario {
     @Id
     //Genera id de forma automatica
     @GeneratedValue(generator = "uuid")

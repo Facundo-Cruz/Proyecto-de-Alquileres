@@ -17,4 +17,12 @@ public class PortalControlador {
      
          return "mainPage.html";
  } 
+     
+       @GetMapping("/registrar")
+    public String registrar() {
+
+        return "formulario-registro-usuario.html";
+
+    }
+    
 }

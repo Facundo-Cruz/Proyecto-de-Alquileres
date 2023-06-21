@@ -6,7 +6,7 @@
 package com.zonaop.alquileres.controladores;
 
 /**
- *
+
  * @author Facundo
  */
 public class ImagenControlador {

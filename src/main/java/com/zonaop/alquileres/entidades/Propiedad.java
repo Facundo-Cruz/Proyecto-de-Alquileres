@@ -8,7 +8,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+<<<<<<< HEAD
 
+=======
+import javax.persistence.OneToMany;
+>>>>>>> e8a30e14a4f41d1e3639242deb3e59002f2c4325
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -107,6 +111,7 @@ public class Propiedad {
 //        this.mails = mails;
 //    }
 
+<<<<<<< HEAD
     public Imagen getFoto() {
         return foto;
     }
@@ -114,6 +119,9 @@ public class Propiedad {
     public void setFoto(Imagen foto) {
         this.foto = foto;
     }
+=======
+ 
+>>>>>>> e8a30e14a4f41d1e3639242deb3e59002f2c4325
 
     public double getPrecio() {
         return precio;
@@ -145,6 +153,14 @@ public class Propiedad {
 
     public void setTipo(TipoPropiedad tipo) {
         this.tipo = tipo;
+    }
+
+    public Imagen getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Imagen foto) {
+        this.foto = foto;
     }
     
     

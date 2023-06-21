@@ -16,6 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/")
 public class PortalControlador {
 
+     
+     @GetMapping("/")
+     public String index() {
+     
+         return "mainPage.html";
+ } 
+     
+       @GetMapping("/registrar")
+    public String registrar() {
+
+        return "formulario-registro-usuario.html";
+
+    }
+    
+
     @Autowired
     private PropiedadServicio propiedadServicio;
     @GetMapping("/")

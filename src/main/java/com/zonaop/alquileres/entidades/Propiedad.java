@@ -2,7 +2,7 @@ package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
-import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -107,7 +107,7 @@ public class Propiedad {
 //        this.mails = mails;
 //    }
 
- 
+
 
     public double getPrecio() {
         return precio;

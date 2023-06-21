@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class PortalControlador {
-<<<<<<< HEAD
+
      
      @GetMapping("/")
      public String index() {
@@ -28,7 +28,6 @@ public class PortalControlador {
 
     }
     
-=======
 
     @Autowired
     private PropiedadServicio propiedadServicio;
@@ -38,5 +37,4 @@ public class PortalControlador {
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
->>>>>>> e8a30e14a4f41d1e3639242deb3e59002f2c4325
 }

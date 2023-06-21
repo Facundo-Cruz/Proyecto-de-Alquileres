@@ -37,12 +37,9 @@ public class PropiedadServicio {
         return propiedades;
     }
     
-<<<<<<< HEAD
-    
-=======
     public List<Propiedad> listarPropiedades(){
         List<Propiedad> propiedades = propiedadRepositorio.findAll();
         return propiedades;
     }
->>>>>>> e8a30e14a4f41d1e3639242deb3e59002f2c4325
+
 }

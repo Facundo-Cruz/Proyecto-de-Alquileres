@@ -4,6 +4,8 @@ import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -33,6 +35,7 @@ public class Propiedad {
     private List<Imagen> fotos;
     private double precio;
     private boolean estado;
+    @Enumerated(EnumType.STRING)
     private TipoPropiedad tipo;
     private int calificacion;
 
@@ -133,6 +136,14 @@ public class Propiedad {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public TipoPropiedad getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoPropiedad tipo) {
+        this.tipo = tipo;
     }
     
     

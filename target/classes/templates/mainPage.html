@@ -37,9 +37,9 @@
     </div>
     <div class="background-searchbox">
         <div class="searchbox">
-            <form action="" class="form-edit">
+            <form th:action="@{/filtrar}" method="POST" class="form-edit">
                 <div class="searchbar">
-                    <select class="tipo-casa" id="tipo-casa">
+                    <select class="tipo-casa" name="tipo">
                         <!-- para usar thymeleaf hacer for each de option con value siendo 
                         el tipo de casa y el texto el tipo de casa -->
                         <option value="QUINTA" class="select-option">Quinta</option>
@@ -51,6 +51,7 @@
                         <option value="BODEGA" class="select-option">Bodega</option>
                         <option value="OTRO" class="select-option">Otro</option>
                     </select>
+
                     <input type="search" class="search" placeholder="busqueda">
                     <input type="submit" class="submit" value="buscar">
                 </div>
@@ -64,9 +65,7 @@
     </div>
     <div class="housesbox">
         <div th:each="propiedad : ${propiedades}" class="house-card" >
-            <!-- <img class="house-image" th:if="${propiedad.imagen != null}" th:src="@{/imagen/__${propiedad.id}__}"
-            alt="Imagen de la propiedad"> -->
-            <img src="https://tiendaestilocasa.com/img/cms/Quinchos/Quinchos%205.jpg" alt="Casa 1" class="house-image">
+            <img th:if="${propiedad.imagen != null}" th:src="@{/imagen/__${propiedad.id}__}" alt="Casa 1" class="house-image">
             <h2 class="house-title" th:text="${propiedad.nombre}"></h2>
             <!-- <p class="house-description">Hermosa casa de estilo moderno con 3 habitaciones y 2 baños.</p> -->
             <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>

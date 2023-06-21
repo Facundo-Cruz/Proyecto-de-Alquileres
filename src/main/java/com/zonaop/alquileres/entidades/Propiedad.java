@@ -140,6 +140,14 @@ public class Propiedad {
     public void setTipo(TipoPropiedad tipo) {
         this.tipo = tipo;
     }
+
+    public Imagen getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Imagen foto) {
+        this.foto = foto;
+    }
     
     
 }

@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,8 +32,8 @@ public class Propiedad {
 //    private List<String> telefonos;
 //    @OneToMany
 //    private List<String> mails;
-    @OneToMany
-    private List<Imagen> fotos;
+    @OneToOne
+    private Imagen foto;
     private double precio;
     private boolean estado;
     @Enumerated(EnumType.STRING)
@@ -106,13 +107,7 @@ public class Propiedad {
 //        this.mails = mails;
 //    }
 
-    public List<Imagen> getFotos() {
-        return fotos;
-    }
-
-    public void setFotos(List<Imagen> fotos) {
-        this.fotos = fotos;
-    }
+ 
 
     public double getPrecio() {
         return precio;
@@ -144,6 +139,14 @@ public class Propiedad {
 
     public void setTipo(TipoPropiedad tipo) {
         this.tipo = tipo;
+    }
+
+    public Imagen getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Imagen foto) {
+        this.foto = foto;
     }
     
     

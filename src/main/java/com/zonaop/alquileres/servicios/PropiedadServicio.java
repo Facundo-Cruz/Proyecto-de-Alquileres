@@ -16,4 +16,9 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorTipo(tipo);
         return propiedades;
     }
+    
+    public List<Propiedad> listarPropiedades(){
+        List<Propiedad> propiedades = propiedadRepositorio.findAll();
+        return propiedades;
+    }
 }

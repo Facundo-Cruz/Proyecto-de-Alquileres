@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/mainPage.css">
+    <link rel="stylesheet" href="/css/style2.css">
 </head>
 
 <body>
@@ -36,37 +37,58 @@
     </div>
     <div class="background-searchbox">
         <div class="searchbox">
-            <div class="searchbar">
-                <select class="tipo-casa" id="tipo-casa">
-                    <!-- para usar thymeleaf hacer for each de option con value siendo 
-                    el tipo de casa y el texto el tipo de casa -->
-                    <option value="a" class="select-option">aasdasdsadasd</option>
-                    <option value="b" class="select-option">eqtewttewtw</option>
-                    <option value="c" class="select-option">adsfdgweg</option>
-                    <option value="d" class="select-option">uyjymiu</option>
-                </select>
-                <input type="search" class="search" placeholder="busqueda" >
-                <input type="submit" class="submit" value="buscar">
-            </div>
+            <form action="" class="form-edit">
+                <div class="searchbar">
+                    <select class="tipo-casa" id="tipo-casa">
+                        <!-- para usar thymeleaf hacer for each de option con value siendo 
+                        el tipo de casa y el texto el tipo de casa -->
+                        <option value="QUINTA" class="select-option">Quinta</option>
+                        <option value="CASA" class="select-option">Casa</option>
+                        <option value="CABANA" class="select-option">Cabaña</option>
+                        <option value="SALON" class="select-option">Salón</option>
+                        <option value="CHALET" class="select-option">Chalet</option>
+                        <option value="FINCA" class="select-option">Finca</option>
+                        <option value="BODEGA" class="select-option">Bodega</option>
+                        <option value="OTRO" class="select-option">Otro</option>
+                    </select>
+                    <input type="search" class="search" placeholder="busqueda">
+                    <input type="submit" class="submit" value="buscar">
+                </div>
+            </form>
             <div class="search-results">
                 <div class="result" id="res">
                 </div>
             </div>
         </div>
-
+        
+    </div>
+    <div class="housesbox">
+        <div th:each="propiedad : ${propiedades}" class="house-card" >
+            <!-- <img class="house-image" th:if="${propiedad.imagen != null}" th:src="@{/imagen/__${propiedad.id}__}"
+            alt="Imagen de la propiedad"> -->
+            <img src="https://tiendaestilocasa.com/img/cms/Quinchos/Quinchos%205.jpg" alt="Casa 1" class="house-image">
+            <h2 class="house-title" th:text="${propiedad.nombre}"></h2>
+            <!-- <p class="house-description">Hermosa casa de estilo moderno con 3 habitaciones y 2 baños.</p> -->
+            <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
+            <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
+            <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
+        </div>    
     </div>
 
     <footer class="footer">
         <div class="redes">
             <p>seguinos en nuestras redes</p>
-            <a href="https://youtu.be/dQw4w9WgXcQ"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAldJREFUWEftV8EuRUEMPf0JscOXYOsHxAprH4F/sMfOB0gkIsFHWHu+pHKSVpqZzp3BCAuTvLzkvd7e09P2tCP4Y0f+GB78A+plZJghVd00ZzsANnqO7f83ACsReRq076dMVQngFAC/v3NWAK5E5HzJSZMhY+SyAYTOR46zGm3J1rGIpD6WAD0GMHRyDeCp5aiFzgIju4fRn4jsZs+kgFT1CADZ4Tnr0TxClQEjqDOzJ0tX5bMtQK8ASDcZSSMZBMFnDwCsA7gFcG+BkjEW+9YoIF2KYgQMbVT1BMCF2d+JyF5kX0QqQqofinRtLdWMqrL7yKR/WGvPngpV3QdwY4CuReTIupb1ybNbSsIioCwCi5wAWh1IE3YQX7ZSVaZsDcCLiDxYLbEk0vrMADFqFl6a4yJCfzmL01lyvSIoFm4liqrqJVE1zFcARTmoHFoavZNaQc0BVNRXlX8v9sKuau9pDKkq64YalUYeu09VnclKOmYCcn3iTDpeav+Qugr8TEAedVe9l9j8CUBdBVfVJpszAcUZl84i06lFu5mAoiCm+03RYSmT0wAFlXaldWGk+BEgmYk7UCoNnwXkdDdb2+SfBZ4tYA4yVWkLqjm8M6Wm9Pvwaw7XsHhtF8OVgTTX1GL0VHWYAWLUnpKmGo+uIKVdb5toLWhNlf0qkDBWPmbh0D6UtG1XBEdBBrHkI+MrrIGKU50dxLr41B0rdOX3lvzgKC7lkYiRa1CzA7Nd2p13b642JBnh714Uk+6Iu/PoVZpuuGPPu0qPFuwsu27KZr1o1M8/oB5T706yizSzZIdPAAAAAElFTkSuQmCC"/></a>
-           <a href="https://youtu.be/dQw4w9WgXcQ"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAbxJREFUWEftl4FNAzEMRe1JoJNAJymdBJgEmIQyCd3E6FcOSnNxbF97qEgXqVLVJrnn7x87x3Rjg2+Mh1YgLyOrQn+ukIjcE9EzET0SEb4f9PPBzMcaCHPb3yYp0w13zPzqRdP+LyIAeTHWAWavkDsF3kSAENknNs5AiUhZF41jz8zv7eSeQnWUIShV9TtKQkQFBCnb1ut6QG9E9FRNggcQzVn+Gy9gPtZlxpGZNxGFrM2R/0MPzPFOD7ILg4k9hTwvQDEYHpueVBORVlVPKdMK3cKYiBhwZSCQ6IgDiQhShgfB3LWXog+LzNsycx3M75qRqZEOFLYlRgpozolJQTOz2UMtD6GmLKUOTupZ7RnWIT01UAkeWgJqWGxN6bQV4DhfE8qsP0UlDwgwpRGmfGJMdluRB4Qme7UxMrOrkHppdJ3IgrrqdFtH+xSt2jD5JV4aniz3lHWg0BYe9FKVaRHYyjVyGqgqBdkrRliZqIeQJigypyalYSYe0sZ6p011rmdOd2ereXonwWodcyo1ujfeLCb3ZA8i7CGt1jAzRnmtgXJQoXy+rJtkBiTkoTkbXrpmfZX2FFwV+ncK/QDu6qglgpavRAAAAABJRU5ErkJggg=="/></a>
+            <a href="https://youtu.be/dQw4w9WgXcQ"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAldJREFUWEftV8EuRUEMPf0JscOXYOsHxAprH4F/sMfOB0gkIsFHWHu+pHKSVpqZzp3BCAuTvLzkvd7e09P2tCP4Y0f+GB78A+plZJghVd00ZzsANnqO7f83ACsReRq076dMVQngFAC/v3NWAK5E5HzJSZMhY+SyAYTOR46zGm3J1rGIpD6WAD0GMHRyDeCp5aiFzgIju4fRn4jsZs+kgFT1CADZ4Tnr0TxClQEjqDOzJ0tX5bMtQK8ASDcZSSMZBMFnDwCsA7gFcG+BkjEW+9YoIF2KYgQMbVT1BMCF2d+JyF5kX0QqQqofinRtLdWMqrL7yKR/WGvPngpV3QdwY4CuReTIupb1ybNbSsIioCwCi5wAWh1IE3YQX7ZSVaZsDcCLiDxYLbEk0vrMADFqFl6a4yJCfzmL01lyvSIoFm4liqrqJVE1zFcARTmoHFoavZNaQc0BVNRXlX8v9sKuau9pDKkq64YalUYeu09VnclKOmYCcn3iTDpeav+Qugr8TEAedVe9l9j8CUBdBVfVJpszAcUZl84i06lFu5mAoiCm+03RYSmT0wAFlXaldWGk+BEgmYk7UCoNnwXkdDdb2+SfBZ4tYA4yVWkLqjm8M6Wm9Pvwaw7XsHhtF8OVgTTX1GL0VHWYAWLUnpKmGo+uIKVdb5toLWhNlf0qkDBWPmbh0D6UtG1XBEdBBrHkI+MrrIGKU50dxLr41B0rdOX3lvzgKC7lkYiRa1CzA7Nd2p13b642JBnh714Uk+6Iu/PoVZpuuGPPu0qPFuwsu27KZr1o1M8/oB5T706yizSzZIdPAAAAAElFTkSuQmCC" /></a>
+            <a href="https://youtu.be/dQw4w9WgXcQ"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAbxJREFUWEftl4FNAzEMRe1JoJNAJymdBJgEmIQyCd3E6FcOSnNxbF97qEgXqVLVJrnn7x87x3Rjg2+Mh1YgLyOrQn+ukIjcE9EzET0SEb4f9PPBzMcaCHPb3yYp0w13zPzqRdP+LyIAeTHWAWavkDsF3kSAENknNs5AiUhZF41jz8zv7eSeQnWUIShV9TtKQkQFBCnb1ut6QG9E9FRNggcQzVn+Gy9gPtZlxpGZNxGFrM2R/0MPzPFOD7ILg4k9hTwvQDEYHpueVBORVlVPKdMK3cKYiBhwZSCQ6IgDiQhShgfB3LWXog+LzNsycx3M75qRqZEOFLYlRgpozolJQTOz2UMtD6GmLKUOTupZ7RnWIT01UAkeWgJqWGxN6bQV4DhfE8qsP0UlDwgwpRGmfGJMdluRB4Qme7UxMrOrkHppdJ3IgrrqdFtH+xSt2jD5JV4aniz3lHWg0BYe9FKVaRHYyjVyGqgqBdkrRliZqIeQJigypyalYSYe0sZ6p011rmdOd2ereXonwWodcyo1ujfeLCb3ZA8i7CGt1jAzRnmtgXJQoXy+rJtkBiTkoTkbXrpmfZX2FFwV+ncK/QDu6qglgpavRAAAAABJRU5ErkJggg==" /></a>
         </div>
         <div class="copyright">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAl5JREFUWEfdWAtOQkEMbE8inEQ4iXIS8STCScSTiCepGdIl3W739yCG+BLzCO5nOu3MdmF6sIcfDA/9D0AisiKiFyLaEBE+4++sbON9IqIvZsZ76pliSETeiGg/sQPAHZj5fXTOECARARMfysTo2nYcgO1GGOsCEpFXBeM3OCAtSBUznzWNGJPSiXnFnB5bTUAiAlbswsMpMHXmU7xvgaoCCpg5MfN2Nl8KDLVnA6uCCgFpzXyazReBSfMDtqo1VQMEMChkPE0wZjOM/dGaKuSu41ACaV3U3tozXgDyqWLmGuiWBYS1pqC+DQgoD+K4PhEgTIBS8BQTgkhbZbWGAu0AF3DBUgZohB0RsenEXhc2jGOnlBTBYHDA0tb6kwdkZQ6H3bnofJoKteiGq5YJOjvJ1vCAbPRRusQAzCKbsQOn4kw0HpCtnyz/bpFQIaOgXNqytTygKwNeXa6+inSOggnqaDEgFGsyy5uMUkGFwbdqKKuRFs0z7MwyZIu6BSj0qFFgLv3Noray7sm+5cYb78DOPqr24lMGh07WXiip4tKpZcUbdZaMsXqii0hVzdHR0fMigMaYdLy0MlV4Ve806B2uiBqL+vModYW1/jpsL5Yertis2yYYteAj0vSkVB19AIlCdw6OtR+6kfUcfHWTEeqa/lAOj56ZFjZMX0/qFSGEnQDW6jX5/nQfbvKVlaiJa7I9cg2KFk1SP16iYj65a9Bz5UJZZSYx3QVkindU6lEW73dRNAqxF8ARD7p2k73LoY1giCEfsvuxIcn+739s6CnqHv9fxNA9Nq6t8XCAfgEjPn40vs6bfgAAAABJRU5ErkJggg=="/>
+            <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAl5JREFUWEfdWAtOQkEMbE8inEQ4iXIS8STCScSTiCepGdIl3W739yCG+BLzCO5nOu3MdmF6sIcfDA/9D0AisiKiFyLaEBE+4++sbON9IqIvZsZ76pliSETeiGg/sQPAHZj5fXTOECARARMfysTo2nYcgO1GGOsCEpFXBeM3OCAtSBUznzWNGJPSiXnFnB5bTUAiAlbswsMpMHXmU7xvgaoCCpg5MfN2Nl8KDLVnA6uCCgFpzXyazReBSfMDtqo1VQMEMChkPE0wZjOM/dGaKuSu41ACaV3U3tozXgDyqWLmGuiWBYS1pqC+DQgoD+K4PhEgTIBS8BQTgkhbZbWGAu0AF3DBUgZohB0RsenEXhc2jGOnlBTBYHDA0tb6kwdkZQ6H3bnofJoKteiGq5YJOjvJ1vCAbPRRusQAzCKbsQOn4kw0HpCtnyz/bpFQIaOgXNqytTygKwNeXa6+inSOggnqaDEgFGsyy5uMUkGFwbdqKKuRFs0z7MwyZIu6BSj0qFFgLv3Noray7sm+5cYb78DOPqr24lMGh07WXiip4tKpZcUbdZaMsXqii0hVzdHR0fMigMaYdLy0MlV4Ve806B2uiBqL+vModYW1/jpsL5Yertis2yYYteAj0vSkVB19AIlCdw6OtR+6kfUcfHWTEeqa/lAOj56ZFjZMX0/qFSGEnQDW6jX5/nQfbvKVlaiJa7I9cg2KFk1SP16iYj65a9Bz5UJZZSYx3QVkindU6lEW73dRNAqxF8ARD7p2k73LoY1giCEfsvuxIcn+739s6CnqHv9fxNA9Nq6t8XCAfgEjPn40vs6bfgAAAABJRU5ErkJggg==" />
             <p>Copyright 2023 nosotros.com.ar</p>
         </div>
-        
+
     </footer>
 
     <!--<script src="./mainPage.js"></script>-->

@@ -16,6 +16,6 @@ public interface OpinionRepositorio extends JpaRepository<Opinion, String> {
     
     
     @Query(value="Select * from Opinion where calificacion order by desc" , nativeQuery=true)
-    List<Opinion>findAllOrderByidDesc();
+    List<Opinion>findAllOrderByCalificacionDesc();
     
 }

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
  */
 package com.zonaop.alquileres.servicios;
 
@@ -61,11 +59,11 @@ public class OpinionServicio {
         
      }
    
-    public List<Opinion>listarOpinionesDesc(){
+    public List<Opinion>listarOpinionesPorCalificacionDesc(){
 
         List<Opinion> opi= new ArrayList();
         
-        opi=opinionrepo.findAllOrderByidDesc();
+        opi=opinionrepo.findAllOrderByCalificacionDesc();
         
         return opi;
         

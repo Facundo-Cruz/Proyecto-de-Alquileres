@@ -7,6 +7,8 @@ package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.TipoServicio;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -20,10 +22,9 @@ public class Servicio {
     private String id;
     private String nombre;
     private String descripcion;
+    @Enumerated(EnumType.STRING)
     private TipoServicio tp;
-    @OneToOne
     private double precio;
-    @OneToOne
     private boolean disponibilidad;
     
 

@@ -5,6 +5,7 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.enumeraciones.Rol;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.ClienteRepositorio;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,15 @@ public class ClienteServicio {
 
         }
 
+    }
+    
+    public List<Cliente> listarClientes(){
+        return clienteRepositorio.findAll();
+    }
+    
+    @Transactional
+    public void eliminarCliente(String id){
+        clienteRepositorio.deleteById(id);
     }
 
     @Transactional

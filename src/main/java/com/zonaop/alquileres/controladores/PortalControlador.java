@@ -16,30 +16,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/")
 public class PortalControlador {
 
-     
-     @GetMapping("/")
-     public String index() {
-     
-         return "mainPage.html";
- } 
-     
-       @GetMapping("/registrar")
+    @Autowired
+    private PropiedadServicio propiedadServicio;
+    
+    @GetMapping("/registrar")
     public String registrar() {
 
         return "formulario-registro-usuario.html";
 
     }
-    
 
-    @Autowired
-    private PropiedadServicio propiedadServicio;
     @GetMapping("/")
     public String index(ModelMap model) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
-    
+
     @PostMapping("/filtrar")
     public String index(ModelMap model, @RequestParam String tipo) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);

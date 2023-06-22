@@ -59,7 +59,8 @@
     border-radius: 3px;
 }
 .house-card img{
-    width: 94%;
+    width: 28vw;
+    height: 35vh;
     margin-top: 2%;
 }
 .form-edit {

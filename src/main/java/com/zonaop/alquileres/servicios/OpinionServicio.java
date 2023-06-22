@@ -160,7 +160,7 @@ public class OpinionServicio {
        
         if(fotos==null || fotos.isEmpty()){
         
-        throw new MiException("las fotos no pueden ser nulas");
+        throw new MiException("las fotos no pueden ser nulas o vacias");
         
     }
 

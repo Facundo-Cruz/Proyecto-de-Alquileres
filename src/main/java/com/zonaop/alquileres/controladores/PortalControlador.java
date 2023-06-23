@@ -33,10 +33,5 @@ public class PortalControlador {
         return "mainPage.html";
     }
 
-    @PostMapping("/filtrar")
-    public String index(ModelMap model, @RequestParam String tipo) {
-        List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
-        model.put("propiedades", propiedades);
-        return "mainPage.html";
-    }
+  
 }

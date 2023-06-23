@@ -3,23 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zonaop.alquileres.enumeraciones;
+package com.zonaop.alquileres.controladores;
+
+import org.springframework.stereotype.Controller;
 
 /**
+ *
  * @author Joaquin
  */
-public enum TipoServicio {
+@Controller
+public class RolControlador {
     
-Transporte,
-Seguridad,
-DJ,
-Catering,
-Animacion,
-Chef,
-Bar,
-Show,
-Guarderia,
-Asador,
-
-
 }

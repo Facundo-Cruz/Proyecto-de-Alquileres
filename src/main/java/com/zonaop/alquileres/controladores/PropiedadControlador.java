@@ -1,7 +1,9 @@
 package com.zonaop.alquileres.controladores;
 
+import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +41,15 @@ public class PropiedadControlador {
 
         }
 
+    }
+    
+    
+    
+      @PostMapping("/filtrar")
+    public String index(ModelMap model, @RequestParam String tipo) {
+        List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
+        model.put("propiedades", propiedades);
+        return "mainPage.html";
     }
 
 }

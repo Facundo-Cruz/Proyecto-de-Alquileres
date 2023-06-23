@@ -26,14 +26,14 @@ public class ClienteServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre, String apellido, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
+    public void registrar(String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
 
-        usuarioServicio.validar(nombre, apellido, email, contrasena);
+        usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
 
         Cliente cliente = new Cliente();
 
         cliente.setNombre(nombre);
-        cliente.setApellido(apellido);
+        cliente.setNombreUsuario(nombreUsuario);
         cliente.setEmail(email);
         cliente.setContrasena(contrasena);
         cliente.setEstado(Boolean.TRUE);
@@ -60,9 +60,10 @@ public class ClienteServicio {
             usuarioServicio.validar(nombre, apellido, email, contrasena);
 
             cliente.setNombre(nombre);
-            cliente.setApellido(apellido);
+            cliente.setNombreUsuario(apellido);
             cliente.setEmail(email);
             cliente.setContrasena(contrasena);
+            
 
             String idImagen = null;
 

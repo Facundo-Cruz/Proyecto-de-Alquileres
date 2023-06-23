@@ -28,97 +28,92 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  * @author Joaquin
  */
-
 @Controller
 @RequestMapping("/reserva")
 public class ReservaControlador {
-    
+
     @Autowired
     private ReservaServicio reservaservi;
-    
-    
+
     //ruta para el registro de reserva
     @GetMapping("/registrar")
-    public String registrarReserva(){
+    public String registrarReserva() {
 
         return "registro_reserva.html";
 
-   }
-    
+    }
+
     //ruta para el registro de reserva con sus respectivos datos
     @PostMapping("/registroReserva")
-    public String registroReserva(@RequestParam(required = false ) String id ,@RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion,@RequestParam Propiedad propiedad,@RequestParam List<Servicio> servicios,ModelMap modelo){
-    
+    public String registroReserva(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
+
         try {
-              
-        reservaservi.crearReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
-        modelo.put("exito", "la reserva se relizo correctamente");
-    
+
+            reservaservi.crearReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
+            modelo.put("exito", "la reserva se relizo correctamente");
+
         } catch (MiException ex) {
-         
+
             modelo.put("error", ex.getMessage());
-            
+
             return "registro_reserva.html";
-            
+
         }
-        
+
         return "mainPage.html";
-    
+
     }
 
     //ruta para listar las reservas de las propiedades
     @GetMapping("/lista")
-    public String listar(ModelMap modelo){
+    public String listar(ModelMap modelo) {
 
-     List<Reserva>reserva=reservaservi.listarReservas();
-     modelo.addAttribute("reservas", reserva);
-     
-     return "formularioreservalista.html";
+        List<Reserva> reserva = reservaservi.listarReservas();
+        modelo.addAttribute("reservas", reserva);
 
-   }
-    
+        return "formularioreservalista.html";
+
+    }
+
     //ruta para modificar el id de una reserva en especifico
     @GetMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id ,ModelMap modelo){
-    
-    modelo.put("reserva", reservaservi.getOne(id));
+    public String modificar(@PathVariable String id, ModelMap modelo) {
 
-    List<Reserva> rese=reservaservi.listarReservas();
-    modelo.addAttribute("reserva", rese);
-    
-    return "formularioModificarReserva.html";
-    
+        modelo.put("reserva", reservaservi.getOne(id));
+
+        List<Reserva> rese = reservaservi.listarReservas();
+        modelo.addAttribute("reserva", rese);
+
+        return "formularioModificarReserva.html";
+
     }
-    
-    
+
     //ruta para modificar la reserva y sus datos correspondientes
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id ,String huesped,List<Servicio>servicios,Double total, String idOpinion,String idPropiedad,String idCliente,String idServicio,ModelMap modelo){
-        
+    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
+
         try {
-           
-            List<Reserva>reserva=reservaservi.listarReservas();
+
+            List<Reserva> reserva = reservaservi.listarReservas();
             modelo.addAttribute("reserva", reserva);
-            
-             reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
-            
+
+            reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
+
             return "redirect:../lista";
-            
-            
+
         } catch (MiException ex) {
-   
-            List<Reserva>reserva=reservaservi.listarReservas();
+
+            List<Reserva> reserva = reservaservi.listarReservas();
             modelo.put("error", ex.getMessage());
-            
+
             modelo.addAttribute("reserva", reserva);
-            
+
             return "formularioModificarReserva.html";
-            
-            
+
         }
-        
-     }   
-   
+
+    }
+
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, ModelMap modelo) {
@@ -126,38 +121,25 @@ public class ReservaControlador {
 
         return "reserva_eliminar.html";
     }
-        
-       
+
     //ruta para eliminar una reserva por id 
-     @PostMapping("/eliminar/{id}")
+    @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, RedirectAttributes p) {
 
+        try {
+            reservaservi.EliminarReserva(id);
+            p.addFlashAttribute("exito", "eliminado");
 
-         try {
-             reservaservi.EliminarReserva(id);
-             p.addFlashAttribute("exito","eliminado");
-             
-             return "redirect:../lista";
-             
-         } catch (MiException ex) {
-   
-             
-             p.addFlashAttribute("error","intente de nuevo");
-             
             return "redirect:../lista";
-             
-         }
 
+        } catch (MiException ex) {
 
+            p.addFlashAttribute("error", "intente de nuevo");
 
+            return "redirect:../lista";
 
+        }
 
     }
-        
-        
-    }
-    
-   
-    
-    
+
 }

@@ -15,9 +15,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Servicio {
-//    
-//       
-//
+
+    
     @Id
     private String id;
     private String nombre;

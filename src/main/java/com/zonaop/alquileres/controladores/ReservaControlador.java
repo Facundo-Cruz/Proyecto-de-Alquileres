@@ -38,7 +38,7 @@ public class ReservaControlador {
     
     
     //ruta para el registro de reserva
-    @GetMapping("/registrar")
+    @GetMapping("/reserva")
     public String registrarReserva(){
 
         return "registro_reserva.html";
@@ -67,7 +67,7 @@ public class ReservaControlador {
     }
 
     //ruta para listar las reservas de las propiedades
-    @GetMapping("/lista")
+    @GetMapping("/listaReserva")
     public String listar(ModelMap modelo){
 
      List<Reserva>reserva=reservaservi.listarReservas();
@@ -102,7 +102,7 @@ public class ReservaControlador {
             
              reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
             
-            return "redirect:../lista";
+            return "redirect:../listaReserva";
             
             
         } catch (MiException ex) {
@@ -137,14 +137,14 @@ public class ReservaControlador {
              reservaservi.EliminarReserva(id);
              p.addFlashAttribute("exito","eliminado");
              
-             return "redirect:../lista";
+             return "redirect:../listaReserva";
              
          } catch (MiException ex) {
    
              
              p.addFlashAttribute("error","intente de nuevo");
              
-            return "redirect:../lista";
+            return "redirect:../listaReserva";
              
          }
 
@@ -159,5 +159,4 @@ public class ReservaControlador {
     
    
     
-    
-}
+  

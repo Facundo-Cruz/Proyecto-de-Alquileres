@@ -5,12 +5,12 @@
  */
 package com.zonaop.alquileres.controladores;
 
-<<<<<<< HEAD
+
 /**
 
  * @author Facundo
  */
-=======
+
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/imagen")
->>>>>>> 2a7d88493d0494ad1ffbf01938bb854d3a8716b5
+
 public class ImagenControlador {
 
     @Autowired

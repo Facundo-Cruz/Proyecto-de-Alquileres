@@ -6,16 +6,20 @@
 package com.zonaop.alquileres.enumeraciones;
 
 /**
- 
  * @author Joaquin
  */
 public enum TipoServicio {
-LIMPIEZA,
-PILETA,
-TRANSPORTE,
-SEGURIDAD,
-BARRALIBRE,
-SERVICIODJ,
-CATERING,
     
+Transporte,
+Seguridad,
+DJ,
+Catering,
+Animacion,
+Chef,
+Bar,
+Show,
+Guarderia,
+Asador,
+
+
 }

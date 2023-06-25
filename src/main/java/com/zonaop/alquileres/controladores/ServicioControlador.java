@@ -24,111 +24,103 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  * @author Joaquin
  */
-
 @Controller
 @RequestMapping("/servicio")
 public class ServicioControlador {
-    
-    
+
     @Autowired
     private ServicioServicio servicioservi;
-    
-    
-    @GetMapping("/servicio")
-    public String Servicio(){
 
-    return "formularioContratoServicio.html";
-    
-     }
-    
-    
+    @GetMapping("/servicio")
+    public String Servicio() {
+
+        return "formularioContratoServicio.html";
+
+    }
+
     @PostMapping("/contratoservicio")
-    public String contratarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion,@RequestParam TipoServicio tp,
-            @RequestParam double precio,@RequestParam boolean disponibilidad,ModelMap modelo){
+    public String contratarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
+            @RequestParam double precio, @RequestParam boolean disponibilidad, ModelMap modelo) {
         try {
             servicioservi.crearServicio(id, nombre, descripcion, precio, disponibilidad);
             modelo.put("excelente", "los servicios han sido adquiridos");
-            
+
         } catch (MiException ex) {
-            
+
             modelo.put("error", ex.getMessage());
-            
+
             return "formularioContratoServicio.html";
-            
+
         }
-        
+
         return "mainPage.html";
-    
+
     }
-    
+
     @GetMapping("/listarServicio")
-    public String listarServicios(ModelMap modelo){
+    public String listarServicios(ModelMap modelo) {
 
-    List<Servicio>listaServi=servicioservi.listarServicios();
-    
-    modelo.addAttribute("servicios", listaServi);
-    
-    return "formularioContratoServicio.html";
-    
+        List<Servicio> listaServi = servicioservi.listarServicios();
 
-   }
-    
+        modelo.addAttribute("servicios", listaServi);
+
+        return "formularioContratoServicio.html";
+
+    }
+
     @GetMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id,ModelMap modelo){
-        
-     modelo.put("servicio", servicioservi.getOne(id));
-     
-    List<Servicio>listaSer=servicioservi.listarServicios();
-    
-    modelo.addAttribute("servicios", listaSer);
-        
-        
-    return "formulariomodificarServicioReserva.html";    
-    
-    }
-    
-    
-    @PostMapping("/modificar/{id}")
-    public String modificarServicio(@PathVariable String id,String nombre,String descripcion,TipoServicio tp,double precio,boolean disponibilidad,ModelMap modelo){
-        
-        try {
-            
-            List<Servicio>listaServi=servicioservi.listarServicios();
-            modelo.addAttribute("servicio",listaServi);
-            
-            servicioservi.modificarServicio(id, nombre, descripcion, precio, disponibilidad);
-            
-            return "redirect:../listarServicio";
-            
-        } catch (MiException ex) {
-            
-            List<Servicio>listaServi=servicioservi.listarServicios();
-            modelo.addAttribute("error",ex.getMessage());
-        
-          return "formulariomodificarServicioReserva.html";    
-            
-        }
-        
-    }
-     
-     @GetMapping("/eliminar/{id}") 
-     public String eliminarServicio(@PathVariable String id,ModelMap modelo){
-         
-         modelo.put("servicios", servicioservi.getOne(id));
-         
-         return "servicio_eliminar.html";
-         
-     }
-        
-      @PostMapping("/eliminar/{id}")
-      public String eliminarServicio(@PathVariable String id,RedirectAttributes a){
-          
+    public String modificar(@PathVariable String id, ModelMap modelo) {
 
-          servicioservi.eliminarServicio(id);
-          a.addFlashAttribute("exito","servicio eliminado");
-          return "redirect:../listarServicio";
-          
-      }
+        modelo.put("servicio", servicioservi.getOne(id));
+
+        List<Servicio> listaSer = servicioservi.listarServicios();
+
+        modelo.addAttribute("servicios", listaSer);
+
+        return "formulariomodificarServicioReserva.html";
+
+    }
+
+    @PostMapping("/modificar/{id}")
+    public String modificarServicio(@PathVariable String id, String nombre, String descripcion, TipoServicio tp, double precio, boolean disponibilidad, ModelMap modelo) {
+
+        try {
+
+            List<Servicio> listaServi = servicioservi.listarServicios();
+            modelo.addAttribute("servicio", listaServi);
+
+            servicioservi.modificarServicio(id, nombre, descripcion, precio, disponibilidad);
+
+            return "redirect:../listarServicio";
+
+        } catch (MiException ex) {
+
+            List<Servicio> listaServi = servicioservi.listarServicios();
+            modelo.addAttribute("error", ex.getMessage());
+
+            return "formulariomodificarServicioReserva.html";
+
+        }
+
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminarServicio(@PathVariable String id, ModelMap modelo) {
+
+        modelo.put("servicios", servicioservi.getOne(id));
+
+        return "servicio_eliminar.html";
+
+    }
+
+    @PostMapping("/eliminar/{id}")
+    public String eliminarServicio(@PathVariable String id, RedirectAttributes a) {
+
+        servicioservi.eliminarServicio(id);
+        a.addFlashAttribute("exito", "servicio eliminado");
+        return "redirect:../listarServicio";
+
+    }
 //        
 //       try {
 //             reservaservi.EliminarReserva(id);
@@ -144,14 +136,6 @@ public class ServicioControlador {
 //            return "redirect:../listaReserva";
 //             
 //         }
-//      
-     
-    
-        
-        
-        
-        
-    }
-    
-    
-    
+//      <<<<<<< HEAD
+
+}

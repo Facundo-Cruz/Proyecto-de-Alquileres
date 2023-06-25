@@ -31,7 +31,7 @@ public class OpinionControlador {
     @Autowired
     private OpinionServicio opinionservicio;
     
-    @GetMapping("/opinion")
+    @GetMapping("/")
     public String Opinion(){
         
         return "forumularioOpinion.html";
@@ -76,7 +76,7 @@ public class OpinionControlador {
         
     }
     
-    @GetMapping("/listarOpinion")
+    @GetMapping("/listarOpinion2")
     public String listarOpinionesDesc(ModelMap modelo){
         
         List<Opinion>opiniones=opinionservicio.listarOpinionesPorCalificacionDesc();

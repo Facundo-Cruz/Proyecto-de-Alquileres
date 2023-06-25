@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.zonaop.alquileres.AlquileresApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.07 s - in com.zonaop.alquileres.AlquileresApplicationTests

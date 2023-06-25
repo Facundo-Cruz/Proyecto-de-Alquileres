@@ -25,14 +25,14 @@ public class AdministradorServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre, String apellido, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
+    public void registrar(String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
 
-        usuarioServicio.validar(nombre, apellido, email, contrasena);
+        usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
 
         Administrador administrador = new Administrador();
 
         administrador.setNombre(nombre);
-        administrador.setApellido(apellido);
+        administrador.setNombreUsuario(nombreUsuario);
         administrador.setEmail(email);
         administrador.setContrasena(contrasena);
         administrador.setEstado(Boolean.TRUE);
@@ -48,7 +48,7 @@ public class AdministradorServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
 
         Optional<Administrador> respuesta = administradorRepositorio.findById(id);
 
@@ -56,10 +56,10 @@ public class AdministradorServicio {
 
             Administrador administrador = respuesta.get();
 
-            usuarioServicio.validar(nombre, apellido, email, contrasena);
+            usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
 
             administrador.setNombre(nombre);
-            administrador.setApellido(apellido);
+            administrador.setNombreUsuario(nombreUsuario);
             administrador.setEmail(email);
             administrador.setContrasena(contrasena);
 

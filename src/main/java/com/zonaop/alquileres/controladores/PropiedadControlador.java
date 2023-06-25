@@ -3,7 +3,10 @@ package com.zonaop.alquileres.controladores;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
+<<<<<<< HEAD
 import java.util.Date;
+=======
+>>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,10 +46,21 @@ public class PropiedadControlador {
         }
 
     }
+<<<<<<< HEAD
     @PostMapping("/filtrar")
+=======
+    
+    
+    
+      @PostMapping("/filtrar")
+>>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
     public String index(ModelMap model, @RequestParam String tipo) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
 }

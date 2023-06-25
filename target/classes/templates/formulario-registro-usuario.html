@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Usuario</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor-back">
+        <div class="contenedor">
+       
+            <form class="formulario-registro-de-propiedad" action="">
+                <hr>
+                <h3 class="titulo">Registro de Usuario</h3>
+                <hr>
+            
+            <label for="alias">Alias:</label>
+            <input type="text" class="alias" name="alias">
+
+            <label for="email">Mail:</label>
+            <input type="email" placeholder=" tumail@gmail.com" name="email">
+         
+            <label for="password">Ingrese una clave</label>
+            <input type="password" name="contasena">
+
+            <label for="password">Confirme la clave</label>
+            <input type="password">
+    
+
+            <label for="imagen">Imagen de perfil:</label>
+            <input class="imagen" type="file" name="imagen" accept="image/*" >
+
+
+            <div class="campo">
+                <label>Seleccione su perfil:</label>
+                <div class="opcion">
+                    <input type="radio" id="opcion1" name="opcion" value="opcion1">
+                    <label for="opcion1">Propietario</label>
+                </div>
+                <div class="opcion">
+                    <input type="radio" id="opcion2" name="opcion" value="opcion2">
+                    <label for="opcion2">Cliente</label>
+                </div>
+            </div>
+            <input class="enviar" type="submit">
+        </form>
+     </div>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+</html>

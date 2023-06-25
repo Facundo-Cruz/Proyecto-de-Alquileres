@@ -1,7 +1,8 @@
 package com.zonaop.alquileres.servicios;
 
+import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propietario;
-import com.zonaop.alquileres.entidades.Usuario;
+import com.zonaop.alquileres.enumeraciones.Rol;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.PropietarioRepositorio;
 import java.util.Optional;
@@ -23,16 +24,30 @@ public class PropietarioServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(Usuario user) throws MiException {
+    public void registrar(String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
 
-        Propietario propietario = (Propietario) user;
+        usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
+
+        Propietario propietario = new Propietario();
+
+        propietario.setNombre(nombre);
+        propietario.setNombreUsuario(nombreUsuario);
+        propietario.setEmail(email);
+        propietario.setContrasena(contrasena);
+        propietario.setEstado(Boolean.TRUE);
+
+        Imagen imagen = imagenServicio.guardar(archivo);
+
+        propietario.setFoto(imagen);
+
+        propietario.setRol(Rol.PROPIETARIO);
 
         propietarioRepositorio.save(propietario);
 
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
@@ -40,16 +55,46 @@ public class PropietarioServicio {
 
             Propietario propietario = respuesta.get();
 
-            usuarioServicio.modificar(propietario, nombre, apellido, email, contrasena, archivo);
+            usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
+
+            propietario.setNombre(nombre);
+            propietario.setNombreUsuario(nombreUsuario);
+            propietario.setEmail(email);
+            propietario.setContrasena(contrasena);
+
+            String idImagen = null;
+
+            if (propietario.getFoto() != null) {
+
+                idImagen = propietario.getFoto().getId();
+
+            }
+
+            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+
+            propietario.setFoto(imagen);
+
+            propietario.setRol(Rol.PROPIETARIO);
+
+            propietarioRepositorio.save(propietario);
 
         }
 
     }
 
     @Transactional
+    public void eliminarPropietario(String id) {
+        propietarioRepositorio.deleteById(id);
+    }
+
+    @Transactional
     public void darBaja(String id) throws MiException {
 
-        usuarioServicio.darBaja(getOne(id));
+        Propietario propietario = getOne(id);
+
+        propietario.setEstado(Boolean.FALSE);
+
+        propietarioRepositorio.save(propietario);
 
     }
 
@@ -58,4 +103,5 @@ public class PropietarioServicio {
         return propietarioRepositorio.getOne(id);
 
     }
+
 }

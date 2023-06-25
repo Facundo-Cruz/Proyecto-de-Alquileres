@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Propiedad</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor-back">
+    <div class="contenedor">
+   
+        <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data">
+            <hr>
+            <h3 class="titulo">Registre su Propiedad</h3>
+            <hr>
+            
+           <p>Tipo de Propiedad:</p>
+            <select class="tipo-de-propiedad" name="opciones" onclick="mostrarPrimeraOpcion()">
+              <option id="op-color" selected disabled>Elija su opción</option>
+              <option value="Quinta">Quinta</option>
+              <option value="Casa">Casa</option>
+              <option value="Casa-con-pileta">Casa con pileta</option>
+              <option value="Quincho">Quincho</option>
+              <option value="Cabaña">Cabaña</option>
+              <option value="Salon-de-fiestas">Salon de Fiestas</option>
+              <option value="Otros">Otros</option>
+            </select>
+
+
+        <p>Ubicación:</p>
+        
+        <div class="ubicacion">
+        <label for="calle">Calle:</label>
+        <input type="text" class="calle" name="calle">
+      
+        <label id="altura"for="altura">Altura:</label>
+        <input class="altura" type="text"  name="altura">
+        </div>
+        <div class="ubicacion1">
+        <label  for="localidad">Localidad:</label>
+        <input type="text" id="localidad" name="localidad">
+      
+        <label id="codigo_postal" for="codigo_postal">C.P:</label>
+        <input id="cp" type="text"  name="codigo_postal">
+        </div>
+
+        
+        <div class="fecha">
+        <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
+        <input id="fondo-fecha" type="date">
+        <label class="label-fecha" id="egreso"for="fecha-egreso">Fecha de Egreso: </label>
+        <input  id="fondo-fecha"type="date">
+        </div>
+        <div class="mail-telefono">
+            <label for="telefono" >Telefono:</label>
+            <input  type="text" placeholder=" 223-458745">
+            <label for="email">Mail:</label>
+            <input type="email"placeholder=" tumail@gmail.com">
+
+        </div>
+       
+        <label for="imagen">Imagenes:</label>
+        <input class="imagen" type="file" name="archivo" accept="image/*" multiple>
+
+        
+
+        <label id="label-area" for=""> Descripción de la propiedad y sus servicios:</label>
+        <textarea name="" id="area" cols="30" rows="2"></textarea>
+        
+      <!-- Agrega un div para contener las opciones de redes sociales -->
+<div class="campo-redes-sociales">
+    <label>Redes sociales:</label>
+    <div class="opcion-redes">
+        <img src="/img/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
+    </div>
+    <div id="redes-sociales" style="display: none;">
+      <div class="opcion-redes">
+        <input type="text" id="facebook" name="facebook" placeholder="Facebook">
+      </div>
+      <div class="opcion-redes">
+        <input type="text" id="twitter" name="twitter" placeholder="Twitter">
+      </div>
+    </div>
+  </div>
+  
+
+        <div class="precio">
+            <label for="precio">Precio por dia:</label>
+            <input id="input-precio" type="text"  name="precio" value="$">
+        </div>
+        <input class="enviar" type="submit">
+    </form>
+ </div>
+</div>
+<script src="../static.js/script.js"></script>
+</body>
+</html>

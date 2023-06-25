@@ -36,13 +36,8 @@ public class ReservaControlador {
     private ReservaServicio reservaservi;
 
     //ruta para el registro de reserva
-<<<<<<< HEAD
     @GetMapping("/registrar")
     public String registrarReserva() {
-=======
-    @GetMapping("/reserva")
-    public String registrarReserva(){
->>>>>>> ce3bbaf01993bde1ec50f83a7984cc58c3a0a847
 
         return "registro_reserva.html";
 
@@ -70,13 +65,9 @@ public class ReservaControlador {
     }
 
     //ruta para listar las reservas de las propiedades
-<<<<<<< HEAD
     @GetMapping("/lista")
+
     public String listar(ModelMap modelo) {
-=======
-    @GetMapping("/listaReserva")
-    public String listar(ModelMap modelo){
->>>>>>> ce3bbaf01993bde1ec50f83a7984cc58c3a0a847
 
         List<Reserva> reserva = reservaservi.listarReservas();
         modelo.addAttribute("reservas", reserva);
@@ -106,20 +97,11 @@ public class ReservaControlador {
 
             List<Reserva> reserva = reservaservi.listarReservas();
             modelo.addAttribute("reserva", reserva);
-<<<<<<< HEAD
 
             reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
 
             return "redirect:../lista";
 
-=======
-            
-             reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
-            
-            return "redirect:../listaReserva";
-            
-            
->>>>>>> ce3bbaf01993bde1ec50f83a7984cc58c3a0a847
         } catch (MiException ex) {
 
             List<Reserva> reserva = reservaservi.listarReservas();
@@ -149,43 +131,16 @@ public class ReservaControlador {
             reservaservi.EliminarReserva(id);
             p.addFlashAttribute("exito", "eliminado");
 
-<<<<<<< HEAD
             return "redirect:../lista";
-=======
-         try {
-             reservaservi.EliminarReserva(id);
-             p.addFlashAttribute("exito","eliminado");
-             
-             return "redirect:../listaReserva";
-             
-         } catch (MiException ex) {
-   
-             
-             p.addFlashAttribute("error","intente de nuevo");
-             
-            return "redirect:../listaReserva";
-             
-         }
->>>>>>> ce3bbaf01993bde1ec50f83a7984cc58c3a0a847
 
         } catch (MiException ex) {
 
             p.addFlashAttribute("error", "intente de nuevo");
 
-            return "redirect:../lista";
+            return "redirect:../listaReserva";
 
         }
 
     }
-<<<<<<< HEAD
 
 }
-=======
-        
-        
-    }
-    
-   
-    
-  
->>>>>>> ce3bbaf01993bde1ec50f83a7984cc58c3a0a847

@@ -104,7 +104,7 @@ public class OpinionControlador {
     }
     
     
-    //metodo de getmapping para listar las opiniones segun la query, a falta de revision
+    //metodo de getmapping para modificar las opiniones segun la query, a falta de revision
     
     
 //    @GetMapping("/modificar/{id}")
@@ -155,15 +155,26 @@ public class OpinionControlador {
     }
     
   
-    @PostMapping("/eliminar/{id}")
-    public String eliminarOpinion(@PathVariable String id,RedirectAttributes o){
- 
-        opinionservicio.eliminarOpinion(id);
-        o.addFlashAttribute("exito", "comentarioeliminado");
-        
-      return "redirect:../listarOpinion";
-        
-    }
+//    @PostMapping("/eliminar/{id}")
+//    public String eliminarOpinion(@PathVariable String id,RedirectAttributes o){
+// 
+//        opinionservicio.eliminarOpinion(id);
+//        o.addFlashAttribute("exito", "comentarioeliminado");
+//        
+//      return "redirect:../listarOpinion";
+//        
+//    }
+//    
+    
+    //     @DeleteMapping("/eliminar/{id}")
+//     public boolean eliminarOpinion(@PathVariable ("id"),String id){
+//        
+//        
+//        return opinionservicio.EliminarOpinion(id);
+//        
+//        
+//    }
+//        
     
     
 }

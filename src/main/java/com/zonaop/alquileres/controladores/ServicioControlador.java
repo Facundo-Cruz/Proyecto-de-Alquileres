@@ -119,35 +119,28 @@ public class ServicioControlador {
          return "servicio_eliminar.html";
          
      }
-        
-      @PostMapping("/eliminar/{id}")
-      public String eliminarServicio(@PathVariable String id,RedirectAttributes a){
-          
-
-          servicioservi.eliminarServicio(id);
-          a.addFlashAttribute("exito","servicio eliminado");
-          return "redirect:../listarServicio";
-          
-      }
 //        
-//       try {
-//             reservaservi.EliminarReserva(id);
-//             p.addFlashAttribute("exito","eliminado");
-//             
-//             return "redirect:../listaReserva";
-//             
-//         } catch (MiException ex) {
-//   
-//             
-//             p.addFlashAttribute("error","intente de nuevo");
-//             
-//            return "redirect:../listaReserva";
-//             
-//         }
-//      
+//      @PostMapping("/eliminar/{id}")
+//      public String eliminarServicio(@PathVariable String id,RedirectAttributes a){
+//          
+//
+//          servicioservi.eliminarServicio(id);
+//          a.addFlashAttribute("exito","servicio eliminado");
+//          return "redirect:../listarServicio";
+//          
+//      }
+
      
     
-        
+            //@DeleteMapping("/eliminar/{id}")
+//     public boolean eliminarServicio(@PathVariable ("id"),String id){
+//        
+//        
+//        return servicioservi.EliminarServicio(id);
+//        
+//        
+//    }
+//       
         
         
         

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -121,6 +122,48 @@ public class OpinionControlador {
 //        
 //    }
 //    
+    
+    @PostMapping("/modificar/{id}")
+    public String modificar(@PathVariable String id,String huesped,String comentario,List<Imagen>Fotos,double calificacion,ModelMap modelo){
+        try {
+            
+            List<Opinion>opiniones=opinionservicio.listarOpiniones();
+            modelo.addAttribute("opinion",opiniones);
+            
+            opinionservicio.modificarOpinion(id, huesped, comentario, 0, Fotos);
+            
+            return "redirect:../listarOpinion";
+            
+        } catch (MiException ex){
+            
+            List<Opinion>opiniones=opinionservicio.listarOpiniones();
+            modelo.addAttribute("error",ex.getMessage());
+            
+             return "formularioModificarOpinion.html";
+            
+        }
+    }
+    
+    
+    @GetMapping("/eliminar/{id}")
+    public String eliminarOpinion(@PathVariable String id,ModelMap modelo){
+ 
+        modelo.put("eliminar", opinionservicio.getOne(id));
+        
+        return "eliminarOpinion.html";
+
+    }
+    
+  
+    @PostMapping("/eliminar/{id}")
+    public String eliminarOpinion(@PathVariable String id,RedirectAttributes o){
+ 
+        opinionservicio.eliminarOpinion(id);
+        o.addFlashAttribute("exito", "comentarioeliminado");
+        
+      return "redirect:../listarOpinion";
+        
+    }
     
     
 }

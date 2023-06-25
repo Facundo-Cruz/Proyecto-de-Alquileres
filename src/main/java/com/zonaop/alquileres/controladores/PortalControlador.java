@@ -32,8 +32,4 @@ public class PortalControlador {
         return "mainPage.html";
     }
 
-<<<<<<< HEAD
-=======
-  
->>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
 }

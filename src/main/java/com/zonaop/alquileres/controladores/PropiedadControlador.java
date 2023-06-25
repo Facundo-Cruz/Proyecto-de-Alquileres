@@ -3,10 +3,7 @@ package com.zonaop.alquileres.controladores;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
-<<<<<<< HEAD
 import java.util.Date;
-=======
->>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,11 +28,11 @@ public class PropiedadControlador {
     }
 
     @PostMapping("/registro")
-    public String subir(@RequestParam String nombre, @RequestParam String direccion, @RequestParam String localidad,@RequestParam Integer codigoPostal,@RequestParam String descripcion,@RequestParam Date fechaDesde,@RequestParam Date fechaHasta,@RequestParam Double precio,@RequestParam String tipoPropiedad,@RequestParam MultipartFile archivo, ModelMap modelo) {
+    public String subir(@RequestParam String nombre, @RequestParam String direccion, @RequestParam String localidad, @RequestParam Integer codigoPostal, @RequestParam String descripcion, @RequestParam Date fechaDesde, @RequestParam Date fechaHasta, @RequestParam Double precio, @RequestParam String tipoPropiedad, @RequestParam MultipartFile archivo, ModelMap modelo) {
 
         try {
 
-            propiedadServicio.crearPropiedad(nombre,direccion,localidad,codigoPostal,descripcion,fechaDesde,fechaHasta,precio,tipoPropiedad,archivo);
+            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo);
 
             return "mainPage.html";
 
@@ -46,21 +43,11 @@ public class PropiedadControlador {
         }
 
     }
-<<<<<<< HEAD
+
     @PostMapping("/filtrar")
-=======
-    
-    
-    
-      @PostMapping("/filtrar")
->>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
     public String index(ModelMap model, @RequestParam String tipo) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 51e9a03044662d2bd6b7584d94167d09b7030389
 }

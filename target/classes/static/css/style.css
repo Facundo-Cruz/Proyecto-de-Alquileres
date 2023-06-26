@@ -22,7 +22,7 @@ hr {
     width: 90%;
 }
 
-body{
+/* body{
 display: flex;
 font-family: 'Bebas Neue', sans-serif;
 font-family: 'Montserrat', sans-serif;
@@ -30,7 +30,7 @@ font-size: 11px;
 margin: 0;
 padding: 0;
 background-image: url(/img/casa.jpg);
-}
+} */
 
 /*Formulario de regitro de propiedad*/
 /*.contenedor-back{
@@ -167,7 +167,11 @@ p{
 
 /*Formulario de usuario*/
 
+<<<<<<< HEAD
 /*.campo{
+=======
+/* .campo{
+>>>>>>> 294538c366a8a37b24267a30b15d69eca0584857
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -194,7 +198,11 @@ hr{
     flex-direction: row;
     flex-wrap: wrap;
     
+<<<<<<< HEAD
  }*/
+=======
+ } */
+>>>>>>> 294538c366a8a37b24267a30b15d69eca0584857
 
 
 

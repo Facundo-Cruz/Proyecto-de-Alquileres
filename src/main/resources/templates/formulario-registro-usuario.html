@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Usuario</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="formulario-registro-usuario.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="contenedor-back">
         <div class="contenedor">
-       
-            <form class="formulario-registro-de-propiedad" action="">
+
+            <form class="formulario-registro-de-usuario" action="" onsubmit="return validarFormulario()">
                 <hr>
                 <h3 class="titulo">Registro de Usuario</h3>
                 <hr>
-            
-            <label for="alias">Alias:</label>
-            <input type="text" class="alias" name="alias">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="nombre" name="nombre" required>
 
-            <label for="email">Mail:</label>
-            <input type="email" placeholder=" tumail@gmail.com">
-         
-            <label for="password">Ingrese una clave</label>
-            <input type="password">
+                <label for="apellido">Apellido:</label>
+                <input type="text" class="apellido" name="apellido" required>
 
-            <label for="password">Confirme la clave</label>
-            <input type="password">
-    
+                <label for="alias">Alias:</label>
+                <input type="text" class="alias" name="alias" required>
 
-            <label for="imagen">Imagenen de perfil:</label>
-            <input class="imagen" type="file" name="imagenes" accept="image/*" >
+                <label for="email">Mail:</label>
+                <input type="email" class="email" name="email" placeholder="tumail@gmail.com" required>
+
+                <label for="password">Ingrese una clave</label>
+                <input class="password" type="password" name="password" required>
+                <p class="p-contraseña">* La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter
+                    especial.</p>
+
+                <label for="password">Confirme la clave</label>
+                <input class="password1" type="password" name="password1" required>
 
 
-            <div class="campo">
-                <label>Seleccione su perfil:</label>
-                <div class="opcion">
-                    <input type="radio" id="opcion1" name="opcion" value="opcion1">
-                    <label for="opcion1">Propietario</label>
+                <label for="imagen">Imagen de perfil:</label>
+                <input class="imagen" type="file" name="imagenes" accept="image/*" required>
+
+
+                <div class="campo">
+                    <label>Seleccione su perfil:</label>
+                    <div class="opcion">
+                        <input class="radio" type="radio" id="opcion1" name="opcion" required>
+                        <label for="opcion1">Propietario</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="radio" type="radio" id="opcion2" name="opcion" required>
+                        <label for="opcion2">Cliente</label>
+                    </div>
                 </div>
-                <div class="opcion">
-                    <input type="radio" id="opcion2" name="opcion" value="opcion2">
-                    <label for="opcion2">Cliente</label>
-                </div>
-            </div>
-            <input class="enviar" type="submit">
-        </form>
-     </div>
+                <input class="enviar" type="submit" value="Enviar">
+            </form>
+        </div>
     </div>
-    <script src="../static.js/script.js"></script>
+    <script src="formulario-registro-usuario.js"></script>
 </body>
+
 </html>

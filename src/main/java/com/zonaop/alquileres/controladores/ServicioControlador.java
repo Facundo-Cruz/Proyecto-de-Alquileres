@@ -157,7 +157,6 @@ public class ServicioControlador {
 //            return "redirect:../listaReserva";
 //             
 //         }
-//      <<<<<<< HEAD
 
-}
+
 

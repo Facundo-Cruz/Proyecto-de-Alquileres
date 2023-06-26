@@ -122,7 +122,6 @@ public class ReservaControlador {
 
         return "reserva_eliminar.html";
     }
-<<<<<<< HEAD
         
        
 //    //ruta para eliminar una reserva por id 
@@ -147,7 +146,6 @@ public class ReservaControlador {
 //
 //   }
     
-}
          
          
 //     @DeleteMapping("/eliminar/{id}")
@@ -165,7 +163,6 @@ public class ReservaControlador {
    
     
   
-=======
 
     //ruta para eliminar una reserva por id 
     @PostMapping("/eliminar/{id}")
@@ -188,4 +185,4 @@ public class ReservaControlador {
     }
 
 }
->>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
+

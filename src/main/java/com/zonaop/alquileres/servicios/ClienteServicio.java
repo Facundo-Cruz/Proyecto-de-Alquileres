@@ -5,8 +5,10 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.enumeraciones.Rol;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.ClienteRepositorio;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,16 +27,16 @@ public class ClienteServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre, String apellido, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
+    public void registrar(String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
 
-        usuarioServicio.validar(nombre, apellido, email, contrasena);
+        usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
 
         Cliente cliente = new Cliente();
 
         cliente.setNombre(nombre);
-        cliente.setApellido(apellido);
+        cliente.setNombreUsuario(nombreUsuario);
         cliente.setEmail(email);
-        cliente.setContrasena(contrasena);
+        cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         cliente.setEstado(Boolean.TRUE);
 
         Imagen imagen = imagenServicio.guardar(archivo);
@@ -59,9 +61,10 @@ public class ClienteServicio {
             usuarioServicio.validar(nombre, apellido, email, contrasena);
 
             cliente.setNombre(nombre);
-            cliente.setApellido(apellido);
+            cliente.setNombreUsuario(apellido);
             cliente.setEmail(email);
             cliente.setContrasena(contrasena);
+            
 
             String idImagen = null;
 
@@ -81,6 +84,15 @@ public class ClienteServicio {
 
         }
 
+    }
+    
+    public List<Cliente> listarClientes(){
+        return clienteRepositorio.findAll();
+    }
+    
+    @Transactional
+    public void eliminarCliente(String id){
+        clienteRepositorio.deleteById(id);
     }
 
     @Transactional

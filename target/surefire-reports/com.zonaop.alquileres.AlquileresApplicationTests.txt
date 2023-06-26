@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.zonaop.alquileres.AlquileresApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 12.141 s <<< FAILURE! - in com.zonaop.alquileres.AlquileresApplicationTests
 contextLoads  Time elapsed: 0.004 s  <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext
@@ -9,3 +10,6 @@ Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Un
 Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution
 Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.07 s - in com.zonaop.alquileres.AlquileresApplicationTests
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="es">
+=======
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Propiedad</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="../static/css/style.css">
+=======
+    <link rel="stylesheet" href="/css/style.css">
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
@@ -13,7 +21,11 @@
     <div class="contenedor-back">
     <div class="contenedor">
    
+<<<<<<< HEAD
         <form class="formulario-registro-de-propiedad" action="">
+=======
+        <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data">
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
             <hr>
             <h3 class="titulo">Registre su Propiedad</h3>
             <hr>
@@ -64,18 +76,30 @@
         </div>
        
         <label for="imagen">Imagenes:</label>
+<<<<<<< HEAD
         <input class="imagen" type="file" name="imagenes" accept="image/*" multiple>
 
         
 
         <label id="label-area" for="">Descripción de la propiedad y sus servicios:</label>
+=======
+        <input class="imagen" type="file" name="archivo" accept="image/*" multiple>
+
+        
+
+        <label id="label-area" for=""> Descripción de la propiedad y sus servicios:</label>
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
         <textarea name="" id="area" cols="30" rows="2"></textarea>
         
       <!-- Agrega un div para contener las opciones de redes sociales -->
 <div class="campo-redes-sociales">
     <label>Redes sociales:</label>
     <div class="opcion-redes">
+<<<<<<< HEAD
         <img src="../static/img/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
+=======
+        <img src="/img/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
     </div>
     <div id="redes-sociales" style="display: none;">
       <div class="opcion-redes">

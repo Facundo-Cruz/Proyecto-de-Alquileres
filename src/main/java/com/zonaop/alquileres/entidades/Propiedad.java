@@ -2,11 +2,15 @@ package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
-import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,7 +22,14 @@ public class Propiedad {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
-    private String ubicacion;
+    private String direccion;
+    private String localidad;
+    private String codigoPostal;
+    private String descripcion;
+    @OneToOne
+    //Especifica que una propiedad necesita si osi de un propietario para ser persistida
+    @JoinColumn(name = "propietario_id")
+    private Propietario propietario;
     @Temporal(TemporalType.DATE)
     private Date fechaDesde;
     @Temporal(TemporalType.DATE)
@@ -29,10 +40,11 @@ public class Propiedad {
 //    private List<String> telefonos;
 //    @OneToMany
 //    private List<String> mails;
-    @OneToMany
-    private List<Imagen> fotos;
+    @OneToOne
+    private Imagen foto;
     private double precio;
     private boolean estado;
+    @Enumerated(EnumType.STRING)
     private TipoPropiedad tipo;
     private int calificacion;
 
@@ -55,12 +67,36 @@ public class Propiedad {
         this.nombre = nombre;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Date getFechaDesde() {
@@ -103,13 +139,7 @@ public class Propiedad {
 //        this.mails = mails;
 //    }
 
-    public List<Imagen> getFotos() {
-        return fotos;
-    }
 
-    public void setFotos(List<Imagen> fotos) {
-        this.fotos = fotos;
-    }
 
     public double getPrecio() {
         return precio;
@@ -134,6 +164,31 @@ public class Propiedad {
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
+
+    public TipoPropiedad getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoPropiedad tipo) {
+        this.tipo = tipo;
+    }
+
+    public Imagen getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Imagen foto) {
+        this.foto = foto;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
+    }
+    
     
     
 }

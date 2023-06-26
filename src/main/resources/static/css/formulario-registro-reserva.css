@@ -1,0 +1,297 @@
+.contenedor-back {
+    width: 100%;
+    height: 1100px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    border: solid 1px black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 80px;
+}
+
+label {
+    margin-top: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: 800;
+}
+
+.ubicacion {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+}
+
+.contenedor-fechas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.fecha {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+
+}
+
+.label-fecha {
+    display: inline-block;
+    flex-direction: row;
+    margin-right: 3px;
+    font-size: 16px;
+    width: 40%;
+    border: none;
+}
+
+#fondo-fecha-ingreso {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#fondo-fecha-egreso {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.enviar {
+    width: 40%;
+    margin: auto;
+    margin-top: 12px;
+    background-color: blueviolet;
+    border: blueviolet;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+}
+
+.enviar:hover {
+    background-color: gray;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.imagen {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+
+.op input {
+    margin-top: 7px;
+}
+
+.precio {
+    margin-top: 15px;
+}
+
+/* Formulario de reserva */
+
+.contenedor-descripcion {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+}
+
+.contenedor-titulo-reserva {
+    width: 90%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.formulario-registro-de-reserva {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.formulario-registro-de-reserva h3 {
+    width: 100%;
+    margin: auto;
+    font-size: 25px;
+}
+
+.titulo-descripcion {
+    width: auto;
+    margin: auto;
+    font-size: 23px;
+}
+
+.imagen-de-reserva {
+    width: 50%;
+    height: auto;
+    margin-left: 28px;
+}
+
+.descripcion-ubicacion {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+
+}
+
+.descripcion-ubicacion p {
+
+    font-size: 20px;
+}
+
+.descripcion-ubicacion-lavel {
+    display: flex;
+    font-size: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+
+.servicios {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+
+.op {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+
+}
+
+.opr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 40%;
+}
+
+.op input {
+    margin-top: 7px;
+}
+
+.etiqueta-check {
+    margin-bottom: 10px;
+}
+
+.valor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.valores {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+    text-align: end;
+}
+
+.caja-precio {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    width: 70%;
+    padding-right: 3px;
+    margin-top: 10px;
+}
+
+.caja-precio-v {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    width: 15vh;
+    padding-right: 3px;
+}
+
+/* resposividad de formulario de reserva */
+@media screen and (max-width: 769px) {
+    .contenedor {
+        width: 90%;
+        height: auto;
+        margin-bottom: 30px;
+    }
+
+    .contenedor-back {
+        width: 100%;
+
+    }
+
+    .contenedor-fechas {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin-right: 10px;
+
+    }
+
+    .fecha {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .label-fecha {
+        display: flex;
+        margin-right: 3px;
+        font-size: 12px;
+    }
+
+    .servicios {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+    }
+
+    .op {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+    }
+
+    .opr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+
+}

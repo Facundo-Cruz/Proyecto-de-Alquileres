@@ -122,6 +122,50 @@ public class ReservaControlador {
 
         return "reserva_eliminar.html";
     }
+<<<<<<< HEAD
+        
+       
+//    //ruta para eliminar una reserva por id 
+//     @PostMapping("/eliminar/{id}")
+//    public String eliminar(@PathVariable String id, RedirectAttributes p) {
+//
+//
+//         try {
+//             reservaservi.EliminarReserva(id);
+//             p.addFlashAttribute("exito","eliminado");
+//             
+//             return "redirect:../listaReserva";
+//             
+//         } catch (MiException ex) {
+//   
+//             
+//             p.addFlashAttribute("error","intente de nuevo");
+//             
+//            return "redirect:../listaReserva";
+//             
+//         }
+//
+//   }
+    
+}
+         
+         
+//     @DeleteMapping("/eliminar/{id}")
+//     public boolean eliminarReserva(@PathVariable ("id"),String id){
+//        
+//        
+//        return reservaservi.EliminarReserva(id);
+//        
+//        
+//    }
+//        
+        
+  
+    
+   
+    
+  
+=======
 
     //ruta para eliminar una reserva por id 
     @PostMapping("/eliminar/{id}")
@@ -144,3 +188,4 @@ public class ReservaControlador {
     }
 
 }
+>>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735

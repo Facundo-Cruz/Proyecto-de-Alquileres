@@ -10,18 +10,6 @@ body {
     background-image: url(imagenes/casa.jpg);
 }
 
-<<<<<<< HEAD
-p {
-    font-size: 18px;
-    font-weight: 800;
-}
-
-hr {
-    color: blueviolet;
-    border: solid black 1 px;
-    width: 90%;
-}
-=======
 body{
 display: flex;
 font-family: 'Bebas Neue', sans-serif;
@@ -195,6 +183,14 @@ hr{
     flex-wrap: wrap;
     
  }
+ 
+ p {
+    font-size: 18px;
+    font-weight: 800;
+}
 
-
->>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
+hr {
+    color: blueviolet;
+    border: solid black 1 px;
+    width: 90%;
+}

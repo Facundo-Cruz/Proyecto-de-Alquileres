@@ -1,12 +1,14 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 14-jun-2023, 22:50:55
-    Author     : Facundo
-*/
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    background-image: url(imagenes/casa.jpg);
+}
 
 body{
 display: flex;
@@ -181,5 +183,14 @@ hr{
     flex-wrap: wrap;
     
  }
+ 
+ p {
+    font-size: 18px;
+    font-weight: 800;
+}
 
-
+hr {
+    color: blueviolet;
+    border: solid black 1 px;
+    width: 90%;
+}

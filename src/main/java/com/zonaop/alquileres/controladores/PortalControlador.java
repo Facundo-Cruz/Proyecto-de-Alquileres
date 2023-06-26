@@ -53,12 +53,11 @@ public class PortalControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre,@RequestParam String apellido,
             @RequestParam String email, @RequestParam String nombreUsuario,
-            @RequestParam String contrasena, String rol,
+            @RequestParam String contrasena,@RequestParam String rol,
             @RequestParam(required = false) MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
 
         try {
-            rol = "cliente";
             if (rol.equalsIgnoreCase("cliente")) {
 
                 clienteServicio.registrar(nombre, apellido,nombreUsuario, email, contrasena, archivo, rol);

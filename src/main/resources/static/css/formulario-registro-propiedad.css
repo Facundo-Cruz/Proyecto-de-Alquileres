@@ -1,0 +1,294 @@
+/*Formulario de regitro de propiedad*/
+.contenedor-back {
+    width: 100%;
+    height: auto;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    width: 56%;
+    height: auto;
+    background-color: white;
+    border: solid 1px black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.formulario-registro-de-propiedad {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.formulario-registro-de-propiedad h3 {
+    margin: auto;
+    font-size: 25px;
+}
+
+.tipo-de-propiedad {
+    width: 50%;
+    height: 25px;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+
+label {
+    margin-top: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: 800;
+}
+
+/* inputs desde nombre hasta cp */
+.ubicacion {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+    margin-top: 5px;
+
+}
+
+.ub {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+
+}
+
+.ub input {
+    width: 100%;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+
+#codigo-postal {
+    width: 100%;
+}
+
+#cp {
+    width: 20%;
+}
+
+/* calendarios */
+.contenedor-fechas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.fecha {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+
+}
+
+.label-fecha {
+    display: inline-block;
+    flex-direction: row;
+    margin-right: 3px;
+    font-size: 16px;
+    width: 40%;
+    border: none;
+}
+
+#fondo-fecha-ingreso {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#fondo-fecha-egreso {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* inputs telefono y mail */
+.mail-telefono input {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+
+.myt {
+    display: inline-block;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 40%;
+    margin-right: 30px;
+
+}
+
+/* ajuste redes sociales */
+#facebook {
+    margin-bottom: 10px;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+
+#twitter {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+/* boton input */
+.enviar {
+    width: 40%;
+    margin: auto;
+    margin-top: 12px;
+    background-color: blueviolet;
+    border: blueviolet;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+}
+
+.enviar:hover {
+    background-color: gray;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* boton de imagen */
+.imagen {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+/* Descripciòn */
+
+#area {
+    width: 95%;
+    resize: none;
+    margin-bottom: 10px;
+    border: 1px solid blueviolet;
+}
+
+#label-area {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+/*servicios adicionales*/
+
+.servicios {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.op {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.opr {
+    display: flex;
+    flex-direction: row;
+
+    width: 40%;
+    margin-top: 8px;
+}
+
+.opr1 {
+    display: flex;
+    width: 50%;
+}
+
+.label-opr1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: self-end;
+    margin-bottom: 5px;
+
+}
+
+.op input {
+    margin-top: 7px;
+}
+
+.etiqueta-check {
+    margin-bottom: 10px;
+}
+
+.caja-precio {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    width: 30%;
+    padding-right: 3px;
+    margin-top: 10px;
+    text-align: end;
+    margin-left: 10px;
+}
+
+.valor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.valores {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    text-align: end;
+}
+
+.caja-precio-v {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    width: 70%;
+}
+
+.label-precios {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+}
+
+.label-precios-total {
+    display: flex;
+    flex-direction: row;
+    width: 33%;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+
+#label-precios-total {
+    margin-right: -60px;
+}

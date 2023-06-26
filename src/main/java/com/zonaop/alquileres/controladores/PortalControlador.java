@@ -52,8 +52,8 @@ public class PortalControlador {
 
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre,@RequestParam String apellido,
-            @RequestParam String email, @RequestParam String alias,
-            @RequestParam String password, @RequestParam String password1, String rol,
+            @RequestParam String email, @RequestParam String nombreUsuario,
+            @RequestParam String contrasena, String rol,
             @RequestParam(required = false) MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
 
@@ -61,11 +61,11 @@ public class PortalControlador {
             rol = "cliente";
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.registrar(nombre, alias, email, password, archivo, 0);
+                clienteServicio.registrar(nombre, apellido,nombreUsuario, email, contrasena, archivo, rol);
 
             } else {
                 
-                propietarioServicio.registrar(nombre, alias, email, password, archivo, 0);
+                propietarioServicio.registrar(nombre, apellido,nombreUsuario, email, contrasena, archivo, rol);
                 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");
@@ -73,7 +73,7 @@ public class PortalControlador {
         } catch (Exception ex) {
             model.put("error", ex.getMessage());
             model.put("email", email);
-            model.put("alias", alias);
+            model.put("alias", apellido);
             model.put("rol", rol);
             return "registrar.html";
         }

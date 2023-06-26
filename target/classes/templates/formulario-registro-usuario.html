@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Usuario</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/formulario-registro-usuario.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
@@ -25,13 +25,13 @@
                 <input type="text" class="apellido" name="apellido" required>
 
                 <label for="alias">Alias:</label>
-                <input type="text" class="alias" name="alias" required>
+                <input type="text" class="alias" name="nombreUsuario" required>
 
                 <label for="email">Mail:</label>
                 <input type="email" class="email" name="email" placeholder="tumail@gmail.com" required>
 
                 <label for="password">Ingrese una clave</label>
-                <input class="password" type="password" name="password" required>
+                <input class="password" type="password" name="contrasena" required>
                 <p class="p-contraseña">* La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter
                     especial.</p>
 

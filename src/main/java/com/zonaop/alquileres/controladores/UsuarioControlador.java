@@ -7,10 +7,7 @@ package com.zonaop.alquileres.controladores;
 
 import org.springframework.stereotype.Controller;
 
-/**
- *
- * @author Joaquin
- */
+
 @Controller
 public class UsuarioControlador {
     

@@ -25,7 +25,7 @@ public class UsuarioServicio implements UserDetailsService{
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
-    public void validar(String nombre, String apellido, String email, String contrasena) throws MiException {
+    public void validar(String nombre, String apellido,String nombreUsuario, String email, String contrasena) throws MiException {
 
     }
 

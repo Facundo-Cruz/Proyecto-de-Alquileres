@@ -69,7 +69,6 @@ public class ServicioControlador {
     }
 
     @GetMapping("/modificar/{id}")
-<<<<<<< HEAD
     public String modificar(@PathVariable String id,ModelMap modelo){
         
      modelo.put("servicio", servicioservi.getOne(id));
@@ -142,61 +141,7 @@ public class ServicioControlador {
         
     }
     
-    
-    
-=======
-    public String modificar(@PathVariable String id, ModelMap modelo) {
 
-        modelo.put("servicio", servicioservi.getOne(id));
-
-        List<Servicio> listaSer = servicioservi.listarServicios();
-
-        modelo.addAttribute("servicios", listaSer);
-
-        return "formulariomodificarServicioReserva.html";
-
-    }
-
-    @PostMapping("/modificar/{id}")
-    public String modificarServicio(@PathVariable String id, String nombre, String descripcion, TipoServicio tp, double precio, boolean disponibilidad, ModelMap modelo) {
-
-        try {
-
-            List<Servicio> listaServi = servicioservi.listarServicios();
-            modelo.addAttribute("servicio", listaServi);
-
-            servicioservi.modificarServicio(id, nombre, descripcion, precio, disponibilidad);
-
-            return "redirect:../listarServicio";
-
-        } catch (MiException ex) {
-
-            List<Servicio> listaServi = servicioservi.listarServicios();
-            modelo.addAttribute("error", ex.getMessage());
-
-            return "formulariomodificarServicioReserva.html";
-
-        }
-
-    }
-
-    @GetMapping("/eliminar/{id}")
-    public String eliminarServicio(@PathVariable String id, ModelMap modelo) {
-
-        modelo.put("servicios", servicioservi.getOne(id));
-
-        return "servicio_eliminar.html";
-
-    }
-
-    @PostMapping("/eliminar/{id}")
-    public String eliminarServicio(@PathVariable String id, RedirectAttributes a) {
-
-        servicioservi.eliminarServicio(id);
-        a.addFlashAttribute("exito", "servicio eliminado");
-        return "redirect:../listarServicio";
-
-    }
 //        
 //       try {
 //             reservaservi.EliminarReserva(id);
@@ -215,4 +160,4 @@ public class ServicioControlador {
 //      <<<<<<< HEAD
 
 }
->>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
+

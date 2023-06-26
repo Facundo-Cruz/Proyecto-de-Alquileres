@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -25,10 +26,19 @@ public class UsuarioServicio implements UserDetailsService{
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
-    public void validar(String nombre, String apellido, String email, String contrasena) throws MiException {
+    public void validar(String nombre, String apellido,String nombreUsuario, String email, String contrasena) throws MiException {
 
     }
 
+    public List<Usuario> listarUsuarios(){
+        return usuarioRepositorio.findAll();
+    }
+    
+    @Transactional
+    public void eliminarPorId(String id){
+        usuarioRepositorio.deleteById(id);
+    }
+    
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepositorio.buscarPorEmailUser(email);

@@ -26,6 +26,7 @@ public class Usuario {
     protected String id;
     @Basic
     protected String nombre;
+    protected String apellido;
     protected String nombreUsuario;
     protected String email;
     protected String contrasena;
@@ -57,6 +58,16 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    
+    
 
     public String getNombreUsuario() {
         return nombreUsuario;

@@ -24,9 +24,9 @@ public class PropietarioServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
+    public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
 
-        usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
+        usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
         Propietario propietario = new Propietario();
 
@@ -47,7 +47,7 @@ public class PropietarioServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
@@ -55,7 +55,7 @@ public class PropietarioServicio {
 
             Propietario propietario = respuesta.get();
 
-            usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
+            usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
 
             propietario.setNombre(nombre);
             propietario.setNombreUsuario(nombreUsuario);

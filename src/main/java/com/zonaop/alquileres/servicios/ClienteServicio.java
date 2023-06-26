@@ -27,9 +27,9 @@ public class ClienteServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre, String nombreUsuario, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
+    public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
 
-        usuarioServicio.validar(nombre, nombreUsuario, email, contrasena);
+        usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
 
         Cliente cliente = new Cliente();
 
@@ -50,7 +50,7 @@ public class ClienteServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre, String apellido,String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
 
         Optional<Cliente> respuesta = clienteRepositorio.findById(id);
 
@@ -58,7 +58,7 @@ public class ClienteServicio {
 
             Cliente cliente = respuesta.get();
 
-            usuarioServicio.validar(nombre, apellido, email, contrasena);
+            usuarioServicio.validar(nombre, apellido,nombreUsuario, email, contrasena);
 
             cliente.setNombre(nombre);
             cliente.setNombreUsuario(apellido);

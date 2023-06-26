@@ -7,10 +7,10 @@ body {
     font-size: 11px;
     margin: 0;
     padding: 0;
-    background-image: url(imagenes/casa.jpg);
+    background-image: url(/img/casa.jpg);
 }
 
-/* <<<<<<< HEAD
+
 p {
     font-size: 18px;
     font-weight: 800;
@@ -21,7 +21,7 @@ hr {
     border: solid black 1 px;
     width: 90%;
 }
-======= */
+
 body{
 display: flex;
 font-family: 'Bebas Neue', sans-serif;
@@ -29,11 +29,11 @@ font-family: 'Montserrat', sans-serif;
 font-size: 11px;
 margin: 0;
 padding: 0;
-background-image: url(../static/img/casa.jpg);
+background-image: url(/img/casa.jpg);
 }
 
 /*Formulario de regitro de propiedad*/
-.contenedor-back{
+/*.contenedor-back{
     width: 100%;
    height: 1500px;
    margin-top: 20px;
@@ -162,7 +162,7 @@ p{
 #label-area{
     margin-bottom: 10px;
     margin-top: 15px;
-}
+}*/
 /*Fin formulario registro de la propiedad*/
 
 /*Formulario de usuario*/
@@ -197,4 +197,4 @@ hr{
  }
 
 
-/* >>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735 */
+

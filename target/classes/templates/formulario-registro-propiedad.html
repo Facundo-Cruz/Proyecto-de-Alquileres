@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro Propiedad</title>
-  <link rel="stylesheet" href="formulario-registro-propiedad.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/formulario-registro-propiedad.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
@@ -16,13 +16,13 @@
   <div class="contenedor-back">
     <div class="contenedor">
 
-      <form class="formulario-registro-de-propiedad" action="" onsubmit="return validarFormulario()">
+      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" onsubmit="return validarFormulario()">
         <hr>
         <h3 class="titulo">Registre su Propiedad</h3>
         <hr>
 
         <p>Tipo de Propiedad:</p>
-        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipo-de-propiedad"
+        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad"
           onclick="mostrarPrimeraOpcion()" required>
           <option value="" disabled selected>Elija su opción</option>
           <option value="Quinta">Quinta</option>
@@ -40,7 +40,7 @@
         <div class="ubicacion">
           <div class="ub">
             <label id="nombre" for="nombre">Nombre:</label>
-            <input class="nombre" type="text" name="altura" required>
+            <input class="nombre" type="text" name="nombre" required>
           </div>
           <div class="ub">
             <label id="direccion" for="direccion">Dirección:</label>
@@ -53,7 +53,7 @@
           </div>
           <div class="ub">
             <label id="codigo-postal" for="codigo-postal">C.P:</label>
-            <input id="cp" type="text" name="codigopostal" required>
+            <input id="cp" type="text" name="codigoPostal" required>
           </div>
         </div>
 
@@ -61,11 +61,11 @@
         <div class="contenedor-fechas">
           <div class="fecha">
             <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-            <input id="fondo-fecha-ingreso" type="date" required>
+            <input id="fondo-fecha-ingreso" name="fechaDesde" type="date" required>
           </div>
           <div class="fecha">
             <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-            <input id="fondo-fecha-egreso" type="date" required>
+            <input id="fondo-fecha-egreso" name="fechaHasta" type="date" required>
           </div>
         </div>
         <div class="mail-telefono">
@@ -82,20 +82,20 @@
 
         <p>Subir Imágenes:</p>
         <div class="subir-imagenes">
-          <input class="imagen" type="file" accept="image/*" multiple required>
+          <input class="imagen" name="archivo" type="file" accept="image/*" multiple required>
         </div>
 
 
         <div class="descripcion">
           <p>Descripción:</p>
-          <textarea id="area" cols="40" rows="3"></textarea>
+          <textarea id="area" cols="40" rows="3" name="descripcion"></textarea>
         </div>
 
         <!-- Boton de redes sociales -->
         <div class="campo-redes-sociales">
           <label>Redes sociales:</label>
           <div class="opcion-redes">
-            <img src="imagenes/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
+            <img src="/img/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
           </div>
           <div id="redes-sociales" style="display: none;">
             <p>Ingrese el Link de sus redes sociales</p>
@@ -213,12 +213,12 @@
           <div class="valor">
             <div class="valores">
               <label class="label-precios" for="precio-por-dia">Precio por dia: $ </label>
-              <label class="label-precios" for=""><input class="caja-precio-v" type="number" required></label>
+              <label class="label-precios" for=""><input class="caja-precio-v" type="number" required name="precio"></label>
             </div>
-            <div class="valores" id="total" id="precio-dia">
+<!--            <div class="valores" id="total" id="precio-dia">
               <label id="label-precios-total" class="label-precios" for="precio">Total: $ </label>
               <label class="label-precios-total"></label>
-            </div>
+            </div>-->
           </div>
 
 
@@ -227,6 +227,6 @@
 
     </div>
   </div>
-  <script src="formulario-registro-propiedad.js"></script>
+  <script src="/js/formulario-registro-propiedad.js"></script>
 </body>
 </html>

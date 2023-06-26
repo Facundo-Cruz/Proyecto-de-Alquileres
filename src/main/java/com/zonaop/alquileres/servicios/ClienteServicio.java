@@ -8,6 +8,7 @@ import com.zonaop.alquileres.repositorios.ClienteRepositorio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +36,7 @@ public class ClienteServicio {
         cliente.setNombre(nombre);
         cliente.setNombreUsuario(nombreUsuario);
         cliente.setEmail(email);
-        cliente.setContrasena(contrasena);
+        cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         cliente.setEstado(Boolean.TRUE);
 
         Imagen imagen = imagenServicio.guardar(archivo);

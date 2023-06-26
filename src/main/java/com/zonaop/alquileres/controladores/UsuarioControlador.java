@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 1c3181376f9aced166425c01bbebb3f3322f6e02
 @Controller
 @RequestMapping("/")
 public class UsuarioControlador {

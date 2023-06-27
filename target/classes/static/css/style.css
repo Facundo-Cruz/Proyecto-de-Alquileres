@@ -22,7 +22,7 @@ hr {
     width: 90%;
 }
 
-body{
+/* body{
 display: flex;
 font-family: 'Bebas Neue', sans-serif;
 font-family: 'Montserrat', sans-serif;
@@ -30,7 +30,7 @@ font-size: 11px;
 margin: 0;
 padding: 0;
 background-image: url(/img/casa.jpg);
-}
+} */
 
 /*Formulario de regitro de propiedad*/
 /*.contenedor-back{
@@ -167,7 +167,8 @@ p{
 
 /*Formulario de usuario*/
 
-.campo{
+/*.campo{
+/* .campo{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -194,7 +195,8 @@ hr{
     flex-direction: row;
     flex-wrap: wrap;
     
- }
+
+ }*/
 
 
 

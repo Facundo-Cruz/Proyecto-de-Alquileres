@@ -14,7 +14,7 @@
     <div class="contenedor-back">
         <div class="contenedor">
 
-            <form class="formulario-registro-de-usuario" th:action="@{/registro}" method="POST" onsubmit="return validarFormulario()">
+            <form class="formulario-registro-de-usuario" th:action="@{/registro}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
                 <hr>
                 <h3 class="titulo">Registro de Usuario</h3>
                 <hr>
@@ -58,6 +58,6 @@
             </form>
         </div>
     </div>
-    <script src="formulario-registro-usuario.js"></script>
+    <script src="/js/formulario-registro-usuario.js"></script>
 </body>
 </html>

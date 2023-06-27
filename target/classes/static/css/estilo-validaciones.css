@@ -1,0 +1,33 @@
+/* INICIO ESTILOS TARJETAS DE ERROR Y ÉXITO */
+.container-cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning{
+    border-radius: .3rem;
+    padding: .5rem;
+    text-align: center;
+    width: 20%;
+    margin: 1rem;
+}
+
+.success{
+    background-color: rgb(124, 230,165);
+    border: solid 2px rgb(31,83,44);
+    color: rgb(31,83,44);
+}
+
+.danger{
+    background-color: rgb(230,141,163);
+    border: solid 2px rgb(189, 78,106);
+    color: rgb(189, 78,106);
+}
+
+.warning i{
+    font-size: 3rem;
+}
+/* FINAL ESTILOS TARJETAS DE ERROR Y ÉXITO */

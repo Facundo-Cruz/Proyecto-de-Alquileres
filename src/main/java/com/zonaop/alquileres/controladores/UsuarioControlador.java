@@ -61,7 +61,10 @@ public class UsuarioControlador {
         
         modelo.addAttribute("usuarios", listausuario);
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> c69538f086d74130c671478efe475b8761cc68ec
         
         return "formulario-modificar-usuario.html";
 

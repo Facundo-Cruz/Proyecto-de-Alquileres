@@ -14,24 +14,27 @@
     <div class="contenedor-back">
         <div class="contenedor">
 
-            <form class="formulario-registro-de-usuario" th:action="@{/registro}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
+            <form class="formulario-registro-de-usuario" th:action="@{/modificar/__{usuario.id}__}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
                 <hr>
-                <h3 class="titulo">Registro de Usuario</h3>
+                <h3 class="titulo">Modificar Usuario</h3>
                 <hr>
+                
+                <input hidden th:value="${id}" name="id">
+                
                 <label for="nombre">Nombre:</label>
-                <input type="text" class="nombre" name="nombre" required>
+                <input th:value="${usuario.nombre}" type="text" class="nombre" name="nombre" required>
 
                 <label for="apellido">Apellido:</label>
-                <input type="text" class="apellido" name="apellido" required>
+                <input th:value="${usuario.apellido}" type="text" class="apellido" name="apellido" required>
 
                 <label for="alias">Alias:</label>
-                <input type="text" class="alias" name="nombreUsuario" required>
+                <input th:value="${usuario.nombreUsuario}" type="text" class="alias" name="nombreUsuario" required>
 
                 <label for="email">Mail:</label>
-                <input type="email" class="email" name="email" placeholder="tumail@gmail.com" required>
+                <input th:value="${usuario.email}" type="email" class="email" name="email" placeholder="tumail@gmail.com" required>
 
-                <label for="password">Ingrese una clave</label>
-                <input class="password" type="password" name="contrasena" required>
+                <label for="password">Ingrese una nueva clave</label>
+                <input th:value="${usuario.contraena}" class="password" type="password" name="contrasena" required>
                 <p class="p-contraseña">* La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter
                     especial.</p>
 
@@ -41,20 +44,11 @@
 
                 <label for="imagen">Imagen de perfil:</label>
                 <input class="imagen" type="file" name="archivo" accept="image/*" required>
+                
+                <input hidden th:value="${rol.name()}" name="rol">
 
 
-                <div class="campo">
-                    <label>Seleccione su perfil:</label>
-                    <div class="opcion">
-                        <input class="radio" type="radio" id="opcion1" name="rol" required>
-                        <label for="opcion1">Propietario</label>
-                    </div>
-                    <div class="opcion">
-                        <input class="radio" type="radio" id="opcion2" name="rol" required>
-                        <label for="opcion2">Cliente</label>
-                    </div>
-                </div>
-                <input class="enviar" type="submit" value="Registrame!">
+                <input class="enviar" type="submit" value="Modificar">
             </form>
         </div>
     </div>

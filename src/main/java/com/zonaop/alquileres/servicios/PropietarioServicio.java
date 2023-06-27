@@ -7,6 +7,7 @@ import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.PropietarioRepositorio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +34,7 @@ public class PropietarioServicio {
         propietario.setNombre(nombre);
         propietario.setNombreUsuario(nombreUsuario);
         propietario.setEmail(email);
-        propietario.setContrasena(contrasena);
+        propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         propietario.setEstado(Boolean.TRUE);
 
         Imagen imagen = imagenServicio.guardar(archivo);
@@ -60,7 +61,7 @@ public class PropietarioServicio {
             propietario.setNombre(nombre);
             propietario.setNombreUsuario(nombreUsuario);
             propietario.setEmail(email);
-            propietario.setContrasena(contrasena);
+            propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
 
             String idImagen = null;
 

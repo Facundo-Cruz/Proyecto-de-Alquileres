@@ -61,7 +61,6 @@ public class UsuarioControlador {
         
         modelo.addAttribute("usuarios", listausuario);
         
-        cliente.getRol().toString();
         
         return "formulario-modificar-usuario.html";
 

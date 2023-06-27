@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/mainPage.css">
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="logo">
+            <p>Alquileres</p>
+        </div>
+        <div class="nav-content">
+            <div class="content">
+                <p>alquilar</p><img src="/img/chevron-down.svg" />
+            </div>
+            <div class="content">
+                <p>publicar</p><img src="/img/chevron-down.svg" />
+            </div>
+        </div>
+        <div class="log-box">
+            <div class="publicar">
+                <a th:href="@{/registrar}">Registrate</a>
+            </div>
+            <div class="login-btn">
+                <a th:href="@{/login}">iniciar sesion</a>
+            </div>
+        </div>
+    </nav>
+    <div class="publicitary-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20">
+            <path fill="#ff5500" fill-rule="evenodd"
+                d="M10.391.61l.078.054 2.906 2.326V2a.75.75 0 0 1 1.495-.087l.005.087v2.19l3.094 2.474a.75.75 0 0 1-.86 1.226l-.078-.054-.656-.526.002 3.469c.192-.082.344-.146.443-.186l.062-.023c1.325-.495 2.329-.52 3.268.42.7.702.37 1.532-.45 2.45-.211.237-.459.481-.736.73-.297.268-.613.528-.929.771l-3.592 2.68c-.996.737-1.628 1.192-1.835 1.317-1.029.615-2.054.846-3.905.58l-4.992-.8L2.2 19.85a.75.75 0 0 1-.988-.079L1.15 19.7a.75.75 0 0 1 .079-.988l.072-.061 1.766-1.323a.75.75 0 0 1 .468-.15l.29.04 4.87.782c1.651.266 2.365.117 3.141-.348l.108-.07c.112-.076.286-.2.514-.365l1.815-1.335 2.468-1.845a14.794 14.794 0 0 0 1.22-.98c.24-.216.449-.422.62-.614.151-.17.266-.322.34-.444l.035-.064-.019-.014c-.338-.24-.744-.22-1.38 0l-.151.055c-.502.187-4.397 1.938-5.206 2.326a.747.747 0 0 1-.315.074c-.42.238-.954.37-1.603.374l-2.711-.104a.75.75 0 1 1 .017-1.5l2.72.105c.627-.005.93-.16 1.077-.414l.031-.06.032-.085-.519-.155c-.198-.057-.422-.12-.673-.189l-1.074-.284c-1.754-.452-2.568-.416-3.89.008l-.49.162c-.28.09-.687.272-1.183.524l-.19.098a38.036 38.036 0 0 0-1.157.632l-.883.516a.75.75 0 0 1-.778-1.283l.52-.308c.396-.23.803-.46 1.203-.675l.403-.214.417-.21c.166-.083.324-.157.472-.224l-.001-3.78-.656.527a.75.75 0 0 1-.991-.048l-.064-.07a.75.75 0 0 1 .048-.99l.07-.064 7.5-6a.75.75 0 0 1 .86-.054zM10 2.21l-4.875 3.9v4.443c1.36-.4 2.403-.436 4.159-.01l.694.177c1.74.457 2.456.693 2.668.83a.75.75 0 0 1 .335.52l.011.097.005.116c.588-.267 1.261-.57 1.883-.846l-.005-.062V6.11L10 2.21z">
+            </path>
+        </svg>
+        <p>hasta 15% de descuento durante el mes de junio</p>
+    </div>
+    <div class="background-searchbox">
+        <div class="searchbox">
+            <form th:action="@{/propiedad/filtrar}" method="POST" class="form-edit">
+                <div class="searchbar">
+                    <select class="tipo-casa" name="tipo">
+                        <!-- para usar thymeleaf hacer for each de option con value siendo 
+                        el tipo de casa y el texto el tipo de casa -->
+                        <option value="QUINTA" class="select-option">Quinta</option>
+                        <option value="CASA" class="select-option">Casa</option>
+                        <option value="CABANA" class="select-option">Cabaña</option>
+                        <option value="SALON" class="select-option">Salón</option>
+                        <option value="CHALET" class="select-option">Chalet</option>
+                        <option value="FINCA" class="select-option">Finca</option>
+                        <option value="BODEGA" class="select-option">Bodega</option>
+                        <option value="OTRO" class="select-option">Otro</option>
+                    </select>
+
+                    <input type="search" class="search" placeholder="busqueda">
+                    <input type="submit" class="submit" value="buscar">
+                </div>
+            </form>
+            <div class="search-results">
+                <div class="result" id="res">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="housesbox">
+        <div th:each="propiedad : ${propiedades}" class="house-card" >
+            <img th:src="@{/imagen/__${propiedad.id}__}" alt="Casa 1" class="house-image">
+            <h2 class="house-title" th:text="${propiedad.nombre}"></h2>
+            <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
+            <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
+            <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
+        </div>    
+    </div>
+
+    <footer class="footer">
+        <div class="redes">
+            <p>seguinos en nuestras redes</p>
+            <a href="https://youtu.be/dQw4w9WgXcQ"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAldJREFUWEftV8EuRUEMPf0JscOXYOsHxAprH4F/sMfOB0gkIsFHWHu+pHKSVpqZzp3BCAuTvLzkvd7e09P2tCP4Y0f+GB78A+plZJghVd00ZzsANnqO7f83ACsReRq076dMVQngFAC/v3NWAK5E5HzJSZMhY+SyAYTOR46zGm3J1rGIpD6WAD0GMHRyDeCp5aiFzgIju4fRn4jsZs+kgFT1CADZ4Tnr0TxClQEjqDOzJ0tX5bMtQK8ASDcZSSMZBMFnDwCsA7gFcG+BkjEW+9YoIF2KYgQMbVT1BMCF2d+JyF5kX0QqQqofinRtLdWMqrL7yKR/WGvPngpV3QdwY4CuReTIupb1ybNbSsIioCwCi5wAWh1IE3YQX7ZSVaZsDcCLiDxYLbEk0vrMADFqFl6a4yJCfzmL01lyvSIoFm4liqrqJVE1zFcARTmoHFoavZNaQc0BVNRXlX8v9sKuau9pDKkq64YalUYeu09VnclKOmYCcn3iTDpeav+Qugr8TEAedVe9l9j8CUBdBVfVJpszAcUZl84i06lFu5mAoiCm+03RYSmT0wAFlXaldWGk+BEgmYk7UCoNnwXkdDdb2+SfBZ4tYA4yVWkLqjm8M6Wm9Pvwaw7XsHhtF8OVgTTX1GL0VHWYAWLUnpKmGo+uIKVdb5toLWhNlf0qkDBWPmbh0D6UtG1XBEdBBrHkI+MrrIGKU50dxLr41B0rdOX3lvzgKC7lkYiRa1CzA7Nd2p13b642JBnh714Uk+6Iu/PoVZpuuGPPu0qPFuwsu27KZr1o1M8/oB5T706yizSzZIdPAAAAAElFTkSuQmCC" /></a>
+            <a href="https://youtu.be/dQw4w9WgXcQ"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAbxJREFUWEftl4FNAzEMRe1JoJNAJymdBJgEmIQyCd3E6FcOSnNxbF97qEgXqVLVJrnn7x87x3Rjg2+Mh1YgLyOrQn+ukIjcE9EzET0SEb4f9PPBzMcaCHPb3yYp0w13zPzqRdP+LyIAeTHWAWavkDsF3kSAENknNs5AiUhZF41jz8zv7eSeQnWUIShV9TtKQkQFBCnb1ut6QG9E9FRNggcQzVn+Gy9gPtZlxpGZNxGFrM2R/0MPzPFOD7ILg4k9hTwvQDEYHpueVBORVlVPKdMK3cKYiBhwZSCQ6IgDiQhShgfB3LWXog+LzNsycx3M75qRqZEOFLYlRgpozolJQTOz2UMtD6GmLKUOTupZ7RnWIT01UAkeWgJqWGxN6bQV4DhfE8qsP0UlDwgwpRGmfGJMdluRB4Qme7UxMrOrkHppdJ3IgrrqdFtH+xSt2jD5JV4aniz3lHWg0BYe9FKVaRHYyjVyGqgqBdkrRliZqIeQJigypyalYSYe0sZ6p011rmdOd2ereXonwWodcyo1ujfeLCb3ZA8i7CGt1jAzRnmtgXJQoXy+rJtkBiTkoTkbXrpmfZX2FFwV+ncK/QDu6qglgpavRAAAAABJRU5ErkJggg==" /></a>
+        </div>
+        <div class="copyright">
+            <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAl5JREFUWEfdWAtOQkEMbE8inEQ4iXIS8STCScSTiCepGdIl3W739yCG+BLzCO5nOu3MdmF6sIcfDA/9D0AisiKiFyLaEBE+4++sbON9IqIvZsZ76pliSETeiGg/sQPAHZj5fXTOECARARMfysTo2nYcgO1GGOsCEpFXBeM3OCAtSBUznzWNGJPSiXnFnB5bTUAiAlbswsMpMHXmU7xvgaoCCpg5MfN2Nl8KDLVnA6uCCgFpzXyazReBSfMDtqo1VQMEMChkPE0wZjOM/dGaKuSu41ACaV3U3tozXgDyqWLmGuiWBYS1pqC+DQgoD+K4PhEgTIBS8BQTgkhbZbWGAu0AF3DBUgZohB0RsenEXhc2jGOnlBTBYHDA0tb6kwdkZQ6H3bnofJoKteiGq5YJOjvJ1vCAbPRRusQAzCKbsQOn4kw0HpCtnyz/bpFQIaOgXNqytTygKwNeXa6+inSOggnqaDEgFGsyy5uMUkGFwbdqKKuRFs0z7MwyZIu6BSj0qFFgLv3Noray7sm+5cYb78DOPqr24lMGh07WXiip4tKpZcUbdZaMsXqii0hVzdHR0fMigMaYdLy0MlV4Ve806B2uiBqL+vModYW1/jpsL5Yertis2yYYteAj0vSkVB19AIlCdw6OtR+6kfUcfHWTEeqa/lAOj56ZFjZMX0/qFSGEnQDW6jX5/nQfbvKVlaiJa7I9cg2KFk1SP16iYj65a9Bz5UJZZSYx3QVkindU6lEW73dRNAqxF8ARD7p2k73LoY1giCEfsvuxIcn+739s6CnqHv9fxNA9Nq6t8XCAfgEjPn40vs6bfgAAAABJRU5ErkJggg==" />
+            <p>Copyright 2023 nosotros.com.ar</p>
+        </div>
+
+    </footer>
+
+    <!--<script src="./mainPage.js"></script>-->
+</body>
+
+</html>

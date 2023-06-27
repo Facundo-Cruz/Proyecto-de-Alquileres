@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva</title>
+    <link rel="stylesheet" href="formulario-registro-reserva.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="contenedor-back">
+        <div class="contenedor">
+            <div class="contenedor-titulo-reserva">
+                <hr>
+                <h3 class="titulo-descripcion">Realice su Reserva</h3>
+                <hr>
+            </div>
+
+            <div class="contenedor-descripcion">
+                <img class="imagen-de-reserva" src="imagenes/casa.jpg " alt="imagen propiedad seleccionada">
+                <div class="descripcion-ubicacion">
+                    <p>Ubicación:</p>
+                    <label class="descripcion-ubicacion-lavel" for="direccion">Dirección: Av. Independecia 2547</label>
+                    <label class="descripcion-ubicacion-lavel" for="localidad">Localidad: Mar del Plata</label>
+                    <label class="descripcion-ubicacion-lavel" for="codigo_postal">C.P: 7600</label>
+                </div>
+            </div>
+
+
+            <form class="formulario-registro-de-reserva" action="">
+                <!--calendarios  -->
+
+                <div class="contenedor-fechas">
+                    <div class="fecha">
+                        <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
+                        <input id="fondo-fecha-ingreso" type="date" required>
+                    </div>
+                    <div class="fecha">
+                        <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
+                        <input id="fondo-fecha-egreso" type="date" required>
+                    </div>
+                </div>
+
+                <!--  checkBox servicios adicionales -->
+                <label>Seleccione servicios adicionales:</label>
+                <div class="servicios">
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">DJ</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">Bar</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">Catering</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">Shows</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">Animacion</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">Asador</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
+                                data-precio="">
+                            <label for="op1">Guarderia</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                    <div class="op">
+                        <div class="opr">
+                            <input type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
+                            <label for="op1">Cheff</label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio">$</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Precio por dia y Total -->
+                <div class="valor">
+                    <div class="valores" id="precio-dia">
+                        <label for="precio-por-dia">Precio por dia:</label>
+                        <label class="caja-precio-v">$</label>
+                    </div>
+                    <div class="valores" id="total">
+                        <label for="precio">Total:</label>
+                        <label class="caja-precio-v">$</label>
+                    </div>
+                </div>
+                <input class="enviar" type="submit">
+            </form>
+        </div>
+    </div>
+    <script src="/js/formulario-registro-reserva.js"></script>
+</body>
+
+</html>

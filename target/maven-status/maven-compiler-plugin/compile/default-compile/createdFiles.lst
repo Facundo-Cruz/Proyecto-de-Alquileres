@@ -3,10 +3,7 @@ com\zonaop\alquileres\repositorios\UsuarioRepositorio.class
 com\zonaop\alquileres\controladores\RolControlador.class
 com\zonaop\alquileres\repositorios\ClienteRepositorio.class
 com\zonaop\alquileres\servicios\PropietarioServicio.class
-<<<<<<< HEAD
-=======
 com\zonaop\alquileres\controladores\ServicioControlador.class
->>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
 com\zonaop\alquileres\entidades\Reserva.class
 com\zonaop\alquileres\servicios\PropiedadServicio.class
 com\zonaop\alquileres\controladores\UsuarioControlador.class
@@ -31,11 +28,8 @@ com\zonaop\alquileres\entidades\Servicio.class
 com\zonaop\alquileres\entidades\Usuario.class
 com\zonaop\alquileres\servicios\AdministradorServicio.class
 com\zonaop\alquileres\controladores\ImagenControlador.class
-<<<<<<< HEAD
-=======
 com\zonaop\alquileres\controladores\OpinionControlador.class
 com\zonaop\alquileres\SeguridadWeb.class
->>>>>>> 002f9aab68627c9c1cbd22968d20216ac8c08735
 com\zonaop\alquileres\servicios\ImagenServicio.class
 com\zonaop\alquileres\entidades\Opinion.class
 com\zonaop\alquileres\enumeraciones\Rol.class

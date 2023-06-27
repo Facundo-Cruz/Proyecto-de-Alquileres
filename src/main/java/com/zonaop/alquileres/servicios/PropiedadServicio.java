@@ -26,7 +26,7 @@ public class PropiedadServicio {
     public ImagenServicio imagenServicio;
 
     @Transactional()
-    public void crearPropiedad(String nombre, String direccion, String localidad, Integer codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo) throws MiException {
+    public void crearPropiedad(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo) throws MiException {
 
         validar(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad);
 
@@ -35,7 +35,7 @@ public class PropiedadServicio {
         propiedad.setNombre(nombre);
         propiedad.setDireccion(direccion);
         propiedad.setLocalidad(localidad);
-        propiedad.setCodigoPostal(tipoPropiedad);
+        propiedad.setCodigoPostal(codigoPostal);
         propiedad.setDescripcion(descripcion);
         propiedad.setFechaDesde(fechaDesde);
         propiedad.setFechaHasta(fechaHasta);
@@ -50,7 +50,7 @@ public class PropiedadServicio {
 
     }
 
-    public void modificarPropiedad(String id, String nombre, String direccion, String localidad, Integer codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo) throws MiException {
+    public void modificarPropiedad(String id, String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo) throws MiException {
 
         Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
 
@@ -107,7 +107,7 @@ public class PropiedadServicio {
         return propiedadRepositorio.getById(id);
     }
 
-    public void validar(String nombre, String direccion, String localidad, Integer codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad) {
+    public void validar(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad) {
 
     }
 

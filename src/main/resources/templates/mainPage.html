@@ -25,7 +25,11 @@
         <div class="log-box">
             <a class="publicar" th:href="@{/registrar}">Registrate</a>
             
+<<<<<<< HEAD
             <a class="login-btn" th:href="@{/login}">Iniciar sesión</a>
+=======
+            <a class="publicar" th:href="@{/login}">iniciar sesion</a>
+>>>>>>> 177cab17df67f3ddb6f4c1d54cad2073e6275a1e
 
         </div>
     </nav>
@@ -41,18 +45,44 @@
         <div class="searchbox">
             <form th:action="@{/propiedad/filtrar}" method="POST" class="form-edit">
                 <div class="searchbar">
-                    <select class="tipo-casa" name="tipo">
-                        <!-- para usar thymeleaf hacer for each de option con value siendo 
-                        el tipo de casa y el texto el tipo de casa -->
-                        <option value="QUINTA" class="select-option">Quinta</option>
-                        <option value="CASA" class="select-option">Casa</option>
-                        <option value="CABANA" class="select-option">Cabaña</option>
-                        <option value="SALON" class="select-option">Salón</option>
-                        <option value="CHALET" class="select-option">Chalet</option>
-                        <option value="FINCA" class="select-option">Finca</option>
-                        <option value="BODEGA" class="select-option">Bodega</option>
-                        <option value="OTRO" class="select-option">Otro</option>
-                    </select>
+                    <div class="drop-box">
+                    <button class="boton-tipos" id="boton">
+                        <span class="titulo-boton">tipo casa</span>
+                        <div class="arrow" id="arrow"></div>
+                    </button>
+                    <div class="drop hidden" id="drop">
+
+                        <label class="labels" for="quinta">
+                            <p>quinta</p>
+                        </label>
+                        <input class="option" value="quinta" type="radio" name="tipo-casa" id="quinta">
+
+                        <label class="labels" for="casa">casa</label>
+                        <input class="option" value="casa" type="radio" name="tipo-casa" id="casa">
+
+                        <label class="labels" for="quincho">quincho</label>
+                        <input class="option" value="quincho" type="radio" name="tipo-casa" id="quincho">
+
+                        <label class="labels" for="cabana">cabana</label>
+                        <input class="option" value="cabana" type="radio" name="tipo-casa" id="cabana">
+
+                        <label class="labels" for="salon">salon</label>
+                        <input class="option" value="salon" type="radio" name="tipo-casa" id="salon">
+
+                        <label class="labels" for="chalet">chalet</label>
+                        <input class="option" value="chalet" type="radio" name="tipo-casa" id="chalet">
+
+                        <label class="labels" for="finca">finca</label>
+                        <input class="option" value="finca" type="radio" name="finca" id="finca">
+
+                        <label class="labels" for="bodega">bodega</label>
+                        <input class="option" value="bodega" type="radio" name="tipo-casa" id="bodega">
+
+                        <label class="labels" for="otro">otro</label>
+                        <input class="option" value="otro" type="radio" name="tipo-casa" id="otro">
+
+                    </div>
+                </div>
 
                     <input type="search" class="search" placeholder="busqueda">
                     <input type="submit" class="submit" value="buscar">
@@ -91,7 +121,7 @@
 
     </footer>
 
-    <script src="./mainPage.js"></script>
+    <script src="./js/mainPage.js"></script>
 </body>
 
 </html>

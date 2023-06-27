@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class PropietarioServicio {
 
-
     @Autowired
     public PropietarioRepositorio propietarioRepositorio;
 
@@ -25,14 +24,14 @@ public class PropietarioServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre, String apellido, String email, String contrasena, MultipartFile archivo, Integer rol) throws MiException {
+    public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
 
-        usuarioServicio.validar(nombre, apellido, email, contrasena);
+        usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
         Propietario propietario = new Propietario();
 
         propietario.setNombre(nombre);
-        propietario.setApellido(apellido);
+        propietario.setNombreUsuario(nombreUsuario);
         propietario.setEmail(email);
         propietario.setContrasena(contrasena);
         propietario.setEstado(Boolean.TRUE);
@@ -48,7 +47,7 @@ public class PropietarioServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
@@ -56,10 +55,10 @@ public class PropietarioServicio {
 
             Propietario propietario = respuesta.get();
 
-            usuarioServicio.validar(nombre, apellido, email, contrasena);
+            usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
 
             propietario.setNombre(nombre);
-            propietario.setApellido(apellido);
+            propietario.setNombreUsuario(nombreUsuario);
             propietario.setEmail(email);
             propietario.setContrasena(contrasena);
 
@@ -84,12 +83,17 @@ public class PropietarioServicio {
     }
 
     @Transactional
+    public void eliminarPropietario(String id) {
+        propietarioRepositorio.deleteById(id);
+    }
+
+    @Transactional
     public void darBaja(String id) throws MiException {
 
-        Propietario propietario=getOne(id);
-        
+        Propietario propietario = getOne(id);
+
         propietario.setEstado(Boolean.FALSE);
-        
+
         propietarioRepositorio.save(propietario);
 
     }

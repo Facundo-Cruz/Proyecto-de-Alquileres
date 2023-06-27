@@ -9,6 +9,7 @@ package com.zonaop.alquileres.servicios;
 import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.ServicioRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,17 @@ public class ServicioServicio {
    }
    
    
-   
+    @Transactional(readOnly=true)
+    public List<Servicio>listarServicios(){
+        
+        List<Servicio>servicios= new ArrayList();
+        
+        servicios=serviciorepo.findAll();
+        
+        return servicios;
+        
+    }
+    
    
    
    

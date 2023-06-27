@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.Rol;
@@ -31,6 +27,7 @@ public class Usuario {
     @Basic
     protected String nombre;
     protected String apellido;
+    protected String nombreUsuario;
     protected String email;
     protected String contrasena;
     protected Boolean estado;
@@ -68,6 +65,16 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    
+    
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {

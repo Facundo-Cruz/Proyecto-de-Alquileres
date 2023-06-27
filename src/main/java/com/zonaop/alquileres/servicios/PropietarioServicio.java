@@ -34,7 +34,7 @@ public class PropietarioServicio {
         propietario.setNombre(nombre);
         propietario.setNombreUsuario(nombreUsuario);
         propietario.setEmail(email);
-        propietario.setContrasena(contrasena);
+        propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         propietario.setEstado(Boolean.TRUE);
 
         Imagen imagen = imagenServicio.guardar(archivo);

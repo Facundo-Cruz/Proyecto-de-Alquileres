@@ -158,8 +158,3 @@ public class ServicioControlador {
 //             
 //         }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c3f10a3ac3562abd139c2f0149635d9e4b4af0c0

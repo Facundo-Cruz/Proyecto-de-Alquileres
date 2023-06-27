@@ -30,12 +30,15 @@ public class PropiedadControlador {
 
     @PostMapping("/registro")
 
+
+
     public String subir(@RequestParam String nombre, @RequestParam String direccion,
-            @RequestParam String localidad, @RequestParam Integer codigoPostal,
+            @RequestParam String localidad, @RequestParam String codigoPostal,
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,
             @RequestParam String tipoPropiedad, @RequestParam MultipartFile archivo,
             ModelMap modelo) {
+
 
 
         try {

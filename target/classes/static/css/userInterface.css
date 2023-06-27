@@ -43,6 +43,11 @@ body{
     font-size: 30px;
 }
 
+.heading a{
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
 .info{
     display: flex;
     flex-wrap: wrap;

@@ -84,7 +84,8 @@ public class ServicioControlador {
     
     
     @PostMapping("/modificar/{id}")
-    public String modificarServicio(@PathVariable String id,String nombre,String descripcion,TipoServicio tp,double precio,boolean disponibilidad,ModelMap modelo){
+    public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
+            @RequestParam double precio, @RequestParam boolean disponibilidad, ModelMap modelo){
         
         try {
             

@@ -61,11 +61,7 @@ public class UsuarioControlador {
         
         modelo.addAttribute("usuarios", listausuario);
         
-<<<<<<< HEAD
-        
-=======
->>>>>>> c69538f086d74130c671478efe475b8761cc68ec
-        
+
         return "formulario-modificar-usuario.html";
 
        
@@ -95,44 +91,14 @@ public class UsuarioControlador {
             modelo.put("email", email);
             modelo.put("alias", apellido);
             modelo.put("rol", rol);
-            return "registrar.html";
+            return "formulario-registro-usuario.html";
         }
         
         
+    }    
         
         
-        
-        
-        
-//        try {
-//            List<Usuario>listau=usuarioServicio.listarUsuarios();
-//            modelo.addAttribute("usuario", listau);
-//            
-//           
-//            
-//            
-//        } catch (Exception e) {
-//        }
-//        
-//        
-//        return null;
-//        
-//        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     @GetMapping("/eliminar/{id}")

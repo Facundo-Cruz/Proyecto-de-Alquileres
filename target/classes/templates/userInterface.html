@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <div class="infobox">
         <div class="heading">
             <h2>jose gonzales</h2>
-            <a href="#"><img src="./img/edit.svg" alt=""></a>
+            <a th:href="@{/modificar}"><img src="./img/edit.svg" alt=""></a>
         </div>
         <div class="info">
             <p>email@gmail.com</p>

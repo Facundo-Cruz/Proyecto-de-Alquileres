@@ -19,16 +19,17 @@
                 <p>alquilar</p><img src="/img/chevron-down.svg" />
             </div>
             <div class="content">
-                <p><a class="publicar" th:href="@{/propiedad/registrar/}">Publicar</a></p><img src="/img/chevron-down.svg" />
+                <p><a class="publicar" th:if="${session.usuariosession == null}" th:href="@{/login}">Publicar</a></p><img src="/img/chevron-down.svg" />
+                <p><a class="publicar" th:if="${session.usuariosession != null}" th:href="@{/propiedad/registrar/}">Publicar</a></p>
             </div>
         </div>
         <div class="log-box">
-            <a class="publicar" th:href="@{/registrar}">Registrate</a>
+            <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/registrar}">Registrate</a>
             
 
-            <a class="publicar" th:href="@{/login}">Iniciar sesión</a>
+            <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/login}">Iniciar sesión</a>
             
-            <a class="publicar" th:href="@{/perfil}">Perfil</a>
+            <a th:if="${session.usuariosession != null}" class="publicar" th:href="@{/perfil}">Perfil</a>
 
         </div>
     </nav>

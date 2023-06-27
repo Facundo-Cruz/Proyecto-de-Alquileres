@@ -60,5 +60,12 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }
 
+    public Usuario getOne(String id){
+        
+        
+        return usuarioRepositorio.getOne(id);
+        
+    }
+    
     
 }

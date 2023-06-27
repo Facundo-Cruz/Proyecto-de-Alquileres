@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 
     @Autowired
@@ -31,18 +31,8 @@ public class UsuarioControlador {
 
     @Autowired
     private PropietarioServicio propietarioservicio;
-    
-    private Object model;
-    private Object redirectAttributes;
 
-    
-    
-    private Cliente cliente;
-    
-  
-    
-    
-    @GetMapping("/usuarios")
+    @GetMapping("/listar")
     public String listarUsuarios(ModelMap model) {
 
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
@@ -141,7 +131,7 @@ public class UsuarioControlador {
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
-            return "redirect:/usuarios";
+            return "redirect:/usuario/listar";
         }
         
     }

@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    overflow-x: hidden;
 }
 
 .publicitary-box{
@@ -71,6 +72,8 @@
     text-align: center;
     border-radius: 9px;
     margin-right: 1%;
+    text-decoration: none;
+    color: white;
 }
 
 .login-btn{
@@ -82,12 +85,14 @@
     text-align: center;
     border-radius: 9px;
     margin-right: 4%;
+    text-decoration: none;
+    color: white;
 }
 
 
 
 .content :hover{
-        color:rgb(255, 94, 36);
+    color:rgb(255, 94, 36);
 }
 
 .background-searchbox{
@@ -150,10 +155,11 @@
     border: none;
     background-color: rgb(255, 94, 36) ;
     border-radius: 12px;
-    padding: 1.6%;
+    padding: 1%;
     width: 14%;
     color: white;
     font-size: 25px;
+    margin-left: 1%;
 }
 
 .searchbar .search input :focus{

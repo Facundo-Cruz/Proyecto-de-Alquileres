@@ -8,6 +8,7 @@ import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -51,6 +52,15 @@ public class UsuarioControlador {
         return "lista-usuarios.html";
 
     }
+    
+    @GetMapping("/perfil")
+    public String mostrarPerfil(HttpSession session,ModelMap modelo){
+        
+        
+
+        return "userInterface.html";
+        
+    }
 
     @GetMapping("/modificar/{id}")
     public String modificarUsuario(@PathVariable String id,ModelMap modelo){
@@ -84,14 +94,14 @@ public class UsuarioControlador {
              propietarioservicio.modificar(id, nombre, apellido, nombreUsuario, email, contraseña, archivo);
                 
             }
-            redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");
+            redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
             return "redirect:../mainPage";
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("email", email);
             modelo.put("alias", apellido);
             modelo.put("rol", rol);
-            return "registrar.html";
+            return "formulario-modificar-usuario.html";
         }
         
         

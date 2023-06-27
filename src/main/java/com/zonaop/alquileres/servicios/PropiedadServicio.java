@@ -24,9 +24,12 @@ public class PropiedadServicio {
 
     @Autowired
     public ImagenServicio imagenServicio;
+    
+    @Autowired
+    public PropietarioServicio propietarioServicio;
 
     @Transactional()
-    public void crearPropiedad(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo) throws MiException {
+    public void crearPropiedad(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo/*, String idPropietario*/) throws MiException {
 
         validar(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad);
 
@@ -41,7 +44,9 @@ public class PropiedadServicio {
         propiedad.setFechaHasta(fechaHasta);
         propiedad.setPrecio(precio);
         propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
-
+        
+        //propiedad.setPropietario(propietarioServicio.getOne(idPropietario));
+        
         Imagen imagen = imagenServicio.guardar(archivo);
 
         propiedad.setFoto(imagen);
@@ -50,7 +55,7 @@ public class PropiedadServicio {
 
     }
 
-    public void modificarPropiedad(String id, String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo) throws MiException {
+    public void modificarPropiedad(String id, String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo,String idPropietario) throws MiException {
 
         Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
 
@@ -69,6 +74,8 @@ public class PropiedadServicio {
             propiedad.setFechaHasta(fechaHasta);
             propiedad.setPrecio(precio);
             propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
+            
+            propiedad.setPropietario(propietarioServicio.getOne(idPropietario));
 
             String idImagen = null;
 

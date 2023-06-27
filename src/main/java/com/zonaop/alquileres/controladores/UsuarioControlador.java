@@ -8,6 +8,7 @@ import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 
     @Autowired
@@ -31,18 +32,8 @@ public class UsuarioControlador {
 
     @Autowired
     private PropietarioServicio propietarioservicio;
-    
-    private Object model;
-    private Object redirectAttributes;
 
-    
-    
-    private Cliente cliente;
-    
-  
-    
-    
-    @GetMapping("/usuarios")
+    @GetMapping("/listar")
     public String listarUsuarios(ModelMap model) {
 
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
@@ -50,6 +41,15 @@ public class UsuarioControlador {
 
         return "lista-usuarios.html";
 
+    }
+    
+    @GetMapping("/perfil")
+    public String mostrarPerfil(HttpSession session,ModelMap modelo){
+        
+        
+
+        return "userInterface.html";
+        
     }
 
     @GetMapping("/modificar/{id}")
@@ -84,14 +84,18 @@ public class UsuarioControlador {
              propietarioservicio.modificar(id, nombre, apellido, nombreUsuario, email, contraseña, archivo);
                 
             }
-            redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");
+            redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
             return "redirect:../mainPage";
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("email", email);
             modelo.put("alias", apellido);
             modelo.put("rol", rol);
+<<<<<<< HEAD
             return "formulario-registro-usuario.html";
+=======
+            return "formulario-modificar-usuario.html";
+>>>>>>> ead89008b4b198661cd8167f447d59e3b8ec75e0
         }
         
         
@@ -111,7 +115,7 @@ public class UsuarioControlador {
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
-            return "redirect:/usuarios";
+            return "redirect:/usuario/listar";
         }
         
     }

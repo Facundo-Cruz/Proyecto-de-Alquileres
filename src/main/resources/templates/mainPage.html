@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/botones.css">
 </head>
 
 <body>
@@ -80,7 +81,11 @@
             <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
             <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
             <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
+            <div class="contenedor">
+                <a href="#" class="btn btn-1">Alquilar</a>
+            </div>
         </div>    
+        
     </div>
 
     <footer class="footer">

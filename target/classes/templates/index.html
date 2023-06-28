@@ -11,6 +11,33 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <form class="formulario" th:action="@{/servicio/contratoservicio}" method="POST">
+            <div class="form-group my-3">
+                <label class="mb-2">nombre</label> 
+                <input type="text" class="form-control" name="nombre" placeholder="">
+            </div>
+            <div class="form-group my-3">
+                <label class="mb-2">descripcion </label> 
+                <br>
+                <textarea name="descripcion" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group my-3">
+                <label class="mb-2"> [Precio]</label> 
+                <input type="number" class="form-control" name="precio" placeholder="">
+            </div>
+            <select name="tipo" id="">
+                <option >Seleccionar Editorial</option>
+                <option value="DJ" >DJ</option>
+                <option value="Seguridad" >Seguridad</option>
+                <option value="Animacion" >animacion</option>
+                <option value="Asador" >asador</option>
+                <option value="Bar" >bar</option>
+                <option value="Show" >Shows</option>
+                <option value="Guarderia" >Guarderia</option>
+                <option value="Catering" >Catering</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary mt-3 botones">Guardar</button>
+        </form>
     </body>
 </html>

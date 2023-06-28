@@ -14,10 +14,10 @@ function toggleRedesSociales() {
 
   if (switchOn) {
     redesSocialesDiv.style.display = "block";
-    switchImg.src = "/img/toggle-button.png";
+    switchImg.src = "/imagenes/toggle-button.png";
   } else {
     redesSocialesDiv.style.display = "none";
-    switchImg.src = "/img/off-button.png";
+    switchImg.src = "/imagenes//off-button.png";
   }
 }
 /* Validaciones del formulario */

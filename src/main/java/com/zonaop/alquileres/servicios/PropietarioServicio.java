@@ -32,6 +32,7 @@ public class PropietarioServicio {
         Propietario propietario = new Propietario();
 
         propietario.setNombre(nombre);
+        propietario.setApellido(apellido);
         propietario.setNombreUsuario(nombreUsuario);
         propietario.setEmail(email);
         propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));

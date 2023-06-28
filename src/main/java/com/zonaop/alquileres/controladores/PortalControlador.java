@@ -2,10 +2,12 @@ package com.zonaop.alquileres.controladores;
 
 // @author lauty
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,8 +48,10 @@ public class PortalControlador {
     }
 
     @GetMapping("/")
-    public String index(ModelMap model) {
+    public String index(ModelMap model,HttpSession session) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        model.put("usuario", usuario);
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
@@ -56,7 +60,7 @@ public class PortalControlador {
     public String registro(@RequestParam String nombre,@RequestParam String apellido,
             @RequestParam String email, @RequestParam String nombreUsuario,
             @RequestParam String contrasena,@RequestParam String rol,
-            @RequestParam(required = false) MultipartFile archivo,
+            @RequestParam MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
 
         try {

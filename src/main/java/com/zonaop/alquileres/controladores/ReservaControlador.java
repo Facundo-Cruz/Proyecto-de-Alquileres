@@ -39,7 +39,7 @@ public class ReservaControlador {
     @GetMapping("/registrar")
     public String registrarReserva() {
 
-        return "registro_reserva.html";
+        return "formulario-registro-reserva.html";
 
     }
 
@@ -56,7 +56,7 @@ public class ReservaControlador {
 
             modelo.put("error", ex.getMessage());
 
-            return "registro_reserva.html";
+              return "formulario-registro-reserva.html";
 
         }
 
@@ -89,16 +89,43 @@ public class ReservaControlador {
 
     }
 
-    //ruta para modificar la reserva y sus datos correspondientes
+//    //ruta para modificar la reserva y sus datos correspondientes
+//    @PostMapping("/modificar/{id}")
+//    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
+//
+//        try {
+//
+//            List<Reserva> reserva = reservaservi.listarReservas();
+//            modelo.addAttribute("reserva", reserva);
+//
+//            reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
+//
+//            return "redirect:../lista";
+//
+//        } catch (MiException ex) {
+//
+//            List<Reserva> reserva = reservaservi.listarReservas();
+//            modelo.put("error", ex.getMessage());
+//
+//            modelo.addAttribute("reserva", reserva);
+//
+//            return "formularioModificarReserva.html";
+//
+//        }
+//
+//    }
+    
+    
+        //ruta para modificar la reserva y sus datos correspondientes
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
+    public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
 
         try {
 
             List<Reserva> reserva = reservaservi.listarReservas();
             modelo.addAttribute("reserva", reserva);
 
-            reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
+            reservaservi.modificarReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
 
             return "redirect:../lista";
 
@@ -114,6 +141,10 @@ public class ReservaControlador {
         }
 
     }
+    
+    
+    
+    
 
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")

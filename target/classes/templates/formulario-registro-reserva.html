@@ -32,17 +32,17 @@
             </div>
 
 
-            <form class="formulario-registro-de-reserva" action="">
+            <form class="formulario-registro-de-reserva" align=-"center" th:action="@{/Reserva/modificar/__${Reserva.id}__}" method="POST">
                 <!--calendarios  -->
 
                 <div class="contenedor-fechas">
                     <div class="fecha">
                         <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-                        <input id="fondo-fecha-ingreso" type="date" required>
+                        <input th:value="${Reserva.fechaDesde}"id="fondo-fecha-ingreso" type="date" required>
                     </div>
                     <div class="fecha">
                         <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-                        <input id="fondo-fecha-egreso" type="date" required>
+                        <input th:value="${Reserva.fechaHasta}" id="fondo-fecha-egreso" type="date" required>
                     </div>
                 </div>
 

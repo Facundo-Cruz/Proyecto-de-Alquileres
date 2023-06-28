@@ -30,6 +30,14 @@ public class Servicio {
     public Servicio() {
     }
 
+    public TipoServicio getTp() {
+        return tp;
+    }
+
+    public void setTp(TipoServicio tp) {
+        this.tp = tp;
+    }
+
     public String getId() {
         return id;
     }

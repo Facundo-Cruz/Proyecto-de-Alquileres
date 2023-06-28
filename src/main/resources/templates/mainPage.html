@@ -7,32 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/botones.css">
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="logo">
-            <p>Alquileres</p>
-        </div>
-        <div class="nav-content">
-            <div class="content">
-                <p>alquilar</p><img src="/img/chevron-down.svg" />
-            </div>
-            <div class="content">
-                <p><a class="publicar" th:if="${session.usuariosession == null}" th:href="@{/login}">Publicar</a></p><img src="/img/chevron-down.svg" />
-                <p><a class="publicar" th:if="${session.usuariosession != null}" th:href="@{/propiedad/registrar/}">Publicar</a></p>
-            </div>
-        </div>
-        <div class="log-box">
-            <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/registrar}">Registrate</a>
-            
-
-            <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/login}">Iniciar sesión</a>
-            
-            <a th:if="${session.usuariosession != null}" class="publicar" th:href="@{/usuario/perfil}">Perfil</a>
-
-        </div>
-    </nav>
+    <nav th:replace="fragments/navbar :: nav"></nav> 
     <div class="publicitary-box">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20">
             <path fill="#ff5500" fill-rule="evenodd"
@@ -55,31 +34,31 @@
                         <label class="labels" for="quinta">
                             <p>quinta</p>
                         </label>
-                        <input class="option" value="quinta" type="radio" name="tipo" id="quinta">
+                        <input class="option" value="QUINTA" type="radio" name="tipo" id="quinta">
 
                         <label class="labels" for="casa">casa</label>
-                        <input class="option" value="casa" type="radio" name="tipo" id="casa">
+                        <input class="option" value="CASA" type="radio" name="tipo" id="casa">
 
                         <label class="labels" for="quincho">quincho</label>
-                        <input class="option" value="quincho" type="radio" name="tipo" id="quincho">
+                        <input class="option" value="QUINCHO" type="radio" name="tipo" id="quincho">
 
                         <label class="labels" for="cabana">cabana</label>
-                        <input class="option" value="cabana" type="radio" name="tipo" id="cabana">
+                        <input class="option" value="CABANA" type="radio" name="tipo" id="cabana">
 
                         <label class="labels" for="salon">salon</label>
-                        <input class="option" value="salon" type="radio" name="tipo" id="salon">
+                        <input class="option" value="SALON" type="radio" name="tipo" id="salon">
 
                         <label class="labels" for="chalet">chalet</label>
-                        <input class="option" value="chalet" type="radio" name="tipo" id="chalet">
+                        <input class="option" value="CHALET" type="radio" name="tipo" id="chalet">
 
                         <label class="labels" for="finca">finca</label>
-                        <input class="option" value="finca" type="radio" name="tipo" id="finca">
+                        <input class="option" value="FINCA" type="radio" name="tipo" id="finca">
 
                         <label class="labels" for="bodega">bodega</label>
-                        <input class="option" value="bodega" type="radio" name="tipo" id="bodega">
+                        <input class="option" value="BODEGA" type="radio" name="tipo" id="bodega">
 
                         <label class="labels" for="otro">otro</label>
-                        <input class="option" value="otro" type="radio" name="tipo" id="otro">
+                        <input class="option" value="OTRO" type="radio" name="tipo" id="otro">
 
                     </div>
                 </div>
@@ -102,7 +81,11 @@
             <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
             <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
             <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
+            <div class="contenedor">
+                <a href="#" class="btn btn-1">Alquilar</a>
+            </div>
         </div>    
+        
     </div>
 
     <footer class="footer">

@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<nav class="nav">
+    <div class="logo">
+        <p><a href="/" style="text-decoration: none; color: black;">Alquileres</a></p>
+    </div>
+    <div class="nav-content">
+        <div class="content">
+            <p>alquilar</p><img src="/img/chevron-down.svg" />
+        </div>
+        <div class="content">
+            <p><a class="publicar" th:if="${session.usuariosession == null}" th:href="@{/login}">Publicar</a></p><img src="/img/chevron-down.svg" />
+            <p><a class="publicar" th:if="${session.usuariosession != null}" th:href="@{/propiedad/registrar/}">Publicar</a></p>
+        </div>
+        <div class="content" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')"> 
+            <p ><a  class="publicar" th:href="@{/usuario/listar/}">Listar Usuarios</a></p><img src="/img/chevron-down.svg" />
+        </div>
+    </div>
+    <div class="log-box">
+        <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/registrar}">Registrate</a>
+        
+
+        <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/login}">Iniciar sesión</a>
+        
+        <a th:if="${session.usuariosession != null}" class="publicar" th:href="@{/usuario/perfil}">Perfil</a>
+
+        <a  th:if="${session.usuariosession != null}" class="publicar" href="/logout">Cerrar Sesión</a>
+
+    </div>
+</nav>

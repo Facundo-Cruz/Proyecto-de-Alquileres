@@ -18,13 +18,19 @@ Code written by:
 }
 
 body {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background: url(/img/casa.jpg) center / cover;
+    
 }
-
+.contenedor{
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
 main.table {
     width: 82vw;
     height: 90vh;

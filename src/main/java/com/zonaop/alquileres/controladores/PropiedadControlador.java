@@ -36,9 +36,6 @@ public class PropiedadControlador {
     }
 
     @PostMapping("/registro")
-
-
-
     public String subir(/*@PathVariable String idPropietario,*/@RequestParam String nombre, @RequestParam String direccion,
             @RequestParam String localidad, @RequestParam String codigoPostal,
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
@@ -56,7 +53,7 @@ public class PropiedadControlador {
 
         } catch (MiException ex) {
 
-            return "formulario-registro-propiedad.html";
+            return "redirect:/";
 
         }
 
@@ -67,5 +64,13 @@ public class PropiedadControlador {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
         model.put("propiedades", propiedades);
         return "mainPage.html";
+    }
+    
+    @GetMapping("/modificar/{id}")
+    public String modificarPropiedad(@PathVariable("id") String idPropiedad, ModelMap modelo) {
+        
+        modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
+
+        return "formulario-modificar-propiedad.html";
     }
 }

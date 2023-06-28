@@ -10,7 +10,7 @@
             <p><a class="publicar" th:if="${session.usuariosession == null}" th:href="@{/login}">Publicar</a></p><img src="/img/chevron-down.svg" />
             <p><a class="publicar" th:if="${session.usuariosession != null}" th:href="@{/propiedad/registrar/}">Publicar</a></p>
         </div>
-        <div class="content" sec:authorize="hasRole('ADMIN')"> 
+        <div class="content" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')"> 
             <p ><a  class="publicar" th:href="@{/usuario/listar/}">Listar Usuarios</a></p><img src="/img/chevron-down.svg" />
         </div>
     </div>

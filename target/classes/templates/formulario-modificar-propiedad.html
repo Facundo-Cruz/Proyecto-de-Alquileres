@@ -18,13 +18,11 @@
   <div class="contenedor-back">
     <div class="contenedor">
 
-      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data">
+      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/modificar}" method="POST" enctype="multipart/form-data">
         <hr>
-        <h3 class="titulo">Registre su Propiedad</h3>
+        <h3 class="titulo">Modifique su Propiedad</h3>
         <hr>
-        
-<!--        <input hidden th:value="${id}" name="idPropietario">-->
-
+        <input hidden th:value= "${id}" name="id">
         <p>Tipo de Propiedad:</p>
         <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad"
           onclick="mostrarPrimeraOpcion()" required>
@@ -46,20 +44,20 @@
         <div class="ubicacion">
           <div class="ub">
             <label id="nombre" for="nombre">Nombre:</label>
-            <input class="nombre" type="text" name="nombre" required>
+            <input class="nombre" type="text" name="nombre" required th:value="${propiedad.nombre}">
           </div>
           <div class="ub">
             <label id="direccion" for="direccion">Dirección:</label>
-            <input type="text" class="direccion" name="direccion" required>
+            <input type="text" class="direccion" name="direccion" required th:value="${propiedad.direccion}">
           </div>
 
           <div class="ub">
             <label for="localidad">Localidad:</label>
-            <input type="text" id="localidad" name="localidad" required>
+            <input type="text" id="localidad" name="localidad" required th:value="${propiedad.localidad}">
           </div>
           <div class="ub">
             <label id="codigo-postal" for="codigo-postal">C.P:</label>
-            <input id="cp" type="text" name="codigoPostal" required>
+            <input id="cp" type="text" name="codigoPostal" required th:value="${propiedad.codigoPostal}">
           </div>
         </div>
 
@@ -67,17 +65,17 @@
         <div class="contenedor-fechas">
           <div class="fecha">
             <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-            <input id="fondo-fecha-ingreso" name="fechaDesde" type="date" required>
+            <input id="fondo-fecha-ingreso" name="fechaDesde" type="date" required th:value="${propiedad.fechaDesde}">
           </div>
           <div class="fecha">
             <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-            <input id="fondo-fecha-egreso" name="fechaHasta" type="date" required>
+            <input id="fondo-fecha-egreso" name="fechaHasta" type="date" required th:value="${propiedad.fechaHasta}">
           </div>
         </div>
         <div class="mail-telefono">
           <div class="myt">
             <label for="telefono">Teléfono:</label>
-            <input type="text" placeholder="223-458745" required>
+            <input type="text" placeholder="223-458745" required >
           </div>
 
           <div class="myt">
@@ -88,13 +86,13 @@
 
         <p>Subir Imágenes:</p>
         <div class="subir-imagenes">
-          <input class="imagen" name="archivo" type="file" accept="image/*" multiple required>
+          <input class="imagen" name="archivo" type="file" accept="image/*" multiple required th:value="${propiedad.foto}">
         </div>
 
 
         <div class="descripcion">
           <p>Descripción:</p>
-          <textarea id="area" cols="40" rows="3" name="descripcion"></textarea>
+          <textarea id="area" cols="40" rows="3" name="descripcion" th:text="${propiedad.descripcion}"></textarea>
         </div>
 
         <!-- Boton de redes sociales -->
@@ -219,7 +217,7 @@
           <div class="valor">
             <div class="valores">
               <label class="label-precios" for="precio-por-dia">Precio por dia: $ </label>
-              <label class="label-precios" for=""><input class="caja-precio-v" type="number" required name="precio"></label>
+              <label class="label-precios" for=""><input class="caja-precio-v" type="number" required name="precio" th:value="${propiedad.precio}"></label>
             </div>
 <!--            <div class="valores" id="total" id="precio-dia">
               <label id="label-precios-total" class="label-precios" for="precio">Total: $ </label>

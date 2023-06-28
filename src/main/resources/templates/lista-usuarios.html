@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
+    <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/nav-listado-usuarios.css">
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
     <link rel="stylesheet" href="/css/estilo-validaciones.css">
@@ -13,20 +14,7 @@
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="logo">
-            <p>Alquileres</p>
-        </div>
-        <div class="nav-content">
-            <div class="content">
-                <p>alquilar</p><img src="/img/chevron-down.svg" />
-            </div>
-            <div class="content">
-                <p>publicar</p><img src="/img/chevron-down.svg" />
-            </div>
-
-        </div>
-    </nav>
+    <nav th:replace="fragments/navbar :: nav"></nav> 
     <div class="contenedor">
         
         <main class="table">
@@ -47,8 +35,8 @@
                         <tr>
                             <td th:text="${usuario.id}"> 1 </td>
                             <td>
-                                <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt=""><span
-                                    th:text="${usuario.nombre}"></span>
+                                <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="">
+                                <span th:text="${usuario.nombre + ' ' + usuario.apellido}"></span>
                             </td>
                             <td th:text="${usuario.email}"> </td>
                             <td th:text="${usuario.rol}"> </td>
@@ -57,7 +45,7 @@
                                 <p th:if="${usuario.estado == false}" class="status cancelled">Deshabilitado</p>
                             </td>
                             <td>
-                                <a class="delete-link" th:href= "@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
+                                <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link" th:href= "@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
                             </td>
                         </tr>
                     </tbody>

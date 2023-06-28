@@ -91,11 +91,7 @@ public class UsuarioControlador {
             modelo.put("email", email);
             modelo.put("alias", apellido);
             modelo.put("rol", rol);
-<<<<<<< HEAD
-            return "formulario-registro-usuario.html";
-=======
             return "formulario-modificar-usuario.html";
->>>>>>> ead89008b4b198661cd8167f447d59e3b8ec75e0
         }
         
         

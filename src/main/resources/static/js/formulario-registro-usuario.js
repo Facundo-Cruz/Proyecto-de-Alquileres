@@ -31,10 +31,10 @@ function validarFormulario() {
     }
 
     // Validación de formato de contraseña
-   var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
     if (!passwordRegex.test(pass)) {
         alert("La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter especial.");
-       return false; // Evita enviar el formulario si la contraseña no cumple el formato
+        return false; // Evita enviar el formulario si la contraseña no cumple el formato
     }
 
     // Resto de la lógica del formulario...
@@ -42,3 +42,7 @@ function validarFormulario() {
     return true; // Envía el formulario si todos los campos están completos y las validaciones pasan
 }
 
+function mostrarPrimeraOp() {
+    var opciones = document.getElementById("campo").options.value;
+    opciones[0].selected = true;
+  }

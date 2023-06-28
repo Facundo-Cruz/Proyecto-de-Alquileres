@@ -29,7 +29,7 @@
 
             <a th:if="${session.usuariosession == null}" class="publicar" th:href="@{/login}">Iniciar sesión</a>
             
-            <a th:if="${session.usuariosession != null}" class="publicar" th:href="@{/perfil}">Perfil</a>
+            <a th:if="${session.usuariosession != null}" class="publicar" th:href="@{/usuario/perfil}">Perfil</a>
 
         </div>
     </nav>

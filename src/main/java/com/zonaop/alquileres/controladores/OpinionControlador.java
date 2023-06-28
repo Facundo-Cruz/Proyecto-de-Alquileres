@@ -41,7 +41,7 @@ public class OpinionControlador {
     
     @PostMapping("/registroOpinion")
     public String registroOpinion(@RequestParam(required =false) String id,@RequestParam String huesped,@RequestParam String comentario,
-            @RequestParam List<Imagen>Fotos,@RequestParam boolean disponibilidad,ModelMap modelo){
+            @RequestParam List<Imagen>Fotos,@RequestParam double calificacion,ModelMap modelo){
         
         try {
             
@@ -124,7 +124,8 @@ public class OpinionControlador {
 //    
     
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id,String huesped,String comentario,List<Imagen>Fotos,double calificacion,ModelMap modelo){
+    public String modificar(@RequestParam(required =false) String id,@RequestParam String huesped,@RequestParam String comentario,
+            @RequestParam List<Imagen>Fotos,@RequestParam double calificacion,ModelMap modelo){
         try {
             
             List<Opinion>opiniones=opinionservicio.listarOpiniones();

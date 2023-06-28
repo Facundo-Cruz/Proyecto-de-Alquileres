@@ -61,7 +61,7 @@ public class UsuarioControlador {
         
         modelo.addAttribute("usuarios", listausuario);
         
-        
+
         return "formulario-modificar-usuario.html";
 
        
@@ -91,44 +91,15 @@ public class UsuarioControlador {
             modelo.put("email", email);
             modelo.put("alias", apellido);
             modelo.put("rol", rol);
-            return "formulario-modificar-usuario.html";
+            return "formulario-registro-usuario.html";
+
         }
         
         
+    }    
         
         
-        
-        
-        
-//        try {
-//            List<Usuario>listau=usuarioServicio.listarUsuarios();
-//            modelo.addAttribute("usuario", listau);
-//            
-//           
-//            
-//            
-//        } catch (Exception e) {
-//        }
-//        
-//        
-//        return null;
-//        
-//        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     @GetMapping("/eliminar/{id}")

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Usuario</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="formulario-registro-usuario.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/formulario-registro-usuario.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
 </head>
@@ -15,7 +15,7 @@
     <div class="contenedor-back">
         <div class="contenedor">
 
-            <form class="formulario-registro-de-usuario" action="" onsubmit="return validarFormulario()">
+            <form class="formulario-registro-de-usuario" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
                 <hr>
                 <h3 class="titulo">Registro de Usuario</h3>
                 <hr>
@@ -32,7 +32,7 @@
                 <input type="email" class="email" name="email" placeholder="tumail@gmail.com" required>
 
                 <label for="password">Ingrese una clave</label>
-                <input class="password" type="password" name="password" required>
+                <input class="password" type="password" name="contrasena" required>
                 <p class="p-contraseña">* La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter
                     especial.</p>
 
@@ -41,10 +41,10 @@
 
 
                 <label for="imagen">Imagen de perfil:</label>
-                <input class="imagen" type="file" name="imagenes" accept="image/*" required>
+                <input class="imagen" type="file" name="archivo" accept="image/*" required>
 
                 <label class="titulo-perfil">Seleccione su perfil:</label>
-                <select class="campo" name="campo" id="campo" onclick="mostrarPrimeraOn()" required>
+                <select class="campo" name="rol" id="campo" onclick="mostrarPrimeraOn()" required>
                     <option value="" disabled selected>Elija su opción</option>
                     <option value="propietario">Propietario </option>
                     <option value="cliente">Cliente </option>
@@ -55,7 +55,7 @@
             </form>
         </div>
     </div>
-    <script src="formulario-registro-usuario.js"></script>
+    <script src="/js/formulario-registro-usuario.js"></script>
 </body>
 
 </html>

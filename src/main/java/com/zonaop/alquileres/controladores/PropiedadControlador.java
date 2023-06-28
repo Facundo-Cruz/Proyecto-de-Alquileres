@@ -60,7 +60,7 @@ public class PropiedadControlador {
     }
 
     @PostMapping("/filtrar")
-    public String index(ModelMap model, @RequestParam String tipo) {
+    public String index(ModelMap model, @RequestParam(required = false) String tipo) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
         model.put("propiedades", propiedades);
         return "mainPage.html";

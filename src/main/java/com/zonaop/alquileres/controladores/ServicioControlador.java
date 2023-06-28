@@ -34,15 +34,15 @@ public class ServicioControlador {
     @GetMapping("/servicio")
     public String Servicio() {
 
-        return "formularioContratoServicio.html";
+        return "index.html";
 
     }
 
     @PostMapping("/contratoservicio")
-    public String contratarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
-            @RequestParam double precio, @RequestParam boolean disponibilidad, ModelMap modelo) {
+    public String contratarServicio(@RequestParam String nombre, @RequestParam String descripcion,
+            @RequestParam double precio, ModelMap modelo, @RequestParam String tipo) {
         try {
-            servicioservi.crearServicio(id, nombre, descripcion, precio, disponibilidad);
+            servicioservi.crearServicio("1", nombre, descripcion, precio, true, tipo);
             modelo.put("excelente", "los servicios han sido adquiridos");
 
         } catch (MiException ex) {

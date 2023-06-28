@@ -15,8 +15,9 @@ function validarFormulario() {
         apellido.trim() === "" ||
         alias.trim() === "" ||
         email.trim() === "" ||
+        propietario.trim( ) ===""||
+        cliente.trim() ===""||
         imagenes.trim() === "" ||
-        !propietario ||
         pass1.trim() === "" ||
         pass.trim() === ""
     ) {

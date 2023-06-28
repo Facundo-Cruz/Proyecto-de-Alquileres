@@ -7,7 +7,7 @@ body {
     font-size: 11px;
     margin: 0;
     padding: 0;
-    background-image: url(imagenes/casa.jpg);
+    background-image: url(/img/casa.jpg);
 }
 
 p {

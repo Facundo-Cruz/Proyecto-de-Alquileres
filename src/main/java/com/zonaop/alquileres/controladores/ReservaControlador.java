@@ -11,6 +11,7 @@ import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.excepciones.MiException;
+import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
 import java.util.List;
 
@@ -29,16 +30,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Joaquin
  */
 @Controller
-@RequestMapping("/reserva")
+@RequestMapping("/Reserva")
 public class ReservaControlador {
 
     @Autowired
     private ReservaServicio reservaservi;
+    
+    @Autowired
+    private PropiedadServicio propiedadservicio;
+    
+    
 
     //ruta para el registro de reserva
     @GetMapping("/registrar")
     public String registrarReserva() {
-
+  
+//        List<Propiedad>propiedades=propiedadservicio.listarPropiedades();
+//        
+//        modelo.addAttribute("propiedades", propiedades);
+//        
+        
         return "formulario-registro-reserva.html";
 
     }
@@ -53,7 +64,11 @@ public class ReservaControlador {
             modelo.put("exito", "la reserva se relizo correctamente");
 
         } catch (MiException ex) {
-
+              
+//          List<Propiedad>propiedades=propiedadservicio.listarPropiedades();
+//            
+//           modelo.addAttribute("propiedades", propiedades);
+            
             modelo.put("error", ex.getMessage());
 
               return "formulario-registro-reserva.html";

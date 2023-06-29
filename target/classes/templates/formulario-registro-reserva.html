@@ -32,7 +32,7 @@
             </div>
 
 
-            <form class="formulario-registro-de-reserva" align=-"center" th:action="@{/Reserva/modificar/__${Reserva.id}__}" method="POST">
+            <form class="formulario-registro-de-reserva" align=-"center" th:action="@{/registroReserva/}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
                 <!--calendarios  -->
 
                 <div class="contenedor-fechas">
@@ -141,10 +141,34 @@
                         <label class="caja-precio-v">$</label>
                     </div>
                 </div>
-                <input class="enviar" type="submit">
+                <input class="enviar" type="submit" value="Registrame!">
             </form>
         </div>
     </div>
+    
+     <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito!</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
+                <div class="card-body">
+                    <h5 class="card-title">Error ð</h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    
+    
+    
     <script src="/js/formulario-registro-reserva.js"></script>
 </body>
 

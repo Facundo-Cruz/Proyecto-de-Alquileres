@@ -8,6 +8,8 @@ package com.zonaop.alquileres.enumeraciones;
 /**
  * @author Joaquin
  */
+
+//enum para definir los tipos de servicios a contratar
 public enum TipoServicio {
     
 Transporte,

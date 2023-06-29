@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,7 +45,7 @@ public class UsuarioControlador {
     }
     
     @GetMapping("/perfil")
-    public String mostrarPerfil(HttpSession session,ModelMap modelo){
+    public String mostrarPerfil(HttpSession session,ModelMap model){
         
         
 
@@ -53,13 +54,13 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/modificar/{id}")
-    public String modificarUsuario(@PathVariable String id,ModelMap modelo){
+    public String modificarUsuario(@PathVariable String id,ModelMap model){
         
-        modelo.put("usuario", usuarioServicio.getOne(id));
+        model.put("usuario", usuarioServicio.getOne(id));
         
         List<Usuario>listausuario=usuarioServicio.listarUsuarios();
         
-        modelo.addAttribute("usuarios", listausuario);
+        model.addAttribute("usuarios", listausuario);
         
 
         return "formulario-modificar-usuario.html";
@@ -68,7 +69,8 @@ public class UsuarioControlador {
     }
     
     @PostMapping("/modificar/{id}")
-    public String modificarUsuario(@PathVariable String id,String nombre,String apellido,String nombreUsuario,String email,String contraseña,Imagen foto,@PathVariable String rol,ModelMap modelo, MultipartFile archivo,RedirectAttributes redirectAttributes){
+    public String modificarUsuario(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String nombreUsuario,
+            @RequestParam String email, @RequestParam String contraseña,@RequestParam Imagen foto,@RequestParam String rol,@RequestParam (required=false) MultipartFile archivo,ModelMap model,RedirectAttributes redirectAttributes){
         
         try {
   
@@ -87,15 +89,14 @@ public class UsuarioControlador {
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
             return "redirect:../mainPage";
         } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-            modelo.put("email", email);
-            modelo.put("alias", apellido);
-            modelo.put("rol", rol);
-<<<<<<< HEAD
-            return "formulario-registro-usuario.html";
-=======
+            model.put("error", ex.getMessage());
+            model.put("email", email);
+            model.put("alias", apellido);
+            model.put("rol", rol);
+
+
             return "formulario-modificar-usuario.html";
->>>>>>> ead89008b4b198661cd8167f447d59e3b8ec75e0
+
         }
         
         

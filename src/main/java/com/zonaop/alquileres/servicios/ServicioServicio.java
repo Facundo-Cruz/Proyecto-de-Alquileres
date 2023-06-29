@@ -44,9 +44,9 @@ public class ServicioServicio {
     
 
    @Transactional
-    public void modificarServicio(String id, String nombre, String descripcion, Double precio, boolean disponibilidad) throws MiException {
+    public void modificarServicio(String id, String nombre, String descripcion, Double precio) throws MiException {
 
-        validarServicio(id, nombre, descripcion, precio, disponibilidad);
+        validarServicio(id, nombre, descripcion, precio);
 
         Optional<Servicio> servi = serviciorepo.findById(id);
 
@@ -57,7 +57,7 @@ public class ServicioServicio {
             servicio.setNombre(nombre);
             servicio.setDescripcion(descripcion);
             servicio.setPrecio(0);
-            servicio.setDisponibilidad(disponibilidad);
+
 
             serviciorepo.save(servicio);
 

@@ -75,7 +75,7 @@ public class ReservaControlador {
         List<Reserva> reserva = reservaservi.listarReservas();
         modelo.addAttribute("reservas", reserva);
 
-        return "formularioreservalista.html";
+        return "lista-reservas.html";
 
     }
 

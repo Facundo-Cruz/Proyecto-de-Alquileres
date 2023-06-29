@@ -90,14 +90,14 @@ public class ServicioControlador {
     
     @PostMapping("/modificar/{id}")
     public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
-            @RequestParam double precio, @RequestParam boolean disponibilidad, ModelMap modelo){
+            @RequestParam double precio, ModelMap modelo){
         
         try {
             
             List<Servicio>listaServi=servicioservi.listarServicios();
             modelo.addAttribute("servicio",listaServi);
             
-            servicioservi.modificarServicio(id, nombre, descripcion, precio, disponibilidad);
+            servicioservi.modificarServicio(id, nombre, descripcion, precio);
             
             return "redirect:../listarServicio";
             

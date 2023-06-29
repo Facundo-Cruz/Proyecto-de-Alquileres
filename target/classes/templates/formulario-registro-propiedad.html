@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro Propiedad</title>
-  <link rel="stylesheet" href="formulario-registro-propiedad.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/css/formulario-registro-propiedad.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
@@ -16,22 +16,24 @@
   <div class="contenedor-back">
     <div class="contenedor">
 
-      <form class="formulario-registro-de-propiedad" action="" onsubmit="return validarFormulario()">
+      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data" onsubmit="return validarFormulario()">
         <hr>
         <h3 class="titulo">Registre su Propiedad</h3>
         <hr>
-
+        <input type="text" name="idPropietario" id="idPropietario" hidden required th:value="${session.usuariosession.id}">
         <p>Tipo de Propiedad:</p>
-        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipo-de-propiedad"
+        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad"
           onclick="mostrarPrimeraOpcion()" required>
           <option value="" disabled selected>Elija su opción</option>
-          <option value="Quinta">Quinta</option>
-          <option value="Casa">Casa</option>
-          <option value="Casa-con-pileta">Casa con pileta</option>
-          <option value="Quincho">Quincho</option>
-          <option value="Cabaña">Cabaña</option>
-          <option value="Salon-de-fiestas">Salon de Fiestas</option>
-          <option value="Otros">Otros</option>
+          <option value="QUINTA">Quinta</option>
+          <option value="CASA">Casa</option>
+          <option value="FINCA">Finca</option>
+          <option value="QUINCHO">Quincho</option>
+          <option value="CABANA">Cabaña</option>
+          <option value="SALON">Salon de Fiestas</option>
+          <option value="BODEGA">Bodega</option>
+          <option value="CHALET">Chalet</option>
+          <option value="OTRO">Otros</option>
         </select>
 
 
@@ -40,7 +42,7 @@
         <div class="ubicacion">
           <div class="ub">
             <label id="nombre" for="nombre">Nombre:</label>
-            <input class="nombre" type="text" name="altura" required>
+            <input class="nombre" type="text" name="nombre" required>
           </div>
           <div class="ub">
             <label id="direccion" for="direccion">Dirección:</label>
@@ -53,7 +55,7 @@
           </div>
           <div class="ub">
             <label id="codigo-postal" for="codigo-postal">C.P:</label>
-            <input id="cp" type="text" name="codigopostal" required>
+            <input id="cp" type="text" name="codigoPostal" required>
           </div>
         </div>
 
@@ -61,41 +63,41 @@
         <div class="contenedor-fechas">
           <div class="fecha">
             <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-            <input id="fondo-fecha-ingreso" type="date" required>
+            <input id="fondo-fecha-ingreso" type="date" name="fechaDesde" required>
           </div>
           <div class="fecha">
             <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-            <input id="fondo-fecha-egreso" type="date" required>
+            <input id="fondo-fecha-egreso" type="date" name="fechaHasta" required>
           </div>
         </div>
         <div class="mail-telefono">
           <div class="myt">
             <label for="telefono">Teléfono:</label>
-            <input type="text" placeholder="223-458745" required>
+            <input type="text" placeholder="223-458745" name="telefono" required>
           </div>
 
           <div class="myt">
             <label for="email">Email:</label>
-            <input type="email" placeholder="tumail@gmail.com" required>
+            <input type="email" placeholder="tumail@gmail.com" name="email" required>
           </div>
         </div>
 
         <p>Subir Imágenes:</p>
         <div class="subir-imagenes">
-          <input class="imagen" type="file" accept="image/*" multiple required>
+          <input class="imagen" type="file" accept="image/*" name="archivo" multiple required>
         </div>
 
 
         <div class="descripcion">
           <p>Descripción:</p>
-          <textarea id="area" cols="40" rows="3"></textarea>
+          <textarea id="area" cols="40" rows="3" name="descripcion"></textarea>
         </div>
 
         <!-- Boton de redes sociales -->
         <div class="campo-redes-sociales">
           <label>Redes sociales:</label>
           <div class="opcion-redes">
-            <img src="imagenes/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
+            <img src="/img/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
           </div>
           <div id="redes-sociales" style="display: none;">
             <p>Ingrese el Link de sus redes sociales</p>
@@ -213,7 +215,7 @@
           <div class="valor">
             <div class="valores">
               <label class="label-precios" for="precio-por-dia">Precio por dia: $ </label>
-              <label class="label-precios" for=""><input class="caja-precio-v" type="number" required></label>
+              <label class="label-precios" for=""><input class="caja-precio-v" type="number" name="precio" required></label>
             </div>
           </div>
           <input class="enviar" type="submit" value="Enviar">
@@ -221,7 +223,7 @@
 
     </div>
   </div>
-  <script src="formulario-registro-propiedad.js"></script>
+  <script src="/js/formulario-registro-propiedad.js"></script>
 </body>
 
 </html>

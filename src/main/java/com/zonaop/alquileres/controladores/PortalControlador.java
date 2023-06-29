@@ -31,6 +31,13 @@ public class PortalControlador {
     @Autowired
     private PropietarioServicio propietarioServicio;
 
+    @GetMapping("/pruebas")
+    public String pruebas() {
+
+        return "index.html";
+
+    }
+    
     @GetMapping("/registrar")
     public String registrar() {
 

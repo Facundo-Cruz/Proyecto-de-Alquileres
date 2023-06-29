@@ -38,7 +38,7 @@ public class Reserva {
   @OneToMany
   private List <Servicio>servicios;
   private Double total;
-
+  private boolean estado;
   
   
    public Reserva() {
@@ -127,6 +127,14 @@ public class Reserva {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
 

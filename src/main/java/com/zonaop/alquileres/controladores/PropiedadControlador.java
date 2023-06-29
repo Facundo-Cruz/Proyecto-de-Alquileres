@@ -1,11 +1,13 @@
 package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Propietario;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -28,26 +30,25 @@ public class PropiedadControlador {
     public PropietarioServicio propietarioServicio;
 
     @GetMapping("/registrar")
-    public String registrarPropiedad(/*@PathVariable String idPropietairo,*/ModelMap modelo) {
+    public String registrarPropiedad() {
         
-        //modelo.put("propietario", propietarioServicio.getOne(idPropietairo));
-
         return "formulario-registro-propiedad.html";
     }
 
     @PostMapping("/registro")
-    public String subir(/*@PathVariable String idPropietario,*/@RequestParam String nombre, @RequestParam String direccion,
+    public String subir(@RequestParam String nombre, @RequestParam String direccion,
             @RequestParam String localidad, @RequestParam String codigoPostal,
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,
             @RequestParam String tipoPropiedad, @RequestParam MultipartFile archivo,
-            ModelMap modelo) {
+            ModelMap modelo,HttpSession session) {
 
-
+        Propietario propietario = (Propietario) session.getAttribute("usuariosession");
+        String idPropietario = propietario.getId();
 
         try {
 
-            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo/*,idPropietario*/);
+            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo,idPropietario);
 
             return "mainPage.html";
 
@@ -60,7 +61,7 @@ public class PropiedadControlador {
     }
 
     @PostMapping("/filtrar")
-    public String index(ModelMap model, @RequestParam String tipo) {
+    public String index(ModelMap model, @RequestParam(required = false) String tipo) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
         model.put("propiedades", propiedades);
         return "mainPage.html";

@@ -9,6 +9,7 @@ import com.zonaop.alquileres.enumeraciones.TipoServicio;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -18,14 +19,13 @@ public class Servicio {
 
     
     @Id
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String nombre;
     private String descripcion;
     @Enumerated(EnumType.STRING)
     private TipoServicio tp;
     private double precio;
-    private boolean disponibilidad;
-    
 
     public Servicio() {
     }
@@ -70,18 +70,6 @@ public class Servicio {
         this.precio = precio;
     }
 
-    public boolean isDisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setDisponibilidad(boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
-    @Override
-    public String toString() {
-        return "Servicio{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", tp=" + tp + ", precio=" + precio + ", disponibilidad=" + disponibilidad + '}';
-    }
     
     
 

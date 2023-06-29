@@ -36,21 +36,21 @@ public class PropiedadControlador {
     }
 
     @PostMapping("/registro")
+
     public String subir(@RequestParam String nombre, @RequestParam String direccion,
             @RequestParam String localidad, @RequestParam String codigoPostal,
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,
             @RequestParam String tipoPropiedad, @RequestParam MultipartFile archivo,
-            ModelMap modelo,HttpSession session) {
+            ModelMap modelo,HttpSession session,@RequestParam long telefono) {
 
         Propietario propietario = (Propietario) session.getAttribute("usuariosession");
         String idPropietario = propietario.getId();
 
         try {
 
-            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo,idPropietario);
-
-            return "mainPage.html";
+            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo,idPropietario,telefono);
+            return "redirect:/";
 
         } catch (MiException ex) {
 

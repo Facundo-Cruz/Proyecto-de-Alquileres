@@ -29,7 +29,9 @@ public class PropiedadServicio {
     public PropietarioServicio propietarioServicio;
 
     @Transactional()
-    public void crearPropiedad(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo, String idPropietario) throws MiException {
+
+    public void crearPropiedad(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad, MultipartFile archivo, String idPropietario, long telefono) throws MiException {
+
 
         validar(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad);
 
@@ -44,6 +46,7 @@ public class PropiedadServicio {
         propiedad.setFechaHasta(fechaHasta);
         propiedad.setPrecio(precio);
         propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
+        propiedad.setTelefono(telefono);
         
         propiedad.setPropietario(propietarioServicio.getOne(idPropietario));
         

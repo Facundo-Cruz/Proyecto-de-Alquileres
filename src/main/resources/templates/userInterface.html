@@ -11,15 +11,15 @@
 <body>
 
     <div class="imagebox">
-        <img src="/img/building.jpg" class="profile-picture">
+       <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
     </div>
     <div class="infobox">
         <div class="heading">
-            <h2>jose gonzales</h2>
-            <a th:href="@{/modificar}"><img src="/img/edit.svg" alt=""></a>
+            <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
+            <a th:href="@{/usuario/modificar/__${usuario.id}__}"><img src="/img/edit.svg" alt=""></a>
         </div>
         <div class="info">
-            <p>email@gmail.com</p>
+            <p th:text="${usuario.email}"></p>
             <p> +54 111 111 1111</p>
             <div class="social-media">
                 <a href="#"><img src="/img/instagram.svg" alt=""></a>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-        <div class="house-area">
+        <div th:if="${usuario.rol == T(com.zonaop.alquileres.enumeraciones.Rol).PROPIETARIO}" class="house-area">
         <div class="housesbox">
             <div class="house-card">
                 <img src="/img/building.jpg">
@@ -61,6 +61,19 @@
                     necessitatibus, veritatis iste quam corporis quis.</p>
             </div>
         </div>
+<!--            <div class="housesbox">
+        <div th:each="propiedad : ${propiedades}" class="house-card" >
+            <img th:src="@{/imagen/__${propiedad.id}__}" alt="Casa 1" class="house-image">
+            <h2 class="house-title" th:text="${propiedad.nombre}"></h2>
+            <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
+            <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
+            <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
+            <div class="contenedor">
+                <a href="#" class="btn btn-1">Alquilar</a>
+            </div>
+        </div>    
+        
+    </div>-->
         <div class="button-box">
             <button class="change-building">manejo propiedades</button>
         </div>

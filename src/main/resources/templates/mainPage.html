@@ -25,15 +25,13 @@
             <form th:action="@{/propiedad/filtrar}" method="POST" class="form-edit">
                 <div class="searchbar">
                     <div class="drop-box">
-                    <button class="boton-tipos" id="boton">
+                    <button class="boton-tipos" id="boton" type="button">
                         <span class="titulo-boton">tipo casa</span>
                         <div class="arrow" id="arrow"></div>
                     </button>
                     <div class="drop hidden" id="drop">
 
-                        <label class="labels" for="quinta">
-                            <p>quinta</p>
-                        </label>
+                        <label class="labels" for="quinta"><p>quinta</p></label>
                         <input class="option" value="QUINTA" type="radio" name="tipo" id="quinta">
 
                         <label class="labels" for="casa">casa</label>
@@ -104,7 +102,7 @@
 
     </footer>
 
-    <script src="./js/mainPage.js"></script>
+    <script src="/js/mainPage.js"></script>
 </body>
 
 </html>

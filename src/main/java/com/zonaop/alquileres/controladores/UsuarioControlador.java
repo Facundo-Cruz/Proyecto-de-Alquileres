@@ -46,6 +46,8 @@ public class UsuarioControlador {
     @GetMapping("/perfil")
     public String mostrarPerfil(HttpSession session,ModelMap modelo){
         
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        modelo.put("usuario", usuario);
         
 
         return "userInterface.html";

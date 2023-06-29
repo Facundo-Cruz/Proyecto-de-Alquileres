@@ -34,6 +34,7 @@ public class ClienteServicio {
         Cliente cliente = new Cliente();
 
         cliente.setNombre(nombre);
+        cliente.setApellido(apellido);
         cliente.setNombreUsuario(nombreUsuario);
         cliente.setEmail(email);
         cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));

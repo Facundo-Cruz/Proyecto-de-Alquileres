@@ -14,7 +14,7 @@
     <div class="contenedor-back">
         <div class="contenedor">
 
-            <form class="formulario-registro-de-usuario" th:action="@{/modificar/__{usuario.id}__}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
+            <form class="formulario-registro-de-usuario" th:action="@{/usuario/modificar/__{usuario.id}__}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
                 <hr>
                 <h3 class="titulo">Modificar Usuario</h3>
                 <hr>
@@ -45,7 +45,7 @@
                 <label for="imagen">Imagen de perfil:</label>
                 <input class="imagen" type="file" name="archivo" accept="image/*" required>
                 
-                <input hidden th:value="${rol.name()}" name="rol">
+                <input hidden th:value="${usuario.rol.name()}" name="rol">
 
 
                 <input class="enviar" type="submit" value="Modificar">

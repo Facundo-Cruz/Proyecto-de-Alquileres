@@ -23,12 +23,10 @@
             </div>
         </div>
         <div class="log-box">
-            <div class="publicar">
-                <a th:href="@{/registrar}">Registrate</a>
-            </div>
-            <div class="login-btn">
-                <a th:href="@{/login}">iniciar sesion</a>
-            </div>
+            <a class="publicar" th:href="@{/registrar}">registrate</a>
+            
+            <a class="publicar" th:href="@{/login}">iniciar sesion</a>
+
         </div>
     </nav>
     <div class="publicitary-box">
@@ -43,18 +41,42 @@
         <div class="searchbox">
             <form th:action="@{/propiedad/filtrar}" method="POST" class="form-edit">
                 <div class="searchbar">
-                    <select class="tipo-casa" name="tipo">
-                        <!-- para usar thymeleaf hacer for each de option con value siendo 
-                        el tipo de casa y el texto el tipo de casa -->
-                        <option value="QUINTA" class="select-option">Quinta</option>
-                        <option value="CASA" class="select-option">Casa</option>
-                        <option value="CABANA" class="select-option">Cabaña</option>
-                        <option value="SALON" class="select-option">Salón</option>
-                        <option value="CHALET" class="select-option">Chalet</option>
-                        <option value="FINCA" class="select-option">Finca</option>
-                        <option value="BODEGA" class="select-option">Bodega</option>
-                        <option value="OTRO" class="select-option">Otro</option>
-                    </select>
+                    <div class="drop-box">
+                    <button class="boton-tipos" id="boton" type="button">
+                        <span class="titulo-boton">tipo casa</span>
+                        <div class="arrow" id="arrow"></div>
+                    </button>
+                    <div class="drop hidden" id="drop">
+
+                        <label class="labels" for="quinta"><p>quinta</p></label>
+                        <input class="option" value="QUINTA" type="radio" name="tipo" id="quinta">
+
+                        <label class="labels" for="casa">casa</label>
+                        <input class="option" value="CASA" type="radio" name="tipo" id="casa">
+
+                        <label class="labels" for="quincho">quincho</label>
+                        <input class="option" value="QUINCHO" type="radio" name="tipo" id="quincho">
+
+                        <label class="labels" for="cabana">cabana</label>
+                        <input class="option" value="CABANA" type="radio" name="tipo" id="cabana">
+
+                        <label class="labels" for="salon">salon</label>
+                        <input class="option" value="SALON" type="radio" name="tipo" id="salon">
+
+                        <label class="labels" for="chalet">chalet</label>
+                        <input class="option" value="CHALET" type="radio" name="tipo" id="chalet">
+
+                        <label class="labels" for="finca">finca</label>
+                        <input class="option" value="FINCA" type="radio" name="tipo" id="finca">
+
+                        <label class="labels" for="bodega">bodega</label>
+                        <input class="option" value="BODEGA" type="radio" name="tipo" id="bodega">
+
+                        <label class="labels" for="otro">otro</label>
+                        <input class="option" value="OTRO" type="radio" name="tipo" id="otro">
+
+                    </div>
+                </div>
 
                     <input type="search" class="search" placeholder="busqueda">
                     <input type="submit" class="submit" value="buscar">
@@ -93,7 +115,7 @@
 
     </footer>
 
-    <!--<script src="./mainPage.js"></script>-->
+    <script src="./js/mainPage.js"></script>
 </body>
 
 </html>

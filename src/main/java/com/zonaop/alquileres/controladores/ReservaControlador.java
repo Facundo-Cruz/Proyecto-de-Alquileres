@@ -45,7 +45,10 @@ public class ReservaControlador {
 
     //ruta para el registro de reserva con sus respectivos datos
     @PostMapping("/registroReserva")
-    public String registroReserva(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
+    public String registroReserva(@RequestParam(required = false) String id,
+            @RequestParam String huesped, @RequestParam Cliente cliente,
+            @RequestParam Opinion opinion, @RequestParam Propiedad propiedad,
+            @RequestParam List<Servicio> servicios, ModelMap modelo) {
 
         try {
 
@@ -72,7 +75,7 @@ public class ReservaControlador {
         List<Reserva> reserva = reservaservi.listarReservas();
         modelo.addAttribute("reservas", reserva);
 
-        return "formularioreservalista.html";
+        return "lista-reservas.html";
 
     }
 

@@ -26,16 +26,15 @@ public class ServicioServicio {
     private ServicioRepositorio serviciorepo;
 
     @Transactional
-    public void crearServicio(String id, String nombre, String descripcion, Double precio, boolean disponibilidad, String tipo) throws MiException {
+    public void crearServicio(String id, String nombre, String descripcion, Double precio, String tipo) throws MiException {
 
-        validarServicio("2", nombre, descripcion, precio, disponibilidad);
+        validarServicio("2", nombre, descripcion, precio);
 
         Servicio servicio = new Servicio();
 
         servicio.setNombre(nombre);
         servicio.setDescripcion(descripcion);
         servicio.setPrecio(precio);
-        servicio.setDisponibilidad(disponibilidad);
         servicio.setTp(TipoServicio.valueOf(tipo));
         serviciorepo.save(servicio);
 
@@ -45,9 +44,9 @@ public class ServicioServicio {
     
 
    @Transactional
-    public void modificarServicio(String id, String nombre, String descripcion, Double precio, boolean disponibilidad) throws MiException {
+    public void modificarServicio(String id, String nombre, String descripcion, Double precio) throws MiException {
 
-        validarServicio(id, nombre, descripcion, precio, disponibilidad);
+        validarServicio(id, nombre, descripcion, precio);
 
         Optional<Servicio> servi = serviciorepo.findById(id);
 
@@ -58,7 +57,7 @@ public class ServicioServicio {
             servicio.setNombre(nombre);
             servicio.setDescripcion(descripcion);
             servicio.setPrecio(0);
-            servicio.setDisponibilidad(disponibilidad);
+
 
             serviciorepo.save(servicio);
 
@@ -101,7 +100,7 @@ public class ServicioServicio {
 
     }
 
-    private void validarServicio(String id, String nombre, String descripcion, Double precio, boolean disponibilidad) throws MiException {
+    private void validarServicio(String id, String nombre, String descripcion, Double precio) throws MiException {
 
         if (id == null) {
             throw new MiException("el id no puede ser nulo");
@@ -123,12 +122,7 @@ public class ServicioServicio {
 
         }
 
-        if (disponibilidad == true || disponibilidad == false) {
-
-            throw new MiException("la disponibilidad del servicio puede ser verdadera o falsa");
-
-        };
-
+      
     }
 
 }

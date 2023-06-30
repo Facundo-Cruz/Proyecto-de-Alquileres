@@ -42,7 +42,12 @@ public class ServicioControlador {
     public String contratarServicio(@RequestParam String nombre, @RequestParam String descripcion,
             @RequestParam double precio, ModelMap modelo, @RequestParam String tipo) {
         try {
-            servicioservi.crearServicio("1", nombre, descripcion, precio, true, tipo);
+            Servicio servicio = new Servicio();
+            descripcion = "Servicio de animación que incluye actividades interactivas y entretenidas para eventos, como juegos, espectáculos, payasos o magos, con el objetivo de entretener a los asistentes.";
+            nombre = "Animación";
+            precio = 400;
+            tipo = "Animacion";
+            servicioservi.crearServicio(servicio.getId(), nombre, descripcion, precio,tipo);
             modelo.put("excelente", "los servicios han sido adquiridos");
 
         } catch (MiException ex) {
@@ -53,7 +58,7 @@ public class ServicioControlador {
 
         }
 
-        return "mainPage.html";
+        return "redirect:/";
 
     }
 
@@ -85,14 +90,14 @@ public class ServicioControlador {
     
     @PostMapping("/modificar/{id}")
     public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
-            @RequestParam double precio, @RequestParam boolean disponibilidad, ModelMap modelo){
+            @RequestParam double precio, ModelMap modelo){
         
         try {
             
             List<Servicio>listaServi=servicioservi.listarServicios();
             modelo.addAttribute("servicio",listaServi);
             
-            servicioservi.modificarServicio(id, nombre, descripcion, precio, disponibilidad);
+            servicioservi.modificarServicio(id, nombre, descripcion, precio);
             
             return "redirect:../listarServicio";
             

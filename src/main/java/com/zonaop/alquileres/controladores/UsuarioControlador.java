@@ -110,7 +110,8 @@ public class UsuarioControlador {
             modelo.put("email", email);
             modelo.put("alias", apellido);
             modelo.put("rol", rol);
-            return "formulario-modificar-usuario.html";
+            return "formulario-registro-usuario.html";
+
         }
 
     }

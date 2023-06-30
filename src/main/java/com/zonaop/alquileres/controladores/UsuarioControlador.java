@@ -59,7 +59,7 @@ public class UsuarioControlador {
             
             List<Propiedad> propiedadesUsuario= propiedadRepositorio.propiedadesDePropietario(perfil.getId());
             
-            modelo.put("propiedades", propiedadesUsuario);
+            modelo.put("propiedad", propiedadesUsuario);
 
         } else {
 
@@ -122,15 +122,11 @@ public class UsuarioControlador {
             return "formulario-registro-usuario.html";
 
         }
-<<<<<<< HEAD
 
-    }
 
-=======
-        
     } 
     
->>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
+
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
@@ -145,9 +141,9 @@ public class UsuarioControlador {
         }
 
     }
-<<<<<<< HEAD
 
-=======
+
+
     
     @GetMapping("/cambiarEstado/{id}")
     public String cambiarEstadoUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
@@ -164,5 +160,4 @@ public class UsuarioControlador {
         
     }
     
->>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
 }

@@ -122,9 +122,15 @@ public class UsuarioControlador {
             return "formulario-registro-usuario.html";
 
         }
+<<<<<<< HEAD
 
     }
 
+=======
+        
+    } 
+    
+>>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
@@ -139,5 +145,24 @@ public class UsuarioControlador {
         }
 
     }
+<<<<<<< HEAD
 
+=======
+    
+    @GetMapping("/cambiarEstado/{id}")
+    public String cambiarEstadoUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
+
+        try {
+            usuarioServicio.cambiarEstadoPorId(id);
+            redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
+                    + "cambiado con éxito!");
+        } catch (Exception error) {
+            redirectAttributes.addFlashAttribute("error", error.getMessage());
+        } finally {
+            return "redirect:/usuario/listar";
+        }
+        
+    }
+    
+>>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
 }

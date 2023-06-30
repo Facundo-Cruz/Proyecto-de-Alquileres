@@ -172,6 +172,17 @@ public class ReservaServicio {
     }
     
     @Transactional
+    public void cancelarPorId(String id){
+        Optional<Reserva> respuesta = reservarepo.findById(id);
+        
+        if (respuesta.isPresent()) {
+            Reserva reserva = respuesta.get();
+            reserva.setEstado(false);
+            reservarepo.save(reserva);
+        }
+    }
+    
+    @Transactional
     public void EliminarReserva(String id) throws MiException{
         
      Optional<Reserva> r=reservarepo.findById(id);

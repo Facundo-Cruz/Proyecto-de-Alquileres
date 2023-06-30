@@ -23,6 +23,7 @@ body{
     margin-top: 0%;
     transform: translateY(50%);
     margin-left: 15%;
+    z-index: 0;
 }
 
 .infobox{
@@ -110,6 +111,7 @@ body{
     margin: 1% 1%;
     padding: 1% 0% 1% 0%;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .house-card img{
@@ -142,6 +144,121 @@ body{
     width: 100%;
     align-items: end;
     justify-content: end;
+}
+
+.info-casa{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    
+}
+
+.info-card{
+    width: 90vw;
+    display: flex;
+    margin-left: 5%;
+    margin-top: 10vh;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    max-height: 80vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: 3px;
+}
+
+.info-card::-webkit-scrollbar{
+    display: none;
+}
+
+.info-card .info-image{
+    width: 100%;
+    max-height: 30vw;
+}
+
+.hidden{
+    display: none;
+    body{
+        overflow-y: hidden !important;
+    }
+}
+
+.house-card .info-datos{
+    display: none;
+}
+
+.info-card .titulo{
+    width: 100%;
+    font-size: 40px;
+    font-weight: lighter;
+    padding: 0vw 4vh;
+}
+
+.info-card .info-datos{
+    display: flex;
+    width: 100%;
+    font-size: 18px;
+    flex-wrap: wrap;
+    padding: 0vw 4vh;
+}
+
+.info-datos .ubicacion{
+    margin-bottom: 2vh;
+    font-size: 15px;
+    font-weight: 700;
+    
+}
+
+.descripcion{
+    width: 100%;
+}
+
+.email-celu{
+    margin-top: 2vh;
+    width: 100%;
+    display: flex;
+}
+
+.email{
+    margin-right: 2vw;
+    display: flex;
+}
+
+.celu{
+    display: flex;
+}
+
+.cancelar{
+    margin-left: 75%;
+    width: 20%;
+    height: 5vh;
+    margin-bottom: 4vh;
+    border: none;
+    outline: none;
+    background-color: #f05850;
+    border-radius: 3px;
+}
+
+.cancelar:active{
+    background-color: #c64842;
+}
+
+
+.contact-image{
+    width: 2vw;
+    height: 2vw;
+    margin-right: 1vw;
+}
+
+.tipo-propiedades{
+    font-size: 25px;
+    margin-left: 1vw;
+    font-weight: 600;
 }
 
 

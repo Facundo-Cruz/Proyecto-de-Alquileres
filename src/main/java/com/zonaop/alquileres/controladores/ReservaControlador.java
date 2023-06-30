@@ -91,6 +91,21 @@ public class ReservaControlador {
         return "formularioModificarReserva.html";
 
     }
+    
+    @GetMapping("/cancelar/{id}")
+    public String cancelar(@PathVariable String id, RedirectAttributes redirectAttributes) {
+
+        try {
+            reservaservi.cancelarPorId(id);
+            redirectAttributes.addFlashAttribute("exito", "¡La reserva ha sido "
+                    + "cancelada con éxito!");
+        } catch (Exception error) {
+            redirectAttributes.addFlashAttribute("error", error.getMessage());
+        } finally {
+            return "redirect:/usuario/perfil";
+        }
+        
+    }
 
 //    //ruta para modificar la reserva y sus datos correspondientes
 //    @PostMapping("/modificar/{id}")

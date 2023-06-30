@@ -26,6 +26,7 @@ public class Propiedad {
     private String localidad;
     private String codigoPostal;
     private String descripcion;
+    private long telefono;
     @OneToOne
     //Especifica que una propiedad necesita si osi de un propietario para ser persistida
     @JoinColumn(name = "propietario_id")
@@ -114,7 +115,7 @@ public class Propiedad {
     public void setFechaHasta(Date fechaHasta) {
         this.fechaHasta = fechaHasta;
     }
-
+    
 //    public List<String> getRedesSociales() {
 //        return redesSociales;
 //    }
@@ -138,6 +139,14 @@ public class Propiedad {
 //    public void setMails(List<String> mails) {
 //        this.mails = mails;
 //    }
+
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
 
 
 

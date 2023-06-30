@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -16,13 +16,11 @@
   <div class="contenedor-back">
     <div class="contenedor">
 
-      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data">
+      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data" onsubmit="return validarFormulario()">
         <hr>
         <h3 class="titulo">Registre su Propiedad</h3>
         <hr>
-        
-<!--        <input hidden th:value="${id}" name="idPropietario">-->
-
+        <input type="text" name="idPropietario" id="idPropietario" hidden required th:value="${session.usuariosession.id}">
         <p>Tipo de Propiedad:</p>
         <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad"
           onclick="mostrarPrimeraOpcion()" required>
@@ -30,12 +28,15 @@
           <option value="QUINTA">Quinta</option>
           <option value="CASA">Casa</option>
           <option value="CHALET">Chalet</option>
+          <option value="FINCA">Finca</option>
           <option value="QUINCHO">Quincho</option>
           <option value="CABANA">Cabaña</option>
           <option value="SALON">Salon de Fiestas</option>
           <option value="BODEGA">Bodega</option>
           <option value="FINCA">Finca</option>
-          <option value="OTROS">Otros</option>
+          <option value="OTRO">Otros</option>
+          <option value="CHALET">Chalet</option>
+          <option value="OTRO">Otros</option>
         </select>
 
 
@@ -65,28 +66,28 @@
         <div class="contenedor-fechas">
           <div class="fecha">
             <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-            <input id="fondo-fecha-ingreso" name="fechaDesde" type="date" required>
+            <input id="fondo-fecha-ingreso" type="date" name="fechaDesde" required>
           </div>
           <div class="fecha">
             <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-            <input id="fondo-fecha-egreso" name="fechaHasta" type="date" required>
+            <input id="fondo-fecha-egreso" type="date" name="fechaHasta" required>
           </div>
         </div>
         <div class="mail-telefono">
           <div class="myt">
             <label for="telefono">Teléfono:</label>
-            <input type="text" placeholder="223-458745" required>
+            <input type="text" placeholder="223-458745" name="telefono" required>
           </div>
 
           <div class="myt">
             <label for="email">Email:</label>
-            <input type="email" placeholder="tumail@gmail.com" required>
+            <input type="email" placeholder="tumail@gmail.com" name="email" required>
           </div>
         </div>
 
         <p>Subir Imágenes:</p>
         <div class="subir-imagenes">
-          <input class="imagen" name="archivo" type="file" accept="image/*" multiple required>
+          <input class="imagen" type="file" accept="image/*" name="archivo" multiple required>
         </div>
 
 
@@ -217,15 +218,9 @@
           <div class="valor">
             <div class="valores">
               <label class="label-precios" for="precio-por-dia">Precio por dia: $ </label>
-              <label class="label-precios" for=""><input class="caja-precio-v" type="number" required name="precio"></label>
+              <label class="label-precios" for=""><input class="caja-precio-v" type="number" name="precio" required></label>
             </div>
-<!--            <div class="valores" id="total" id="precio-dia">
-              <label id="label-precios-total" class="label-precios" for="precio">Total: $ </label>
-              <label class="label-precios-total"></label>
-            </div>-->
           </div>
-
-
           <input class="enviar" type="submit" value="Enviar">
       </form>
 
@@ -233,4 +228,5 @@
   </div>
   <script src="/js/formulario-registro-propiedad.js"></script>
 </body>
+
 </html>

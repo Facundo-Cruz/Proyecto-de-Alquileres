@@ -1,13 +1,3 @@
-<!-- 
-Responsive HTML Table With Pure CSS - Web Design/UI Design
-
-Code written by:
-👨🏻‍⚕️ Coding Design (Jeet Saru)
-
-> You can do whatever you want with the code. However if you love my content, you can **SUBSCRIBED** my YouTube Channel.
-
-🌎link: www.youtube.com/codingdesign 
- -->
 <!DOCTYPE html>
 <html lang="en" title="Coding design">
 
@@ -16,70 +6,57 @@ Code written by:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
+    <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/nav-listado-usuarios.css">
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
     <link rel="stylesheet" href="/css/estilo-validaciones.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
+    <link rel="stylesheet" href="/css/mainPage.css">
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="logo">
-            <p>Alquileres</p>
-        </div>
-        <div class="nav-content">
-            <div class="content">
-                <p>alquilar</p><img src="/img/chevron-down.svg" />
-            </div>
-            <div class="content">
-                <p>publicar</p><img src="/img/chevron-down.svg" />
-            </div>
-        </div>
-    </nav>
-    <div th:replace="fragments/successMessage :: div"></div> 
-    <main class="table">
-        <section class="table__body">
-            <table>
-                <thead>
-                    <tr>
-                        <th> Id </th>
-                        <th> Nombre y Apellido </th>
-                        <th> Email </th>
-                        <th> Rol </th>
-                        <th> Estado </th>
-                        <th> Acciones </th>
-                    </tr>
-                </thead>
-                <tbody th:each="usuario : ${usuarios}">
-                    <tr>
-                        <td th:text="${usuario.id}"> 1 </td>
-                        <td> 
-                            <span th:text="${usuario.nombre}"></span>
-                        </td>
-                        <td th:text="${usuario.email}"> </td>
-                        <td th:text="${usuario.rol}"> </td>
-                        <td>
-                            <p th:if="${usuario.estado == true}" class="status delivered">Habilitado</p>
-                            <p th:if="${usuario.estado == false}" class="status cancelled">Deshabilitado</p>
-                        </td>
-                        <td> <strong> <a th:href="@{/usuario/eliminar/__${usuario.id}__}" class="delete-link" >Eliminar</a> </strong></td>
-                    </tr>
-                    <!-- <tr>
-                        <td> 2 </td>
-                        <td><img src="images/Jeet Saru.jpg" alt=""> Chiquito Lacoste </td>
-                        <td> lacoste@yahoo.com.ar </td>
-                        <td> Propietario </td>
-                        <td>
-                            <p class="status cancelled">Deshabilitado</p>
-                        </td>
-                        <td> <strong><a href="#" class="delete-link" onclick="openModal()">Eliminar</a></strong> </td>
-                    </tr> -->
-                    
-                </tbody>
-            </table>
-        </section>
+    <nav th:replace="fragments/navbar :: nav"></nav> 
+    <div class="contenedor">
         
-    </main>
+        <main class="table">
+            <div th:replace="fragments/successMessage :: div"></div>
+            <section class="table__body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Id </th>
+                            <th> Nombre y Apellido </th>
+                            <th> Email </th>
+                            <th> Rol </th>
+                            <th> Estado </th>
+                            <th> Acciones </th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="usuario : ${usuarios}">
+                        <tr>
+                            <td th:text="${usuario.id}"> 1 </td>
+                            <td>
+                                <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="">
+                                <span th:text="${usuario.nombre + ' ' + usuario.apellido}"></span>
+                            </td>
+                            <td th:text="${usuario.email}"> </td>
+                            <td th:text="${usuario.rol}"> </td>
+                            <td>
+                                <p th:if="${usuario.estado == true}" class="status delivered">Habilitado</p>
+                                <p th:if="${usuario.estado == false}" class="status cancelled">Deshabilitado</p>
+                            </td>
+                            <td>
+                                <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link" th:href= "@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+        </main>
+    </div>
+
 </body>
 
 </html>

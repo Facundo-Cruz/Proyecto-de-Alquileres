@@ -47,6 +47,8 @@ public class UsuarioControlador {
     @GetMapping("/perfil")
     public String mostrarPerfil(HttpSession session,ModelMap model){
         
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        modelo.put("usuario", usuario);
         
 
         return "userInterface.html";
@@ -89,6 +91,7 @@ public class UsuarioControlador {
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
             return "redirect:../mainPage";
         } catch (Exception ex) {
+<<<<<<< HEAD
             model.put("error", ex.getMessage());
             model.put("email", email);
             model.put("alias", apellido);
@@ -96,6 +99,13 @@ public class UsuarioControlador {
 
 
             return "formulario-modificar-usuario.html";
+=======
+            modelo.put("error", ex.getMessage());
+            modelo.put("email", email);
+            modelo.put("alias", apellido);
+            modelo.put("rol", rol);
+            return "formulario-registro-usuario.html";
+>>>>>>> 080658109d7ae189037db6af58101777015b75e4
 
         }
         

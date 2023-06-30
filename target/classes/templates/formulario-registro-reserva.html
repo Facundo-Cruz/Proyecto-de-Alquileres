@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -32,17 +32,21 @@
             </div>
 
 
+<<<<<<< HEAD
             <form class="formulario-registro-de-reserva" th:action="@{/Reserva/registroReserva}" method="POST">
+=======
+            <form class="formulario-registro-de-reserva" action="">
+>>>>>>> 080658109d7ae189037db6af58101777015b75e4
                 <!--calendarios  -->
 
                 <div class="contenedor-fechas">
                     <div class="fecha">
                         <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-                        <input th:value="${Reserva.fechaDesde}"id="fondo-fecha-ingreso" type="date" required>
+                        <input id="fondo-fecha-ingreso" type="date" required>
                     </div>
                     <div class="fecha">
                         <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-                        <input th:value="${Reserva.fechaHasta}" id="fondo-fecha-egreso" type="date" required>
+                        <input id="fondo-fecha-egreso" type="date" required>
                     </div>
                 </div>
 
@@ -145,6 +149,7 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
     
      <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
                 <div class="card-body">
@@ -170,6 +175,9 @@
     
     
     <script src="/js/formulario-registro-reserva.js"></script>
+=======
+    <script src="formulario-registro-reserva.js"></script>
+>>>>>>> 080658109d7ae189037db6af58101777015b75e4
 </body>
 
 </html>

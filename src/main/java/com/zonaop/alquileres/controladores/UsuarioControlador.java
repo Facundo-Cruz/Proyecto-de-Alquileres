@@ -2,8 +2,10 @@ package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Cliente;
 import com.zonaop.alquileres.entidades.Imagen;
+import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.enumeraciones.Rol;
+import com.zonaop.alquileres.repositorios.PropiedadRepositorio;
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
@@ -23,6 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
+    
+    @Autowired
+    public PropiedadRepositorio propiedadRepositorio;
 
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -51,6 +56,10 @@ public class UsuarioControlador {
         if (usuario.getRol().name().equals("PROPIETARIO")) {
 
             perfil = propietarioServicio.getOne(usuario.getId());
+            
+            List<Propiedad> propiedadesUsuario= propiedadRepositorio.propiedadesDePropietario(perfil.getId());
+            
+            modelo.put("propiedades", propiedadesUsuario);
 
         } else {
 

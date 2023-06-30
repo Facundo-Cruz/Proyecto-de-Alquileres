@@ -12,4 +12,8 @@ import org.springframework.stereotype.Repository;
 public interface PropiedadRepositorio extends JpaRepository <Propiedad,String> {
     @Query("SELECT p FROM Propiedad p WHERE p.tipo = :tipo")
     public List<Propiedad> buscarPorTipo(@Param("tipo") TipoPropiedad tipo);
+    
+    @Query("SELECT p FROM Propiedad p WHERE p.propietario.id = :propietarioId")
+    public List<Propiedad> propiedadesDePropietario(@Param("propietarioId") String propietarioId);
+    
 }

@@ -97,12 +97,7 @@ public class UsuarioControlador {
 
         }
         
-        
-    }    
-        
-        
-
-    
+    } 
     
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
@@ -119,6 +114,19 @@ public class UsuarioControlador {
         
     }
     
-    
+    @GetMapping("/cambiarEstado/{id}")
+    public String cambiarEstadoUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
+
+        try {
+            usuarioServicio.cambiarEstadoPorId(id);
+            redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
+                    + "cambiado con éxito!");
+        } catch (Exception error) {
+            redirectAttributes.addFlashAttribute("error", error.getMessage());
+        } finally {
+            return "redirect:/usuario/listar";
+        }
+        
+    }
     
 }

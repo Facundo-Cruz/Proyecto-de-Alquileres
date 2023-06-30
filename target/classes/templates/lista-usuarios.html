@@ -47,6 +47,7 @@
                             </td>
                             <td>
                                 <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link" th:href= "@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
+                                <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link" th:href= "@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar Estado</a>
                             </td>
                         </tr>
                     </tbody>

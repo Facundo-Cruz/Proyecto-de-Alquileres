@@ -91,99 +91,148 @@ public class ReservaServicio {
 
     }
 
-    @Transactional
-    public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
-
-        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
-
-        Optional<Reserva> a = reservarepo.findById(id);
-        Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
-        Optional<Cliente> c = clienterepo.findById(idCliente);
-        Optional<Opinion> d = opinionrepo.findById(idOpinion);
-        Optional<Servicio> e = serviciorepo.findById(idServicio);
-
-        Cliente cliente = new Cliente();
-        Opinion opinion = new Opinion();
-        Propiedad propiedad = new Propiedad();
-        Servicio servicio = new Servicio();
-
-        if (a.isPresent()) {
-
-            Reserva reserva = a.get();
-
-            reserva.setHuesped(huesped);
-            reserva.setCliente(cliente);
-            reserva.setServicios((List<Servicio>) servicios);
-            reserva.setTotal(total);
-
-            reservarepo.save(reserva);
-
-        }
-
-    }
-
-    @Transactional
-    public void EliminarReserva(String id) throws MiException {
-
-        Optional<Reserva> r = reservarepo.findById(id);
-        if (r.isPresent()) {
-
-            Reserva reserva = r.get();
-
-            reservarepo.delete(reserva);
-        }
-
-    }
-
-    @Transactional(readOnly = true)
-    public Reserva getOne(String id) {
-
-        return reservarepo.getOne(id);
-
-    }
-
-    private void validarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
-
-        if (id == null) {
-            throw new MiException("el id no puede ser nulo"); //
-        }
-
-        if (huesped.isEmpty() || huesped == null) {
-            throw new MiException("el huesped no puede ser nulo o estar vacio");
-        }
-
-        if (servicios == null) {
-            throw new MiException("los servicios no pueden ser nulos");
-        }
-
-        if (idOpinion.isEmpty() || idOpinion == null) {
-            throw new MiException("la opinion no puede ser nula o estar vacia");
-        }
-
-        if (idCliente.isEmpty() || idCliente == null) {
-
-            throw new MiException("el cliente no puede ser nulo o estar vacio");
-
-        }
-
-        if (total.isInfinite() || total == null) {
-
-            throw new MiException("el total no puede ser infinito o ser vacio");
-
-        }
-
-        if (idServicio.isEmpty() || idServicio == null) {
-
-            throw new MiException("los servicios no pueden ser nulos o estar vacios");
-
-        }
-
-        if (idPropiedad.isEmpty() || idPropiedad == null) {
-
-            throw new MiException("la propiedad no puede ser nula o estar vacia");
-
-        }
-
-    }
+//    @Transactional
+//    public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
+//
+//        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
+//
+//        Optional<Reserva> a = reservarepo.findById(id);
+//        Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
+//        Optional<Cliente> c = clienterepo.findById(idCliente);
+//        Optional<Opinion> d = opinionrepo.findById(idOpinion);
+//        Optional<Servicio> e = serviciorepo.findById(idServicio);
+//
+//        Cliente cliente = new Cliente();
+//        Opinion opinion = new Opinion();
+//        Propiedad propiedad = new Propiedad();
+//        Servicio servicio = new Servicio();
+//
+//        if (a.isPresent()) {
+//
+//            Reserva reserva = a.get();
+//
+//            reserva.setHuesped(huesped);
+//            reserva.setCliente(cliente);
+//            reserva.setServicios((List<Servicio>) servicios);
+//            reserva.setTotal(total);
+// 
+//            reservarepo.save(reserva);
+//            
+//        }
+//        
+//        
+//    }
+//    
+//    @Transactional
+//    public void cancelarPorId(String id){
+//        Optional<Reserva> respuesta = reservarepo.findById(id);
+//        
+//        if (respuesta.isPresent()) {
+//            Reserva reserva = respuesta.get();
+//            reserva.setEstado(false);
+//            reservarepo.save(reserva);
+//        }
+//    }
+//    
+//    @Transactional
+//    public void EliminarReserva(String id) throws MiException{
+//        
+//     Optional<Reserva> r=reservarepo.findById(id);
+//        if(r.isPresent()){
+//       
+//        Reserva reserva=r.get();
+//      
+//        reservarepo.delete(reserva);
+//        }
+//  
+//      }
+//    
+//     @Transactional(readOnly = true)
+//    public Reserva getOne(String id){
+//    
+//       return reservarepo.getOne(id);
+//        
+//        
+//    }
+//    
+    
+    
+//    private void validarReserva (String id,String huesped,List<Servicio>servicios,Double total, String idOpinion,String idPropiedad,String idCliente,String idServicio) throws MiException{
+//       
+//    
+//    
+//                
+//       if (id == null) {
+//           throw new MiException("el id no puede ser nulo"); //
+//       }
+//
+//
+//        }
+//
+//    }
+//
+//    @Transactional
+//    public void EliminarReserva(String id) throws MiException {
+//
+//        Optional<Reserva> r = reservarepo.findById(id);
+//        if (r.isPresent()) {
+//
+//            Reserva reserva = r.get();
+//
+//            reservarepo.delete(reserva);
+//        }
+//
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public Reserva getOne(String id) {
+//
+//        return reservarepo.getOne(id);
+//
+//    }
+//
+//    private void validarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
+//
+//        if (id == null) {
+//            throw new MiException("el id no puede ser nulo"); //
+//        }
+//
+//        if (huesped.isEmpty() || huesped == null) {
+//            throw new MiException("el huesped no puede ser nulo o estar vacio");
+//        }
+//
+//        if (servicios == null) {
+//            throw new MiException("los servicios no pueden ser nulos");
+//        }
+//
+//        if (idOpinion.isEmpty() || idOpinion == null) {
+//            throw new MiException("la opinion no puede ser nula o estar vacia");
+//        }
+//
+//        if (idCliente.isEmpty() || idCliente == null) {
+//
+//            throw new MiException("el cliente no puede ser nulo o estar vacio");
+//
+//        }
+//
+//        if (total.isInfinite() || total == null) {
+//
+//            throw new MiException("el total no puede ser infinito o ser vacio");
+//
+//        }
+//
+//        if (idServicio.isEmpty() || idServicio == null) {
+//
+//            throw new MiException("los servicios no pueden ser nulos o estar vacios");
+//
+//        }
+//
+//        if (idPropiedad.isEmpty() || idPropiedad == null) {
+//
+//            throw new MiException("la propiedad no puede ser nula o estar vacia");
+//
+//        }
+//
+//    }
 
 }

@@ -90,7 +90,11 @@ public class ServicioControlador {
     
     @PostMapping("/modificar/{id}")
     public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
+<<<<<<< HEAD
             @RequestParam double precio , ModelMap modelo){
+=======
+            @RequestParam double precio, ModelMap modelo){
+>>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
         
         try {
             

@@ -44,6 +44,7 @@ public class ServicioServicio {
     
 
    @Transactional
+
     public void modificarServicio(String id, String nombre, String descripcion, Double precio ) throws MiException {
 
         validarServicio(id, nombre, descripcion, precio);

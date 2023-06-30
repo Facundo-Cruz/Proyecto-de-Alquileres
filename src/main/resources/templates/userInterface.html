@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <div class="infobox">
         <div class="heading">
             <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
-            <a th:href="@{/usuario/modificar/__${usuario.id}__}"><img src="/img/edit.svg" alt=""></a>
+            <a th:href="@{/usuario/modificar}"><img src="/img/edit.svg" alt=""></a>
         </div>
         <div class="info">
             <p th:text="${usuario.email}"></p>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-        <div th:if="${usuario.rol == T(com.zonaop.alquileres.enumeraciones.Rol).PROPIETARIO}" class="house-area">
+        <div sec:authorize="hasAnyRole('PROPIETARIO')" class="house-area">
         <div class="housesbox">
             <div class="house-card">
                 <img src="/img/building.jpg">

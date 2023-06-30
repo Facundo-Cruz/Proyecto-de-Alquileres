@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <head>
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 
     <body>
 
-        <div class="info-casa hidden">
+    <div class="info-casa hidden">
             <div class="info-card" id="wow"></div>
         </div>
 
@@ -20,7 +20,7 @@
         <div class="infobox">
             <div class="heading">
                 <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
-                <a th:href="@{/usuario/modificar/__${usuario.id}__}"><img src="/img/edit.svg" alt=""></a>
+                <a th:href="@{/usuario/modificar}"><img src="/img/edit.svg" alt=""></a>
             </div>
             <div class="info">
                 <p th:text="${usuario.email}"></p>
@@ -36,21 +36,21 @@
             <p class="tipo-propiedades">reserva/propiedades</p>
             <div class="housesbox">
                 <!--el th:each deberia ser de house-card que es la imagen de la carta con la casa-->
-                <div class="house-card">
-                    <img src="./img/building.jpg" class="info-image">
-                    <p class="titulo">nombre de la propiedad</p>
+                <div th:each="propiedad : ${propiedades}" class="house-card">
+                    <img th:src="@{/imagen/__${propiedad.id}__}" alt="Foto propiedad" class="info-image">
+                    <p th:text="${propiedad.nombre}" class="titulo"></p>
                     <div class="info-datos">
-                        <p class="ubicacion">ubicacion de la propiedad</p>
-                        <p class="descripcion">descripcion de la casa</p>
-                        <p class="fecha"> desde (fecha desde) hasta el (fecha hasta)</p>
+                        <p th:text="${propiedad.direccion}" class="ubicacion"></p>
+                        <p th:text="${propiedad.descripcion}" class="descripcion"></p>
+                        <p th:text="'Desde '+${propiedad.fechaDesde}+' hasta el '+${propiedad.fechaHasta}" class="fecha"></p>
                         <div class="email-celu">
                             <div class="email">
                                 <img src="/img/mail.svg" class="contact-image" alt="">
-                                <p>email del propietario</p>
+                                <p th:text="${usuario.email}"></p>
                             </div>
                             <div class="celu">
                                 <img src="/img/phone.svg" class="contact-image" alt="">
-                                <p> numero de telefono del propietario</p>
+                                <p th:text="${propiedad.telefono}"></p>
                             </div>
                         </div>
                         <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
@@ -62,7 +62,7 @@
 
         </div>
 
-        <script src="./js/userInterface.js"></script>
+        <script src="/js/userInterface.js"></script>
     </body>
 
 </html>

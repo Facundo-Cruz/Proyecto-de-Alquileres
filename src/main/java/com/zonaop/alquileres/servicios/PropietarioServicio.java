@@ -60,6 +60,7 @@ public class PropietarioServicio {
             usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
 
             propietario.setNombre(nombre);
+            propietario.setApellido(apellido);
             propietario.setNombreUsuario(nombreUsuario);
             propietario.setEmail(email);
             propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));

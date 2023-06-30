@@ -116,6 +116,11 @@ public class PropiedadServicio {
     public Propiedad buscarPropiedadPorId(String id) {
         return propiedadRepositorio.getById(id);
     }
+    
+    public List <Propiedad> listarPorPropietario(String id) {
+        List<Propiedad> propiedades= propiedadRepositorio.buscarPorPropietario(id);
+        return  propiedades;
+    }
 
     public void validar(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad) {
 

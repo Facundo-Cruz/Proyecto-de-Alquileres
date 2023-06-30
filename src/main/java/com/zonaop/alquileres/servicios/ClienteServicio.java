@@ -62,9 +62,10 @@ public class ClienteServicio {
             usuarioServicio.validar(nombre, apellido,nombreUsuario, email, contrasena);
 
             cliente.setNombre(nombre);
-            cliente.setNombreUsuario(apellido);
+            cliente.setApellido(apellido);
+            cliente.setNombreUsuario(nombreUsuario);
             cliente.setEmail(email);
-            cliente.setContrasena(contrasena);
+             cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
             
 
             String idImagen = null;

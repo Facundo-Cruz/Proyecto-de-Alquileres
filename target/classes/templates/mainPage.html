@@ -80,7 +80,8 @@
             <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
             <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
             <div class="contenedor">
-                <a href="#" class="btn btn-1">Alquilar</a>
+                <a th:href= "@{/reserva/registrar/__${propiedad.id}__}" class="btn btn-1">Alquilar</a>
+
             </div>
         </div>    
         

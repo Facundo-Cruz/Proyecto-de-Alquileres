@@ -15,35 +15,36 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Reserva {
-   
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
- 
-  private String id;
-  private String huesped;
-  @OneToOne
-  private Opinion opinion;
-  @Temporal(TemporalType.DATE)
-  private Date fechaHasta;
-  @Temporal(TemporalType.DATE)
-  private Date fechaDesde;
-  @OneToOne
-  private Propiedad propiedad;
-  @OneToOne
-  private Cliente cliente;
-  @OneToMany
-  private List <Servicio>servicios;
-  private Double total;
-  private boolean estado;
-  
-  
-   public Reserva() {
-      
-   }
+
+    @Id
+    //Genera id de forma automatica
+    @GeneratedValue(generator = "uuid")
+    //Segunda estrategia en caso de que el primer generador repita un id
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    private String huesped;
+    @OneToOne
+    private Opinion opinion;
+    @Temporal(TemporalType.DATE)
+    private Date fechaHasta;
+    @Temporal(TemporalType.DATE)
+    private Date fechaDesde;
+    @OneToOne
+    private Propiedad propiedad;
+    @OneToOne
+    private Cliente cliente;
+    @OneToMany
+    private List<Servicio> servicios;
+    private Double total;
+    private boolean estado;
+
+    public Reserva() {
+
+    }
 
     public Reserva(String id, String huesped, Opinion opinion, Date fechaHasta, Date fechaDesde, Propiedad propiedad, Cliente cliente, List<Servicio> servicios, Double total) {
         this.id = id;
@@ -137,9 +138,4 @@ public class Reserva {
         this.estado = estado;
     }
 
-
-    
-    
-    
-    
 }

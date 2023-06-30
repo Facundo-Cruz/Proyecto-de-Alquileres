@@ -5,8 +5,9 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.enumeraciones.Rol;
-import com.zonaop.alquileres.repositorios.PropiedadRepositorio;
+import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.servicios.ClienteServicio;
+import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
@@ -25,9 +26,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
-    
+
     @Autowired
-    public PropiedadRepositorio propiedadRepositorio;
+    public PropiedadServicio propiedadServicio;
 
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -56,10 +57,10 @@ public class UsuarioControlador {
         if (usuario.getRol().name().equals("PROPIETARIO")) {
 
             perfil = propietarioServicio.getOne(usuario.getId());
-            
-            List<Propiedad> propiedadesUsuario= propiedadRepositorio.propiedadesDePropietario(perfil.getId());
-            
-            modelo.put("propiedad", propiedadesUsuario);
+
+            List<Propiedad> propiedades = propiedadServicio.listarPorPropietario(usuario.getId());
+
+            modelo.put("propiedades", propiedades);
 
         } else {
 
@@ -123,9 +124,7 @@ public class UsuarioControlador {
 
         }
 
-
-    } 
-    
+    }
 
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
@@ -142,9 +141,6 @@ public class UsuarioControlador {
 
     }
 
-
-
-    
     @GetMapping("/cambiarEstado/{id}")
     public String cambiarEstadoUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
@@ -157,7 +153,7 @@ public class UsuarioControlador {
         } finally {
             return "redirect:/usuario/listar";
         }
-        
+
     }
-    
+
 }

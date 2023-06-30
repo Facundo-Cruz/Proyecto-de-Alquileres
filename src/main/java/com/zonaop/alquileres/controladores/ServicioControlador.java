@@ -88,42 +88,42 @@ public class ServicioControlador {
     }
     
     
-    @PostMapping("/modificar/{id}")
-    public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
-<<<<<<< HEAD
-            @RequestParam double precio , ModelMap modelo){
-=======
-            @RequestParam double precio, ModelMap modelo){
->>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
-        
-        try {
-            
-            List<Servicio>listaServi=servicioservi.listarServicios();
-            modelo.addAttribute("servicio",listaServi);
-            
-            servicioservi.modificarServicio(id, nombre, descripcion, precio);
-            
-            return "redirect:../listarServicio";
-            
-        } catch (MiException ex) {
-            
-            List<Servicio>listaServi=servicioservi.listarServicios();
-            modelo.addAttribute("error",ex.getMessage());
-        
-          return "formulariomodificarServicioReserva.html";    
-            
-        }
-        
-    }
-     
-     @GetMapping("/eliminar/{id}") 
-     public String eliminarServicio(@PathVariable String id,ModelMap modelo){
-         
-         modelo.put("servicios", servicioservi.getOne(id));
-         
-         return "servicio_eliminar.html";
-         
-     }
+//    @PostMapping("/modificar/{id}")
+//    public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
+//<<<<<<< HEAD
+//            @RequestParam double precio , ModelMap modelo){
+//=======
+//            @RequestParam double precio, ModelMap modelo){
+//>>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
+//        
+//        try {
+//            
+//            List<Servicio>listaServi=servicioservi.listarServicios();
+//            modelo.addAttribute("servicio",listaServi);
+//            
+//            servicioservi.modificarServicio(id, nombre, descripcion, precio);
+//            
+//            return "redirect:../listarServicio";
+//            
+//        } catch (MiException ex) {
+//            
+//            List<Servicio>listaServi=servicioservi.listarServicios();
+//            modelo.addAttribute("error",ex.getMessage());
+//        
+//          return "formulariomodificarServicioReserva.html";    
+//            
+//        }
+//        
+//    }
+//     
+//     @GetMapping("/eliminar/{id}") 
+//     public String eliminarServicio(@PathVariable String id,ModelMap modelo){
+//         
+//         modelo.put("servicios", servicioservi.getOne(id));
+//         
+//         return "servicio_eliminar.html";
+//         
+//     }
 //        
 //      @PostMapping("/eliminar/{id}")
 //      public String eliminarServicio(@PathVariable String id,RedirectAttributes a){

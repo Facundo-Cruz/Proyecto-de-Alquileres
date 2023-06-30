@@ -91,69 +91,69 @@ public class ReservaServicio {
 
     }
 
-//    @Transactional
-//    public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
-//
+    @Transactional
+    public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
+
 //        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
-//
-//        Optional<Reserva> a = reservarepo.findById(id);
-//        Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
-//        Optional<Cliente> c = clienterepo.findById(idCliente);
-//        Optional<Opinion> d = opinionrepo.findById(idOpinion);
-//        Optional<Servicio> e = serviciorepo.findById(idServicio);
-//
-//        Cliente cliente = new Cliente();
-//        Opinion opinion = new Opinion();
-//        Propiedad propiedad = new Propiedad();
-//        Servicio servicio = new Servicio();
-//
-//        if (a.isPresent()) {
-//
-//            Reserva reserva = a.get();
-//
-//            reserva.setHuesped(huesped);
-//            reserva.setCliente(cliente);
-//            reserva.setServicios((List<Servicio>) servicios);
-//            reserva.setTotal(total);
-// 
-//            reservarepo.save(reserva);
-//            
-//        }
-//        
-//        
-//    }
+
+        Optional<Reserva> a = reservarepo.findById(id);
+        Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
+        Optional<Cliente> c = clienterepo.findById(idCliente);
+        Optional<Opinion> d = opinionrepo.findById(idOpinion);
+        Optional<Servicio> e = serviciorepo.findById(idServicio);
+
+        Cliente cliente = new Cliente();
+        Opinion opinion = new Opinion();
+        Propiedad propiedad = new Propiedad();
+        Servicio servicio = new Servicio();
+
+        if (a.isPresent()) {
+
+            Reserva reserva = a.get();
+
+            reserva.setHuesped(huesped);
+            reserva.setCliente(cliente);
+            reserva.setServicios((List<Servicio>) servicios);
+            reserva.setTotal(total);
+ 
+            reservarepo.save(reserva);
+            
+        }
+        
+        
+    }
+    
+    @Transactional
+    public void cancelarPorId(String id){
+        Optional<Reserva> respuesta = reservarepo.findById(id);
+        
+        if (respuesta.isPresent()) {
+            Reserva reserva = respuesta.get();
+            reserva.setEstado(false);
+            reservarepo.save(reserva);
+        }
+    }
 //    
-//    @Transactional
-//    public void cancelarPorId(String id){
-//        Optional<Reserva> respuesta = reservarepo.findById(id);
-//        
-//        if (respuesta.isPresent()) {
-//            Reserva reserva = respuesta.get();
-//            reserva.setEstado(false);
-//            reservarepo.save(reserva);
-//        }
-//    }
+    @Transactional
+    public void EliminarReserva(String id) throws MiException{
+        
+     Optional<Reserva> r=reservarepo.findById(id);
+        if(r.isPresent()){
+       
+        Reserva reserva=r.get();
+      
+        reservarepo.delete(reserva);
+        }
+  
+      }
 //    
-//    @Transactional
-//    public void EliminarReserva(String id) throws MiException{
-//        
-//     Optional<Reserva> r=reservarepo.findById(id);
-//        if(r.isPresent()){
-//       
-//        Reserva reserva=r.get();
-//      
-//        reservarepo.delete(reserva);
-//        }
-//  
-//      }
-//    
-//     @Transactional(readOnly = true)
-//    public Reserva getOne(String id){
-//    
-//       return reservarepo.getOne(id);
-//        
-//        
-//    }
+     @Transactional(readOnly = true)
+    public Reserva getOne(String id){
+    
+       return reservarepo.getOne(id);
+        
+        
+    }
 //    
     
     

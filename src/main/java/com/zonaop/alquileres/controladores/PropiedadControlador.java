@@ -42,11 +42,18 @@ public class PropiedadControlador {
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,
             @RequestParam String tipoPropiedad, @RequestParam MultipartFile archivo,
-            ModelMap modelo,HttpSession session,@RequestParam long telefono) {
+            ModelMap modelo,HttpSession session,@RequestParam long telefono,
+            @RequestParam(required = false)String[] serviciosAdicionales,
+            @RequestParam(required = false)Double[] precios) {
 
         Propietario propietario = (Propietario) session.getAttribute("usuariosession");
         String idPropietario = propietario.getId();
-
+        for (Double aux : precios) {
+            System.out.println(aux);
+        }
+        for (String aux : serviciosAdicionales) {
+            System.out.println(aux);
+        }
         try {
 
             propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo,idPropietario,telefono);

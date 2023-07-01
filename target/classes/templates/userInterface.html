@@ -1,84 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/userInterface.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/userInterface.css">
+    </head>
 
-<body>
+    <body>
 
-    <div class="imagebox">
-       <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
-    </div>
-    <div class="infobox">
-        <div class="heading">
-            <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
-            <a th:href="@{/usuario/modificar/__${usuario.id}__}"><img src="/img/edit.svg" alt=""></a>
+    <div class="info-casa hidden">
+            <div class="info-card" id="wow"></div>
         </div>
-        <div class="info">
-            <p th:text="${usuario.email}"></p>
-            <p> +54 111 111 1111</p>
-            <div class="social-media">
-                <a href="#"><img src="/img/instagram.svg" alt=""></a>
-            <a href="#"><img src="/img/twitter.svg" alt=""></a>
-            </div>        
-        </div>
-    </div>
 
-        <div th:if="${usuario.rol == T(com.zonaop.alquileres.enumeraciones.Rol).PROPIETARIO}" class="house-area">
-        <div class="housesbox">
-            <div class="house-card">
-                <img src="/img/building.jpg">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae autem vel iste,
-                    maiores molestias nostrum corrupti? Nesciunt eum ad, temporibus ratione dolorum magnam
-                    necessitatibus, veritatis iste quam corporis quis.</p>
+        <div class="imagebox">
+            <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        </div>
+        <div class="infobox">
+            <div class="heading">
+                <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
+                <a th:href="@{/usuario/modificar}"><img src="/img/edit.svg" alt=""></a>
             </div>
-            <div class="house-card">
-                <img src="/img/building.jpg">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae autem vel iste,
-                    maiores molestias nostrum corrupti? Nesciunt eum ad, temporibus ratione dolorum magnam
-                    necessitatibus, veritatis iste quam corporis quis.</p>
-            </div>
-            <div class="house-card">
-                <img src="/img/building.jpg">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae autem vel iste,
-                    maiores molestias nostrum corrupti? Nesciunt eum ad, temporibus ratione dolorum magnam
-                    necessitatibus, veritatis iste quam corporis quis.</p>
-            </div>
-            <div class="house-card">
-                <img src="/img/building.jpg">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae autem vel iste,
-                    maiores molestias nostrum corrupti? Nesciunt eum ad, temporibus ratione dolorum magnam
-                    necessitatibus, veritatis iste quam corporis quis.</p>
-            </div>
-            <div class="house-card">
-                <img src="/img/building.jpg">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur molestiae autem vel iste,
-                    maiores molestias nostrum corrupti? Nesciunt eum ad, temporibus ratione dolorum magnam
-                    necessitatibus, veritatis iste quam corporis quis.</p>
+            <div class="info">
+                <p th:text="${usuario.email}"></p>
+                <p> numero de telefono del usuario</p>
+                <div class="social-media">
+                    <a href="#"><img src="/img/instagram.svg" alt=""></a>
+                    <a href="#"><img src="/img/twitter.svg" alt=""></a>
+                </div>        
             </div>
         </div>
-<!--            <div class="housesbox">
-        <div th:each="propiedad : ${propiedades}" class="house-card" >
-            <img th:src="@{/imagen/__${propiedad.id}__}" alt="Casa 1" class="house-image">
-            <h2 class="house-title" th:text="${propiedad.nombre}"></h2>
-            <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
-            <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
-            <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
-            <div class="contenedor">
-                <a href="#" class="btn btn-1">Alquilar</a>
+
+        <div class="house-area">
+            <p class="tipo-propiedades">reserva/propiedades</p>
+            <div class="housesbox">
+                <!--el th:each deberia ser de house-card que es la imagen de la carta con la casa-->
+                <div th:each="propiedad : ${propiedades}" class="house-card">
+                    <img th:src="@{/imagen/__${propiedad.id}__}" alt="Foto propiedad" class="info-image">
+                    <p th:text="${propiedad.nombre}" class="titulo"></p>
+                    <div class="info-datos">
+                        <p th:text="${propiedad.direccion}" class="ubicacion"></p>
+                        <p th:text="${propiedad.descripcion}" class="descripcion"></p>
+                        <p th:text="'Desde '+${propiedad.fechaDesde}+' hasta el '+${propiedad.fechaHasta}" class="fecha"></p>
+                        <div class="email-celu">
+                            <div class="email">
+                                <img src="/img/mail.svg" class="contact-image" alt="">
+                                <p th:text="${usuario.email}"></p>
+                            </div>
+                            <div class="celu">
+                                <img src="/img/phone.svg" class="contact-image" alt="">
+                                <p th:text="${propiedad.telefono}"></p>
+                            </div>
+                        </div>
+                        <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
+                        SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
+                        <button class="cancelar">cancelar</button>
+                    </div>
+                </div>
             </div>
-        </div>    
-        
-    </div>-->
-        <div class="button-box">
-            <button class="change-building">manejo propiedades</button>
+
         </div>
-        
-    </div>
-</body>
+
+        <script src="/js/userInterface.js"></script>
+    </body>
 
 </html>

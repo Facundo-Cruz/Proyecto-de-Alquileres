@@ -36,12 +36,8 @@ public class PropiedadControlador {
     }
 
     @PostMapping("/registro")
-<<<<<<< HEAD
-    public String subir(/*@PathVariable String idPropietario,*/@RequestParam String nombre, @RequestParam String direccion,
-=======
-
     public String subir(@RequestParam String nombre, @RequestParam String direccion,
->>>>>>> 080658109d7ae189037db6af58101777015b75e4
+
             @RequestParam String localidad, @RequestParam String codigoPostal,
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,

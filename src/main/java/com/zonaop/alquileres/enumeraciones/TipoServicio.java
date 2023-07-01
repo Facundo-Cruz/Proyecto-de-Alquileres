@@ -12,14 +12,13 @@ package com.zonaop.alquileres.enumeraciones;
 //enum para definir los tipos de servicios a contratar
 public enum TipoServicio {
     
-Transporte,
-Seguridad,
+
 DJ,
 Catering,
 Animacion,
-Chef,
+Cheff,
 Bar,
-Show,
+Showa,
 Guarderia,
 Asador,
 

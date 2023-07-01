@@ -4,6 +4,7 @@ import com.zonaop.alquileres.entidades.Cliente;
 import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.enumeraciones.Rol;
+import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
@@ -48,7 +49,7 @@ public class UsuarioControlador {
     public String mostrarPerfil(HttpSession session,ModelMap model){
         
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        modelo.put("usuario", usuario);
+        model.put("usuario", usuario);
         
 
         return "userInterface.html";
@@ -90,8 +91,8 @@ public class UsuarioControlador {
             }
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
             return "redirect:../mainPage";
-        } catch (Exception ex) {
-<<<<<<< HEAD
+        } catch (MiException ex) {
+
             model.put("error", ex.getMessage());
             model.put("email", email);
             model.put("alias", apellido);
@@ -99,38 +100,26 @@ public class UsuarioControlador {
 
 
             return "formulario-modificar-usuario.html";
-=======
-            modelo.put("error", ex.getMessage());
-            modelo.put("email", email);
-            modelo.put("alias", apellido);
-            modelo.put("rol", rol);
-            return "formulario-registro-usuario.html";
->>>>>>> 080658109d7ae189037db6af58101777015b75e4
+        }
+          
+
 
         }
         
-        
-    }    
-        
-        
-
     
-    
-    @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
+      @GetMapping("/eliminar/{id}")
+    public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes){
 
         try {
             usuarioServicio.eliminarPorId(id);
-            redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
-                    + "eliminado con éxito!");
+            redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido " + "eliminado con éxito!");
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
             return "redirect:/usuario/listar";
         }
-        
-    }
-    
-    
-    
+     
+    }    
+  
 }
+

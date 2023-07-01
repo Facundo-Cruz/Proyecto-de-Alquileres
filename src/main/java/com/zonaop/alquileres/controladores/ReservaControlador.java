@@ -107,36 +107,12 @@ public class ReservaControlador {
 
     }
 
-//    //ruta para modificar la reserva y sus datos correspondientes
-//    @PostMapping("/modificar/{id}")
-//    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
-//
-//        try {
-//
-//            List<Reserva> reserva = reservaservi.listarReservas();
-//            modelo.addAttribute("reserva", reserva);
-//
-//            reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
-//
-//            return "redirect:../lista";
-//
-//        } catch (MiException ex) {
-//
-//            List<Reserva> reserva = reservaservi.listarReservas();
-//            modelo.put("error", ex.getMessage());
-//
-//            modelo.addAttribute("reserva", reserva);
-//
-//            return "formularioModificarReserva.html";
-//
-//        }
-//
-//    }
+
     
     
-        //ruta para modificar la reserva y sus datos correspondientes
+    //ruta para modificar la reserva y sus datos correspondientes
     @PostMapping("/modificar/{id}")
-    public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
+    public String modificar(@PathVariable String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
 
         try {
 
@@ -160,9 +136,7 @@ public class ReservaControlador {
 
     }
     
-    
-    
-    
+ 
 
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")
@@ -173,40 +147,6 @@ public class ReservaControlador {
     }
         
        
-//    //ruta para eliminar una reserva por id 
-//     @PostMapping("/eliminar/{id}")
-//    public String eliminar(@PathVariable String id, RedirectAttributes p) {
-//
-//
-//         try {
-//             reservaservi.EliminarReserva(id);
-//             p.addFlashAttribute("exito","eliminado");
-//             
-//             return "redirect:../listaReserva";
-//             
-//         } catch (MiException ex) {
-//   
-//             
-//             p.addFlashAttribute("error","intente de nuevo");
-//             
-//            return "redirect:../listaReserva";
-//             
-//         }
-//
-//   }
-    
-         
-         
-//     @DeleteMapping("/eliminar/{id}")
-//     public boolean eliminarReserva(@PathVariable ("id"),String id){
-//        
-//        
-//        return reservaservi.EliminarReserva(id);
-//        
-//        
-//    }
-//        
-        
   
     
    

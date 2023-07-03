@@ -5,11 +5,11 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.enumeraciones.Rol;
-<<<<<<< HEAD
+
 import com.zonaop.alquileres.excepciones.MiException;
-=======
+
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
->>>>>>> d8310828c1fe756eb2f3c380d4aca09a020a5950
+
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
@@ -54,14 +54,17 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/perfil")
-<<<<<<< HEAD
+
     public String mostrarPerfil(HttpSession session,ModelMap model){
         
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         model.put("usuario", usuario);
+      
+        return "formulario-registro-usuario.html";
         
-=======
-    public String mostrarPerfil(HttpSession session, ModelMap modelo) {
+       }
+
+    public String listarPerfil(HttpSession session, ModelMap modelo) {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         Usuario perfil;
@@ -80,13 +83,13 @@ public class UsuarioControlador {
         }
 
         modelo.put("usuario", perfil);
->>>>>>> d8310828c1fe756eb2f3c380d4aca09a020a5950
+
 
         return "userInterface.html";
 
     }
 
-<<<<<<< HEAD
+
     @GetMapping("/modificar/{id}")
     public String modificarUsuario(@PathVariable String id,ModelMap model){
         
@@ -96,7 +99,10 @@ public class UsuarioControlador {
         
         model.addAttribute("usuarios", listausuario);
         
-=======
+        return "formulario-modificar-usuario.html";
+        
+      }
+
     @GetMapping("/modificar")
     public String modificarUsuario(HttpSession session, ModelMap modelo) {
 
@@ -117,23 +123,18 @@ public class UsuarioControlador {
         List<Usuario> listausuario = usuarioServicio.listarUsuarios();
 
         modelo.addAttribute("usuarios", listausuario);
->>>>>>> d8310828c1fe756eb2f3c380d4aca09a020a5950
+
 
         return "formulario-modificar-usuario.html";
 
     }
-<<<<<<< HEAD
+
     
     @PostMapping("/modificar/{id}")
     public String modificarUsuario(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String nombreUsuario,
-            @RequestParam String email, @RequestParam String contraseña,@RequestParam Imagen foto,@RequestParam String rol,@RequestParam (required=false) MultipartFile archivo,ModelMap model,RedirectAttributes redirectAttributes){
-        
-=======
+            @RequestParam String email, @RequestParam String contrasena,@RequestParam Imagen foto,@RequestParam String rol,@RequestParam (required=false) MultipartFile archivo,ModelMap model,RedirectAttributes redirectAttributes){
+       
 
-    @PostMapping("/modificar")
-    public String modificarUsuario(String id, String nombre, String apellido, String nombreUsuario, String email, String contrasena, Imagen foto, String rol, ModelMap modelo, MultipartFile archivo, RedirectAttributes redirectAttributes) {
-
->>>>>>> d8310828c1fe756eb2f3c380d4aca09a020a5950
         try {
 
             if (rol.equalsIgnoreCase("cliente")) {
@@ -146,7 +147,7 @@ public class UsuarioControlador {
 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
-<<<<<<< HEAD
+
             return "redirect:../mainPage";
         } catch (MiException ex) {
 
@@ -164,24 +165,11 @@ public class UsuarioControlador {
         }
         
     
-      @GetMapping("/eliminar/{id}")
-    public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes){
-=======
-            return "redirect:/usuario/perfil";
-        } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-            modelo.put("email", email);
-            modelo.put("alias", apellido);
-            modelo.put("rol", rol);
-            return "formulario-registro-usuario.html";
-
-        }
-
-    }
+    
 
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
->>>>>>> d8310828c1fe756eb2f3c380d4aca09a020a5950
+
 
         try {
             usuarioServicio.eliminarPorId(id);
@@ -191,15 +179,12 @@ public class UsuarioControlador {
         } finally {
             return "redirect:/usuario/listar";
         }
-<<<<<<< HEAD
+
      
     }    
   
-=======
 
-    }
-
-    @GetMapping("/cambiarEstado/{id}")
+     @GetMapping("/cambiarEstado/{id}")
     public String cambiarEstadoUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
         try {
@@ -212,8 +197,12 @@ public class UsuarioControlador {
             return "redirect:/usuario/listar";
         }
 
+
     }
 
->>>>>>> d8310828c1fe756eb2f3c380d4aca09a020a5950
-}
+   
+    }
+
+
+
 

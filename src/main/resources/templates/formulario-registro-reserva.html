@@ -40,11 +40,15 @@
                 <div class="contenedor-fechas">
                     <div class="fecha">
                         <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-                        <input id="fondo-fecha-ingreso" type="date" required th:value="${fechaDesde}">
+                        <input id="fondo-fecha-ingreso" type="text" onfocus="(this.type='date')"
+                        onfocusout="(this.type='text')" id="fechaDesde" name="fechaDesde" 
+                        th:value="${fechaDesde}" required>
                     </div>
                     <div class="fecha2">
                         <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-                        <input id="fondo-fecha-egreso" type="date" required th:value="${fechaHasta}">
+                        <input id="fondo-fecha-egreso"  type="text" onfocus="(this.type='date')"
+                        onfocusout="(this.type='text')" id="fechaHasta" name="fechaHasta" 
+                        th:value="${fechaHasta}" required>
                     </div>
                 </div>
 
@@ -54,7 +58,7 @@
                     <div class="op">
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Cheff()}" name="tipoServicio"/>
+                            data-precio="${Servicio.precio}"  th:each="${servicio.tipo.DJ}"/>
                             <label for="op1">DJ</label>
                         </div>
                         <div class="opr">
@@ -64,7 +68,7 @@
                     <div class="op">
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Bar()}" name="tipoServicio"/>   
+                            data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Bar}"/>   
                             <label for="op1">Bar</label>
                         </div>
                         <div class="opr">
@@ -74,7 +78,7 @@
                     <div class="op">
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                            data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Catering()}" name="tipoServicio"/>
+                           data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Catering}"/>
                             <label for="op1">Catering</label>
                         </div>
                         <div class="opr">
@@ -84,7 +88,7 @@
                     <div class="op">
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Shows()}" name="tipoServicio"/>
+                            data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Shows}" />
                              
                             <label for="op1">Shows</label>
                         </div>
@@ -95,7 +99,7 @@
                     <div class="op">
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                            data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Animacion()}" name="tipoServicio"/>
+                           data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Animacion}" />
                             <label for="op1">Animacion</label>
                         </div>
                         <div class="opr">
@@ -106,7 +110,7 @@
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
                               
-                              data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Asador()}" name="tipoServicio"/>
+                             data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Asador}" >
                             <label for="op1">Asador</label>
                         </div>
                         <div class="opr">
@@ -116,7 +120,7 @@
                     <div class="op">
                         <div class="opr">
                             <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                             data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Guarderia()}" name="tipoServicio"/>
+                            data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Guarderia}"  >
                             <label for="op1">Guarderia</label>
                         </div>
                         <div class="opr">
@@ -127,7 +131,7 @@
                         <div class="opr">
                             <input type="checkbox" id="opcion1" name="op1" value="op1"   
     
-                           data-precio="${Servicio.precio}" hidden th:value="${Servicio.TipoServicio.Cheff()}" name="tipoServicio"/>
+                           data-precio="${Servicio.precio}"  th:each="${servicio.tipo.Cheff}" >
                             <label for="op1">Cheff</label>
                         </div>
                         <div class="opr">
@@ -144,7 +148,7 @@
                     </div>
                     <div class="valores" id="total">
                         <label for="precio">Total:</label>
-                        <label class="caja-precio-v" th:value="${total}">$</label>
+                        <label class="caja-precio-v" th:value="${Reserva.total}">$</label>
                     </div>
                 </div>
                 <input class="enviar" type="submit" value="Registrame!">

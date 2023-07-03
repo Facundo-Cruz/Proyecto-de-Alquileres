@@ -48,6 +48,16 @@ public class UsuarioControlador {
         return "lista-usuarios.html";
 
     }
+    
+    @PostMapping("/listar/nombres")
+    public String listarUsuariosPorNombre(@RequestParam String nombre,ModelMap model ) {
+
+        List<Usuario> usuarios = usuarioServicio.listarUsuariosPorNombre(nombre);
+        model.put("usuarios", usuarios);
+
+        return "lista-usuarios.html";
+
+    }
 
     @GetMapping("/perfil")
     public String mostrarPerfil(HttpSession session, ModelMap modelo) {

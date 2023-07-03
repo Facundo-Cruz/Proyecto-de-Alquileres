@@ -56,12 +56,13 @@ public class ReservaControlador {
     @PostMapping("/registro")
     public String registroReserva(@RequestParam String idCliente,
             @RequestParam String idPropiedad, @RequestParam String huesped,
+            @RequestParam double total,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
-            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo) {
+            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo,
+            @RequestParam(value = "servicios", required = false) List<Servicio> servicios) {
 
         try {
-
-            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta);
+            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta,servicios, total);
             modelo.put("exito", "la reserva se relizo correctamente");
 
         } catch (MiException ex) {

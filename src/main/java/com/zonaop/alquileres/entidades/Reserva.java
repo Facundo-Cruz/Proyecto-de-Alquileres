@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -37,7 +40,12 @@ public class Reserva {
     private Propiedad propiedad;
     @OneToOne
     private Cliente cliente;
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "reserva_servicio",
+            joinColumns = @JoinColumn(name = "reserva_id"),
+            inverseJoinColumns = @JoinColumn(name = "servicio_id")
+    )
     private List<Servicio> servicios;
     private Double total;
     private boolean estado;

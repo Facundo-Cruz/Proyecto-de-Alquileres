@@ -49,7 +49,7 @@ public class ReservaServicio {
 //            @RequestParam(required = false) List<Servicio> servicios,
     @Transactional
     public void crearReserva(String idCliente, String idPropiedad, String huesped,
-            Date fechaDeste, Date fechaHasta) throws MiException {
+            Date fechaDeste, Date fechaHasta, List<Servicio> servicios, double total) throws MiException {
 
         Optional<Cliente> clienteOp = clienterepo.findById(idCliente);
         Optional<Propiedad> propiedadOp = propiedadrepo.findById(idPropiedad);
@@ -65,7 +65,11 @@ public class ReservaServicio {
 //        reserva.setOpinion(opinion);
         reserva.setPropiedad(propiedad);
 //        reserva.setServicios(servicios);
-        reserva.setTotal(123.5);
+        reserva.setTotal(total);
+        reserva.setEstado(true);
+        if (servicios != null) {
+            reserva.setServicios(servicios);
+        }
 
         reservarepo.save(reserva);
 

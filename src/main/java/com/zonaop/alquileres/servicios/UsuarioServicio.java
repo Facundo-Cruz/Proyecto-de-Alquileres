@@ -35,6 +35,9 @@ public class UsuarioServicio implements UserDetailsService{
     public List<Usuario> listarUsuarios(){
         return usuarioRepositorio.findAll();
     }
+    public List<Usuario> listarUsuariosPorNombre(String nombre){
+        return usuarioRepositorio.buscarPorNombreUsuario(nombre);
+    }
     
     @Transactional
     public void eliminarPorId(String id){

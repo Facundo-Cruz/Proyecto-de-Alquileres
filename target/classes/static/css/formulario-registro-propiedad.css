@@ -148,6 +148,11 @@ label {
 }
 
 #twitter {
+    margin-bottom: 10px;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+#instragram {
     border: 1px solid blueviolet;
     border-radius: 5px;
 }

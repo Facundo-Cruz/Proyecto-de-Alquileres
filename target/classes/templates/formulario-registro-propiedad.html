@@ -16,14 +16,16 @@
   <div class="contenedor-back">
     <div class="contenedor">
 
-      <form class="formulario-registro-de-propiedad" th:action="@{/propiedad/registro}" method="POST" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+      <form class="formulario-registro-de-propiedad" onsubmit="return validarFormulario()" th:action="@{/propiedad/registro}" method="POST"
+        enctype="multipart/form-data" >
         <hr>
         <h3 class="titulo">Registre su Propiedad</h3>
         <hr>
-        <input type="text" name="idPropietario" id="idPropietario" hidden required th:value="${session.usuariosession.id}">
+        <input type="text" name="idPropietario" id="idPropietario" hidden required
+          th:value="${session.usuariosession.id}">
         <p>Tipo de Propiedad:</p>
-        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad"
-          onclick="mostrarPrimeraOpcion()" required>
+        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad" onclick="mostrarPrimeraOpcion()"
+          required>
           <option value="" disabled selected>Elija su opción</option>
           <option value="QUINTA">Quinta</option>
           <option value="CASA">Casa</option>
@@ -85,9 +87,9 @@
           </div>
         </div>
 
-        <p>Subir Imágenes:</p>
+        <p>Subir Imágenes(1-5 fotos):</p>
         <div class="subir-imagenes">
-          <input class="imagen" type="file" accept="image/*" name="archivo" multiple required>
+          <input id="input-imagen" class="imagen" type="file" accept="image/*" name="archivos[]" multiple required>
         </div>
 
 
@@ -105,10 +107,13 @@
           <div id="redes-sociales" style="display: none;">
             <p>Ingrese el Link de sus redes sociales</p>
             <div class="opcion-redes">
-              <input type="text" id="facebook" name="facebook" placeholder="Facebook">
+              <input type="text" id="facebook" name="redesSociales" placeholder="Facebook">
             </div>
             <div class="opcion-redes">
-              <input type="text" id="twitter" name="twitter" placeholder="Twitter">
+              <input type="text" id="twitter" name="redesSociales" placeholder="Twitter">
+            </div>
+            <div class="opcion-redes">
+              <input type="text" id="instagram" name="redesSociales" placeholder="Instagram">
             </div>
           </div>
         </div>
@@ -122,111 +127,118 @@
 
           <div class="op">
             <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
+              <input class="etiqueta-check" type="checkbox" id="op1" name="serviciosSeleccionados" value="Seguridad" onchange="togglePrecioInput(this)">
               <label for="op1">Seguridad</label>
             </div>
             <div class="opr1">
-              <label class="label-opr1" for="">$ <input class="caja-precio" type="number"></label>
+              <label class="label-opr1">$ <input id="precio1" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
             </div>
+          </div>
+          
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op2" name="serviciosSeleccionados" value="DJ" onchange="togglePrecioInput(this)">
+              <label for="op2">DJ</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio2" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
 
-
+         
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op3" name="serviciosSeleccionados" value="Animacion" onchange="togglePrecioInput(this)">
+              <label for="op3">Animación</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio3" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
           </div>
 
           <div class="op">
             <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">DJ</label>
+              <input class="etiqueta-check" type="checkbox" id="op4" name="serviciosSeleccionados" value="Asador" onchange="togglePrecioInput(this)">
+              <label for="op4">Asador</label>
             </div>
             <div class="opr1">
-              <label class="label-opr1" for="">$<input class="caja-precio" type="number"></label>
+              <label class="label-opr1">$ <input id="precio4" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
             </div>
-
-
-          </div>
-          <div class="op">
-            <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">Animación</label>
-            </div>
-            <div class="opr1">
-              <label class="label-opr1" for="">$ <input class="caja-precio" type="number"></label>
-            </div>
-
-
           </div>
 
           <div class="op">
             <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">Asador</label>
+              <input class="etiqueta-check" type="checkbox" id="op5" name="serviciosSeleccionados" value="Bar" onchange="togglePrecioInput(this)">
+              <label for="op5">Bar</label>
             </div>
             <div class="opr1">
-              <label class="label-opr1" for="">$<input class="caja-precio" type="number"></label>
+              <label class="label-opr1">$ <input id="precio5" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
             </div>
-
-
           </div>
 
           <div class="op">
             <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">Bar</label>
+              <input class="etiqueta-check" type="checkbox" id="op6" name="serviciosSeleccionados" value="Show" onchange="togglePrecioInput(this)">
+              <label for="op6">Show</label>
             </div>
             <div class="opr1">
-              <label class="label-opr1" for="">$ <input class="caja-precio" type="number"></label>
+              <label class="label-opr1">$ <input id="precio6" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
             </div>
-
-
           </div>
 
           <div class="op">
             <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">Shows</label>
+              <input class="etiqueta-check" type="checkbox" id="op7" name="serviciosSeleccionados" value="Guarderia" onchange="togglePrecioInput(this)">
+              <label for="op7">Guarderia</label>
             </div>
             <div class="opr1">
-              <label class="label-opr1" for="">$<input class="caja-precio" type="number"></label>
+              <label class="label-opr1">$ <input id="precio7" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
             </div>
-
-
-          </div>
-          <div class="op">
-            <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">Guarderia</label>
-            </div>
-            <div class="opr1">
-              <label class="label-opr1" for="">$ <input class="caja-precio" type="number"></label>
-            </div>
-
-
           </div>
 
           <div class="op">
             <div class="opr">
-              <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-              <label for="op1">Catering</label>
+              <input class="etiqueta-check" type="checkbox" id="op8" name="serviciosSeleccionados" value="Catering" onchange="togglePrecioInput(this)">
+              <label for="op8">Catering</label>
             </div>
             <div class="opr1">
-              <label class="label-opr1" for="">$<input class="caja-precio" type="number"></label>
+              <label class="label-opr1">$ <input id="precio8" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
             </div>
-
-
           </div>
           <!-- input de precio por dia y label de total -->
 
           <div class="valor">
             <div class="valores">
               <label class="label-precios" for="precio-por-dia">Precio por dia: $ </label>
-              <label class="label-precios" for=""><input class="caja-precio-v" type="number" name="precio" required></label>
+              <label class="label-precios" for=""><input class="caja-precio-v" type="number" name="precio"
+                  required></label>
             </div>
           </div>
+        </div>
           <input class="enviar" type="submit" value="Enviar">
       </form>
 
     </div>
   </div>
   <script src="/js/formulario-registro-propiedad.js"></script>
+  <script>
+    const fechaIngresoInput = document.getElementById('fondo-fecha-ingreso');
+    const fechaEgresoInput = document.getElementById('fondo-fecha-egreso');
+  
+    fechaIngresoInput.addEventListener('change', validarFechas);
+    fechaEgresoInput.addEventListener('change', validarFechas);
+  
+    function validarFechas() {
+      const fechaIngreso = new Date(fechaIngresoInput.value);
+      const fechaEgreso = new Date(fechaEgresoInput.value);
+  
+      if (fechaIngreso > fechaEgreso) {
+      alert('La fecha de ingreso debe ser anterior a la fecha de egreso.');
+      fechaEgresoInput.value = ''; // Limpiar el valor de la fecha de egreso
+    }
+
+    }
+  </script>
 </body>
 
 </html>

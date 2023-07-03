@@ -29,7 +29,7 @@ public class ImagenControlador {
     public ResponseEntity<byte[]> imagenPropiedad(@PathVariable String id) {
         Propiedad propiedad = propiedadServicio.buscarPropiedadPorId(id);
 
-        byte[] imagen = propiedad.getFoto().getContenido();
+        byte[] imagen = propiedad.getFotos().get(0).getContenido();
         HttpHeaders headers = new HttpHeaders();
 
         headers.setContentType(MediaType.IMAGE_JPEG);

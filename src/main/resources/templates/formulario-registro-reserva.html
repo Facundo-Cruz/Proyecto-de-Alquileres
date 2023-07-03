@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva</title>
-    <link rel="stylesheet" href="formulario-registro-reserva.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/formulario-registro-reserva.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
@@ -22,130 +22,149 @@
             </div>
 
             <div class="contenedor-descripcion">
-                <img class="imagen-de-reserva" src="imagenes/casa.jpg " alt="imagen propiedad seleccionada">
+                <img class="imagen-de-reserva" th:src="@{/imagen/__${propiedad.id}__}"
+                    alt="imagen propiedad seleccionada">
                 <div class="descripcion-ubicacion">
                     <p>Ubicación:</p>
-                    <label class="descripcion-ubicacion-lavel" for="direccion">Dirección: Av. Independecia 2547</label>
-                    <label class="descripcion-ubicacion-lavel" for="localidad">Localidad: Mar del Plata</label>
-                    <label class="descripcion-ubicacion-lavel" for="codigo_postal">C.P: 7600</label>
+                    <label class="descripcion-ubicacion-label" for="direccion">Dirección: <span
+                            th:text="${propiedad.direccion}"></span></label>
+
+                    <label class="descripcion-ubicacion-lavel" for="localidad">Localidad: <span
+                            th:text="${propiedad.localidad}"></span></label>
+                    <label class="descripcion-ubicacion-lavel" for="codigo_postal">C.P: <span
+                            th:text="${propiedad.codigoPostal}"></span></label>
+                        
                 </div>
+
             </div>
 
 
-            <form class="formulario-registro-de-reserva" action="">
+            <form class="formulario-registro-de-reserva" th:action="@{/reserva/registro}" method="POST">
                 <!--calendarios  -->
-
+                <input type="text" name="idPropiedad" id="idPropietario" hidden required th:value="${propiedad.id}">
+                <input type="text" name="idCliente" id="idCliente" hidden required th:value="${cliente.id}">
+                <input type="text" name="huesped" id="idCliente" hidden required th:value="${cliente.nombreUsuario}">
                 <div class="contenedor-fechas">
                     <div class="fecha">
                         <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
-                        <input id="fondo-fecha-ingreso" type="date" required>
+                        <input id="fondo-fecha-ingreso" type="date" required name="fechaDesde">
                     </div>
                     <div class="fecha">
-                        <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
-                        <input id="fondo-fecha-egreso" type="date" required>
+                        <label class="label-fecha" for="fecha-egreso">Fecha Hasta: </label>
+                        <input id="fondo-fecha-egreso" type="date" required name="fechaHasta">
                     </div>
                 </div>
+                <input type="date" id="propiedadFechaDesde" th:value="${propiedad.fechaDesde}" hidden>
+                <input type="date" id="propiedadFechaHasta" th:value="${propiedad.fechaHasta}" hidden>
+                <span id="precio-dia" th:text="${propiedad.precio}" style="display: none;"></span>
+                <div id="diferencia-fechas" style="display: none;"></div>
 
                 <!--  checkBox servicios adicionales -->
                 <label>Seleccione servicios adicionales:</label>
                 <div class="servicios">
-                    <div class="op">
+                    <div class="op" th:each="servicio : ${propiedad.servicios}">
                         <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">DJ</label>
+                            <input class="etiqueta-check" type="checkbox" th:id="'opcion' + ${servicio.id}"
+                                name="servicios" th:value="${servicio.id}" onchange="actualizarPrecioTotal(this)">
+                            <label th:for="'opcion' + ${servicio.id}" th:field="${servicio}"
+                                th:text="${servicio.nombre}"></label>
                         </div>
                         <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">Bar</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">Catering</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">Shows</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">Animacion</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">Asador</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input class="etiqueta-check" type="checkbox" id="opcion1" name="op1" value="op1"
-                                data-precio="">
-                            <label for="op1">Guarderia</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
-                        </div>
-                    </div>
-                    <div class="op">
-                        <div class="opr">
-                            <input type="checkbox" id="opcion1" name="op1" value="op1" data-precio="">
-                            <label for="op1">Cheff</label>
-                        </div>
-                        <div class="opr">
-                            <label class="caja-precio">$</label>
+                            <label class="caja-precio" th:text="'$ ' + ${servicio.precio}"></label>
                         </div>
                     </div>
                 </div>
+                <div id="precioTotal" style="display: none;">$ 0.00</div>
 
                 <!-- Precio por dia y Total -->
                 <div class="valor">
                     <div class="valores" id="precio-dia">
                         <label for="precio-por-dia">Precio por dia:</label>
-                        <label class="caja-precio-v">$</label>
+                        <label class="caja-precio-v2" th:text="'$ ' + ${propiedad.precio}"></label>
                     </div>
                     <div class="valores" id="total">
                         <label for="precio">Total:</label>
-                        <label class="caja-precio-v">$</label>
+                        <label class="caja-precio-v"></label>
                     </div>
                 </div>
+                <input type="number" name="total" id="miInputNumber" hidden>
                 <input class="enviar" type="submit">
             </form>
         </div>
     </div>
-    <script src="formulario-registro-reserva.js"></script>
+
+    <script src="/js/formulario-registro-reserva.js"></script>
+    <script>
+
+        const fechaIngreso = document.getElementById('fondo-fecha-ingreso');
+        const fechaEgreso = document.getElementById('fondo-fecha-egreso');
+        const diferenciaFechas = document.getElementById('diferencia-fechas');
+        const precioDia = parseFloat(document.getElementById('precio-dia').textContent);
+        const precioTotalElemento = document.getElementById('precioTotal');
+        const cajaPrecioV = document.querySelector('.caja-precio-v');
+        var inputElement = document.getElementById('miInputNumber');
+
+        fechaIngreso.addEventListener('change', calcularDiferenciaFechas);
+        fechaEgreso.addEventListener('change', calcularDiferenciaFechas);
+
+        function calcularDiferenciaFechas() {
+            const fechaDesde = new Date(fechaIngreso.value);
+            const fechaHasta = new Date(fechaEgreso.value);
+            const diferencia = Math.floor((fechaHasta - fechaDesde) / (1000 * 60 * 60 * 24)) + 1;
+            if (diferencia < 0) {
+                diferencia = 0;
+            }
+            const total = diferencia * precioDia;
+
+            diferenciaFechas.textContent = `${total}`;
+            actualizarPrecioTotal();
+        }
+
+        function actualizarPrecioTotal() {
+            var precioActual = parseFloat(diferenciaFechas.textContent);
+            var precioServicio;
+
+            document.querySelectorAll('.etiqueta-check:checked').forEach(function (checkbox) {
+                precioServicio = parseFloat(checkbox.parentElement.nextElementSibling.querySelector('.caja-precio').textContent.replace('$ ', ''));
+                precioActual += precioServicio;
+            });
+            inputElement.value = precioActual;
+            precioTotalElemento.textContent = '$ ' + precioActual.toFixed(2);
+            cajaPrecioV.textContent = '$ ' + precioActual.toFixed(2);
+
+        }
+        const fechaIngresoInput = document.getElementById('fondo-fecha-ingreso');
+        const fechaEgresoInput = document.getElementById('fondo-fecha-egreso');
+        const fechaDesdePropiedadInput = document.getElementById('propiedadFechaDesde');
+        const fechaDesdePropiedad = new Date(fechaDesdePropiedadInput.value);
+        const fechaHastaPropiedadInput = document.getElementById('propiedadFechaHasta');
+        const fechaHastaPropiedad = new Date(fechaHastaPropiedadInput.value);
+
+
+        fechaIngresoInput.addEventListener('change', validarFechas);
+        fechaEgresoInput.addEventListener('change', validarFechas);
+
+
+        function validarFechas() {
+            const fechaIngreso = new Date(fechaIngresoInput.value);
+            const fechaEgreso = new Date(fechaEgresoInput.value);
+
+
+
+            if (fechaIngreso > fechaEgreso) {
+                alert('La fecha de ingreso debe ser anterior a la fecha de egreso.');
+                fechaIngresoInput.value = ''; // Limpiar el valor de la fecha de ingreso
+                fechaEgresoInput.value = ''; // Limpiar el valor de la fecha de egreso
+                cajaPrecioV.textContent = '$ ' + 0;
+            } else if (fechaIngreso < fechaDesdePropiedad || fechaEgreso > fechaHastaPropiedad) {
+                alert('La fecha debe estár en el margen disponible que brinda la propiedad.');
+                fechaIngresoInput.value = ''; // Limpiar el valor de la fecha de ingreso
+                fechaEgresoInput.value = ''; // Limpiar el valor de la fecha de egreso
+                cajaPrecioV.textContent = '$ ' + 0;
+            }
+        }
+    </script>
+  
 </body>
 
 </html>

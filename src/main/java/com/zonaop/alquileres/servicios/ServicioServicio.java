@@ -44,6 +44,7 @@ public class ServicioServicio {
     
 
    @Transactional
+
     public void modificarServicio(String id, String nombre, String descripcion, Double precio) throws MiException {
 
         validarServicio(id, nombre, descripcion, precio);
@@ -57,7 +58,6 @@ public class ServicioServicio {
             servicio.setNombre(nombre);
             servicio.setDescripcion(descripcion);
             servicio.setPrecio(0);
-
 
             serviciorepo.save(servicio);
 
@@ -75,6 +75,12 @@ public class ServicioServicio {
         return servicios;
 
     }
+
+//    public Servicio buscarPorTipo(String tipo) {
+//        System.out.println(tipo);
+//        List<Servicio> servicios = serviciorepo.buscarPorTipo(TipoServicio.valueOf(tipo));
+//        return servicios.get(0);
+//    }
 
     @Transactional
     public void eliminarServicio(String id) {
@@ -122,7 +128,6 @@ public class ServicioServicio {
 
         }
 
-      
     }
 
 }

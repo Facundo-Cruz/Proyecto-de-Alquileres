@@ -35,6 +35,9 @@ public class UsuarioServicio implements UserDetailsService{
     public List<Usuario> listarUsuarios(){
         return usuarioRepositorio.findAll();
     }
+    public List<Usuario> listarUsuariosPorNombre(String nombre){
+        return usuarioRepositorio.buscarPorNombreUsuario(nombre);
+    }
     
     @Transactional
     public void eliminarPorId(String id){
@@ -65,7 +68,7 @@ public class UsuarioServicio implements UserDetailsService{
             } else {
                 System.out.println("no COINCIDEN");
             }
-        if (usuario != null) {
+        if (usuario != null && usuario.getEstado()) {
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
             permisos.add(p);

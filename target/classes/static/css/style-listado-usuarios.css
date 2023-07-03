@@ -33,7 +33,7 @@ body {
 }
 main.table {
     width: 82vw;
-    height: 90vh;
+    height: 85vh;
     background-color: #fff5;
 
     backdrop-filter: blur(7px);
@@ -320,3 +320,29 @@ thead th.active,tbody td.active {
     width: 2rem;
     height: auto;
 }
+
+.delete-link {
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+  .cancel-link {
+    background-color: rgb(6, 86, 178);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .delete-link:active {
+    opacity: 0.5;
+    /* Valor de opacidad que desees, por ejemplo 0.8 */
+  }

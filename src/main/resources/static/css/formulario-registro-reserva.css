@@ -233,6 +233,12 @@ label {
     width: 15vh;
     padding-right: 3px;
 }
+.caja-precio-v2 {
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+    width: 15vh;
+    padding-right: 3px;
+}
 
 /* resposividad de formulario de reserva */
 @media screen and (max-width: 769px) {

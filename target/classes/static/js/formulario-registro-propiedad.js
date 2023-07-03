@@ -21,8 +21,8 @@ function toggleRedesSociales() {
   }
 }
 /* Validaciones del formulario */
-
 function validarFormulario() {
+
   var tipoPropiedad = document.getElementById("tipo-de-propiedad").value;
   var nombre = document.querySelector(".nombre").value;
   var direccion = document.querySelector(".direccion").value;
@@ -53,7 +53,19 @@ function validarFormulario() {
     return false; // Evita enviar el formulario si hay campos vacíos
   }
 
+
+
   // Resto de la lógica del formulario...
 
   return true; // Envía el formulario si todos los campos están completos
+}
+
+function togglePrecioInput(checkbox) {
+  var parentDiv = checkbox.closest('.op'); // Obtener el div padre más cercano con la clase 'op'
+  var precioInput = parentDiv.querySelector('.caja-precio'); // Encontrar el input del precio dentro del div padre
+
+  precioInput.disabled = !checkbox.checked;
+  if (!checkbox.checked) {
+    precioInput.value = "";
+  }
 }

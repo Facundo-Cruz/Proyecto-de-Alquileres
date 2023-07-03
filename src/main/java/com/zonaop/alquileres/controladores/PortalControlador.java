@@ -7,6 +7,7 @@ import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,16 @@ public class PortalControlador {
         return "index.html";
 
     }
-    
+
+    @PostMapping("/pruebass")
+    public String pruebas2(@RequestParam("archivos[]") List<MultipartFile> archivos) {
+        
+        for (MultipartFile archivo : archivos) {
+            System.out.println(archivo.getSize());
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/registrar")
     public String registrar() {
 
@@ -55,7 +65,7 @@ public class PortalControlador {
     }
 
     @GetMapping("/")
-    public String index(ModelMap model,HttpSession session) {
+    public String index(ModelMap model, HttpSession session) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         model.put("usuario", usuario);
@@ -64,21 +74,21 @@ public class PortalControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre,@RequestParam String apellido,
+    public String registro(@RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String alias,
-            @RequestParam String contrasena,@RequestParam String rol,
+            @RequestParam String contrasena, @RequestParam String rol,
             @RequestParam MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
 
         try {
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
+                clienteServicio.registrar(nombre, apellido, alias, email, contrasena, archivo, rol);
 
             } else {
-                
-                propietarioServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
-                
+
+                propietarioServicio.registrar(nombre, apellido, alias, email, contrasena, archivo, rol);
+
             }
             redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");
             return "redirect:/login";

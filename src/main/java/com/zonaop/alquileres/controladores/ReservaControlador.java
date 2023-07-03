@@ -13,9 +13,12 @@ import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
+import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +44,7 @@ public class ReservaControlador {
     
     
 
+<<<<<<< HEAD
     //ruta para el registro de reserva
     @GetMapping("/registrar")
     public String registrarReserva() {
@@ -50,20 +54,32 @@ public class ReservaControlador {
 //        modelo.addAttribute("propiedades", propiedades);
 //        
         
+=======
+    @Autowired
+    private PropiedadServicio propiedadServicio;
+
+    //ruta para el registro de reserva
+    @GetMapping("/registrar/{idCasa}")
+    public String registrarReserva(@PathVariable String idCasa, ModelMap modelo, HttpSession session) {
+        Cliente cliente = (Cliente) session.getAttribute("usuariosession");
+        modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idCasa));
+        modelo.put("cliente", cliente);
+>>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
         return "formulario-registro-reserva.html";
 
     }
 
     //ruta para el registro de reserva con sus respectivos datos
-    @PostMapping("/registroReserva")
-    public String registroReserva(@RequestParam(required = false) String id,
-            @RequestParam String huesped, @RequestParam Cliente cliente,
-            @RequestParam Opinion opinion, @RequestParam Propiedad propiedad,
-            @RequestParam List<Servicio> servicios, ModelMap modelo) {
+    @PostMapping("/registro")
+    public String registroReserva(@RequestParam String idCliente,
+            @RequestParam String idPropiedad, @RequestParam String huesped,
+            @RequestParam double total,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo,
+            @RequestParam(value = "servicios", required = false) List<Servicio> servicios) {
 
         try {
-
-            reservaservi.crearReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
+            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta,servicios, total);
             modelo.put("exito", "la reserva se relizo correctamente");
 
         } catch (MiException ex) {
@@ -74,11 +90,11 @@ public class ReservaControlador {
             
             modelo.put("error", ex.getMessage());
 
-              return "formulario-registro-reserva.html";
+            return "formulario-registro-reserva.html";
 
         }
 
-        return "mainPage.html";
+        return "redirect:/";
 
     }
 
@@ -122,9 +138,37 @@ public class ReservaControlador {
         
     }
 
+<<<<<<< HEAD
 
     
     
+=======
+//    //ruta para modificar la reserva y sus datos correspondientes
+//    @PostMapping("/modificar/{id}")
+//    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
+//
+//        try {
+//
+//            List<Reserva> reserva = reservaservi.listarReservas();
+//            modelo.addAttribute("reserva", reserva);
+//
+//            reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
+//
+//            return "redirect:../lista";
+//
+//        } catch (MiException ex) {
+//
+//            List<Reserva> reserva = reservaservi.listarReservas();
+//            modelo.put("error", ex.getMessage());
+//
+//            modelo.addAttribute("reserva", reserva);
+//
+//            return "formularioModificarReserva.html";
+//
+//        }
+//
+//    }
+>>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
     //ruta para modificar la reserva y sus datos correspondientes
     @PostMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
@@ -150,8 +194,11 @@ public class ReservaControlador {
         }
 
     }
+<<<<<<< HEAD
     
  
+=======
+>>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
 
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")
@@ -160,6 +207,7 @@ public class ReservaControlador {
 
         return "reserva_eliminar.html";
     }
+<<<<<<< HEAD
         
        
   
@@ -168,6 +216,39 @@ public class ReservaControlador {
     
   
 
+=======
+
+//    //ruta para eliminar una reserva por id 
+//     @PostMapping("/eliminar/{id}")
+//    public String eliminar(@PathVariable String id, RedirectAttributes p) {
+//
+//
+//         try {
+//             reservaservi.EliminarReserva(id);
+//             p.addFlashAttribute("exito","eliminado");
+//             
+//             return "redirect:../listaReserva";
+//             
+//         } catch (MiException ex) {
+//   
+//             
+//             p.addFlashAttribute("error","intente de nuevo");
+//             
+//            return "redirect:../listaReserva";
+//             
+//         }
+//
+//   }
+//     @DeleteMapping("/eliminar/{id}")
+//     public boolean eliminarReserva(@PathVariable ("id"),String id){
+//        
+//        
+//        return reservaservi.EliminarReserva(id);
+//        
+//        
+//    }
+//        
+>>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
     //ruta para eliminar una reserva por id 
     @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, RedirectAttributes p) {
@@ -189,4 +270,3 @@ public class ReservaControlador {
     }
 
 }
-

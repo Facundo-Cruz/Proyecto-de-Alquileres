@@ -2,6 +2,11 @@ package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +14,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -17,6 +24,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Propiedad {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -25,6 +33,7 @@ public class Propiedad {
     private String direccion;
     private String localidad;
     private String codigoPostal;
+    @Lob
     private String descripcion;
     private long telefono;
     @OneToOne
@@ -35,21 +44,39 @@ public class Propiedad {
     private Date fechaDesde;
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;
-//    @OneToMany
-//    private List<String> redesSociales;
+    @ElementCollection
+    private List<String> redesSociales;
 //    @OneToMany
 //    private List<String> telefonos;
 //    @OneToMany
 //    private List<String> mails;
-    @OneToOne
-    private Imagen foto;
+    @OneToMany
+    private List<Imagen> fotos;
     private double precio;
     private boolean estado;
     @Enumerated(EnumType.STRING)
     private TipoPropiedad tipo;
     private int calificacion;
+    @OneToMany
+    private List<Servicio> servicios;
 
     public Propiedad() {
+    }
+
+    public List<String> getRedesSociales() {
+        return redesSociales;
+    }
+
+    public void setRedesSociales(List<String> redesSociales) {
+        this.redesSociales = redesSociales;
+    }
+
+    public List<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(List<Servicio> servicios) {
+        this.servicios = servicios;
     }
 
     public String getId() {
@@ -115,11 +142,10 @@ public class Propiedad {
     public void setFechaHasta(Date fechaHasta) {
         this.fechaHasta = fechaHasta;
     }
-    
+
 //    public List<String> getRedesSociales() {
 //        return redesSociales;
 //    }
-
 //    public void setRedesSociales(List<String> redesSociales) {
 //        this.redesSociales = redesSociales;
 //    }
@@ -139,7 +165,6 @@ public class Propiedad {
 //    public void setMails(List<String> mails) {
 //        this.mails = mails;
 //    }
-
     public long getTelefono() {
         return telefono;
     }
@@ -147,8 +172,6 @@ public class Propiedad {
     public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
-
-
 
     public double getPrecio() {
         return precio;
@@ -182,13 +205,15 @@ public class Propiedad {
         this.tipo = tipo;
     }
 
-    public Imagen getFoto() {
-        return foto;
+    public List<Imagen> getFotos() {
+        return fotos;
     }
 
-    public void setFoto(Imagen foto) {
-        this.foto = foto;
+    public void setFotos(List<Imagen> fotos) {
+        this.fotos = fotos;
     }
+
+    
 
     public Propietario getPropietario() {
         return propietario;
@@ -197,7 +222,5 @@ public class Propiedad {
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
     }
-    
-    
-    
+
 }

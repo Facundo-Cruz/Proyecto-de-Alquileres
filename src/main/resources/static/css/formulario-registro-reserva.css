@@ -1,12 +1,12 @@
 .contenedor-back {
     width: 100%;
-    height: 1100px;
+    height: 1000px;
 }
 
 .contenedor {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 45%;
     height: auto;
     background-color: white;
     border: solid 1px black;
@@ -19,9 +19,9 @@
 
 label {
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 10px;
     margin-right: 10px;
-    font-weight: 800;
+    font-weight: 500;
 }
 
 .ubicacion {
@@ -50,15 +50,13 @@ label {
     margin-top: 20px;
     margin-bottom: 10px;
     cursor: pointer;
-
-
 }
 
 .label-fecha {
     display: inline-block;
     flex-direction: row;
     margin-right: 3px;
-    font-size: 16px;
+    font-size: 12px;
     width: 40%;
     border: none;
 }
@@ -66,13 +64,13 @@ label {
 #fondo-fecha-ingreso {
     border: 1px solid blueviolet;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 #fondo-fecha-egreso {
     border: 1px solid blueviolet;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .enviar {
@@ -81,9 +79,10 @@ label {
     margin-top: 12px;
     background-color: blueviolet;
     border: blueviolet;
-    height: 30px;
+    height: 20px;
     color: white;
     border-radius: 5px;
+    font-size: 12px;
 }
 
 .enviar:hover {
@@ -93,78 +92,32 @@ label {
     font-size: 15px;
 }
 
-.imagen {
-    font-size: 10px;
-    margin-top: 5px;
-}
-
-
-.op input {
-    margin-top: 7px;
-}
-
 .precio {
     margin-top: 15px;
 }
 
 /* Formulario de reserva */
 
-.contenedor-descripcion {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-}
-
-.contenedor-titulo-reserva {
-    width: 90%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
 .formulario-registro-de-reserva {
     display: flex;
     width: 90%;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.formulario-registro-de-reserva h3 {
-    width: 100%;
-    margin: auto;
-    font-size: 25px;
-}
 
-.titulo-descripcion {
-    width: auto;
-    margin: auto;
-    font-size: 23px;
-}
 
-.imagen-de-reserva {
-    width: 50%;
-    height: auto;
-    margin-left: 28px;
-}
-
-.descripcion-ubicacion {
-    display: flex;
-    flex-direction: column;
-    margin-left: 30px;
-
-}
 
 .descripcion-ubicacion p {
 
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .descripcion-ubicacion-lavel {
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
@@ -179,24 +132,7 @@ label {
 
 }
 
-.op {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 50%;
 
-}
-
-.opr {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 40%;
-}
-
-.op input {
-    margin-top: 7px;
-}
 
 .etiqueta-check {
     margin-bottom: 10px;
@@ -223,6 +159,7 @@ label {
     border: 1px solid blueviolet;
     border-radius: 5px;
     width: 70%;
+    height: 15px;
     padding-right: 3px;
     margin-top: 10px;
 }

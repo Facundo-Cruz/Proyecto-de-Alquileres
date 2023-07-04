@@ -38,23 +38,7 @@ public class ReservaControlador {
 
     @Autowired
     private ReservaServicio reservaservi;
-    
-    @Autowired
-    private PropiedadServicio propiedadservicio;
-    
-    
 
-<<<<<<< HEAD
-    //ruta para el registro de reserva
-    @GetMapping("/registrar")
-    public String registrarReserva() {
-  
-//        List<Propiedad>propiedades=propiedadservicio.listarPropiedades();
-//        
-//        modelo.addAttribute("propiedades", propiedades);
-//        
-        
-=======
     @Autowired
     private PropiedadServicio propiedadServicio;
 
@@ -64,7 +48,7 @@ public class ReservaControlador {
         Cliente cliente = (Cliente) session.getAttribute("usuariosession");
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idCasa));
         modelo.put("cliente", cliente);
->>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
+
         return "formulario-registro-reserva.html";
 
     }
@@ -123,6 +107,7 @@ public class ReservaControlador {
 
     }
     
+    
     @GetMapping("/cancelar/{id}")
     public String cancelar(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
@@ -138,11 +123,10 @@ public class ReservaControlador {
         
     }
 
-<<<<<<< HEAD
+
 
     
-    
-=======
+
 //    //ruta para modificar la reserva y sus datos correspondientes
 //    @PostMapping("/modificar/{id}")
 //    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
@@ -168,7 +152,7 @@ public class ReservaControlador {
 //        }
 //
 //    }
->>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
+
     //ruta para modificar la reserva y sus datos correspondientes
     @PostMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
@@ -194,11 +178,8 @@ public class ReservaControlador {
         }
 
     }
-<<<<<<< HEAD
-    
- 
-=======
->>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
+
+   
 
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")
@@ -207,16 +188,7 @@ public class ReservaControlador {
 
         return "reserva_eliminar.html";
     }
-<<<<<<< HEAD
-        
-       
-  
-    
-   
-    
-  
 
-=======
 
 //    //ruta para eliminar una reserva por id 
 //     @PostMapping("/eliminar/{id}")
@@ -248,7 +220,7 @@ public class ReservaControlador {
 //        
 //    }
 //        
->>>>>>> 5dd48b71a939fc19e4765ceedc8a99dd5cd49eec
+
     //ruta para eliminar una reserva por id 
     @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, RedirectAttributes p) {

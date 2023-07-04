@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Propiedad</title>
+  <link rel="stylesheet" href="/css/formulario-registro-propiedad.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="contenedor-back">
+    <div class="contenedor">
+
+      <form class="formulario-registro-de-propiedad" onsubmit="return validarFormulario()" th:action="@{/propiedad/registro}" method="POST"
+        enctype="multipart/form-data" >
+        <hr>
+        <h3 class="titulo">Registre su Propiedad</h3>
+        <hr>
+        <input type="text" name="idPropietario" id="idPropietario" hidden required
+          th:value="${session.usuariosession.id}">
+        <p>Tipo de Propiedad:</p>
+        <select id="tipo-de-propiedad" class="tipo-de-propiedad" name="tipoPropiedad" onclick="mostrarPrimeraOpcion()"
+          required>
+          <option value="" disabled selected>Elija su opción</option>
+          <option value="QUINTA">Quinta</option>
+          <option value="CASA">Casa</option>
+          <option value="CHALET">Chalet</option>
+          <option value="FINCA">Finca</option>
+          <option value="QUINCHO">Quincho</option>
+          <option value="CABANA">Cabaña</option>
+          <option value="SALON">Salon de Fiestas</option>
+          <option value="BODEGA">Bodega</option>
+          <option value="FINCA">Finca</option>
+          <option value="OTRO">Otros</option>
+          <option value="CHALET">Chalet</option>
+          <option value="OTRO">Otros</option>
+        </select>
+
+
+        <p>Ubicación:</p>
+
+        <div class="ubicacion">
+          <div class="ub">
+            <label id="nombre" for="nombre">Nombre:</label>
+            <input class="nombre" type="text" name="nombre" required>
+          </div>
+          <div class="ub">
+            <label id="direccion" for="direccion">Dirección:</label>
+            <input type="text" class="direccion" name="direccion" required>
+          </div>
+
+          <div class="ub">
+            <label for="localidad">Localidad:</label>
+            <input type="text" id="localidad" name="localidad" required>
+          </div>
+          <div class="ub">
+            <label id="codigo-postal" for="codigo-postal">C.P:</label>
+            <input id="cp" type="text" name="codigoPostal" required>
+          </div>
+        </div>
+
+
+        <div class="contenedor-fechas">
+          <div class="fecha">
+            <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
+            <input id="fondo-fecha-ingreso" type="date" name="fechaDesde" required>
+          </div>
+          <div class="fecha">
+            <label class="label-fecha" for="fecha-egreso">Fecha de Egreso: </label>
+            <input id="fondo-fecha-egreso" type="date" name="fechaHasta" required>
+          </div>
+        </div>
+        <div class="mail-telefono">
+          <div class="myt">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" placeholder="223-458745" name="telefono" required>
+          </div>
+
+          <div class="myt">
+            <label for="email">Email:</label>
+            <input type="email" placeholder="tumail@gmail.com" name="email" required>
+          </div>
+        </div>
+
+        <p>Subir Imágenes(1-5 fotos):</p>
+        <div class="subir-imagenes">
+          <input id="input-imagen" class="imagen" type="file" accept="image/*" name="archivos[]" multiple required>
+        </div>
+
+
+        <div class="descripcion">
+          <p>Descripción:</p>
+          <textarea id="area" cols="40" rows="3" name="descripcion"></textarea>
+        </div>
+
+        <!-- Boton de redes sociales -->
+        <div class="campo-redes-sociales">
+          <label>Redes sociales:</label>
+          <div class="opcion-redes">
+            <img src="/img/off-button.png" id="switch-img" onclick="toggleRedesSociales()">
+          </div>
+          <div id="redes-sociales" style="display: none;">
+            <p>Ingrese el Link de sus redes sociales</p>
+            <div class="opcion-redes">
+              <input type="text" id="facebook" name="redesSociales" placeholder="Facebook">
+            </div>
+            <div class="opcion-redes">
+              <input type="text" id="twitter" name="redesSociales" placeholder="Twitter">
+            </div>
+            <div class="opcion-redes">
+              <input type="text" id="instagram" name="redesSociales" placeholder="Instagram">
+            </div>
+          </div>
+        </div>
+
+        <!--  checkBox servicios adicionales -->
+        <label>Seleccione servicios adicionales:</label>
+
+
+        <div class="servicios">
+
+
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op1" name="serviciosSeleccionados" value="Seguridad" onchange="togglePrecioInput(this)">
+              <label for="op1">Seguridad</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio1" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+          
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op2" name="serviciosSeleccionados" value="DJ" onchange="togglePrecioInput(this)">
+              <label for="op2">DJ</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio2" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+
+         
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op3" name="serviciosSeleccionados" value="Animacion" onchange="togglePrecioInput(this)">
+              <label for="op3">Animación</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio3" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op4" name="serviciosSeleccionados" value="Asador" onchange="togglePrecioInput(this)">
+              <label for="op4">Asador</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio4" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op5" name="serviciosSeleccionados" value="Bar" onchange="togglePrecioInput(this)">
+              <label for="op5">Bar</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio5" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op6" name="serviciosSeleccionados" value="Show" onchange="togglePrecioInput(this)">
+              <label for="op6">Show</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio6" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op7" name="serviciosSeleccionados" value="Guarderia" onchange="togglePrecioInput(this)">
+              <label for="op7">Guarderia</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio7" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+
+          <div class="op">
+            <div class="opr">
+              <input class="etiqueta-check" type="checkbox" id="op8" name="serviciosSeleccionados" value="Catering" onchange="togglePrecioInput(this)">
+              <label for="op8">Catering</label>
+            </div>
+            <div class="opr1">
+              <label class="label-opr1">$ <input id="precio8" name="preciosServicios" class="caja-precio" type="number" min="0" disabled></label>
+            </div>
+          </div>
+          <!-- input de precio por dia y label de total -->
+
+          <div class="valor">
+            <div class="valores">
+              <label class="label-precios" for="precio-por-dia">Precio por dia: $ </label>
+              <label class="label-precios" for=""><input class="caja-precio-v" type="number" name="precio"
+                  required></label>
+            </div>
+          </div>
+        </div>
+          <input class="enviar" type="submit" value="Enviar">
+      </form>
+
+    </div>
+  </div>
+  <script src="/js/formulario-registro-propiedad.js"></script>
+  <script>
+    const fechaIngresoInput = document.getElementById('fondo-fecha-ingreso');
+    const fechaEgresoInput = document.getElementById('fondo-fecha-egreso');
+  
+    fechaIngresoInput.addEventListener('change', validarFechas);
+    fechaEgresoInput.addEventListener('change', validarFechas);
+  
+    function validarFechas() {
+      const fechaIngreso = new Date(fechaIngresoInput.value);
+      const fechaEgreso = new Date(fechaEgresoInput.value);
+  
+      if (fechaIngreso > fechaEgreso) {
+      alert('La fecha de ingreso debe ser anterior a la fecha de egreso.');
+      fechaEgresoInput.value = ''; // Limpiar el valor de la fecha de egreso
+    }
+
+    }
+  </script>
+</body>
+
+</html>

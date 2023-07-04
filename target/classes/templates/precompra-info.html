@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/precompra-info.css">
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar :: nav"></nav>
+    <div class="slide-box">
+        <div class="slide fade">
+            <div class="numero">1/4</div>
+            <img src="/img/building.jpg" alt="">
+        </div>
+        <div class="slide fade">
+            <div class="numero">2/4</div>
+            <img src="/img/building.jpg" alt="">
+        </div>
+        <div class="slide fade">
+            <div class="numero">3/4</div>
+            <img src="/img/building.jpg" alt="">
+        </div>
+        <div class="slide fade">
+            <div class="numero">4/4</div>
+            <img src="/img/building.jpg" alt="">
+        </div>
+        <a class="antes" onclick="moveSlide(-1)">&#10094;</a>
+        <a class="despues" onclick="moveSlide(1)">&#10095;</a>
+    </div>
+    <div class="info">
+        <p class="titulo">titulo</p>
+        <p>ubicacion</p>
+        <button class="rent-button">alquilar</button>
+    </div>
+    <div class="description">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi alias voluptates ex obcaecati ipsam atque sint maiores quod nesciunt repudiandae. Veritatis consectetur eos quos ipsum quae labore est beatae obcaecati. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur et explicabo ipsam nulla aliquid voluptate nemo in laborum modi corporis eius culpa perspiciatis, sint suscipit vero quibusdam quis cupiditate perferendis?
+    </div>
+    <script src="/js/precompra.js"></script>
+</body>
+
+</html>

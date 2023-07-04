@@ -10,9 +10,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
 </head>
 
 <body>
+  <nav th:replace="fragments/navbar :: nav"></nav>
   <div class="contenedor-back">
     <div class="contenedor">
 
@@ -220,6 +223,7 @@
 
     </div>
   </div>
+  <script src="/js/navbar-responsive.js"></script>
   <script src="/js/formulario-registro-propiedad.js"></script>
   <script>
     const fechaIngresoInput = document.getElementById('fondo-fecha-ingreso');

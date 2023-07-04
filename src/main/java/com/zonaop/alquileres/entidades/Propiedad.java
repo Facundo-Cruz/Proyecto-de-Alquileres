@@ -53,7 +53,6 @@ public class Propiedad {
     @OneToMany
     private List<Imagen> fotos;
     private double precio;
-    private boolean estado;
     @Enumerated(EnumType.STRING)
     private TipoPropiedad tipo;
     private int calificacion;
@@ -181,13 +180,6 @@ public class Propiedad {
         this.precio = precio;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 
     public int getCalificacion() {
         return calificacion;

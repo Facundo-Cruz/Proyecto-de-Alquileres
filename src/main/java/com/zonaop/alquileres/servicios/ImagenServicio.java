@@ -75,4 +75,17 @@ public class ImagenServicio {
         }
         return null;
     }
+
+    @Transactional
+    public Imagen traerImagen(String idImagen) throws MiException {
+        try {
+            Optional<Imagen> imagenOp = imagenRepositorio.findById(idImagen);
+            return imagenOp.get();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+
+    }
+
 }

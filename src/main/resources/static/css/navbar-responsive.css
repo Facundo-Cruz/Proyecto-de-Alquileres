@@ -79,13 +79,13 @@
      column-gap: 2rem;
      height: 90px;
      padding: 1.2rem 3rem;
-     background-color: #FF5E24;
+     background-color: #ffd889;
  }
 
  .menu {
      position: relative;
      background: var(--white);
-     background-color: #FF5E24;
+     background-color: #ffd889;
  }
 
  .menu-bar li:first-child .dropdown {

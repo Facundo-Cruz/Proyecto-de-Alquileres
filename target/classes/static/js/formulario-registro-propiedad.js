@@ -21,6 +21,7 @@ function toggleRedesSociales() {
   }
 }
 /* Validaciones del formulario */
+
 function validarFormulario() {
 
   var tipoPropiedad = document.getElementById("tipo-de-propiedad").value;
@@ -33,7 +34,17 @@ function validarFormulario() {
   var telefono = document.querySelector("input[type='text'][placeholder='223-458745']").value;
   var email = document.querySelector("input[type='email'][placeholder='tumail@gmail.com']").value;
   var imagenes = document.querySelector(".imagen").value;
-  var precio = document.getElementById("caja-precio-v").value;
+  var precio = document.getElementsByClassName("caja-precio-v").value;
+  // validación imágenes
+  var input = document.getElementById('input-imagen');
+  var archivosSeleccionados = input.files;
+  var maximoArchivos = 5;
+  
+  if (archivosSeleccionados.length > maximoArchivos) {
+      alert('El número máximo de imágenes permitidas es ' + maximoArchivos);
+      return false; // Evita enviar el formulario
+  }
+
 
   // Validación requerida
   if (

@@ -83,9 +83,6 @@ public class UsuarioControlador {
             
             List<Reserva> reservas = reservaServicio.listarPorCliente(usuario.getId());
             
-            List<Propiedad> reservados= propiedadServicio.listaParaReserva(reservas);
-            
-            modelo.put("reservados",reservados);
             modelo.put("reservas", reservas);
 
         }

@@ -185,15 +185,6 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorPropietario(id);
         return propiedades;
     }
-    
-    public List <Propiedad> listaParaReserva(List <Reserva> reservas){
-        
-        List <Propiedad> propiedades = new ArrayList<>();
-        for (int i = 0; i < reservas.size(); i++) {
-            propiedades.add(buscarPropiedadPorId(reservas.get(i).getPropiedad().getId()));
-        }
-        return propiedades;
-    }
 
     public void validar(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad) {
 

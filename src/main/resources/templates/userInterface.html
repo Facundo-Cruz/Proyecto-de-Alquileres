@@ -59,38 +59,6 @@
                     </div>
                 </div>
             </div>
-            <div class="housesbox">
-                <!--el th:each deberia ser de house-card que es la imagen de la carta con la casa-->
-                <div th:each="reservado : ${reservados}" class="house-card">
-                    <img th:src="@{/imagen/__${reservado.id}__}" alt="Foto propiedad" class="info-image">
-                    <p th:text="${reservado.nombre}" class="titulo"></p>
-                    <div class="info-datos">
-                        <p th:text="${reservado.direccion}" class="ubicacion"></p>
-                        </p>
-                        <div class="email-celu">
-                            <div class="email">
-                                <img src="/img/mail.svg" class="contact-image" alt="">
-<!--                                <p th:text="${reservado.email}"></p>-->
-                            </div>
-                            <div class="celu">
-                                <img src="/img/phone.svg" class="contact-image" alt="">
-                                <p th:text="${reservado.telefono}"></p>
-                            </div>
-                        </div>
-                        <div th:each="reserva:${reservas}">
-                            <p th:text="'Reservado desde el '+${reserva.fechaDesde}+' hasta el '+${reserva.fechaHasta}" class="fecha"></p>
-                            <p th:text="${reserva.huesped}"></p>
-                            <p th:text="'$'+${reserva.total}"></p>
-                            <p th:if="${reserva.estado}">Activa</p>
-                            <p th:if="${not reserva.estado}">Cancelada</p>
-                            <button class="cancelar"><a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a></button>
-                        </div>
-                        <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
-                            SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->                      
-                    </div>
-                </div>
-            </div>
-
         </div>
 
         <script src="/js/userInterface.js"></script>

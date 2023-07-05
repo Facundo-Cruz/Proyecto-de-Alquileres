@@ -14,26 +14,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReservaRepositorio extends JpaRepository<Reserva, String> {
-<<<<<<< HEAD
-    
-    
-    @Query(value="Select * from reserva  where id order by desc" , nativeQuery=true)
-    List<Reserva>findAllOrderByidDesc();
-    
+public interface ReservaRepositorio extends JpaRepository<Reserva, String> {  
+
     @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId")
     public List<Reserva> buscarPorCliente(@Param("clienteId") String clienteId);
-    
-=======
 
-    @Query(value = "Select * from reserva  where id order by desc", nativeQuery = true)
-    List<Reserva> findAllOrderByidDesc();
-
->>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
-//    @Query("SELECT r FROM Reserva l WHERE r.huesped = :huesped")
-//    public Reserva buscarPorHuesped(@Param("titulo") String huesped);
-//    
-//    
     @Query(value = "SELECT r.fecha_desde FROM propiedad p JOIN reserva r ON p.id = r.propiedad_id WHERE r.estado = true AND p.id = :propiedadId", nativeQuery = true)
     public List<Date> buscarFechasDesde(@Param("propiedadId") String propiedadId);
 

@@ -2,6 +2,7 @@ package com.zonaop.alquileres.servicios;
 
 import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;

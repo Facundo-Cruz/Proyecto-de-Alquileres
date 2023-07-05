@@ -3,12 +3,14 @@ package com.zonaop.alquileres.controladores;
 import com.zonaop.alquileres.entidades.Cliente;
 import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.enumeraciones.Rol;
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
+import com.zonaop.alquileres.servicios.ReservaServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -29,6 +31,9 @@ public class UsuarioControlador {
 
     @Autowired
     public PropiedadServicio propiedadServicio;
+    
+    @Autowired
+    public ReservaServicio reservaServicio;
 
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -75,6 +80,10 @@ public class UsuarioControlador {
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
+            
+            List<Reserva> reservas = reservaServicio.listarPorCliente(usuario.getId());
+            
+            modelo.put("reservas", reservas);
 
         }
 

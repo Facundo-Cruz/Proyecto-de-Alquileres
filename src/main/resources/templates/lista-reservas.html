@@ -41,7 +41,8 @@
                             <td th:text="${reserva.propiedad.nombre}"> </td>
                             <td>
                                 <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link" th:href= "@{/reserva/eliminar/__${reserva.id}__}">Eliminar</a>
-                                <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
+                                <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
+                                <a th:if="${session.usuariosession.id != usuario.id}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
                             </td>
                         </tr>
                     </tbody>

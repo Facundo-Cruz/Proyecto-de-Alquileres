@@ -48,6 +48,8 @@ public class ReservaControlador {
         Cliente cliente = (Cliente) session.getAttribute("usuariosession");
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idCasa));
         modelo.put("cliente", cliente);
+        modelo.put("fechasDesde", reservaservi.traerFechasDesde(idCasa));
+        modelo.put("fechasHasta", reservaservi.traerFechasHasta(idCasa));
         return "formulario-registro-reserva.html";
 
     }
@@ -59,7 +61,8 @@ public class ReservaControlador {
             @RequestParam double total,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo,
-            @RequestParam(value = "servicios", required = false) List<Servicio> servicios) {
+            @RequestParam(value = "servicios", required = false) List<Servicio> servicios,
+            RedirectAttributes redirectAttributes) {
 
         try {
             reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta,servicios, total);
@@ -67,9 +70,9 @@ public class ReservaControlador {
 
         } catch (MiException ex) {
 
-            modelo.put("error", ex.getMessage());
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
 
-            return "formulario-registro-reserva.html";
+            return "redirect:/reserva/registrar/" + idPropiedad;
 
         }
 

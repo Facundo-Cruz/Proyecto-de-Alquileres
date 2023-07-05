@@ -13,7 +13,7 @@ body{
     align-items: center;
     width: 100%;
     height: 5%;
-    background-color: rgb(255, 124, 77);
+    background-color: #88D4AB;
 }
 
 .profile-picture{
@@ -240,12 +240,12 @@ body{
     margin-bottom: 4vh;
     border: none;
     outline: none;
-    background-color: #f05850;
+    background-color: #67B99A;
     border-radius: 3px;
 }
 
 .cancelar:active{
-    background-color: #c64842;
+    background-color: #56AB91;
 }
 
 

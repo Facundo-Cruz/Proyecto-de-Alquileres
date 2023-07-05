@@ -11,7 +11,7 @@
     width: 46%;
     height: auto;
     background-color: white;
-    border: solid 1px black;
+    border: solid 1px #56AB91;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -32,7 +32,7 @@
     font-size: 25px;
 }
 input{
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     margin-top: 5px;
 }
@@ -54,15 +54,15 @@ label {
     width: 40%;
     margin: auto;
     margin-top: 12px;
-    background-color: blueviolet;
-    border: blueviolet;
+    background-color: #67B99A;
+    border: #469D89;
     height: 30px;
     color: white;
     border-radius: 5px;
 }
 
 .enviar:hover {
-    background-color: gray;
+    background-color: #56AB91;
     color: white;
     font-weight: 700;
     font-size: 15px;
@@ -75,7 +75,7 @@ label {
 }
 
 hr {
-    color: blueviolet;
+    color: #469D89;
     border: solid black 1 px;
     width: 90%;
 }
@@ -103,7 +103,7 @@ hr {
     margin-top: 20px;
     width: 50%;
     height: 25px;
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
 }
 

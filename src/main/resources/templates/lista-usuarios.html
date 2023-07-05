@@ -19,7 +19,7 @@
 <body>
     <nav th:replace="fragments/navbar :: nav"></nav>
     <div class="contenedor">
-        <form  th:action="@{nombres}" method="POST">
+        <form  th:action="@{/usuario/listar/nombres}" method="POST">
             <main class="table">
                 <div th:replace="fragments/successMessage :: div"></div>
                 <section class="table__header">

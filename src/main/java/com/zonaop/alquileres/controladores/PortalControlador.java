@@ -40,11 +40,10 @@ public class PortalControlador {
     }
 
     @PostMapping("/pruebass")
-    public String pruebas2(@RequestParam("archivos[]") List<MultipartFile> archivos) {
+    public String pruebas2(@RequestParam(value = "archivos[]", required = false) List<MultipartFile> archivos,
+            @RequestParam double rating, @RequestParam String comentario) {
         
-        for (MultipartFile archivo : archivos) {
-            System.out.println(archivo.getSize());
-        }
+        System.out.println(rating);
         return "redirect:/";
     }
 

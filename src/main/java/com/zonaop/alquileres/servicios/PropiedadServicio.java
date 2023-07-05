@@ -45,7 +45,7 @@ public class PropiedadServicio {
             Date fechaHasta, Double precio, String tipoPropiedad,
             List<MultipartFile> archivos, String idPropietario, long telefono,
             List<String> serviciosSeleccionados, List<Integer> preciosServicios,
-            List<String> redesSociales) throws MiException {
+            List<String> redesSociales, String email) throws MiException {
 
         validar(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad);
 
@@ -61,6 +61,7 @@ public class PropiedadServicio {
         propiedad.setPrecio(precio);
         propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
         propiedad.setTelefono(telefono);
+        propiedad.setEmail(email);
         if (redesSociales != null) {
             propiedad.setRedesSociales(redesSociales);
         }

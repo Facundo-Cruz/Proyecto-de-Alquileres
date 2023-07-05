@@ -21,6 +21,9 @@ public interface ReservaRepositorio extends JpaRepository<Reserva, String> {
     @Query(value="Select * from reserva  where id order by desc" , nativeQuery=true)
     List<Reserva>findAllOrderByidDesc();
     
+    @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId")
+    public List<Reserva> buscarPorCliente(@Param("clienteId") String clienteId);
+    
 //    @Query("SELECT r FROM Reserva l WHERE r.huesped = :huesped")
 //    public Reserva buscarPorHuesped(@Param("titulo") String huesped);
 //    

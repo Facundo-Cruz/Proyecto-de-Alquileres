@@ -2,6 +2,7 @@ package com.zonaop.alquileres.servicios;
 
 import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
@@ -182,6 +183,15 @@ public class PropiedadServicio {
 
     public List<Propiedad> listarPorPropietario(String id) {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorPropietario(id);
+        return propiedades;
+    }
+    
+    public List <Propiedad> listaParaReserva(List <Reserva> reservas){
+        
+        List <Propiedad> propiedades = new ArrayList<>();
+        for (int i = 0; i < reservas.size(); i++) {
+            propiedades.add(buscarPropiedadPorId(reservas.get(i).getPropiedad().getId()));
+        }
         return propiedades;
     }
 

@@ -122,27 +122,30 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/modificar")
-    public String modificarUsuario(String id, String nombre, String apellido, String nombreUsuario, String email, String contrasena, Imagen foto, String rol, ModelMap modelo, MultipartFile archivo, RedirectAttributes redirectAttributes) {
+    public String modificarUsuario(String id, String nombre, String apellido,
+            String nombreUsuario, String email, String password, Imagen foto,
+            String rol, ModelMap modelo, MultipartFile archivo,
+            RedirectAttributes redirectAttributes, String passwordActual) {
 
         try {
 
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, contrasena, archivo);
+                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, password, archivo, passwordActual);
 
             } else {
 
-                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, contrasena, archivo);
+                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, password, archivo, passwordActual);
 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
             return "redirect:/usuario/perfil";
         } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-            modelo.put("email", email);
-            modelo.put("alias", apellido);
-            modelo.put("rol", rol);
-            return "formulario-registro-usuario.html";
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+//            redirectAttributes.addFlashAttribute("email", email);
+//            redirectAttributes.addFlashAttribute("alias", apellido);
+//            redirectAttributes.addFlashAttribute("rol", rol);
+            return "redirect:/usuario/modificar";
 
         }
 
@@ -168,8 +171,7 @@ public class UsuarioControlador {
 
         try {
             usuarioServicio.cambiarEstadoPorId(id);
-            redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
-                    + "cambiado con éxito!");
+   
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {

@@ -17,6 +17,9 @@ import com.zonaop.alquileres.repositorios.PropiedadRepositorio;
 import com.zonaop.alquileres.repositorios.ReservaRepositorio;
 
 import com.zonaop.alquileres.repositorios.ServicioRepositorio;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +54,7 @@ public class ReservaServicio {
     @Transactional
     public void crearReserva(String idCliente, String idPropiedad, String huesped,
             Date fechaDeste, Date fechaHasta, List<Servicio> servicios, double total) throws MiException {
-
+        validarFechaCreacion(fechaDeste, fechaHasta, idPropiedad);
         Optional<Cliente> clienteOp = clienterepo.findById(idCliente);
         Optional<Propiedad> propiedadOp = propiedadrepo.findById(idPropiedad);
 
@@ -100,7 +103,11 @@ public class ReservaServicio {
     public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
 
 //        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
+<<<<<<< HEAD
         Optional<Reserva> a = reservaRepositorio.findById(id);
+=======
+        Optional<Reserva> a = reservarepo.findById(id);
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
         Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
         Optional<Cliente> c = clienterepo.findById(idCliente);
         Optional<Opinion> d = opinionrepo.findById(idOpinion);
@@ -120,7 +127,11 @@ public class ReservaServicio {
             reserva.setServicios((List<Servicio>) servicios);
             reserva.setTotal(total);
 
+<<<<<<< HEAD
             reservaRepositorio.save(reserva);
+=======
+            reservarepo.save(reserva);
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
 
         }
 
@@ -128,7 +139,11 @@ public class ReservaServicio {
 
     @Transactional
     public void cancelarPorId(String id) {
+<<<<<<< HEAD
         Optional<Reserva> respuesta = reservaRepositorio.findById(id);
+=======
+        Optional<Reserva> respuesta = reservarepo.findById(id);
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
 
         if (respuesta.isPresent()) {
             Reserva reserva = respuesta.get();
@@ -141,12 +156,20 @@ public class ReservaServicio {
     @Transactional
     public void EliminarReserva(String id) throws MiException {
 
+<<<<<<< HEAD
         Optional<Reserva> r = reservaRepositorio.findById(id);
+=======
+        Optional<Reserva> r = reservarepo.findById(id);
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
         if (r.isPresent()) {
 
             Reserva reserva = r.get();
 
+<<<<<<< HEAD
             reservaRepositorio.delete(reserva);
+=======
+            reservarepo.delete(reserva);
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
         }
 
     }
@@ -155,6 +178,7 @@ public class ReservaServicio {
     @Transactional(readOnly = true)
     public Reserva getOne(String id) {
 
+<<<<<<< HEAD
         return reservaRepositorio.getOne(id);
 
     }
@@ -163,6 +187,11 @@ public class ReservaServicio {
         List<Reserva> reservas = reservaRepositorio.buscarPorCliente(id);
         return reservas;
     }
+=======
+        return reservarepo.getOne(id);
+
+    }
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
 //    
 
 //    private void validarReserva (String id,String huesped,List<Servicio>servicios,Double total, String idOpinion,String idPropiedad,String idCliente,String idServicio) throws MiException{
@@ -242,4 +271,36 @@ public class ReservaServicio {
 //        }
 //
 //    }
+<<<<<<< HEAD
+=======
+    public List<String> traerFechasDesde(String propiedadId) {
+        List<Date> fechasDesde = reservarepo.buscarFechasDesde(propiedadId);
+        List<String> fechasDesdeISO = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        for (Date fecha : fechasDesde) {
+            String fechaISO = formatter.format(fecha);
+            fechasDesdeISO.add(fechaISO);
+        }
+        return fechasDesdeISO;
+    }
+
+    public List<String> traerFechasHasta(String propiedadId) {
+        List<Date> fechasHasta = reservarepo.buscarFechasHasta(propiedadId);
+        List<String> fechasHastaISO = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        for (Date fecha : fechasHasta) {
+            String fechaISO = formatter.format(fecha);
+            fechasHastaISO.add(fechaISO);
+        }
+        return fechasHastaISO;
+    }
+
+    public void validarFechaCreacion(Date fechaDesde, Date fechaHasta, String propiedadId) throws MiException {
+                
+        List<Reserva> reservas = reservarepo.verificarDisponibilidad(fechaDesde, fechaHasta, propiedadId);
+        if (reservas != null) {
+            throw new MiException("La fecha de reserva debe estar dentro del rango de disponibilidad.");
+        }
+    }
+>>>>>>> 2f103ad5070fc38f4742b8689d1ae33584cc5dbe
 }

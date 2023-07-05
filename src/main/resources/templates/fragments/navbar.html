@@ -8,11 +8,11 @@
                 <ul class="menu-bar">
                     <li>
                         <div class="content">
-                            <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
                                 aria-expanded="false" aria-label="discover">
                                 Alquilar
                                 <i class="bx bx-chevron-down" aria-hidden="true"></i>
-                            </button>
+                            </button> -->
                             <div id="dropdown2" class="dropdown">
                                 <ul role="menu">
                                     <li>
@@ -48,11 +48,11 @@
                             </button>
 
                             <!-- antes era class "publicar"-->
-                            <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
                                 aria-expanded="false" aria-label="discover" th:if="${session.usuariosession != null}"
                                 th:href="@{/propiedad/registrar/}">Publicar <i class="bx bx-chevron-down"
                                     aria-hidden="true"></i>
-                            </button>
+                            </button> -->
                             <div id="dropdown2" class="dropdown">
                                 <ul role="menu">
                                     <li>
@@ -81,10 +81,10 @@
                     </li>
                     <li>
                         <div class="content" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')">
-                            <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
                                 aria-expanded="false" aria-label="discover" th:href="@{/usuario/listar/}">
                                 Listar
-                                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                                <i class="bx bx-chevron-down" aria-hidden="true"></i> -->
                             </button>
                             <div id="dropdown2" class="dropdown">
                                 <ul role="menu">
@@ -113,10 +113,10 @@
                         </div>
                     </li>
                     <li>
-                        <a th:href="@{/propiedad/registrar/}">Publicar(temporal)   </a>
+                        <a class="ancle" th:href="@{/propiedad/registrar/}">Publicar</a>
                     </li>
                     <li>
-                        <a th:href="@{/usuario/listar/}">Listar Usuarios(temporal)</a>
+                        <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/usuario/listar/}">Listar Usuarios</a>
                     </li>
                 </ul>
             </nav>

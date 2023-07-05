@@ -23,6 +23,8 @@ public class PropietarioServicio {
 
     @Autowired
     public UsuarioServicio usuarioServicio;
+    
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
     public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
@@ -49,14 +51,20 @@ public class PropietarioServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
-
+            
             Propietario propietario = respuesta.get();
 
+            
+            String encodedPassword = propietario.getContrasena();
+
+            if (!bCryptPasswordEncoder.matches(passwordActual, encodedPassword)) {
+                throw new MiException("Las contraseña actual no es correcta.");
+            }
             usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
 
             propietario.setNombre(nombre);

@@ -9,7 +9,7 @@
     width: 50%;
     height: auto;
     background-color: white;
-    border: solid 1px black;
+    border: solid 1px #469D89;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -64,13 +64,13 @@ label {
 }
 
 #fondo-fecha-ingreso {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     font-size: 16px;
 }
 
 #fondo-fecha-egreso {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     font-size: 16px;
 }
@@ -79,15 +79,15 @@ label {
     width: 40%;
     margin: auto;
     margin-top: 12px;
-    background-color: blueviolet;
-    border: blueviolet;
+    background-color: #67B99A;
+    border: #57b390;
     height: 30px;
     color: white;
     border-radius: 5px;
 }
 
 .enviar:hover {
-    background-color: gray;
+    background-color: #56AB91;
     color: white;
     font-weight: 700;
     font-size: 15px;
@@ -220,7 +220,7 @@ label {
 }
 
 .caja-precio {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     width: 70%;
     padding-right: 3px;
@@ -228,13 +228,13 @@ label {
 }
 
 .caja-precio-v {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     width: 15vh;
     padding-right: 3px;
 }
 .caja-precio-v2 {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     width: 15vh;
     padding-right: 3px;
@@ -249,7 +249,8 @@ label {
 }
 
 .slide img {
-    max-width: 100%;
+    width: 19.8vw;
+    height: 12vw;
     z-index: 0;
 }
 

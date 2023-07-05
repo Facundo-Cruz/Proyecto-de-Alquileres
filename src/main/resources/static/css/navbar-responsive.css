@@ -79,13 +79,13 @@
      column-gap: 2rem;
      height: 90px;
      padding: 1.2rem 3rem;
-     background-color: #ffd889;
+     background-color: #78C6A3;
  }
 
  .menu {
      position: relative;
      background: var(--white);
-     background-color: #ffd889;
+     background-color: #78C6A3;
  }
 
  .menu-bar li:first-child .dropdown {
@@ -220,6 +220,13 @@
      font-size: 1.9rem;
  }
 
+ .ancle{
+    margin-left: 14px;
+    font-size: 16px;
+ }
+ .ancle:hover{
+    color: #c2d882;
+ }
  @media (max-width: 1100px) {
      #hamburger {
          display: block;

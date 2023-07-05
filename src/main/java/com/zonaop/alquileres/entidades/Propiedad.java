@@ -54,10 +54,20 @@ public class Propiedad {
     private int calificacion;
     @OneToMany
     private List<Servicio> servicios;
+    private String email;
 
     public Propiedad() {
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
     public List<String> getRedesSociales() {
         return redesSociales;
     }

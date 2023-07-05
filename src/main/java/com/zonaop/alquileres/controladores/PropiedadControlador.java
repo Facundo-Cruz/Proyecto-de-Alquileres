@@ -46,7 +46,8 @@ public class PropiedadControlador {
             ModelMap modelo, HttpSession session, @RequestParam long telefono,
             @RequestParam(value = "serviciosSeleccionados", required = false) List<String> serviciosSeleccionados,
             @RequestParam(value = "preciosServicios", required = false) List<Integer> preciosServicios,
-            @RequestParam(value = "redesSociales", required = false) List<String> redesSociales) {
+            @RequestParam(value = "redesSociales", required = false) List<String> redesSociales,
+            @RequestParam String email) {
 
         Propietario propietario = (Propietario) session.getAttribute("usuariosession");
         String idPropietario = propietario.getId();
@@ -54,7 +55,7 @@ public class PropiedadControlador {
       
         try {
 
-            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivos, idPropietario, telefono, serviciosSeleccionados, preciosServicios, redesSociales);
+            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivos, idPropietario, telefono, serviciosSeleccionados, preciosServicios, redesSociales, email);
             return "redirect:/";
 
         } catch (MiException ex) {

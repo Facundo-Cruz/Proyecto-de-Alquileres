@@ -37,8 +37,10 @@ public class Reserva {
     @Temporal(TemporalType.DATE)
     private Date fechaDesde;
     @OneToOne
+    @JoinColumn(name="propiedad_id")
     private Propiedad propiedad;
     @OneToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     @ManyToMany
     @JoinTable(

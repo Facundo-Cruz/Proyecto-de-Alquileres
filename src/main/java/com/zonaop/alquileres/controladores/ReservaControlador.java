@@ -81,7 +81,7 @@ public class ReservaControlador {
     }
 
     //ruta para listar las reservas de las propiedades
-    @GetMapping("/lista")
+    @GetMapping("/listar")
 
     public String listar(ModelMap modelo) {
 
@@ -115,7 +115,7 @@ public class ReservaControlador {
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
-            return "redirect:/usuario/perfil";
+            return "redirect:../lista";
         }
         
     }
@@ -170,47 +170,9 @@ public class ReservaControlador {
         }
 
     }
-
+      
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable String id, ModelMap modelo) {
-        modelo.put("editorial", reservaservi.getOne(id));
-
-        return "reserva_eliminar.html";
-    }
-
-//    //ruta para eliminar una reserva por id 
-//     @PostMapping("/eliminar/{id}")
-//    public String eliminar(@PathVariable String id, RedirectAttributes p) {
-//
-//
-//         try {
-//             reservaservi.EliminarReserva(id);
-//             p.addFlashAttribute("exito","eliminado");
-//             
-//             return "redirect:../listaReserva";
-//             
-//         } catch (MiException ex) {
-//   
-//             
-//             p.addFlashAttribute("error","intente de nuevo");
-//             
-//            return "redirect:../listaReserva";
-//             
-//         }
-//
-//   }
-//     @DeleteMapping("/eliminar/{id}")
-//     public boolean eliminarReserva(@PathVariable ("id"),String id){
-//        
-//        
-//        return reservaservi.EliminarReserva(id);
-//        
-//        
-//    }
-//        
-    //ruta para eliminar una reserva por id 
-    @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, RedirectAttributes p) {
 
         try {
@@ -223,7 +185,7 @@ public class ReservaControlador {
 
             p.addFlashAttribute("error", "intente de nuevo");
 
-            return "redirect:../listaReserva";
+            return "redirect:../lista";
 
         }
 

@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
-    <link rel="stylesheet" href="/css/mainPage.css">
-    <link rel="stylesheet" href="/css/nav-listado-usuarios.css">
+    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
+    <!-- <link rel="stylesheet" href="/css/nav-listado-usuarios.css"> -->
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
     <link rel="stylesheet" href="/css/estilo-validaciones.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
-    <link rel="stylesheet" href="/css/mainPage.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
 </head>
 
 <body>
@@ -26,23 +28,28 @@
                         <tr>
                             <th> Id </th>
                             <th> Cliente </th>
+                            <th> Propiedad </th>
                             <th> Desde </th>
                             <th> Hasta </th>
-                            <th> Propiedad </th>
+                            <th> Estado </th>
                             <th> Acciones </th>
                         </tr>
                     </thead>
                     <tbody th:each="reserva : ${reservas}">
                         <tr>
                             <td th:text="${reserva.id}"> </td>
-                            <td th:text="${reserva.cliente.alias}"> </td>
+                            <td th:text="${reserva.cliente.nombre}"> </td>
+                            <td th:text="${reserva.propiedad.nombre}"> </td>
                             <td th:text="${reserva.fechaDesde}"> </td>
                             <td th:text="${reserva.fechaHasta}"> </td>
-                            <td th:text="${reserva.propiedad.nombre}"> </td>
                             <td>
-                                <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link" th:href= "@{/reserva/eliminar/__${reserva.id}__}">Eliminar</a>
-                                <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
-                                <a th:if="${session.usuariosession.id != usuario.id}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
+                                  <p th:if="${reserva.estado == true}" class="status delivered">Habilitado</p>
+                                  <p th:if="${reserva.estado == false}" class="status cancelled">Deshabilitado</p>
+                            </td>
+                            <td>
+                                <a class="delete-link" th:href= "@{/reserva/eliminar/__${reserva.id}__}">Eliminar</a>
+                                <a class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
+                                <a th:if="${reserva.estado == true}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
                             </td>
                         </tr>
                     </tbody>

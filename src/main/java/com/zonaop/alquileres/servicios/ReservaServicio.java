@@ -264,7 +264,7 @@ public class ReservaServicio {
     public void validarFechaCreacion(Date fechaDesde, Date fechaHasta, String propiedadId) throws MiException {
                 
         List<Reserva> reservas = reservarepo.verificarDisponibilidad(fechaDesde, fechaHasta, propiedadId);
-        if (reservas != null) {
+        if (!reservas.isEmpty()) {
             throw new MiException("La fecha de reserva debe estar dentro del rango de disponibilidad.");
         }
     }

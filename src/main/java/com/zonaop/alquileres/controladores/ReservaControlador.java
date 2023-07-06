@@ -115,7 +115,7 @@ public class ReservaControlador {
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
-            return "redirect:../lista";
+            return "redirect:../listar";
         }
         
     }
@@ -156,7 +156,7 @@ public class ReservaControlador {
 
             reservaservi.modificarReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
 
-            return "redirect:../lista";
+            return "redirect:../listar";
 
         } catch (MiException ex) {
 
@@ -185,7 +185,7 @@ public class ReservaControlador {
 
             p.addFlashAttribute("error", "intente de nuevo");
 
-            return "redirect:../lista";
+            return "redirect:../listar";
 
         }
 

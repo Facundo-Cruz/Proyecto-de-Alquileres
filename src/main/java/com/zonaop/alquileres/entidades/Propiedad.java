@@ -46,10 +46,6 @@ public class Propiedad {
     private Date fechaHasta;
     @ElementCollection
     private List<String> redesSociales;
-//    @OneToMany
-//    private List<String> telefonos;
-//    @OneToMany
-//    private List<String> mails;
     @OneToMany
     private List<Imagen> fotos;
     private double precio;
@@ -58,10 +54,20 @@ public class Propiedad {
     private int calificacion;
     @OneToMany
     private List<Servicio> servicios;
+    private String email;
 
     public Propiedad() {
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
     public List<String> getRedesSociales() {
         return redesSociales;
     }
@@ -142,28 +148,6 @@ public class Propiedad {
         this.fechaHasta = fechaHasta;
     }
 
-//    public List<String> getRedesSociales() {
-//        return redesSociales;
-//    }
-//    public void setRedesSociales(List<String> redesSociales) {
-//        this.redesSociales = redesSociales;
-//    }
-//
-//    public List<String> getTelefonos() {
-//        return telefonos;
-//    }
-//
-//    public void setTelefonos(List<String> telefonos) {
-//        this.telefonos = telefonos;
-//    }
-//
-//    public List<String> getMails() {
-//        return mails;
-//    }
-//
-//    public void setMails(List<String> mails) {
-//        this.mails = mails;
-//    }
     public long getTelefono() {
         return telefono;
     }

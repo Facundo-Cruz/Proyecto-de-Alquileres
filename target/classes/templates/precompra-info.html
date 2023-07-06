@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/precompra-info.css">
+    <link rel="stylesheet" href="/css/botones.css">
     <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -32,14 +34,93 @@
         <a class="despues" onclick="moveSlide(1)">&#10095;</a>
     </div>
     <div class="info">
-        <p class="titulo">titulo</p>
-        <p>ubicacion</p>
-        <button class="rent-button">alquilar</button>
+        <p class="titulo">casa grande algo titulo</p>
+        <p class="ubicacion">caba calle 123</p>
+        <div class="linea">
+            <div class="puntuacion">
+                4.5
+            </div>
+            <div class="compra">
+                <p class="precio">1b us$/dia</p>
+                <button class="rent-button">alquilar</button>
+            </div>
+        </div>
     </div>
     <div class="description">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi alias voluptates ex obcaecati ipsam atque sint maiores quod nesciunt repudiandae. Veritatis consectetur eos quos ipsum quae labore est beatae obcaecati. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur et explicabo ipsam nulla aliquid voluptate nemo in laborum modi corporis eius culpa perspiciatis, sint suscipit vero quibusdam quis cupiditate perferendis?
+        <div class="top-line"></div>
+        Tres ambientes en alquiler, living comedor con cocina integrada, que sale a balcón aterrazado con parrilla
+        propia, una suite con vestidor, segundo dormitorio, y baño completo, cochera subterránea. Calefacción y
+        refrigeración por aire.
+        <br><br>
+        servicio de cosas y cosas y cosas
+        <div class="bottom-line"></div>
     </div>
+    <div class="servicios">
+        <p class="heading">servicios</p>
+        <div class="top-line"></div>
+        <div class="servicios">
+            <div class="items">
+                <i class='bx bx-bus'></i>
+                <p class="servicio-tipo">transporte</p>
+            </div>
+            <div class="items">
+                <i class='bx bx-bus'></i>
+                <p class="servicio-tipo">seguridad</p>
+            </div>
+            <div class="items">
+                <i class='bx bxs-music'></i>
+                <p class="servicio-tipo">dj</p>
+            </div>
+            <div class="items">
+                <i class='bx bx-bowl-hot'></i>
+                <p class="servicio-tipo">catering</p>
+            </div>
+            <div class="items">
+                <i class='bx bx-camera'></i>
+                <p class="servicio-tipo">fotografo</p>
+            </div>
+            <div class="items">
+                <i class='bx bx-bus'></i>
+                <p class="servicio-tipo">chef</p>
+            </div>
+            <div class="items">
+                <i class='bx bxs-drink'></i>
+                <p class="servicio-tipo">bar</p>
+            </div>
+            <div class="items">
+                <i class='bx bxs-hot'></i>
+                <p class="servicio-tipo">asador</p>
+            </div>
+
+        </div>
+        <div class="bottom-line"></div>
+    </div>
+    <div class="comentarios">
+        <p class="heading">Comentarios</p>
+        <div class="top-line"></div>
+        <div class="comentario">
+            <img class="foto-perfil" src="/img/building.jpg" alt="">
+            <div class="mensaje">
+                <p class="nombre-perfil">julian romero</p>
+                <p class="comment">que casa horrible</p>
+            </div>
+        </div>
+    </div>
+    <script src="/js/navbar-responsive.js"></script>
     <script src="/js/precompra.js"></script>
+    <!--
+        servicios:
+        transporte,
+        seguridad,
+        dj
+        catering
+        fotografo
+        chef
+        bar
+        show
+        guarderia
+        asador
+    -->
 </body>
 
 </html>

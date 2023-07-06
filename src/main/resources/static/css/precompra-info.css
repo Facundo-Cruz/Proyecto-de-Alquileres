@@ -4,10 +4,20 @@
     overflow-x: hidden;
 }
 
+.container{
+    background-color: #036666 !important;
+}
+
+.btn{
+    background-color:#358F80 !important;
+}
+
+.menu{
+    background-color: #036666 !important;
+}
+
 body{
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #99E2B4;
+    background-color: #efece9 !important;
 }
 
 
@@ -19,13 +29,15 @@ body{
 }
 
 .slide img {
-    width: 99.5vw;
+    width: 100vw;
     height: 30vw;
-    z-index: 0;
+    opacity: 0.8;
 }
 
 .slide {
     display: none;
+    background-color: black;
+    z-index: -1;
 }
 
 .antes,
@@ -91,7 +103,6 @@ body{
     width: 99%;
     height: 50%;
     margin-left: 0.5%;
-    justify-content: space-between;
 }
 
 .titulo{
@@ -101,20 +112,120 @@ body{
 }
 
 .description{
-    margin-left: 0.5%;
+    margin-left: 1%;
+    margin-top: 3vh;
+    width: 98%;
+    margin-bottom: 1%;
+    padding: 0.5%;
+}
+
+.top-line{
+    width: 90%;
+    margin-left: 2.5%;
+    height: 0.1vh;
+    background-color: rgb(44, 44, 44);
+    margin-bottom: 1vh;
+}
+
+.bottom-line{
+    width: 90%;
+    margin-left: 2.5%;
+    height: 0.1vh;
     margin-top: 1vh;
-    width: 49.5%;
+    background-color: rgb(44, 44, 44);
+}
+
+.linea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.precio{
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.compra{
+    text-align: center;
+    margin-right: 5vw;
 }
 
 .rent-button{
     outline: none;
     border: none;
     border-radius:8px;
-    padding: 1% 2%;
+    padding: 0.7vw 2vw;
     background-color: #358F80;
-    
+    color: white;
+    font-size: 16px;
 }
 
 .rent-button:active{
     background-color: #036666;
+}
+
+.comentarios{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comentarios .top-line{
+    margin-top: 1.5vh;
+    margin-bottom: 4vh;
+}
+
+.heading{
+    width: 100%;
+    margin-top: 2vh;
+}
+
+.comentario{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+.foto-perfil{
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+}
+
+.mensaje{
+    margin-left: 1vw;
+    font-size: 17px;
+}
+
+.nombre-perfil{
+font-size: 12px !important;
+}
+
+.comment{
+    margin-bottom: 3vh;
+}
+
+.servicios{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 6vw;
+}
+
+.servicios .heading{
+    margin-left: 6vw;
+}
+
+.items{
+    margin-left: 2.5vw;
+    display: flex;
+    align-items: center;
+}
+
+.servicio-tipo{
+    font-size: 13px;
+    margin-left: 0.3vw;
 }

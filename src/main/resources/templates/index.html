@@ -4,40 +4,44 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <form class="formulario" th:action="@{/servicio/contratoservicio}" method="POST">
-            <div class="form-group my-3">
-                <label class="mb-2">nombre</label> 
-                <input type="text" class="form-control" name="nombre" placeholder="">
-            </div>
-            <div class="form-group my-3">
-                <label class="mb-2">descripcion </label> 
-                <br>
-                <textarea name="descripcion" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="form-group my-3">
-                <label class="mb-2"> [Precio]</label> 
-                <input type="number" class="form-control" name="precio" placeholder="">
-            </div>
-            <select name="tipo" id="">
-                <option >Seleccionar Editorial</option>
-                <option value="DJ" >DJ</option>
-                <option value="Seguridad" >Seguridad</option>
-                <option value="Animacion" >animacion</option>
-                <option value="Asador" >asador</option>
-                <option value="Bar" >bar</option>
-                <option value="Show" >Shows</option>
-                <option value="Guarderia" >Guarderia</option>
-                <option value="Catering" >Catering</option>
-            </select>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-            <button type="submit" class="btn btn-primary mt-3 botones">Guardar</button>
-        </form>
-    </body>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar :: nav"></nav> 
+    <form class="formulario-registro-de-propiedad" th:action="@{/pruebass}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
+        <div class="subir-imagenes">
+            <input id="input-imagen" class="imagen" type="file" accept="image/*" name="archivos[]" multiple required>
+            <input type="submit">
+          </div>
+    </form>
+    <script>
+        function validarFormulario() {
+            
+            var input = document.getElementById('input-imagen');
+            var archivosSeleccionados = input.files;
+            var maximoArchivos = 3;
+            alert('La cantidad de archivos seleccionados es: ' + archivosSeleccionados.length);
+            
+            if (archivosSeleccionados.length > maximoArchivos) {
+                alert('El número máximo de imágenes permitidas es ' + maximoArchivos);
+                return false; // Evita enviar el formulario
+            }
+    
+            return true; // Envía el formulario si se cumplen las condiciones
+        }
+    </script>
+    <script src="/js/navbar-responsive.js"></script>
+</body>
+
 </html>

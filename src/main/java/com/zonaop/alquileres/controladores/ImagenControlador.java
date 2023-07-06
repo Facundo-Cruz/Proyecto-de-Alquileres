@@ -2,6 +2,8 @@ package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Usuario;
+import com.zonaop.alquileres.excepciones.MiException;
+import com.zonaop.alquileres.servicios.ImagenServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +26,15 @@ public class ImagenControlador {
     
     @Autowired
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    private ImagenServicio imagenServicio;
 
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> imagenPropiedad(@PathVariable String id) {
         Propiedad propiedad = propiedadServicio.buscarPropiedadPorId(id);
 
-        byte[] imagen = propiedad.getFoto().getContenido();
+        byte[] imagen = propiedad.getFotos().get(0).getContenido();
         HttpHeaders headers = new HttpHeaders();
 
         headers.setContentType(MediaType.IMAGE_JPEG);
@@ -49,4 +54,17 @@ public class ImagenControlador {
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
+    
+    @GetMapping("/propiedad/{id}")
+    public ResponseEntity<byte[]> imagenPropiedades(@PathVariable String id) throws MiException {
+  
+
+        byte[] imagen = imagenServicio.traerImagen(id).getContenido();
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.IMAGE_JPEG);
+
+        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+    }
+    
 }

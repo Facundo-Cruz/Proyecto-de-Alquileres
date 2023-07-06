@@ -69,9 +69,9 @@ public class PortalControlador {
                 clienteServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
 
             } else {
-                
+
                 propietarioServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
-                
+
             }
             redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");
             return "redirect:/login";

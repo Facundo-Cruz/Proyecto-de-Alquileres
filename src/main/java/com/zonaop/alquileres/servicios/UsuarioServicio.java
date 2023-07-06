@@ -6,6 +6,7 @@ import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,10 +35,24 @@ public class UsuarioServicio implements UserDetailsService{
     public List<Usuario> listarUsuarios(){
         return usuarioRepositorio.findAll();
     }
+    public List<Usuario> listarUsuariosPorNombre(String nombre){
+        return usuarioRepositorio.buscarPorNombreUsuario(nombre);
+    }
     
     @Transactional
     public void eliminarPorId(String id){
         usuarioRepositorio.deleteById(id);
+    }
+    
+    @Transactional
+    public void cambiarEstadoPorId(String id){
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        
+        if (respuesta.isPresent()) {
+            Usuario usuario = respuesta.get();
+            usuario.setEstado(!usuario.getEstado());
+            usuarioRepositorio.save(usuario);
+        }
     }
     
     @Override
@@ -53,7 +68,7 @@ public class UsuarioServicio implements UserDetailsService{
             } else {
                 System.out.println("no COINCIDEN");
             }
-        if (usuario != null) {
+        if (usuario != null && usuario.getEstado()) {
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
             permisos.add(p);

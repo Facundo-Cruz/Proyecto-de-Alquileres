@@ -1,11 +1,14 @@
 package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Propietario;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -23,33 +26,36 @@ public class PropiedadControlador {
 
     @Autowired
     public PropiedadServicio propiedadServicio;
-    
+
     @Autowired
     public PropietarioServicio propietarioServicio;
 
     @GetMapping("/registrar")
-    public String registrarPropiedad(/*@PathVariable String idPropietairo,*/ModelMap modelo) {
-        
-        //modelo.put("propietario", propietarioServicio.getOne(idPropietairo));
+    public String registrarPropiedad() {
 
         return "formulario-registro-propiedad.html";
     }
 
     @PostMapping("/registro")
-    public String subir(/*@PathVariable String idPropietario,*/@RequestParam String nombre, @RequestParam String direccion,
+
+    public String subir(@RequestParam String nombre, @RequestParam String direccion,
             @RequestParam String localidad, @RequestParam String codigoPostal,
             @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,
-            @RequestParam String tipoPropiedad, @RequestParam MultipartFile archivo,
-            ModelMap modelo) {
+            @RequestParam String tipoPropiedad, @RequestParam("archivos[]") List<MultipartFile> archivos,
+            ModelMap modelo, HttpSession session, @RequestParam long telefono,
+            @RequestParam(value = "serviciosSeleccionados", required = false) List<String> serviciosSeleccionados,
+            @RequestParam(value = "preciosServicios", required = false) List<Integer> preciosServicios,
+            @RequestParam(value = "redesSociales", required = false) List<String> redesSociales) {
 
-
-
+        Propietario propietario = (Propietario) session.getAttribute("usuariosession");
+        String idPropietario = propietario.getId();
+        
+      
         try {
 
-            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivo/*,idPropietario*/);
-
-            return "mainPage.html";
+            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivos, idPropietario, telefono, serviciosSeleccionados, preciosServicios, redesSociales);
+            return "redirect:/";
 
         } catch (MiException ex) {
 
@@ -65,10 +71,10 @@ public class PropiedadControlador {
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
-    
+
     @GetMapping("/modificar/{id}")
     public String modificarPropiedad(@PathVariable("id") String idPropiedad, ModelMap modelo) {
-        
+
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
 
         return "formulario-modificar-propiedad.html";

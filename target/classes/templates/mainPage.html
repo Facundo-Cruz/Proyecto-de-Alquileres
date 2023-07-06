@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/style2.css">
     <link rel="stylesheet" href="/css/botones.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
 </head>
 
 <body>
@@ -80,7 +82,8 @@
             <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
             <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
             <div class="contenedor">
-                <a href="#" class="btn btn-1">Alquilar</a>
+                <a th:href= "@{/reserva/registrar/__${propiedad.id}__}" class="btn-aux btn-1">Alquilar</a>
+
             </div>
         </div>    
         
@@ -103,6 +106,7 @@
     </footer>
 
     <script src="/js/mainPage.js"></script>
+    <script src="/js/navbar-responsive.js"></script>
 </body>
 
 </html>

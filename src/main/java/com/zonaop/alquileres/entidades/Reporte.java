@@ -31,7 +31,7 @@ public class Reporte {
     @JoinColumn(name="propiedad_id")
     private Propiedad propiedad;
     private String texto;
-    @OneToMany
+    @OneToOne
     private Imagen foto;
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;

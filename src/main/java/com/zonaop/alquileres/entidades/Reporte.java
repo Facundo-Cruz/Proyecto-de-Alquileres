@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,7 +20,7 @@ public class Reporte {
     private String id;
     private String idUsuario;
     private String texto;
-    @OneToMany
+    @OneToOne
     private Imagen foto;
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;

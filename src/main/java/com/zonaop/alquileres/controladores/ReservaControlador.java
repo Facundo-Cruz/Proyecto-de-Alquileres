@@ -179,7 +179,7 @@ public class ReservaControlador {
             reservaservi.EliminarReserva(id);
             p.addFlashAttribute("exito", "eliminado");
 
-            return "redirect:../lista";
+            return "redirect:../listar";
 
         } catch (MiException ex) {
 

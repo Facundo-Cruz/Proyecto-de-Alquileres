@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/userInterface.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
 </head>
 
 <body>
@@ -41,7 +43,8 @@
                 <div class="info-datos">
                     <p th:text="${propiedad.direccion}" class="ubicacion"></p>
                     <p th:text="${propiedad.descripcion}" class="descripcion"></p>
-                    <p th:text="'Desde '+${propiedad.fechaDesde}+' hasta el '+${propiedad.fechaHasta}" class="fecha">
+                    <p th:text="'Disponible desde el '+${propiedad.fechaDesde}+' hasta el '+${propiedad.fechaHasta}"
+                        class="fecha">
                     </p>
                     <div class="email-celu">
                         <div class="email">
@@ -54,13 +57,67 @@
                         </div>
                     </div>
                     <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
-                        SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
+                            SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
                     <button class="cancelar">cancelar</button>
                 </div>
             </div>
         </div>
+        <!-- cards reservas inicio -->
+        <div class="title-cards">
+            <h2>Mis Reservas</h2>
+        </div>
+        <div class="container-card">
 
+<<<<<<< HEAD
 
+=======
+            <div class="card" th:each="reserva : ${reservas}">
+                <figure>
+                    <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
+                </figure>
+                <div class="contenido-card">
+                    <h3 th:text="${reserva.propiedad.nombre}"></h3>
+                    <p>
+                        <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
+                    </p>
+                    <p>
+                        <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
+                    </p>
+                    <div class="redes">
+                        <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
+                                class="fab fa-facebook"></i></a>
+                        <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
+                                class="fab fa-twitter"></i></a>
+                        <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                    <hr class="horizontal">
+                    <p>
+                        <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
+                        <br>
+                        <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
+                        <br>
+                        <b>Servicios agregados:</b>
+                        <br>
+                        <span th:if="${reserva.servicios.isEmpty()}">No hay servicios</span>
+                        <span th:each="servicio, iterStatus : ${reserva.servicios}">
+                            <span th:text="${servicio.nombre}"></span>
+                            <span th:if="${!iterStatus.last}">, </span>
+                        </span>
+                        <br>
+                        <b>Total: </b>$<span th:text="${reserva.total}"></span>
+                    </p>
+                    <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
+                    <p sec:authorize="hasRole('PROPIETARIO')">
+                        <b>Cliente: </b> <span th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span></span>
+                    </p>
+                    <a href="#">Cancelar Reserva</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- cards reservas fin -->
+>>>>>>> 0035d31162228948f52c2d5256e6715ec1e8359c
     </div>
 
     <script src="/js/userInterface.js"></script>

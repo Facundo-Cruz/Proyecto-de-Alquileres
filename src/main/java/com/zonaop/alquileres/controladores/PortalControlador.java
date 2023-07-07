@@ -31,6 +31,22 @@ public class PortalControlador {
     @Autowired
     private PropietarioServicio propietarioServicio;
 
+
+    @GetMapping("/pruebas")
+    public String pruebas() {
+
+        return "index.html";
+
+    }
+
+    @PostMapping("/pruebass")
+    public String pruebas2(@RequestParam(value = "archivos[]", required = false) List<MultipartFile> archivos,
+            @RequestParam double rating, @RequestParam String comentario) {
+        
+        System.out.println(rating);
+        return "redirect:/";
+    }
+
     @GetMapping("/registrar")
     public String registrar() {
 

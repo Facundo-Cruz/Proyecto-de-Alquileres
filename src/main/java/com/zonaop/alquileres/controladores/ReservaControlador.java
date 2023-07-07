@@ -48,6 +48,8 @@ public class ReservaControlador {
         Cliente cliente = (Cliente) session.getAttribute("usuariosession");
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idCasa));
         modelo.put("cliente", cliente);
+        modelo.put("fechasDesde", reservaservi.traerFechasDesde(idCasa));
+        modelo.put("fechasHasta", reservaservi.traerFechasHasta(idCasa));
         return "formulario-registro-reserva.html";
 
     }
@@ -59,7 +61,8 @@ public class ReservaControlador {
             @RequestParam double total,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo,
-            @RequestParam(value = "servicios", required = false) List<Servicio> servicios) {
+            @RequestParam(value = "servicios", required = false) List<Servicio> servicios,
+            RedirectAttributes redirectAttributes) {
 
         try {
             reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta,servicios, total);
@@ -67,9 +70,9 @@ public class ReservaControlador {
 
         } catch (MiException ex) {
 
-            modelo.put("error", ex.getMessage());
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
 
-            return "formulario-registro-reserva.html";
+            return "redirect:/reserva/registrar/" + idPropiedad;
 
         }
 
@@ -78,7 +81,7 @@ public class ReservaControlador {
     }
 
     //ruta para listar las reservas de las propiedades
-    @GetMapping("/lista")
+    @GetMapping("/listar")
 
     public String listar(ModelMap modelo) {
 
@@ -112,37 +115,11 @@ public class ReservaControlador {
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
-            return "redirect:/usuario/perfil";
+            return "redirect:../listar";
         }
         
     }
 
-//    //ruta para modificar la reserva y sus datos correspondientes
-//    @PostMapping("/modificar/{id}")
-//    public String modificar(@PathVariable String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio, ModelMap modelo) {
-//
-//        try {
-//
-//            List<Reserva> reserva = reservaservi.listarReservas();
-//            modelo.addAttribute("reserva", reserva);
-//
-//            reservaservi.modificarReserva(id, huesped, servicios, total, idOpinion, idPropiedad, idCliente, idServicio);
-//
-//            return "redirect:../lista";
-//
-//        } catch (MiException ex) {
-//
-//            List<Reserva> reserva = reservaservi.listarReservas();
-//            modelo.put("error", ex.getMessage());
-//
-//            modelo.addAttribute("reserva", reserva);
-//
-//            return "formularioModificarReserva.html";
-//
-//        }
-//
-//    }
-    //ruta para modificar la reserva y sus datos correspondientes
     @PostMapping("/modificar/{id}")
     public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
 
@@ -153,7 +130,7 @@ public class ReservaControlador {
 
             reservaservi.modificarReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
 
-            return "redirect:../lista";
+            return "redirect:../listar";
 
         } catch (MiException ex) {
 
@@ -168,59 +145,22 @@ public class ReservaControlador {
 
     }
 
+      
     //ruta para eliminar una reserva por id 
     @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable String id, ModelMap modelo) {
-        modelo.put("editorial", reservaservi.getOne(id));
-
-        return "reserva_eliminar.html";
-    }
-
-//    //ruta para eliminar una reserva por id 
-//     @PostMapping("/eliminar/{id}")
-//    public String eliminar(@PathVariable String id, RedirectAttributes p) {
-//
-//
-//         try {
-//             reservaservi.EliminarReserva(id);
-//             p.addFlashAttribute("exito","eliminado");
-//             
-//             return "redirect:../listaReserva";
-//             
-//         } catch (MiException ex) {
-//   
-//             
-//             p.addFlashAttribute("error","intente de nuevo");
-//             
-//            return "redirect:../listaReserva";
-//             
-//         }
-//
-//   }
-//     @DeleteMapping("/eliminar/{id}")
-//     public boolean eliminarReserva(@PathVariable ("id"),String id){
-//        
-//        
-//        return reservaservi.EliminarReserva(id);
-//        
-//        
-//    }
-//        
-    //ruta para eliminar una reserva por id 
-    @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, RedirectAttributes p) {
 
         try {
             reservaservi.EliminarReserva(id);
             p.addFlashAttribute("exito", "eliminado");
 
-            return "redirect:../lista";
+            return "redirect:../listar";
 
         } catch (MiException ex) {
 
             p.addFlashAttribute("error", "intente de nuevo");
 
-            return "redirect:../listaReserva";
+            return "redirect:../listar";
 
         }
 

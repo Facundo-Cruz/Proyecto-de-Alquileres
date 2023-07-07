@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="/css/formulario-registro-usuario.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilo-validaciones.css">
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
 </head>
 
 <body>
+    <nav th:replace="fragments/navbar :: nav"></nav> 
     <div class="contenedor-back">
+        <div th:replace="fragments/errorMessage :: div"></div> 
         <div class="contenedor">
 
             <form class="formulario-registro-de-usuario" th:action="@{/usuario/modificar}" method="POST" onsubmit="return validarFormulario()" enctype="multipart/form-data">
@@ -33,8 +37,11 @@
                 <label for="email">Mail:</label>
                 <input th:value="${usuario.email}" type="email" class="email" name="email" placeholder="tumail@gmail.com" required>
 
-                <label for="password">Ingrese su clave</label>
-                <input  class="password" type="password" name="contrasena" required>
+                <label for="password">Ingrese su clave actual</label>
+                <input class="password1" type="password" name="passwordActual" required>
+
+                <label for="password">Ingrese su clave nueva</label>
+                <input  class="password" type="password" name="password" required>
                 <p class="p-contraseña">* La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter
                     especial.</p>
 

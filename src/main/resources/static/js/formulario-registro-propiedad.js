@@ -38,7 +38,7 @@ function validarFormulario() {
   // validación imágenes
   var input = document.getElementById('input-imagen');
   var archivosSeleccionados = input.files;
-  var maximoArchivos = 5;
+  var maximoArchivos = 10;
   
   if (archivosSeleccionados.length > maximoArchivos) {
       alert('El número máximo de imágenes permitidas es ' + maximoArchivos);

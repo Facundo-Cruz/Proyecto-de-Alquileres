@@ -6,20 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Listado de Usuarios</title>
-    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
-    <!-- <link rel="stylesheet" href="/css/nav-listado-usuarios.css"> -->
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
     <link rel="stylesheet" href="/css/estilo-validaciones.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/navbar-responsive.css">
-    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
 </head>
 
 <body>
     <nav th:replace="fragments/navbar :: nav"></nav>
     <div class="contenedor">
-        <form  th:action="@{/usuario/listar/nombres}" method="POST">
+        <form th:action="@{/usuario/listar/nombres}" method="POST">
             <main class="table">
                 <div th:replace="fragments/successMessage :: div"></div>
                 <section class="table__header">
@@ -34,31 +31,29 @@
                         <thead>
                             <tr>
                                 <th> Id </th>
-                                <th> Nombre y Apellido </th>
-                                <th> Email </th>
-                                <th> Rol </th>
-                                <th> Estado </th>
+                                <th> Nombre </th>
+                                <th> Dirección </th>
+                                <th> Localidad </th>
+                                <th> Pecio x Día </th>
                                 <th> Acciones </th>
                             </tr>
                         </thead>
-                        <tbody th:each="usuario : ${usuarios}">
+                        <tbody th:each="propiedad : ${propiedades}">
                             <tr>
-                                <td th:text="${usuario.id}"> 1 </td>
+                                <td th:text="${propiedad.id}"> 1 </td>
                                 <td>
-                                    <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="">
-                                    <span th:text="${usuario.nombre + ' ' + usuario.apellido}"></span>
+                                    <img th:src="@{/imagen/__${propiedad.id}__}" alt="">
+                                    <span th:text="${propiedad.nombre}"></span>
                                 </td>
-                                <td th:text="${usuario.email}"> </td>
-                                <td th:text="${usuario.rol}"> </td>
+                                <td th:text="${propiedad.direccion}"> </td>
+                                <td th:text="${propiedad.localidad}"> </td>
+                                <td th:text="${propiedad.precio}"> </td>
                                 <td>
-                                    <p th:if="${usuario.estado == true}" class="status delivered">Habilitado</p>
-                                    <p th:if="${usuario.estado == false}" class="status cancelled">Deshabilitado</p>
-                                </td>
-                                <td>
-                                    <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
+                                    <a href="" class="delete-link">Eliminar</a>
+                                    <!-- <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
                                         th:href="@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
                                     <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"
-                                        th:href="@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar Estado</a>
+                                        th:href="@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar Estado</a> -->
                                 </td>
                             </tr>
                         </tbody>
@@ -66,7 +61,7 @@
                 </section>
             </main>
         </form>
-        
+
     </div>
     <script src="/js/navbar-responsive.js"></script>
 </body>

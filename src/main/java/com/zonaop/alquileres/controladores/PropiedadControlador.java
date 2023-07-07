@@ -96,4 +96,23 @@ public class PropiedadControlador {
 
         return "formulario-modificar-propiedad.html";
     }
+    
+    @GetMapping("/listar")
+    public String listarUsuarios(ModelMap model) {
+
+        List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
+        model.put("propiedades", propiedades);
+
+        return "lista-propiedades.html";
+
+    }
+    
+    @GetMapping("/mostrar/{id}")
+    public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
+
+        model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
+        
+        return "precompra-info.html";
+
+    }
 }

@@ -14,45 +14,39 @@
 <body>
     <nav th:replace="fragments/navbar :: nav"></nav>
     <div class="slide-box">
-        <div class="slide fade">
-            <div class="numero">1/4</div>
-            <img src="/img/building.jpg" alt="">
-        </div>
-        <div class="slide fade">
-            <div class="numero">2/4</div>
-            <img src="/img/building.jpg" alt="">
-        </div>
-        <div class="slide fade">
-            <div class="numero">3/4</div>
-            <img src="/img/building.jpg" alt="">
-        </div>
-        <div class="slide fade">
-            <div class="numero">4/4</div>
-            <img src="/img/building.jpg" alt="">
+        <div th:each="imagen, iterStat : ${propiedad.fotos}" class="slide fade">
+            <div class="numero" th:text="${iterStat.index + 1} + '/' + ${propiedad.fotos.size()}"></div>
+            <img th:src="@{/imagen/propiedad/__${imagen.id}__}" alt="Imagen" />
         </div>
         <a class="antes" onclick="moveSlide(-1)">&#10094;</a>
         <a class="despues" onclick="moveSlide(1)">&#10095;</a>
     </div>
     <div class="info">
-        <p class="titulo">casa grande algo titulo</p>
-        <p class="ubicacion">caba calle 123</p>
+        <p class="titulo" th:text="${propiedad.nombre}"></p>
+        <p class="ubicacion" th:text="${propiedad.localidad + ', '+ propiedad.direccion}"> </span></p>
         <div class="linea">
-            <div class="puntuacion">
-                4.5
+            <div class="puntuacion" th:text="${propiedad.calificacion + ' estrellas'}">
+
             </div>
             <div class="compra">
-                <p class="precio">1b us$/dia</p>
-                <button class="rent-button">alquilar</button>
+                <p class="precio"><span th:text="${propiedad.precio}"></span> us$/dia</p>
+                <a  th:if="${session.usuariosession == null}"
+                th:href="@{/login}" class="rent-button">Alquilar</a>
+                <a th:href="@{/reserva/registrar/__${propiedad.id}__}" class="rent-button" sec:authorize="hasRole('CLIENTE')">Alquilar</a>
             </div>
         </div>
     </div>
     <div class="description">
-        <div class="top-line"></div>
-        Tres ambientes en alquiler, living comedor con cocina integrada, que sale a balcón aterrazado con parrilla
-        propia, una suite con vestidor, segundo dormitorio, y baño completo, cochera subterránea. Calefacción y
-        refrigeración por aire.
+        <div class="top-line" th:text="${propiedad.descripcion}"></div>
+        <span th:text="${propiedad.descripcion}"></span>
         <br><br>
-        servicio de cosas y cosas y cosas
+        <h3>Servicios disponibles:</h3>
+        <br>
+        <span th:each="servicio : ${propiedad.servicios}">
+            <h4 th:text="${servicio.nombre}"></h4>
+            <p th:text="${servicio.descripcion}"></p>
+            <br>
+        </span>
         <div class="bottom-line"></div>
     </div>
     <div class="servicios">
@@ -95,14 +89,14 @@
         </div>
         <div class="bottom-line"></div>
     </div>
-    <div class="comentarios">
+    <div class="comentarios" >
         <p class="heading">Comentarios</p>
         <div class="top-line"></div>
-        <div class="comentario">
+        <div class="comentario" th:each="opinion : ${opiniones}">
             <img class="foto-perfil" src="/img/building.jpg" alt="">
             <div class="mensaje">
-                <p class="nombre-perfil">julian romero</p>
-                <p class="comment">que casa horrible</p>
+                <p class="nombre-perfil" th:text="${opinion.huesped}"></p>
+                <p class="comment" th:text="${opinion.comentario}"></p>
             </div>
         </div>
     </div>

@@ -69,7 +69,7 @@
             </div>
 
             <!-- cards reservas inicio -->
-            <hr>
+            <hr sec:authorize="hasRole('PROPIETARIO')">
             <div class="acordeon">
                 <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
                 <span class="title-acordeon">Mis reservas</span>
@@ -97,7 +97,7 @@
                                 <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
                                         class="fab fa-instagram"></i></a>
                             </div>
-                            <hr class="horizontal">
+                            <hr class="horizontal" >
                             <p>
                                 <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
                                 <br>
@@ -110,6 +110,7 @@
                                     <span th:text="${servicio.nombre}"></span>
                                     <span th:if="${!iterStatus.last}">, </span>
                                 </span>
+                                <span></span>
                                 <br>
                                 <b>Total: </b>$<span th:text="${reserva.total}"></span>
                             </p>

@@ -7,7 +7,6 @@ import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +30,7 @@ public class PortalControlador {
 
     @Autowired
     private PropietarioServicio propietarioServicio;
+
 
     @GetMapping("/pruebas")
     public String pruebas() {
@@ -64,7 +64,7 @@ public class PortalControlador {
     }
 
     @GetMapping("/")
-    public String index(ModelMap model, HttpSession session) {
+    public String index(ModelMap model,HttpSession session) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         model.put("usuario", usuario);
@@ -73,20 +73,34 @@ public class PortalControlador {
     }
 
     @PostMapping("/registro")
+<<<<<<< HEAD
     public String registro(@RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,@RequestParam Long telefono, @RequestParam String alias,
             @RequestParam String contrasena, @RequestParam String rol,
+=======
+    public String registro(@RequestParam String nombre,@RequestParam String apellido,
+            @RequestParam String email, @RequestParam String alias,
+            @RequestParam String contrasena,@RequestParam String rol,
+>>>>>>> 19b35c1628cf1ec2f169e7941edb343e3eb77306
             @RequestParam MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
 
         try {
             if (rol.equalsIgnoreCase("cliente")) {
 
+<<<<<<< HEAD
                 clienteServicio.registrar(nombre, apellido, alias, email,telefono, contrasena, archivo, rol);
 
             } else {
 
                 propietarioServicio.registrar(nombre, apellido, alias, email,telefono, contrasena, archivo, rol);
+=======
+                clienteServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
+
+            } else {
+
+                propietarioServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
+>>>>>>> 19b35c1628cf1ec2f169e7941edb343e3eb77306
 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");

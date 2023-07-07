@@ -341,6 +341,16 @@ thead th.active,tbody td.active {
     cursor: pointer;
     border: none;
   }
+  .modify-link {
+    background-color: rgb(29, 179, 52);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
   
   .delete-link:active {
     opacity: 0.5;

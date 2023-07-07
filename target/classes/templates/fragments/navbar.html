@@ -118,6 +118,9 @@
                     <li>
                         <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/usuario/listar/}">Listar Usuarios</a>
                     </li>
+                    <li>
+                        <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/reserva/listar/}">Listar Reservas</a>
+                    </li>
                 </ul>
             </nav>
         </div>

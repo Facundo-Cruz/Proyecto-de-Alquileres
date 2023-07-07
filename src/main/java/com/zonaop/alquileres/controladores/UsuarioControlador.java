@@ -31,7 +31,7 @@ public class UsuarioControlador {
 
     @Autowired
     public PropiedadServicio propiedadServicio;
-    
+
     @Autowired
     public ReservaServicio reservaServicio;
 
@@ -53,9 +53,9 @@ public class UsuarioControlador {
         return "lista-usuarios.html";
 
     }
-    
+
     @PostMapping("/listar/nombres")
-    public String listarUsuariosPorNombre(@RequestParam String nombre,ModelMap model ) {
+    public String listarUsuariosPorNombre(@RequestParam String nombre, ModelMap model) {
 
         List<Usuario> usuarios = usuarioServicio.listarUsuariosPorNombre(nombre);
         model.put("usuarios", usuarios);
@@ -69,23 +69,26 @@ public class UsuarioControlador {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         Usuario perfil;
+        List<Reserva> reservas;
         if (usuario.getRol().name().equals("PROPIETARIO")) {
 
             perfil = propietarioServicio.getOne(usuario.getId());
 
             List<Propiedad> propiedades = propiedadServicio.listarPorPropietario(usuario.getId());
 
+            reservas = reservaServicio.listarPorPropietario(perfil.getId());
+
             modelo.put("propiedades", propiedades);
 
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
-            
-            List<Reserva> reservas = reservaServicio.listarPorCliente(usuario.getId());
-            
-            modelo.put("reservas", reservas);
+
+            reservas = reservaServicio.listarPorCliente(perfil.getId());
 
         }
+
+        modelo.put("reservas", reservas);
 
         modelo.put("usuario", perfil);
 
@@ -120,7 +123,7 @@ public class UsuarioControlador {
 
     @PostMapping("/modificar")
     public String modificarUsuario(String id, String nombre, String apellido,
-            String nombreUsuario, String email, String password, Imagen foto,
+            String nombreUsuario, String email,Long telefono, String password, Imagen foto,
             String rol, ModelMap modelo, MultipartFile archivo,
             RedirectAttributes redirectAttributes, String passwordActual) {
 
@@ -128,11 +131,11 @@ public class UsuarioControlador {
 
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, password, archivo, passwordActual);
+                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email,telefono, password, archivo, passwordActual);
 
             } else {
 
-                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, password, archivo, passwordActual);
+                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, archivo, passwordActual);
 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
@@ -168,7 +171,7 @@ public class UsuarioControlador {
 
         try {
             usuarioServicio.cambiarEstadoPorId(id);
-   
+
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {

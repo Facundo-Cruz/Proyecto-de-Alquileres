@@ -8,12 +8,14 @@ package com.zonaop.alquileres.servicios;
 import com.zonaop.alquileres.entidades.Cliente;
 import com.zonaop.alquileres.entidades.Opinion;
 import com.zonaop.alquileres.entidades.Propiedad;
+import com.zonaop.alquileres.entidades.Propietario;
 import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.ClienteRepositorio;
 import com.zonaop.alquileres.repositorios.OpinionRepositorio;
 import com.zonaop.alquileres.repositorios.PropiedadRepositorio;
+import com.zonaop.alquileres.repositorios.PropietarioRepositorio;
 import com.zonaop.alquileres.repositorios.ReservaRepositorio;
 
 import com.zonaop.alquileres.repositorios.ServicioRepositorio;
@@ -30,6 +32,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReservaServicio {
+    
+    @Autowired
+    public PropietarioRepositorio propietarioRepositorio;
 
     @Autowired
     public ReservaRepositorio reservaRepositorio;
@@ -57,13 +62,16 @@ public class ReservaServicio {
         validarFechaCreacion(fechaDeste, fechaHasta, idPropiedad);
         Optional<Cliente> clienteOp = clienterepo.findById(idCliente);
         Optional<Propiedad> propiedadOp = propiedadrepo.findById(idPropiedad);
+        Optional<Propietario> propietrarioOP=propietarioRepositorio.findById(propiedadOp.get().getPropietario().getId());
 
         Propiedad propiedad = propiedadOp.get();
         Cliente cliente = clienteOp.get();
+        Propietario propietario= propietrarioOP.get();
         Reserva reserva = new Reserva();
 
         reserva.setHuesped(huesped);
         reserva.setCliente(cliente);
+        reserva.setPropietario(propietario);
         reserva.setFechaDesde(fechaDeste);
         reserva.setFechaHasta(fechaHasta);
 //        reserva.setOpinion(opinion);
@@ -171,6 +179,10 @@ public class ReservaServicio {
     public List<Reserva> listarPorCliente(String id) {
         List<Reserva> reservas = reservaRepositorio.buscarPorCliente(id);
         return reservas;
+    }
+    public List<Reserva> listarPorPropietario(String id){
+       List<Reserva> reservas= reservaRepositorio.buscarPorPropietario(id);
+       return reservas;
     }
 
 

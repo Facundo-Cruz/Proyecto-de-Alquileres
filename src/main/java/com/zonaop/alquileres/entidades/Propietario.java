@@ -13,6 +13,9 @@ public class Propietario extends Usuario{
     //Un propietario puede tener multiples propiedades
     @OneToMany
     private List <Propiedad> propiedades;
+    
+    @OneToMany
+    private List<Reserva> reservas;
 
     public Propietario() {
         
@@ -25,6 +28,15 @@ public class Propietario extends Usuario{
     public void setPropiedades(List<Propiedad> propiedades) {
         this.propiedades = propiedades;
     }
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+    
     
     
 }

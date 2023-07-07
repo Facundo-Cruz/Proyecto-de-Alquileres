@@ -22,6 +22,7 @@ com\zonaop\alquileres\repositorios\ClienteRepositorio.class
 com\zonaop\alquileres\entidades\Reserva.class
 com\zonaop\alquileres\servicios\PropiedadServicio.class
 com\zonaop\alquileres\AlquileresApplication.class
+com\zonaop\alquileres\enumeraciones\EstadoReserva.class
 com\zonaop\alquileres\servicios\UsuarioServicio.class
 com\zonaop\alquileres\repositorios\ServicioRepositorio.class
 com\zonaop\alquileres\entidades\Servicio.class

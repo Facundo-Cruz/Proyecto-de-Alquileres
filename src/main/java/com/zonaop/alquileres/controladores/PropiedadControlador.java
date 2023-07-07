@@ -80,4 +80,14 @@ public class PropiedadControlador {
 
         return "formulario-modificar-propiedad.html";
     }
+    
+    @GetMapping("/listar")
+    public String listarUsuarios(ModelMap model) {
+
+        List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
+        model.put("propiedades", propiedades);
+
+        return "lista-propiedades.html";
+
+    }
 }

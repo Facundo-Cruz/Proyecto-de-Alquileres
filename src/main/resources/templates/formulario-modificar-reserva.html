@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva</title>
+    <link rel="stylesheet" href="/css/formulario-registro-reserva.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilo-validaciones.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar :: nav"></nav>
+
+    <div class="contenedor-back">
+        <div th:replace="fragments/errorMessage :: div"></div>
+
+        <div class="contenedor">
+
+            <div class="contenedor-titulo-reserva">
+                <hr>
+                <h3 class="titulo-descripcion">Modifique su Reserva</h3>
+                <hr>
+            </div>
+            <div class="contenedor-descripcion">
+                <!-- <img class="imagen-de-reserva" th:src="@{/imagen/__${propiedad.id}__}"
+                    alt="imagen propiedad seleccionada"> -->
+                <div class="slide-box">
+                    <div th:each="imagen, iterStat : ${propiedad.fotos}" class="slide fade">
+                        <div class="numero" th:text="${iterStat.index + 1} + '/' + ${propiedad.fotos.size()}"></div>
+                        <img th:src="@{/imagen/propiedad/__${imagen.id}__}" alt="Imagen" />
+                    </div>
+                    <a class="antes" onclick="moveSlide(-1)">&#10094;</a>
+                    <a class="despues" onclick="moveSlide(1)">&#10095;</a>
+                </div>
+
+                <div class="descripcion-ubicacion">
+                    <p>Ubicación:</p>
+                    <label class="descripcion-ubicacion-label" for="direccion">Dirección: <span
+                            th:text="${propiedad.direccion}"></span></label>
+
+                    <label class="descripcion-ubicacion-lavel" for="localidad">Localidad: <span
+                            th:text="${propiedad.localidad}"></span></label>
+                    <label class="descripcion-ubicacion-lavel" for="codigo_postal">C.P: <span
+                            th:text="${propiedad.codigoPostal}"></span></label>
+                    <label class="descripcion-ubicacion-lavel" for="codigo_postal">Rango de fechas disponibles:</label>
+                    <label class="descripcion-ubicacion-lavel"> <span id="rangos-fechas"></span></label>
+                </div>
+
+            </div>
+
+
+            <form class="formulario-registro-de-reserva" th:action="@{/reserva/modificar/__{reserva.id}__}" method="POST">
+               
+             
+                
+                <input hidden th:value="${reserva.id}" name="id">
+               
+                <!--calendarios  -->
+                <input type="text" name="idPropiedad" id="idPropietario" hidden required th:value="${propiedad.id}">
+                <input type="text" name="idCliente" id="idCliente" hidden required th:value="${cliente.id}">
+                <input type="text" name="huesped" id="idCliente" hidden required th:value="${cliente.nombreUsuario}">
+                <div class="contenedor-fechas">
+                    <div class="fecha">
+                        <label class="label-fecha" for="fecha-ingreso">Fecha de Ingreso: </label>
+                        <input id="fondo-fecha-ingreso" type="date" required name="fechaDesde" th:value="${reserva.fechaDesde}">
+                    </div>
+                    <div class="fecha">
+                        <label class="label-fecha" for="fecha-egreso">Fecha Hasta: </label>
+                        <input id="fondo-fecha-egreso" type="date" required name="fechaHasta" th:value="${reserva.fechaHasta}"> 
+                    </div>
+                </div>
+              
+               
+               <input type="date" id="propiedadFechaDesde" th:value="${propiedad.fechaDesde}" hidden>
+                <input type="date" id="propiedadFechaHasta" th:value="${propiedad.fechaHasta}" hidden>
+                <span id="precio-dia" th:text="${propiedad.precio}" style="display: none;"></span>
+                <div id="diferencia-fechas" style="display: none;"></div>
+
+                <!--  checkBox servicios adicionales -->
+                <label>Seleccione servicios adicionales:</label>
+                <div class="servicios">
+                    <div class="op" th:each="servicio : ${propiedad.servicios}">
+                        <div class="opr">
+                          
+                            <input class="etiqueta-check"  type="checkbox" th:id="'opcion' + ${servicio.id}"
+                                name="servicios" th:value="${servicio.id}" onchange="actualizarPrecioTotal(this)">
+                            <label th:for="'opcion' + ${servicio.id}" th:field="${servicio}" 
+                                th:text="${servicio.nombre}"></label>
+                        </div>
+                        <div class="opr">
+                            <label class="caja-precio" th:text="'$ ' + ${servicio.precio}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div id="precioTotal" style="display: none;">$ 0.00</div>
+
+                <!-- Precio por dia y Total -->
+                <div class="valor">
+                    <div class="valores" id="precio-dia">
+                        <label for="precio-por-dia">Precio por dia:</label>
+                        <label class="caja-precio-v2" th:text="'$ ' + ${propiedad.precio}"></label>
+                    </div>
+                    <div class="valores" id="total">
+                        <label for="precio">Total:</label>
+                        <label class="caja-precio-v"></label>
+                        <input hidden th:value="${reserva.total}" name ="total">
+                    </div>
+                </div>
+                <input type="number" name="total" id="miInputNumber" hidden>
+                <input class="enviar" type="submit">
+            </form>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        var fechasDesde = /*[[${fechasDesde}]]*/[];
+        var fechasHasta = /*[[${fechasHasta}]]*/[];
+
+    </script>
+    <script src="/js/navbar-responsive.js"></script>
+    <script src="/js/formulario-registro-reserva.js"></script>
+    <script th:inline="javascript">
+
+        const fechaIngreso = document.getElementById('fondo-fecha-ingreso');
+        const fechaEgreso = document.getElementById('fondo-fecha-egreso');
+        const diferenciaFechas = document.getElementById('diferencia-fechas');
+        const precioDia = parseFloat(document.getElementById('precio-dia').textContent);
+        const precioTotalElemento = document.getElementById('precioTotal');
+        const cajaPrecioV = document.querySelector('.caja-precio-v');
+        var inputElement = document.getElementById('miInputNumber');
+
+        fechaIngreso.addEventListener('change', calcularDiferenciaFechas);
+        fechaEgreso.addEventListener('change', calcularDiferenciaFechas);
+
+        function calcularDiferenciaFechas() {
+            const fechaDesde = new Date(fechaIngreso.value);
+            const fechaHasta = new Date(fechaEgreso.value);
+            const diferencia = Math.floor((fechaHasta - fechaDesde) / (1000 * 60 * 60 * 24)) + 1;
+            if (diferencia < 0) {
+                diferencia = 0;
+            }
+            const total = diferencia * precioDia;
+
+            diferenciaFechas.textContent = `${total}`;
+            actualizarPrecioTotal();
+        }
+
+        function actualizarPrecioTotal() {
+            var precioActual = parseFloat(diferenciaFechas.textContent);
+            var precioServicio;
+
+            document.querySelectorAll('.etiqueta-check:checked').forEach(function (checkbox) {
+                precioServicio = parseFloat(checkbox.parentElement.nextElementSibling.querySelector('.caja-precio').textContent.replace('$ ', ''));
+                precioActual += precioServicio;
+            });
+            inputElement.value = precioActual;
+            precioTotalElemento.textContent = '$ ' + precioActual.toFixed(2);
+            cajaPrecioV.textContent = '$ ' + precioActual.toFixed(2);
+
+        }
+        // ------
+        const fechaIngresoInput = document.getElementById('fondo-fecha-ingreso');
+        const fechaEgresoInput = document.getElementById('fondo-fecha-egreso');
+        const fechaDesdePropiedadInput = document.getElementById('propiedadFechaDesde');
+        const fechaDesdePropiedad = new Date(fechaDesdePropiedadInput.value);
+        const fechaHastaPropiedadInput = document.getElementById('propiedadFechaHasta');
+        const fechaHastaPropiedad = new Date(fechaHastaPropiedadInput.value);
+        var fechasDesde = /*[[${fechasDesde}]]*/[];
+        var fechasHasta = /*[[${fechasHasta}]]*/[];
+        var fechasDesdeJs = [];
+
+        for (var i = 0; i < fechasDesde.length; i++) {
+            var fechaString = fechasDesde[i];
+            var fecha = new Date(fechaString);
+            fechasDesdeJs.push(fecha);
+        }
+        var fechasHastaJs = [];
+
+        for (var i = 0; i < fechasHasta.length; i++) {
+            var fechaString = fechasHasta[i];
+            var fecha = new Date(fechaString);
+            fechasHastaJs.push(fecha);
+        }
+        var fechaHoy = new Date();
+        var fechaMinimaAux = fechaDesdePropiedad.toISOString().split('T')[0];
+        if (fechaMinimaAux < fechaHoy.toISOString().split('T')[0]) {
+            fechaMinimaAux = fechaHoy.toISOString().split('T')[0];
+        }
+
+        fechaIngresoInput.min = fechaMinimaAux;
+        fechaIngresoInput.max = fechaHastaPropiedad.toISOString().split('T')[0];
+
+
+        fechaEgresoInput.min = fechaMinimaAux;
+        fechaEgresoInput.max = fechaHastaPropiedad.toISOString().split('T')[0];
+
+        const fechaMinima = fechaDesdePropiedad;
+        const fechaMaxima = fechaHastaPropiedad;
+
+        const diasFueraDeRango = [];
+        let rangoActual = null;
+
+        // Recorrer cada día desde la fecha mínima hasta la fecha máxima
+        for (let fecha = new Date(fechaMinima); fecha <= fechaMaxima; fecha.setDate(fecha.getDate() + 1)) {
+            let dentroDeRango = false;
+
+            // Verificar si la fecha se encuentra dentro del rango definido por fechas_desde y fechas_hasta
+            for (let i = 0; i < fechasDesdeJs.length; i++) {
+                if (fecha >= fechasDesdeJs[i] && fecha <= fechasHastaJs[i]) {
+                    dentroDeRango = true;
+                    break;
+                }
+            }
+
+            // Si la fecha está fuera del rango, actualizar el rangoActual
+            if (!dentroDeRango && fecha > fechaHoy) {
+                if (!rangoActual) {
+                    // Si no hay un rangoActual, iniciar uno nuevo
+                    rangoActual = {
+                        inicio: new Date(fecha),
+                        fin: new Date(fecha)
+                    };
+                } else {
+                    // Si ya hay un rangoActual, actualizar el fin del rangoActual
+                    rangoActual.fin = new Date(fecha);
+                }
+            } else {
+                // Si la fecha está dentro del rango, agregar el rangoActual (si existe) a diasFueraDeRango y reiniciar rangoActual
+                if (rangoActual) {
+                    diasFueraDeRango.push({ inicio: new Date(rangoActual.inicio), fin: new Date(rangoActual.fin) });
+                    rangoActual = null;
+                }
+            }
+        }
+
+        // Si hay un rangoActual al finalizar, agregarlo a diasFueraDeRango
+        if (rangoActual) {
+            diasFueraDeRango.push({ inicio: new Date(rangoActual.inicio), fin: new Date(rangoActual.fin) });
+        }
+
+        // Imprimir los días fuera del rango en forma de rangos
+        diasFueraDeRango.forEach((rango) => {
+            console.log(`${rango.inicio.toISOString().split('T')[0]} - ${rango.fin.toISOString().split('T')[0]}`);
+        });
+
+        // Crear una variable para almacenar el contenido de los rangos de fechas
+        let rangosFechasHTML = "";
+
+        // Agregar cada rango de fechas al contenido
+        diasFueraDeRango.forEach((rango) => {
+            const inicio = rango.inicio.toISOString().split('T')[0];
+            const fin = rango.fin.toISOString().split('T')[0];
+            rangosFechasHTML += `${inicio} - ${fin}<br>`;
+        });
+
+        // Seleccionar el elemento span por su id y establecer su contenido
+        document.getElementById("rangos-fechas").innerHTML = rangosFechasHTML;
+
+        // -----
+        fechaHoy.setDate(fechaHoy.getDate() + 1);
+        var fechaMinimaAux = fechaDesdePropiedad.toISOString().split('T')[0];
+        if (fechaMinimaAux < fechaHoy.toISOString().split('T')[0]) {
+            fechaMinimaAux = fechaHoy.toISOString().split('T')[0];
+        }
+        fechaIngresoInput.min = fechaMinimaAux;
+        fechaEgresoInput.min = fechaMinimaAux;
+
+        fechaIngresoInput.addEventListener('change', validarFechas);
+        fechaEgresoInput.addEventListener('change', validarFechas);
+
+
+        function validarFechas() {
+            const fechaIngreso = new Date(fechaIngresoInput.value);
+            const fechaEgreso = new Date(fechaEgresoInput.value);
+
+
+
+            if (fechaIngreso > fechaEgreso) {
+                alert('La fecha de ingreso debe ser anterior a la fecha de egreso.');
+                fechaIngresoInput.value = ''; // Limpiar el valor de la fecha de ingreso
+                fechaEgresoInput.value = ''; // Limpiar el valor de la fecha de egreso
+                cajaPrecioV.textContent = '$ ' + 0;
+            } else if (fechaIngreso < fechaDesdePropiedad || fechaEgreso > fechaHastaPropiedad) {
+                alert('La fecha debe estár en el margen disponible que brinda la propiedad.');
+                fechaIngresoInput.value = ''; // Limpiar el valor de la fecha de ingreso
+                fechaEgresoInput.value = ''; // Limpiar el valor de la fecha de egreso
+                cajaPrecioV.textContent = '$ ' + 0;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

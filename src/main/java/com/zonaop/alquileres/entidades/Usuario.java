@@ -28,6 +28,7 @@ public class Usuario {
     protected String nombre;
     protected String apellido;
     protected String nombreUsuario;
+    protected Long telefono;
     protected String email;
     protected String contrasena;
     protected Boolean estado;
@@ -66,8 +67,14 @@ public class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
-    
+
+    public Long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Long telefono) {
+        this.telefono = telefono;
+    }
 
     public String getNombreUsuario() {
         return nombreUsuario;

@@ -3,7 +3,6 @@ com\zonaop\alquileres\repositorios\UsuarioRepositorio.class
 com\zonaop\alquileres\controladores\RolControlador.class
 com\zonaop\alquileres\repositorios\ClienteRepositorio.class
 com\zonaop\alquileres\servicios\PropietarioServicio.class
-com\zonaop\alquileres\controladores\ServicioControlador.class
 com\zonaop\alquileres\entidades\Reserva.class
 com\zonaop\alquileres\servicios\PropiedadServicio.class
 com\zonaop\alquileres\controladores\UsuarioControlador.class
@@ -17,8 +16,6 @@ com\zonaop\alquileres\controladores\PropiedadControlador.class
 com\zonaop\alquileres\repositorios\ServicioRepositorio.class
 com\zonaop\alquileres\enumeraciones\TipoPropiedad.class
 com\zonaop\alquileres\excepciones\MiException.class
-com\zonaop\alquileres\servicios\ReservaServicio.class
-com\zonaop\alquileres\controladores\ReservaControlador.class
 com\zonaop\alquileres\entidades\Propiedad.class
 com\zonaop\alquileres\servicios\OpinionServicio.class
 com\zonaop\alquileres\entidades\Cliente.class

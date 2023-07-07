@@ -9,7 +9,7 @@
     width: 50%;
     height: auto;
     background-color: white;
-    border: solid 1px black;
+    border: solid 1px #469D89;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -64,13 +64,13 @@ label {
 }
 
 #fondo-fecha-ingreso {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     font-size: 16px;
 }
 
 #fondo-fecha-egreso {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     font-size: 16px;
 }
@@ -79,15 +79,15 @@ label {
     width: 40%;
     margin: auto;
     margin-top: 12px;
-    background-color: blueviolet;
-    border: blueviolet;
+    background-color: #67B99A;
+    border: #57b390;
     height: 30px;
     color: white;
     border-radius: 5px;
 }
 
 .enviar:hover {
-    background-color: gray;
+    background-color: #56AB91;
     color: white;
     font-weight: 700;
     font-size: 15px;
@@ -220,7 +220,7 @@ label {
 }
 
 .caja-precio {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     width: 70%;
     padding-right: 3px;
@@ -228,10 +228,91 @@ label {
 }
 
 .caja-precio-v {
-    border: 1px solid blueviolet;
+    border: 1px solid #56AB91;
     border-radius: 5px;
     width: 15vh;
     padding-right: 3px;
+}
+.caja-precio-v2 {
+    border: 1px solid #56AB91;
+    border-radius: 5px;
+    width: 15vh;
+    padding-right: 3px;
+}
+/* carrusel */
+.slide-box {
+    width: 40%;
+    position: relative;
+    margin-left: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide img {
+    width: 19.8vw;
+    height: 12vw;
+    z-index: 0;
+}
+
+.slide {
+    display: none;
+}
+
+.antes,
+.despues {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.despues {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+
+.despues:hover {
+    background-color: rgb(0, 0, 0 ,0.8);
+    z-index: 1;
+}
+
+.antes:hover {
+    background-color: rgb(0, 0, 0 ,0.8);
+    z-index: 1;
+}
+
+.numero {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
 }
 
 /* resposividad de formulario de reserva */

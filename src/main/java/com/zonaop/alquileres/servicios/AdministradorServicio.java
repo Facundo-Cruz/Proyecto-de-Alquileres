@@ -32,6 +32,7 @@ public class AdministradorServicio {
         Administrador administrador = new Administrador();
 
         administrador.setNombre(nombre);
+        administrador.setApellido(apellido);
         administrador.setNombreUsuario(nombreUsuario);
         administrador.setEmail(email);
         administrador.setContrasena(contrasena);

@@ -7,6 +7,7 @@ import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.PropietarioRepositorio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,8 @@ public class PropietarioServicio {
 
     @Autowired
     public UsuarioServicio usuarioServicio;
+    
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
     public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
@@ -31,9 +34,10 @@ public class PropietarioServicio {
         Propietario propietario = new Propietario();
 
         propietario.setNombre(nombre);
+        propietario.setApellido(apellido);
         propietario.setNombreUsuario(nombreUsuario);
         propietario.setEmail(email);
-        propietario.setContrasena(contrasena);
+        propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         propietario.setEstado(Boolean.TRUE);
 
         Imagen imagen = imagenServicio.guardar(archivo);
@@ -47,20 +51,27 @@ public class PropietarioServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
-
+            
             Propietario propietario = respuesta.get();
 
+            
+            String encodedPassword = propietario.getContrasena();
+
+            if (!bCryptPasswordEncoder.matches(passwordActual, encodedPassword)) {
+                throw new MiException("Las contraseña actual no es correcta.");
+            }
             usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
 
             propietario.setNombre(nombre);
+            propietario.setApellido(apellido);
             propietario.setNombreUsuario(nombreUsuario);
             propietario.setEmail(email);
-            propietario.setContrasena(contrasena);
+            propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
 
             String idImagen = null;
 

@@ -23,6 +23,7 @@ function toggleRedesSociales() {
 /* Validaciones del formulario */
 
 function validarFormulario() {
+
   var tipoPropiedad = document.getElementById("tipo-de-propiedad").value;
   var nombre = document.querySelector(".nombre").value;
   var direccion = document.querySelector(".direccion").value;
@@ -33,7 +34,17 @@ function validarFormulario() {
   var telefono = document.querySelector("input[type='text'][placeholder='223-458745']").value;
   var email = document.querySelector("input[type='email'][placeholder='tumail@gmail.com']").value;
   var imagenes = document.querySelector(".imagen").value;
-  var precio = document.getElementById("caja-precio-v").value;
+  var precio = document.getElementsByClassName("caja-precio-v").value;
+  // validación imágenes
+  var input = document.getElementById('input-imagen');
+  var archivosSeleccionados = input.files;
+  var maximoArchivos = 10;
+  
+  if (archivosSeleccionados.length > maximoArchivos) {
+      alert('El número máximo de imágenes permitidas es ' + maximoArchivos);
+      return false; // Evita enviar el formulario
+  }
+
 
   // Validación requerida
   if (
@@ -53,7 +64,19 @@ function validarFormulario() {
     return false; // Evita enviar el formulario si hay campos vacíos
   }
 
+
+
   // Resto de la lógica del formulario...
 
   return true; // Envía el formulario si todos los campos están completos
+}
+
+function togglePrecioInput(checkbox) {
+  var parentDiv = checkbox.closest('.op'); // Obtener el div padre más cercano con la clase 'op'
+  var precioInput = parentDiv.querySelector('.caja-precio'); // Encontrar el input del precio dentro del div padre
+
+  precioInput.disabled = !checkbox.checked;
+  if (!checkbox.checked) {
+    precioInput.value = "";
+  }
 }

@@ -34,15 +34,20 @@ public class ServicioControlador {
     @GetMapping("/servicio")
     public String Servicio() {
 
-        return "formularioContratoServicio.html";
+        return "index.html";
 
     }
 
     @PostMapping("/contratoservicio")
-    public String contratarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
-            @RequestParam double precio, @RequestParam boolean disponibilidad, ModelMap modelo) {
+    public String contratarServicio(@RequestParam String nombre, @RequestParam String descripcion,
+            @RequestParam double precio, ModelMap modelo, @RequestParam String tipo) {
         try {
-            servicioservi.crearServicio(id, nombre, descripcion, precio, disponibilidad);
+            Servicio servicio = new Servicio();
+            descripcion = "Servicio de animación que incluye actividades interactivas y entretenidas para eventos, como juegos, espectáculos, payasos o magos, con el objetivo de entretener a los asistentes.";
+            nombre = "Animación";
+            precio = 400;
+            tipo = "Animacion";
+            servicioservi.crearServicio(servicio.getId(), nombre, descripcion, precio,tipo);
             modelo.put("excelente", "los servicios han sido adquiridos");
 
         } catch (MiException ex) {
@@ -53,7 +58,7 @@ public class ServicioControlador {
 
         }
 
-        return "mainPage.html";
+        return "redirect:/";
 
     }
 
@@ -83,37 +88,42 @@ public class ServicioControlador {
     }
     
     
-    @PostMapping("/modificar/{id}")
-    public String modificarServicio(@PathVariable String id,String nombre,String descripcion,TipoServicio tp,double precio,boolean disponibilidad,ModelMap modelo){
-        
-        try {
-            
-            List<Servicio>listaServi=servicioservi.listarServicios();
-            modelo.addAttribute("servicio",listaServi);
-            
-            servicioservi.modificarServicio(id, nombre, descripcion, precio, disponibilidad);
-            
-            return "redirect:../listarServicio";
-            
-        } catch (MiException ex) {
-            
-            List<Servicio>listaServi=servicioservi.listarServicios();
-            modelo.addAttribute("error",ex.getMessage());
-        
-          return "formulariomodificarServicioReserva.html";    
-            
-        }
-        
-    }
-     
-     @GetMapping("/eliminar/{id}") 
-     public String eliminarServicio(@PathVariable String id,ModelMap modelo){
-         
-         modelo.put("servicios", servicioservi.getOne(id));
-         
-         return "servicio_eliminar.html";
-         
-     }
+//    @PostMapping("/modificar/{id}")
+//    public String modificarServicio(@RequestParam(required = false) String id, @RequestParam String nombre, @RequestParam String descripcion, @RequestParam TipoServicio tp,
+//<<<<<<< HEAD
+//            @RequestParam double precio , ModelMap modelo){
+//=======
+//            @RequestParam double precio, ModelMap modelo){
+//>>>>>>> a63aaf99f923b39ec5d19da82cfe6672ec01e4be
+//        
+//        try {
+//            
+//            List<Servicio>listaServi=servicioservi.listarServicios();
+//            modelo.addAttribute("servicio",listaServi);
+//            
+//            servicioservi.modificarServicio(id, nombre, descripcion, precio);
+//            
+//            return "redirect:../listarServicio";
+//            
+//        } catch (MiException ex) {
+//            
+//            List<Servicio>listaServi=servicioservi.listarServicios();
+//            modelo.addAttribute("error",ex.getMessage());
+//        
+//          return "formulariomodificarServicioReserva.html";    
+//            
+//        }
+//        
+//    }
+//     
+//     @GetMapping("/eliminar/{id}") 
+//     public String eliminarServicio(@PathVariable String id,ModelMap modelo){
+//         
+//         modelo.put("servicios", servicioservi.getOne(id));
+//         
+//         return "servicio_eliminar.html";
+//         
+//     }
 //        
 //      @PostMapping("/eliminar/{id}")
 //      public String eliminarServicio(@PathVariable String id,RedirectAttributes a){

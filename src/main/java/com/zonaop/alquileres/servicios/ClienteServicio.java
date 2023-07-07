@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ClienteServicio {
 
-
     @Autowired
     public ClienteRepositorio clienteRepositorio;
 
@@ -25,15 +24,18 @@ public class ClienteServicio {
 
     @Autowired
     public UsuarioServicio usuarioServicio;
+    
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
-    public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
+    public void registrar(String nombre, String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
 
-        usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
+        usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
         Cliente cliente = new Cliente();
 
         cliente.setNombre(nombre);
+        cliente.setApellido(apellido);
         cliente.setNombreUsuario(nombreUsuario);
         cliente.setEmail(email);
         cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
@@ -50,7 +52,7 @@ public class ClienteServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido,String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre, String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Cliente> respuesta = clienteRepositorio.findById(id);
 
@@ -58,13 +60,19 @@ public class ClienteServicio {
 
             Cliente cliente = respuesta.get();
 
-            usuarioServicio.validar(nombre, apellido,nombreUsuario, email, contrasena);
+            String encodedPassword = cliente.getContrasena();
+
+            if (!bCryptPasswordEncoder.matches(passwordActual, encodedPassword)) {
+                throw new MiException("Las contraseña actual no es correcta.");
+            }
+
+            usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
             cliente.setNombre(nombre);
-            cliente.setNombreUsuario(apellido);
+            cliente.setApellido(apellido);
+            cliente.setNombreUsuario(nombreUsuario);
             cliente.setEmail(email);
-            cliente.setContrasena(contrasena);
-            
+            cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
 
             String idImagen = null;
 
@@ -85,23 +93,23 @@ public class ClienteServicio {
         }
 
     }
-    
-    public List<Cliente> listarClientes(){
+
+    public List<Cliente> listarClientes() {
         return clienteRepositorio.findAll();
     }
-    
+
     @Transactional
-    public void eliminarCliente(String id){
+    public void eliminarCliente(String id) {
         clienteRepositorio.deleteById(id);
     }
 
     @Transactional
     public void darBaja(String id) throws MiException {
 
-        Cliente cliente=getOne(id);
-        
+        Cliente cliente = getOne(id);
+
         cliente.setEstado(Boolean.FALSE);
-        
+
         clienteRepositorio.save(cliente);
 
     }

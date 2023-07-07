@@ -4,13 +4,73 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <link rel="stylesheet" href="/css/formulario-registro-opinion.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar :: nav"></nav>
+    <div class="contenedor-back">
+        <div class="contenedor">
+
+            <form class="formulario-registro-de-usuario" th:action="@{/pruebass}" method="POST"
+                enctype="multipart/form-data">
+                <hr>
+                <h3 class="titulo">Opinión</h3>
+                <hr>
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" th:checked="${puntuacion == 5}" />
+                    <label for="star5" th:onclick="'javascript:enviarPuntuacion(5)'"></label>
+                    <input type="radio" id="star4" name="rating" value="4" th:checked="${puntuacion == 4}" />
+                    <label for="star4" th:onclick="'javascript:enviarPuntuacion(4)'"></label>
+                    <input type="radio" id="star3" name="rating" value="3" th:checked="${puntuacion == 3}" />
+                    <label for="star3" th:onclick="'javascript:enviarPuntuacion(3)'"></label>
+                    <input type="radio" id="star2" name="rating" value="2" th:checked="${puntuacion == 2}" />
+                    <label for="star2" th:onclick="'javascript:enviarPuntuacion(2)'"></label>
+                    <input type="radio" id="star1" name="rating" value="1" th:checked="${puntuacion == 1}" />
+                    <label for="star1" th:onclick="'javascript:enviarPuntuacion(1)'"></label>
+                </div>
+
+                <label for="apellido">Comentar:</label>
+                <textarea name="comentario" id="" cols="30" rows="10" ></textarea>
+
+                <label for="imagen">Fotos(Opcional):</label>
+                <input class="imagen" type="file" name="archivos[]" accept="image/*">
+
+                <input class="enviar" type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        function enviarPuntuacion(puntuacion) {
+            fetch('/guardar-puntuacion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ puntuacion: puntuacion })
+            })
+                .then(response => {
+                    // Procesar la respuesta del servidor si es necesario
+                })
+                .catch(error => {
+                    console.error('Error al enviar la puntuación al servidor:', error);
+                });
+        }
+
+        /*]]>*/
+    </script>
+    <script src="/js/navbar-responsive.js"></script>
+</body>
+
 </html>

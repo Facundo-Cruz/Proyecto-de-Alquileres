@@ -7,6 +7,7 @@ package com.zonaop.alquileres.entidades;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -17,6 +18,7 @@ public class Opinion {
     
     
     @Id
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String huesped;
     private String comentario;

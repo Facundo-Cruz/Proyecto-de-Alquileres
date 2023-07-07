@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
+    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
+    <!-- <link rel="stylesheet" href="/css/nav-listado-usuarios.css"> -->
+    <link rel="stylesheet" href="/css/style-listado-usuarios.css">
+    <link rel="stylesheet" href="/css/estilo-validaciones.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
+</head>
+
+<body>
+    <nav th:replace="fragments/navbar :: nav"></nav>
+    <div class="contenedor">
+        <form  th:action="@{/usuario/listar/nombres}" method="POST">
+            <main class="table">
+                <div th:replace="fragments/successMessage :: div"></div>
+                <section class="table__header">
+                    <h1>Tabla de Usuarios</h1>
+                    <div class="input-group">
+                        <input type="search" placeholder="Ingrese un nombre..." name="nombre">
+                        <img src="/img/search.png" alt="">
+                    </div>
+                </section>
+                <section class="table__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> Id </th>
+                                <th> Nombre y Apellido </th>
+                                <th> Email </th>
+                                <th> Rol </th>
+                                <th> Estado </th>
+                                <th> Acciones </th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="usuario : ${usuarios}">
+                            <tr>
+                                <td th:text="${usuario.id}"> 1 </td>
+                                <td>
+                                    <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="">
+                                    <span th:text="${usuario.nombre + ' ' + usuario.apellido}"></span>
+                                </td>
+                                <td th:text="${usuario.email}"> </td>
+                                <td th:text="${usuario.rol}"> </td>
+                                <td>
+                                    <p th:if="${usuario.estado == true}" class="status delivered">Habilitado</p>
+                                    <p th:if="${usuario.estado == false}" class="status cancelled">Deshabilitado</p>
+                                </td>
+                                <td>
+                                    <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
+                                        th:href="@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
+                                    <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"
+                                        th:href="@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar Estado</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </form>
+        
+    </div>
+    <script src="/js/navbar-responsive.js"></script>
+</body>
+
+</html>

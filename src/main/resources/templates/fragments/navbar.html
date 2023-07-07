@@ -1,16 +1,149 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<nav id="nav-menu" aria-label="navigation bar">
+    <div class="container">
+        <div class="nav-start">
+            <a class="logo" href="/">
+                <img src="/img/logo.png" width="50" height="50" alt="Alquileres" />
+            </a>
+            <nav class="menu">
+                <ul class="menu-bar">
+                    <li>
+                        <div class="content">
+                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                                aria-expanded="false" aria-label="discover">
+                                Alquilar
+                                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                            </button> -->
+                            <div id="dropdown2" class="dropdown">
+                                <ul role="menu">
+                                    <li>
+                                        <span class="dropdown-link-title">ATest</span>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                </ul>
+                                <ul role="menu">
+                                    <li>
+                                        <span class="dropdown-link-title">Test</span>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content">
+                            <!-- antes era class "publicar"-->
+                            <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                                aria-expanded="false" aria-label="discover" th:if="${session.usuariosession == null}"
+                                th:href="@{/login}">Publicar <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- antes era class "publicar"-->
+                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                                aria-expanded="false" aria-label="discover" th:if="${session.usuariosession != null}"
+                                th:href="@{/propiedad/registrar/}">Publicar <i class="bx bx-chevron-down"
+                                    aria-hidden="true"></i>
+                            </button> -->
+                            <div id="dropdown2" class="dropdown">
+                                <ul role="menu">
+                                    <li>
+                                        <span class="dropdown-link-title">Test</span>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                </ul>
+                                <ul role="menu">
+                                    <li>
+                                        <span class="dropdown-link-title">Test</span>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')">
+                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                                aria-expanded="false" aria-label="discover" th:href="@{/usuario/listar/}">
+                                Listar
+                                <i class="bx bx-chevron-down" aria-hidden="true"></i> -->
+                            </button>
+                            <div id="dropdown2" class="dropdown">
+                                <ul role="menu">
+                                    <li>
+                                        <span class="dropdown-link-title">Usuarios</span>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Reservas</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Comentarios</a>
+                                    </li>
+                                </ul>
+                                <ul role="menu">
+                                    <li>
+                                        <span class="dropdown-link-title">Test</span>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-link" href="#">Test</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="ancle" th:href="@{/propiedad/registrar/}">Publicar</a>
+                    </li>
+                    <li>
+                        <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/usuario/listar/}">Listar Usuarios</a>
+                    </li>
+                    <li>
+                        <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/reserva/listar/}">Listar Reservas</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- antes era class "log-box"-->
+        <div class="nav-end">
+            <div class="right-container">
+                <a th:if="${session.usuariosession != null}" href="#profile" th:href="@{/usuario/perfil}">
+                    <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30"
+                        alt="imagen del usuario" />
+                </a>
+                <!-- antes estos botones eran class "publicar"-->
+                <a th:if="${session.usuariosession == null}" class="btn btn-primary"
+                    th:href="@{/registrar}">Registrate</a>
+                <a th:if="${session.usuariosession == null}" class="btn btn-primary" th:href="@{/login}">Iniciar
+                    Sesion</a>
+                <a th:if="${session.usuariosession != null}" class="btn btn-primary" href="/logout">Cerrar
+                    Sesion</a>
+            </div>
+
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+                <i class="bx bx-menu" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</nav>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -7,28 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/botones.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/navbar-responsive.css">
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="logo">
-            <p>Alquileres</p>
-        </div>
-        <div class="nav-content">
-            <div class="content">
-                <p>alquilar</p><img src="/img/chevron-down.svg" />
-            </div>
-            <div class="content">
-                <p>publicar</p><img src="/img/chevron-down.svg" />
-            </div>
-        </div>
-        <div class="log-box">
-            <a class="publicar" th:href="@{/registrar}">registrate</a>
-            
-            <a class="publicar" th:href="@{/login}">iniciar sesion</a>
-
-        </div>
-    </nav>
+    <nav th:replace="fragments/navbar :: nav"></nav> 
     <div class="publicitary-box">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20">
             <path fill="#ff5500" fill-rule="evenodd"
@@ -96,7 +81,12 @@
             <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
             <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
             <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
+            <div class="contenedor">
+                <a th:href= "@{/reserva/registrar/__${propiedad.id}__}" class="btn-aux btn-1">Alquilar</a>
+
+            </div>
         </div>    
+        
     </div>
 
     <footer class="footer">
@@ -115,7 +105,8 @@
 
     </footer>
 
-    <script src="./js/mainPage.js"></script>
+    <script src="/js/mainPage.js"></script>
+    <script src="/js/navbar-responsive.js"></script>
 </body>
 
 </html>

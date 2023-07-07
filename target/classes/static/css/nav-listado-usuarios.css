@@ -143,6 +143,17 @@
   border: none;
 }
 
+.modify-link {
+  background-color: rgb(23, 175, 79);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
 .delete-link:active {
   opacity: 0.5;
   /* Valor de opacidad que desees, por ejemplo 0.8 */

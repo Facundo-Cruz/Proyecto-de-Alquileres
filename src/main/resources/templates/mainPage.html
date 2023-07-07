@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="/css/botones.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/navbar-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>  
+    <link rel="stylesheet" href="/css/userInterface.css">
 </head>
 
 <body>
-    <nav th:replace="fragments/navbar :: nav"></nav> 
+    <nav th:replace="fragments/navbar :: nav"></nav>
     <div class="publicitary-box">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20">
             <path fill="#ff5500" fill-rule="evenodd"
@@ -27,41 +29,43 @@
             <form th:action="@{/propiedad/filtrar}" method="POST" class="form-edit">
                 <div class="searchbar">
                     <div class="drop-box">
-                    <button class="boton-tipos" id="boton" type="button">
-                        <span class="titulo-boton">tipo casa</span>
-                        <div class="arrow" id="arrow"></div>
-                    </button>
-                    <div class="drop hidden" id="drop">
+                        <button class="boton-tipos" id="boton" type="button">
+                            <span class="titulo-boton">tipo casa</span>
+                            <div class="arrow" id="arrow"></div>
+                        </button>
+                        <div class="drop hidden" id="drop">
 
-                        <label class="labels" for="quinta"><p>quinta</p></label>
-                        <input class="option" value="QUINTA" type="radio" name="tipo" id="quinta">
+                            <label class="labels" for="quinta">
+                                <p>quinta</p>
+                            </label>
+                            <input class="option" value="QUINTA" type="radio" name="tipo" id="quinta">
 
-                        <label class="labels" for="casa">casa</label>
-                        <input class="option" value="CASA" type="radio" name="tipo" id="casa">
+                            <label class="labels" for="casa">casa</label>
+                            <input class="option" value="CASA" type="radio" name="tipo" id="casa">
 
-                        <label class="labels" for="quincho">quincho</label>
-                        <input class="option" value="QUINCHO" type="radio" name="tipo" id="quincho">
+                            <label class="labels" for="quincho">quincho</label>
+                            <input class="option" value="QUINCHO" type="radio" name="tipo" id="quincho">
 
-                        <label class="labels" for="cabana">cabana</label>
-                        <input class="option" value="CABANA" type="radio" name="tipo" id="cabana">
+                            <label class="labels" for="cabana">cabana</label>
+                            <input class="option" value="CABANA" type="radio" name="tipo" id="cabana">
 
-                        <label class="labels" for="salon">salon</label>
-                        <input class="option" value="SALON" type="radio" name="tipo" id="salon">
+                            <label class="labels" for="salon">salon</label>
+                            <input class="option" value="SALON" type="radio" name="tipo" id="salon">
 
-                        <label class="labels" for="chalet">chalet</label>
-                        <input class="option" value="CHALET" type="radio" name="tipo" id="chalet">
+                            <label class="labels" for="chalet">chalet</label>
+                            <input class="option" value="CHALET" type="radio" name="tipo" id="chalet">
 
-                        <label class="labels" for="finca">finca</label>
-                        <input class="option" value="FINCA" type="radio" name="tipo" id="finca">
+                            <label class="labels" for="finca">finca</label>
+                            <input class="option" value="FINCA" type="radio" name="tipo" id="finca">
 
-                        <label class="labels" for="bodega">bodega</label>
-                        <input class="option" value="BODEGA" type="radio" name="tipo" id="bodega">
+                            <label class="labels" for="bodega">bodega</label>
+                            <input class="option" value="BODEGA" type="radio" name="tipo" id="bodega">
 
-                        <label class="labels" for="otro">otro</label>
-                        <input class="option" value="OTRO" type="radio" name="tipo" id="otro">
+                            <label class="labels" for="otro">otro</label>
+                            <input class="option" value="OTRO" type="radio" name="tipo" id="otro">
 
+                        </div>
                     </div>
-                </div>
 
                     <input type="search" class="search" placeholder="busqueda">
                     <input type="submit" class="submit" value="buscar">
@@ -72,22 +76,37 @@
                 </div>
             </div>
         </div>
-        
-    </div>
-    <div class="housesbox">
-        <div th:each="propiedad : ${propiedades}" class="house-card" >
-            <img th:src="@{/imagen/__${propiedad.id}__}" alt="Casa 1" class="house-image">
-            <h2 class="house-title" th:text="${propiedad.nombre}"></h2>
-            <p class="house-date" th:text="'Disponible desde: ' + ${propiedad.fechaDesde} + ' hasta: ' + ${propiedad.fechaHasta}"></p>
-            <p class="house-price" th:text="'Precio: $' + ${propiedad.precio}"></p>
-            <p class="house-calification" th:text="'Calificación: ' + ${propiedad.calificacion} + '⭐'"></p>
-            <div class="contenedor">
-                <a th:href= "@{/reserva/registrar/__${propiedad.id}__}" class="btn-aux btn-1">Alquilar</a>
 
-            </div>
-        </div>    
-        
     </div>
+
+    <!-- cards inicio -->
+    <div class="container-card">
+
+        <div th:each="propiedad : ${propiedades}" class="card">
+            <figure>
+                <img th:src="@{/imagen/__${propiedad.id}__}" alt="Casa 1">
+            </figure>
+            <div class="contenido-card">
+                <h3 th:text="${propiedad.nombre}"></h3>
+                <hr class="horizontal">
+
+                <p>
+                    <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
+                    <br>
+                    <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
+                    <br>
+                    <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
+                    <br>
+                    <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
+                </p>
+                <div class="contenedor">
+                    <a th:href="@{/reserva/registrar/__${propiedad.id}__}" class="btn-aux btn-1">Alquilar</a>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <footer class="footer">
         <div class="redes">

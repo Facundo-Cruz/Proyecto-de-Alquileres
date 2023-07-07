@@ -1,3 +1,95 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ImagenRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PortalControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\OpinionRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\TipoServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Reserva.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ServicioControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\excepciones\MiException.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ServicioRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\SeguridadWeb.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\OpinionControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\OpinionServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\UsuarioRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PropiedadControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Servicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\UsuarioServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\TipoPropiedad.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\PropietarioRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\Rol.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ReservaRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\PropietarioServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\PropiedadServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\UsuarioControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Cliente.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Opinion.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ServicioServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ImagenControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ReservaServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ClienteServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ImagenServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\AdministradorControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\AlquileresApplication.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ClienteRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Imagen.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\AdministradorRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\RolControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Propiedad.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Propietario.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\AdministradorServicio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Administrador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\PropiedadRepositorio.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ReservaControlador.java
+C:\Users\Franco Larracochea\OneDrive\Escritorio\ALQUILERES\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Usuario.java
+=======
+<<<<<<< HEAD
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ReservaRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\PropiedadRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ClienteServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\OpinionRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ReservaServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\TipoServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PortalControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ServicioRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ImagenControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\RolControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Opinion.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\AlquileresApplication.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ServicioServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Usuario.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Reserva.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\AdministradorRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\excepciones\MiException.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\PropietarioServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Propietario.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Servicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\SeguridadWeb.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\UsuarioControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ClienteRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Imagen.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\PropiedadServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\TipoPropiedad.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PropiedadControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\UsuarioServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Cliente.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ReservaControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\PropietarioRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\AdministradorServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\AdministradorControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ImagenServicio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Propiedad.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Administrador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\Rol.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\OpinionControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\UsuarioRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ServicioControlador.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ImagenRepositorio.java
+C:\Users\lauty\Desktop\Proyecto Final Alquileres\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\OpinionServicio.java
+=======
+<<<<<<< HEAD
+>>>>>>> 19b35c1628cf1ec2f169e7941edb343e3eb77306
 C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\RolControlador.java
 C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ServicioServicio.java
 C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ServicioControlador.java
@@ -46,3 +138,53 @@ C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\z
 C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Administrador.java
 C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PortalControlador.java
 C:\Users\Facundo\Desktop\proyecto aux\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\AlquileresApplication.java
+<<<<<<< HEAD
+=======
+=======
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\AlquileresApplication.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\OpinionRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\TipoServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\UsuarioRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PortalControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Administrador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\estadoReserva.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ServicioControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\PropiedadServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\TipoPropiedad.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\excepciones\MiException.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\PropietarioServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ServicioServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ReservaRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ServicioRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Servicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\SeguridadWeb.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Usuario.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\RolControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\OpinionServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\AdministradorRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\OpinionControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ClienteServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ReservaControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ClienteRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\enumeraciones\Rol.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\UsuarioControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\AdministradorControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\PropiedadControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\ImagenRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\AdministradorServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ImagenServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\ReservaServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Opinion.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\servicios\UsuarioServicio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\controladores\ImagenControlador.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\PropiedadRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\repositorios\PropietarioRepositorio.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Propiedad.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Reserva.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Imagen.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Propietario.java
+C:\Users\Nahuel\Desktop\Aiconsin\Proyecto final\Proyecto-de-Alquileres\src\main\java\com\zonaop\alquileres\entidades\Cliente.java
+>>>>>>> d38211db0ae38bd815796e385230af2906ec2ef1
+>>>>>>> 1fc2098e5e13570535145711590d8dbf4b11a2cb
+>>>>>>> 0035d31162228948f52c2d5256e6715ec1e8359c
+>>>>>>> 19b35c1628cf1ec2f169e7941edb343e3eb77306

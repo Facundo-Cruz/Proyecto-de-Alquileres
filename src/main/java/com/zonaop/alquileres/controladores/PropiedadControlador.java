@@ -90,4 +90,13 @@ public class PropiedadControlador {
         return "lista-propiedades.html";
 
     }
+    
+    @GetMapping("/mostrar/{id}")
+    public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
+
+        model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
+        
+        return "precompra-info.html";
+
+    }
 }

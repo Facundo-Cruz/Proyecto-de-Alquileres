@@ -33,7 +33,6 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         <div  class="house-area">
             <div sec:authorize="hasRole('PROPIETARIO')" class="title-cards">
                 <h2>Mis Propiedades</h2>
@@ -62,31 +61,6 @@
                         <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
                                 SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
                         <button class="cancelar">cancelar</button>
-=======
-<<<<<<< HEAD
-
-=======
-            <div class="card" th:each="reserva : ${reservas}">
-                <figure>
-                    <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
-                </figure>
-                <div class="contenido-card">
-                    <h3 th:text="${reserva.propiedad.nombre}"></h3>
-                    <p>
-                        <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
-                    </p>
-                    <p>
-                        <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
-                    </p>
-                    <div class="redes">
-                        <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
-                                class="fab fa-facebook"></i></a>
-                        <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
-                                class="fab fa-twitter"></i></a>
-                        <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
-                                class="fab fa-instagram"></i></a>
->>>>>>> 19b35c1628cf1ec2f169e7941edb343e3eb77306
-                    </div>
                 </div>
             </div>
             <!-- cards reservas inicio -->
@@ -146,12 +120,9 @@
             </div>
             <!-- cards reservas fin -->
         </div>
-<<<<<<< HEAD
-=======
-        <!-- cards reservas fin -->
->>>>>>> 0035d31162228948f52c2d5256e6715ec1e8359c
+
     </div>
->>>>>>> 19b35c1628cf1ec2f169e7941edb343e3eb77306
+
 
         <script src="/js/userInterface.js"></script>
     </body>

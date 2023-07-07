@@ -4,6 +4,7 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
+import com.zonaop.alquileres.enumeraciones.Localidad;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.enumeraciones.TipoServicio;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,7 +56,7 @@ public class PropiedadServicio {
 
         propiedad.setNombre(nombre);
         propiedad.setDireccion(direccion);
-        propiedad.setLocalidad(localidad);
+        propiedad.setLocalidad(Localidad.valueOf(localidad));
         propiedad.setCodigoPostal(codigoPostal);
         propiedad.setDescripcion(descripcion);
         propiedad.setFechaDesde(fechaDesde);
@@ -135,7 +137,7 @@ public class PropiedadServicio {
 
             propiedad.setNombre(nombre);
             propiedad.setDireccion(direccion);
-            propiedad.setLocalidad(localidad);
+            propiedad.setLocalidad(Localidad.valueOf(localidad));
             propiedad.setCodigoPostal(tipoPropiedad);
             propiedad.setDescripcion(descripcion);
             propiedad.setFechaDesde(fechaDesde);
@@ -172,6 +174,34 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorTipo(TipoPropiedad.valueOf(tipo));
         return propiedades;
     }
+    
+    public List<Propiedad> filtrarPropiedades(TipoPropiedad tipo, Localidad localidad, List<Servicio> servicios, Boolean precio, Boolean calificacion) {
+        Sort sort = Sort.unsorted();
+        if (precio != null) {
+            if (precio) {
+                sort = Sort.by("precio").ascending();
+            } else {
+                sort = Sort.by("precio").descending();
+            }
+        }
+
+        if (calificacion != null && calificacion) {
+            sort = sort.and(Sort.by("calificacion").descending());
+        }
+        if ("".equals(tipo)) {
+            tipo = null;
+        }
+
+        if ("".equals(localidad)) {
+            localidad = null;
+        }
+
+        if (servicios != null && servicios.isEmpty()) {
+            servicios = null;
+        }
+
+        return propiedadRepositorio.findByFilters(tipo, localidad, servicios, sort);
+    }
 
     public List<Propiedad> listarPropiedades() {
         List<Propiedad> propiedades = propiedadRepositorio.findAll();
@@ -186,6 +216,7 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorPropietario(id);
         return propiedades;
     }
+    
 
     public void validar(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad) {
 

@@ -10,6 +10,7 @@ import com.zonaop.alquileres.entidades.Opinion;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
+import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
@@ -80,17 +81,7 @@ public class ReservaControlador {
 
     }
 
-    //ruta para listar las reservas de las propiedades
-    @GetMapping("/listar")
 
-    public String listar(ModelMap modelo) {
-
-        List<Reserva> reserva = reservaservi.listarReservas();
-        modelo.addAttribute("reservas", reserva);
-
-        return "lista-reservas.html";
-
-    }
 
     //ruta para modificar el id de una reserva en especifico
     @GetMapping("/modificar/{id}")
@@ -106,8 +97,8 @@ public class ReservaControlador {
     }
     
     @GetMapping("/cancelar/{id}")
-    public String cancelar(@PathVariable String id, RedirectAttributes redirectAttributes) {
-
+    public String cancelar(@PathVariable String id, RedirectAttributes redirectAttributes, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         try {
             reservaservi.cancelarPorId(id);
             redirectAttributes.addFlashAttribute("exito", "¡La reserva ha sido "
@@ -115,7 +106,10 @@ public class ReservaControlador {
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {
-            return "redirect:../listar";
+            if (usuario.getRol().toString().equals("ADMIN")) {
+                return "redirect:/admin/listarReservas";
+            }
+            return "redirect:/usuario/perfil";
         }
         
     }
@@ -146,24 +140,6 @@ public class ReservaControlador {
     }
 
       
-    //ruta para eliminar una reserva por id 
-    @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable String id, RedirectAttributes p) {
 
-        try {
-            reservaservi.EliminarReserva(id);
-            p.addFlashAttribute("exito", "eliminado");
-
-            return "redirect:../listar";
-
-        } catch (MiException ex) {
-
-            p.addFlashAttribute("error", "intente de nuevo");
-
-            return "redirect:../listar";
-
-        }
-
-    }
 
 }

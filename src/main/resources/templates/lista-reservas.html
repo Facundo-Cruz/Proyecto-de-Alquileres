@@ -47,7 +47,7 @@
                                   <p th:if="${reserva.estado == false}" class="status cancelled">Deshabilitado</p>
                             </td>
                             <td>
-                                <a class="delete-link" th:href= "@{/reserva/eliminar/__${reserva.id}__}">Eliminar</a>
+                                <a class="delete-link" th:href= "@{/admin/eliminarReserva/__${reserva.id}__}">Eliminar</a>
                                 <a class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
                                 <a th:if="${reserva.estado == true}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
                             </td>

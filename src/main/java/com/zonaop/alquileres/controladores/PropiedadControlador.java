@@ -2,6 +2,9 @@ package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Propietario;
+import com.zonaop.alquileres.entidades.Servicio;
+import com.zonaop.alquileres.enumeraciones.Localidad;
+import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
@@ -66,10 +69,23 @@ public class PropiedadControlador {
 
     }
 
-    @PostMapping("/filtrar")
-    public String index(ModelMap model, @RequestParam(required = false) String tipo) {
-        List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
-        model.put("propiedades", propiedades);
+//    @PostMapping("/filtrar")
+//    public String index(ModelMap model, @RequestParam(required = false) String tipo) {
+//        List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
+//        model.put("propiedades", propiedades);
+//        return "mainPage.html";
+//    }
+    
+     @PostMapping("/filtrar")
+    public String filtrarPropiedad(@RequestParam(required = false) TipoPropiedad tipo,
+            @RequestParam(required = false) Localidad localidad,
+            @RequestParam(required = false) List<Servicio> servicios,
+            @RequestParam(required = false) Boolean precio,
+            @RequestParam(required = false) Boolean calificacion,
+            ModelMap modelo) {
+
+        List<Propiedad> propiedadesFiltradas = propiedadServicio.filtrarPropiedades(tipo, localidad, servicios, precio, calificacion);
+        modelo.addAttribute("propiedades", propiedadesFiltradas);
         return "mainPage.html";
     }
 
@@ -79,5 +95,24 @@ public class PropiedadControlador {
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
 
         return "formulario-modificar-propiedad.html";
+    }
+    
+    @GetMapping("/listar")
+    public String listarUsuarios(ModelMap model) {
+
+        List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
+        model.put("propiedades", propiedades);
+
+        return "lista-propiedades.html";
+
+    }
+    
+    @GetMapping("/mostrar/{id}")
+    public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
+
+        model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
+        
+        return "precompra-info.html";
+
     }
 }

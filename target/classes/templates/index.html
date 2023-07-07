@@ -13,7 +13,7 @@ and open the template in the editor.
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/navbar-responsive.css">
     <link rel="stylesheet" href="/css/formulario-registro-opinion.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -49,26 +49,16 @@ and open the template in the editor.
             </form>
         </div>
     </div>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        function enviarPuntuacion(puntuacion) {
-            fetch('/guardar-puntuacion', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ puntuacion: puntuacion })
-            })
-                .then(response => {
-                    // Procesar la respuesta del servidor si es necesario
-                })
-                .catch(error => {
-                    console.error('Error al enviar la puntuación al servidor:', error);
-                });
-        }
-
-        /*]]>*/
+    <script>
+        // Obtén todas las etiquetas de estrella y agrega un controlador de eventos clic a cada una
+        var starLabels = document.querySelectorAll('.rating__label');
+        starLabels.forEach(function (starLabel) {
+            starLabel.addEventListener('click', function () {
+                var ratingValue = this.previousElementSibling.value; // Obtén el valor de la estrella seleccionada
+                document.getElementById('rating-input').value = ratingValue; // Establece el valor en el campo oculto
+                document.getElementById('rating-form').submit(); // Envía el formulario al backend
+            });
+        });
     </script>
     <script src="/js/navbar-responsive.js"></script>
 </body>

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -37,11 +38,14 @@ public class Reserva {
     @Temporal(TemporalType.DATE)
     private Date fechaDesde;
     @OneToOne
-    @JoinColumn(name="propiedad_id")
+    @JoinColumn(name = "propiedad_id")
     private Propiedad propiedad;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "propietario_id")
+    private Propietario propietario;
     @ManyToMany
     @JoinTable(
             name = "reserva_servicio",
@@ -122,6 +126,14 @@ public class Reserva {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
     }
 
     public List<Servicio> getServicios() {

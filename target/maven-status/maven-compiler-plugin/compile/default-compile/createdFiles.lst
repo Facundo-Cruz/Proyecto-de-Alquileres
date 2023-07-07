@@ -20,6 +20,7 @@ com\zonaop\alquileres\controladores\AdministradorControlador.class
 com\zonaop\alquileres\repositorios\UsuarioRepositorio.class
 com\zonaop\alquileres\controladores\RolControlador.class
 com\zonaop\alquileres\repositorios\ClienteRepositorio.class
+<<<<<<< HEAD
 com\zonaop\alquileres\controladores\ServicioControlador.class
 com\zonaop\alquileres\entidades\Reserva.class
 com\zonaop\alquileres\servicios\PropiedadServicio.class
@@ -27,6 +28,14 @@ com\zonaop\alquileres\AlquileresApplication.class
 com\zonaop\alquileres\servicios\UsuarioServicio.class
 com\zonaop\alquileres\repositorios\ServicioRepositorio.class
 com\zonaop\alquileres\controladores\ReservaControlador.class
+=======
+com\zonaop\alquileres\entidades\Reserva.class
+com\zonaop\alquileres\servicios\PropiedadServicio.class
+com\zonaop\alquileres\AlquileresApplication.class
+com\zonaop\alquileres\enumeraciones\EstadoReserva.class
+com\zonaop\alquileres\servicios\UsuarioServicio.class
+com\zonaop\alquileres\repositorios\ServicioRepositorio.class
+>>>>>>> 738de9defb463b8323cfd9c9253df63e2bb31413
 com\zonaop\alquileres\entidades\Servicio.class
 com\zonaop\alquileres\entidades\Usuario.class
 com\zonaop\alquileres\servicios\AdministradorServicio.class

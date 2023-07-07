@@ -7,24 +7,37 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Reporte {
     
     @Id
     @GeneratedValue(generator = "uuid")
+    @GenericGenerator( name = "uuid", strategy = "uuid2")
     private String id;
-    private String idUsuario;
+    @ManyToOne
+    private Cliente cliente;
+    @OneToOne
+    @JoinColumn(name="opinion_id")
+    private Opinion opinion;
+    @ManyToOne
+    @JoinColumn(name="propiedad_id")
+    private Propiedad propiedad;
     private String texto;
     @OneToOne
     private Imagen foto;
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;
     private String idGenerico;
+    private Boolean estadoAviso;
+    private String aviso;
     
     @Enumerated (EnumType.STRING)
     private TipoReporte tipoReporte;
@@ -40,12 +53,28 @@ public class Reporte {
         this.id = id;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Opinion getOpinion() {
+        return opinion;
+    }
+
+    public void setOpinion(Opinion opinion) {
+        this.opinion = opinion;
+    }
+
+    public Propiedad getPropiedad() {
+        return propiedad;
+    }
+
+    public void setPropiedad(Propiedad propiedad) {
+        this.propiedad = propiedad;
     }
 
     public String getTexto() {
@@ -80,6 +109,15 @@ public class Reporte {
         this.idGenerico = idGenerico;
     }
 
+    public Boolean getEstadoAviso() {
+        return estadoAviso;
+    }
+
+    public void setEstadoAviso(Boolean estadoAviso) {
+        this.estadoAviso = estadoAviso;
+    }
+    
+
     public TipoReporte getTipoReporte() {
         return tipoReporte;
     }
@@ -87,6 +125,13 @@ public class Reporte {
     public void setTipoReporte(TipoReporte tipoReporte) {
         this.tipoReporte = tipoReporte;
     }
-    
-    
+
+    public String getAviso() {
+        return aviso;
+    }
+
+    public void setAviso(String aviso) {
+        this.aviso = aviso;
+    }   
+       
 }

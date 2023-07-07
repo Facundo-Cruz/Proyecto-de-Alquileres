@@ -67,28 +67,35 @@ public class PortalControlador {
     public String index(ModelMap model,HttpSession session) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        if (usuario!=null) {
+            if (usuario.getRol().toString().equals("ADMIN")) {
+            return "redirect:/admin/dashboard";
+        }
+        }
+        
         model.put("usuario", usuario);
         model.put("propiedades", propiedades);
         return "mainPage.html";
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre,@RequestParam String apellido,
-            @RequestParam String email, @RequestParam String alias,
-            @RequestParam String contrasena,@RequestParam String rol,
+    public String registro(@RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam String email,@RequestParam Long telefono, @RequestParam String alias,
+            @RequestParam String contrasena, @RequestParam String rol,
             @RequestParam MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
 
         try {
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
+                clienteServicio.registrar(nombre, apellido, alias, email,telefono, contrasena, archivo, rol);
 
             } else {
 
-                propietarioServicio.registrar(nombre, apellido,alias, email, contrasena, archivo, rol);
-
+                propietarioServicio.registrar(nombre, apellido, alias, email,telefono, contrasena, archivo, rol);
+                
             }
+
             redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");
             return "redirect:/login";
         } catch (Exception ex) {

@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container{
+    background-color: #036666 !important;
+}
+
+.btn{
+    background-color:#358F80 !important;
+}
+
+.menu{
+    background-color: #036666 !important;
+}
+
+body{
+    background-color: #efece9 !important;
+}
+
+
+.slide-box {
+    position: relative;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide img {
+    width: 100vw;
+    height: 30vw;
+    opacity: 0.8;
+}
+
+.slide {
+    display: none;
+    background-color: black;
+    z-index: -1;
+}
+
+.antes,
+.despues {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.despues {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+
+.despues:hover {
+    background-color: rgb(0, 0, 0 ,0.8);
+    z-index: 1;
+}
+
+.antes:hover {
+    background-color: rgb(0, 0, 0 ,0.8);
+    z-index: 1;
+}
+
+.numero {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.info{
+    display: flex;
+    flex-wrap: wrap;
+    width: 99%;
+    height: 50%;
+    margin-left: 0.5%;
+}
+
+.titulo{
+    font-size: 30px;
+    margin-top: 1vh;
+    width: 100%;
+}
+
+.description{
+    margin-left: 1%;
+    margin-top: 3vh;
+    width: 98%;
+    margin-bottom: 1%;
+    padding: 0.5%;
+}
+
+.top-line{
+    width: 90%;
+    margin-left: 2.5%;
+    height: 0.1vh;
+    background-color: rgb(44, 44, 44);
+    margin-bottom: 1vh;
+}
+
+.bottom-line{
+    width: 90%;
+    margin-left: 2.5%;
+    height: 0.1vh;
+    margin-top: 1vh;
+    background-color: rgb(44, 44, 44);
+}
+
+.linea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.precio{
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.compra{
+    text-align: center;
+    margin-right: 5vw;
+}
+
+.rent-button{
+    outline: none;
+    border: none;
+    border-radius:8px;
+    padding: 0.7vw 2vw;
+    background-color: #358F80;
+    color: white;
+    font-size: 16px;
+}
+
+.rent-button:active{
+    background-color: #036666;
+}
+
+.comentarios{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comentarios .top-line{
+    margin-top: 1.5vh;
+    margin-bottom: 4vh;
+}
+
+.heading{
+    width: 100%;
+    margin-top: 2vh;
+}
+
+.comentario{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+.foto-perfil{
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+}
+
+.mensaje{
+    margin-left: 1vw;
+    font-size: 17px;
+}
+
+.nombre-perfil{
+font-size: 12px !important;
+}
+
+.comment{
+    margin-bottom: 3vh;
+}
+
+.servicios{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 6vw;
+}
+
+.servicios .heading{
+    margin-left: 6vw;
+}
+
+.items{
+    margin-left: 2.5vw;
+    display: flex;
+    align-items: center;
+}
+
+.servicio-tipo{
+    font-size: 13px;
+    margin-left: 0.3vw;
+}

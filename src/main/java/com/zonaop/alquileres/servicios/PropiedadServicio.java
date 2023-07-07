@@ -95,8 +95,8 @@ public class PropiedadServicio {
                     case "Catering":
                         servicio.setDescripcion("Servicio de catering que ofrece comida y bebidas para eventos especiales, como bodas, fiestas o conferencias, con opciones personalizadas de menús.");
                         break;
-                    case "Animacion":
-                        servicio.setDescripcion("Servicio de animación que incluye actividades interactivas y entretenidas para eventos, como juegos, espectáculos, payasos o magos, con el objetivo de entretener a los asistentes.");
+                    case "Fotografo":
+                        servicio.setDescripcion("Servicio de fotografía que incluye uno o mas fotógrafos que lograran capturar los mejores momentos de tu evento y tener recuerdos de un momento inolvidable.");
                         break;
                     case "Bar":
                         servicio.setDescripcion("Servicio de bar que ofrece bebidas y cócteles para eventos y fiestas, con opciones de barra libre o servicio de bartender profesional.");

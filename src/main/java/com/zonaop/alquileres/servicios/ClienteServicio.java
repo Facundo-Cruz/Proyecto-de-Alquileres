@@ -28,7 +28,7 @@ public class ClienteServicio {
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
-    public void registrar(String nombre, String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
+    public void registrar(String nombre, String apellido, String nombreUsuario, String email,Long telefono, String contrasena, MultipartFile archivo, String rol) throws MiException {
 
         usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
@@ -38,6 +38,7 @@ public class ClienteServicio {
         cliente.setApellido(apellido);
         cliente.setNombreUsuario(nombreUsuario);
         cliente.setEmail(email);
+        cliente.setTelefono(telefono);
         cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         cliente.setEstado(Boolean.TRUE);
 
@@ -52,7 +53,7 @@ public class ClienteServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
+    public void modificar(String id, String nombre, String apellido, String nombreUsuario, String email,Long telefono, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Cliente> respuesta = clienteRepositorio.findById(id);
 
@@ -72,6 +73,7 @@ public class ClienteServicio {
             cliente.setApellido(apellido);
             cliente.setNombreUsuario(nombreUsuario);
             cliente.setEmail(email);
+            cliente.setTelefono(telefono);
             cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
 
             String idImagen = null;

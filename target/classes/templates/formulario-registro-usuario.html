@@ -47,10 +47,11 @@
                     <input class="imagen" type="file" name="archivo" accept="image/*" required>
 
                     <label class="titulo-perfil">Seleccione su perfil:</label>
-                    <select class="campo" name="rol" id="campo" onclick="mostrarPrimeraOn()" required>
+                    <select class="campo" name="rol" onclick="mostrarPrimeraOn()" required>
                         <option value="" disabled selected>Elija su opción</option>
-                        <option value="propietario">Propietario </option>
-                        <option value="cliente">Cliente </option>
+
+                        <option title="Con una cuenta propietario podrá acceder a su perfil y editarlo, registrar propiedades y editarlas, ver sus propiedades y reservas, aceptar reservas o cancelarlas. También podrá enviar reportes de bugs, comentarios o usuarios." value="propietario">Propietario </option>
+                        <option title="Con una cuenta cliente podrá acceder a su perfil y editarlo, hacer reservas de propiedades, filtrar las propiedades para que encuentre su mejor opción, cancelar las reservas, puntuar y dejar una opinión de la propiedad una vez concretada la reserva. También podrá enviar reportes de bugs, comentarios o usuarios." value="cliente">Cliente </option>
 
                     </select>
 

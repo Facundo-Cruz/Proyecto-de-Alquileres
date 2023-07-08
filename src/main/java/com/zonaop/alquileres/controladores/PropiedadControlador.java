@@ -79,7 +79,7 @@ public class PropiedadControlador {
      @PostMapping("/filtrar")
     public String filtrarPropiedad(@RequestParam(required = false) TipoPropiedad tipo,
             @RequestParam(required = false) Localidad localidad,
-            @RequestParam(required = false) List<Servicio> servicios,
+            @RequestParam( value="servicios[]", required = false) List<Servicio> servicios,
             @RequestParam(required = false) Boolean precio,
             @RequestParam(required = false) Boolean calificacion,
             ModelMap modelo) {

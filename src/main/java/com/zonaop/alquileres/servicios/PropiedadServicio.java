@@ -154,11 +154,9 @@ public class PropiedadServicio {
 //                idImagen = propiedad.getFoto().getId();
 //
 //            }
-
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
 
 //            propiedad.setFoto(imagen);
-
             propiedadRepositorio.save(propiedad);
 
         }
@@ -174,34 +172,10 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorTipo(TipoPropiedad.valueOf(tipo));
         return propiedades;
     }
-    
-    public List<Propiedad> filtrarPropiedades(TipoPropiedad tipo, Localidad localidad, List<Servicio> servicios, Boolean precio, Boolean calificacion) {
-        Sort sort = Sort.unsorted();
-        if (precio != null) {
-            if (precio) {
-                sort = Sort.by("precio").ascending();
-            } else {
-                sort = Sort.by("precio").descending();
-            }
-        }
 
-        if (calificacion != null && calificacion) {
-            sort = sort.and(Sort.by("calificacion").descending());
-        }
-        if ("".equals(tipo)) {
-            tipo = null;
-        }
-
-        if ("".equals(localidad)) {
-            localidad = null;
-        }
-
-        if (servicios != null && servicios.isEmpty()) {
-            servicios = null;
-        }
-
-        return propiedadRepositorio.findByFilters(tipo, localidad, servicios, sort);
-    }
+  public List<Propiedad> filtrarPropiedades(TipoPropiedad tipo, Localidad localidad, List<Servicio> servicios, Boolean precio, Boolean calificacion) {
+    return propiedadRepositorio.findByFilters(tipo, localidad, servicios, precio, calificacion);
+}
 
     public List<Propiedad> listarPropiedades() {
         List<Propiedad> propiedades = propiedadRepositorio.findAll();
@@ -216,7 +190,6 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorPropietario(id);
         return propiedades;
     }
-    
 
     public void validar(String nombre, String direccion, String localidad, String codigoPostal, String descripcion, Date fechaDesde, Date fechaHasta, Double precio, String tipoPropiedad) {
 

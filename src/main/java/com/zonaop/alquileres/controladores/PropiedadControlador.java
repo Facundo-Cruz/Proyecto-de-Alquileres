@@ -8,9 +8,12 @@ import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
+import com.zonaop.alquileres.servicios.ReservaServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/propiedad")
@@ -32,6 +36,9 @@ public class PropiedadControlador {
 
     @Autowired
     public PropietarioServicio propietarioServicio;
+
+    @Autowired
+    public ReservaServicio reservaServicio;
 
     @GetMapping("/registrar")
     public String registrarPropiedad() {
@@ -54,8 +61,7 @@ public class PropiedadControlador {
 
         Propietario propietario = (Propietario) session.getAttribute("usuariosession");
         String idPropietario = propietario.getId();
-        
-      
+
         try {
 
             propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivos, idPropietario, telefono, serviciosSeleccionados, preciosServicios, redesSociales, email);
@@ -75,8 +81,7 @@ public class PropiedadControlador {
 //        model.put("propiedades", propiedades);
 //        return "mainPage.html";
 //    }
-    
-     @PostMapping("/filtrar")
+    @PostMapping("/filtrar")
     public String filtrarPropiedad(@RequestParam(required = false) TipoPropiedad tipo,
             @RequestParam(required = false) Localidad localidad,
             @RequestParam(required = false) List<Servicio> servicios,
@@ -96,7 +101,7 @@ public class PropiedadControlador {
 
         return "formulario-modificar-propiedad.html";
     }
-    
+
     @GetMapping("/listar")
     public String listarUsuarios(ModelMap model) {
 
@@ -106,13 +111,28 @@ public class PropiedadControlador {
         return "lista-propiedades.html";
 
     }
-    
+
     @GetMapping("/mostrar/{id}")
     public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
 
         model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
-        
+
         return "precompra-info.html";
+
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminarPropiedad(@PathVariable String id, RedirectAttributes redirect) {
+
+        try {
+            reservaServicio.eliminarReservasDePropiedad(id);
+            propiedadServicio.eliminarPropiedad(id);
+            redirect.addFlashAttribute("exito", "¡Propiedad eliminada correctamente!");
+            return "redirect:../listar";
+        } catch (MiException ex) {
+            redirect.addFlashAttribute("error", ex.getMessage());
+            return "redirect:../listar";
+        }
 
     }
 }

@@ -15,10 +15,10 @@
 
 <body>
     <nav th:replace="fragments/navbar :: nav"></nav>
+    <div th:replace="fragments/successMessage :: div"></div>
     <div class="contenedor">
         <form th:action="@{/usuario/listar/nombres}" method="POST">
             <main class="table">
-                <div th:replace="fragments/successMessage :: div"></div>
                 <section class="table__header">
                     <h1>Tabla de Usuarios</h1>
                     <div class="input-group">
@@ -49,7 +49,7 @@
                                 <td th:text="${propiedad.localidad}"> </td>
                                 <td th:text="${propiedad.precio}"> </td>
                                 <td>
-                                    <a href="" class="delete-link">Eliminar</a>
+                                    <a th:href="@{/propiedad/eliminar/__${propiedad.id}__}" class="delete-link">Eliminar</a>
                                     <!-- <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
                                         th:href="@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
                                     <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"

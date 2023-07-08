@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ReservaServicio {
-    
+
     @Autowired
     public PropietarioRepositorio propietarioRepositorio;
 
@@ -62,11 +62,11 @@ public class ReservaServicio {
         validarFechaCreacion(fechaDeste, fechaHasta, idPropiedad);
         Optional<Cliente> clienteOp = clienterepo.findById(idCliente);
         Optional<Propiedad> propiedadOp = propiedadrepo.findById(idPropiedad);
-        Optional<Propietario> propietrarioOP=propietarioRepositorio.findById(propiedadOp.get().getPropietario().getId());
+        Optional<Propietario> propietrarioOP = propietarioRepositorio.findById(propiedadOp.get().getPropietario().getId());
 
         Propiedad propiedad = propiedadOp.get();
         Cliente cliente = clienteOp.get();
-        Propietario propietario= propietrarioOP.get();
+        Propietario propietario = propietrarioOP.get();
         Reserva reserva = new Reserva();
 
         reserva.setHuesped(huesped);
@@ -102,7 +102,6 @@ public class ReservaServicio {
     public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
 
 //        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
-
         Optional<Reserva> a = reservaRepositorio.findById(id);
 
         Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
@@ -124,7 +123,6 @@ public class ReservaServicio {
             reserva.setServicios((List<Servicio>) servicios);
             reserva.setTotal(total);
 
-
             reservaRepositorio.save(reserva);
 
             reservaRepositorio.save(reserva);
@@ -138,7 +136,6 @@ public class ReservaServicio {
 
         Optional<Reserva> respuesta = reservaRepositorio.findById(id);
 
-
         if (respuesta.isPresent()) {
             Reserva reserva = respuesta.get();
             reserva.setEstado(false);
@@ -150,18 +147,15 @@ public class ReservaServicio {
     @Transactional
     public void EliminarReserva(String id) throws MiException {
 
-
         Optional<Reserva> r = reservaRepositorio.findById(id);
-
 
         if (r.isPresent()) {
 
             Reserva reserva = r.get();
 
-
             reservaRepositorio.delete(reserva);
 
-           reservaRepositorio.delete(reserva);
+            reservaRepositorio.delete(reserva);
 
         }
 
@@ -171,7 +165,6 @@ public class ReservaServicio {
     @Transactional(readOnly = true)
     public Reserva getOne(String id) {
 
-
         return reservaRepositorio.getOne(id);
 
     }
@@ -180,16 +173,13 @@ public class ReservaServicio {
         List<Reserva> reservas = reservaRepositorio.buscarPorCliente(id);
         return reservas;
     }
-    public List<Reserva> listarPorPropietario(String id){
-       List<Reserva> reservas= reservaRepositorio.buscarPorPropietario(id);
-       return reservas;
+
+    public List<Reserva> listarPorPropietario(String id) {
+        List<Reserva> reservas = reservaRepositorio.buscarPorPropietario(id);
+        return reservas;
     }
 
-
-  
-
 //    
-
 //    private void validarReserva (String id,String huesped,List<Servicio>servicios,Double total, String idOpinion,String idPropiedad,String idCliente,String idServicio) throws MiException{
 //       
 //    
@@ -267,7 +257,6 @@ public class ReservaServicio {
 //        }
 //
 //    }
-
     public List<String> traerFechasDesde(String propiedadId) {
         List<Date> fechasDesde = reservaRepositorio.buscarFechasDesde(propiedadId);
         List<String> fechasDesdeISO = new ArrayList<>();
@@ -291,11 +280,26 @@ public class ReservaServicio {
     }
 
     public void validarFechaCreacion(Date fechaDesde, Date fechaHasta, String propiedadId) throws MiException {
-                
+
         List<Reserva> reservas = reservaRepositorio.verificarDisponibilidad(fechaDesde, fechaHasta, propiedadId);
 
         if (!reservas.isEmpty()) {
             throw new MiException("La fecha de reserva debe estar dentro del rango de disponibilidad.");
         }
+    }
+
+    @Transactional
+    public void eliminarReservasDePropiedad(String idPropiedad) throws MiException {
+
+        try {
+            List<Reserva> reservas = reservaRepositorio.buscarPorPropiedad(idPropiedad);
+
+            for (Reserva reserva : reservas) {
+                reservaRepositorio.delete(reserva);
+            }
+        } catch (Exception e) {
+             throw new MiException("Error borrando las reservas de la propiedad.");
+        }
+
     }
 }

@@ -7,6 +7,7 @@ package com.zonaop.alquileres.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class Reserva {
     private Date fechaHasta;
     @Temporal(TemporalType.DATE)
     private Date fechaDesde;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "propiedad_id")
     private Propiedad propiedad;
     @ManyToOne

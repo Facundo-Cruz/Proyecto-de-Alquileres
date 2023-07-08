@@ -92,7 +92,7 @@ public class ReservaControlador {
         List<Reserva> rese = reservaservi.listarReservas();
         modelo.addAttribute("reserva", rese);
 
-        return "formularioModificarReserva.html";
+        return "formulario-modificar-reserva.html";
 
     }
     
@@ -133,7 +133,7 @@ public class ReservaControlador {
 
             modelo.addAttribute("reserva", reserva);
 
-            return "formularioModificarReserva.html";
+            return "formulario-modificar-reserva.html";
 
         }
 

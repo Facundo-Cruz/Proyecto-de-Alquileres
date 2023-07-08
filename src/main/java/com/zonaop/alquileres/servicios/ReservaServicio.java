@@ -302,4 +302,19 @@ public class ReservaServicio {
         }
 
     }
+    
+    @Transactional
+    public void eliminarReservasDeCliente(String idCliente) throws MiException {
+
+        try {
+            List<Reserva> reservas = reservaRepositorio.buscarPorCliente(idCliente);
+
+            for (Reserva reserva : reservas) {
+                reservaRepositorio.delete(reserva);
+            }
+        } catch (Exception e) {
+             throw new MiException("Error borrando las reservas de la propiedad.");
+        }
+
+    }
 }

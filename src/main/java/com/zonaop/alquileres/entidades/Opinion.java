@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -21,11 +22,11 @@ public class Opinion {
     @GeneratedValue(generator = "uuid")
     private String id;
     private String huesped;
+    @Lob
     private String comentario;
     @OneToMany
     private List<Imagen> fotos;
     private double calificacion;
-    
     
     public Opinion() {
     }

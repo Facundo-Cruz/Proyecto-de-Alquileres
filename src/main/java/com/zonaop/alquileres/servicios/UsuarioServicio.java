@@ -41,6 +41,7 @@ public class UsuarioServicio implements UserDetailsService{
     
     @Transactional
     public void eliminarPorId(String id){
+        
         usuarioRepositorio.deleteById(id);
     }
     

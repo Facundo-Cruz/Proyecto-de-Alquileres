@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Listado de Usuarios</title>
+    <title>Propiedades</title>
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
     <link rel="stylesheet" href="/css/estilo-validaciones.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
@@ -20,11 +20,7 @@
         <form th:action="@{/usuario/listar/nombres}" method="POST">
             <main class="table">
                 <section class="table__header">
-                    <h1>Tabla de Usuarios</h1>
-                    <div class="input-group">
-                        <input type="search" placeholder="Ingrese un nombre..." name="nombre">
-                        <img src="/img/search.png" alt="">
-                    </div>
+                    <h1>Tabla de Propiedades</h1>
                 </section>
                 <section class="table__body">
                     <table>

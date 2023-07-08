@@ -155,6 +155,7 @@ public class UsuarioControlador {
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
         try {
+            reservaServicio.eliminarReservasDeCliente(id);
             usuarioServicio.eliminarPorId(id);
             redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
                     + "eliminado con éxito!");

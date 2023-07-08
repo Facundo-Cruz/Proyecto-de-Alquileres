@@ -124,6 +124,7 @@
                                 <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                             </p>
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar Reserva</a>
+                            <a sec:authorize="hasRole('CLIENTE')" th:href="@{/opinion/registro/__${reserva.id}__}">Calificar</a>
                         </div>
                     </div>
 

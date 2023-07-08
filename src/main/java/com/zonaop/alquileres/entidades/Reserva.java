@@ -32,8 +32,6 @@ public class Reserva {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String huesped;
-    @OneToOne
-    private Opinion opinion;
     @Temporal(TemporalType.DATE)
     private Date fechaHasta;
     @Temporal(TemporalType.DATE)
@@ -64,7 +62,6 @@ public class Reserva {
     public Reserva(String id, String huesped, Opinion opinion, Date fechaHasta, Date fechaDesde, Propiedad propiedad, Cliente cliente, List<Servicio> servicios, Double total) {
         this.id = id;
         this.huesped = huesped;
-        this.opinion = opinion;
         this.fechaHasta = fechaHasta;
         this.fechaDesde = fechaDesde;
         this.propiedad = propiedad;
@@ -89,13 +86,7 @@ public class Reserva {
         this.huesped = huesped;
     }
 
-    public Opinion getOpinion() {
-        return opinion;
-    }
 
-    public void setOpinion(Opinion opinion) {
-        this.opinion = opinion;
-    }
 
     public Date getFechaHasta() {
         return fechaHasta;

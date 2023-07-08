@@ -21,8 +21,10 @@ and open the template in the editor.
     <div class="contenedor-back">
         <div class="contenedor">
 
-            <form class="formulario-registro-de-usuario" th:action="@{/pruebass}" method="POST"
+            <form class="formulario-registro-de-usuario" th:action="@{/opinion/registrar}" method="POST"
                 enctype="multipart/form-data">
+                <input type="text" th:value="${reserva.cliente.nombreUsuario}" name="huesped" hidden>
+                <input type="text" th:value="${reserva.propiedad.id}" name="idPropiedad" hidden>
                 <hr>
                 <h3 class="titulo">Opinión</h3>
                 <hr>
@@ -38,7 +40,6 @@ and open the template in the editor.
                     <input type="radio" id="star1" name="rating" value="1" th:checked="${puntuacion == 1}" />
                     <label for="star1" th:onclick="'javascript:enviarPuntuacion(1)'"></label>
                 </div>
-
                 <label for="apellido">Comentar:</label>
                 <textarea name="comentario" id="" cols="30" rows="10" ></textarea>
 

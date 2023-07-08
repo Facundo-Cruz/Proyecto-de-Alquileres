@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Propiedades</title>
+    <title>Opiniones</title>
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
     <link rel="stylesheet" href="/css/estilo-validaciones.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
@@ -20,36 +20,27 @@
         <form th:action="@{/usuario/listar/nombres}" method="POST">
             <main class="table">
                 <section class="table__header">
-                    <h1>Tabla de Propiedades</h1>
+                    <h1>Tabla de Opiniones</h1>
                 </section>
                 <section class="table__body">
                     <table>
                         <thead>
                             <tr>
                                 <th> Id </th>
-                                <th> Nombre </th>
-                                <th> Dirección </th>
-                                <th> Localidad </th>
-                                <th> Pecio x Día </th>
+                                <th> Huesped </th>
+                                <th> Comentario </th>
+                                <th> Calificación </th>
                                 <th> Acciones </th>
                             </tr>
                         </thead>
-                        <tbody th:each="propiedad : ${propiedades}">
+                        <tbody th:each="opinion : ${opiniones}">
                             <tr>
-                                <td th:text="${propiedad.id}"> 1 </td>
+                                <td th:text="${opinion.id}"></td>
+                                <td th:text="${opinion.huesped}"></td>
+                                <td th:text="${opinion.comentario}"> </td>
+                                <td th:text="${opinion.calificacion}"> </td>
                                 <td>
-                                    <img th:src="@{/imagen/__${propiedad.id}__}" alt="">
-                                    <span th:text="${propiedad.nombre}"></span>
-                                </td>
-                                <td th:text="${propiedad.direccion}"> </td>
-                                <td th:text="${propiedad.localidad}"> </td>
-                                <td th:text="${propiedad.precio}"> </td>
-                                <td>
-                                    <a th:href="@{/propiedad/eliminar/__${propiedad.id}__}" class="delete-link">Eliminar</a>
-                                    <!-- <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
-                                        th:href="@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
-                                    <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"
-                                        th:href="@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar Estado</a> -->
+                                    <a th:href="@{/opinion/eliminar/__${opinion.id}__}" class="delete-link">Eliminar</a>
                                 </td>
                             </tr>
                         </tbody>

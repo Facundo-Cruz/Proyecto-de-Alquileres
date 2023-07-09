@@ -109,7 +109,9 @@
                                         <td th:text="${propiedad.localidad}"> </td>
                                         <td th:text="${propiedad.precio}"> </td>
                                         <td>
-                                            <a th:href="@{/propiedad/eliminar/__${propiedad.id}__}" class="delete-link">Eliminar</a>
+                                            <!-- <a th:href="@{/propiedad/eliminar/__${propiedad.id}__}" class="delete-link">Eliminar</a> -->
+                                            <button class="delete-link" data-toggle="modal"
+                                        th:data-target="'#confirmModal-' + ${propiedad.id}" type="button">Eliminar</button>
                                             <!-- <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
                                                 th:href="@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
                                             <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"
@@ -124,7 +126,38 @@
             </div>
         </div>
     </div>
+    <!-- Modals -->
+    <div th:each="propiedad : ${propiedades}">
+        <div th:id="'confirmModal-' + ${propiedad.id}" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar eliminación</h4>
+                <p th:text="'¿Seguro que deseas eliminar esta propiedad?'"></p>
+                <a th:href="@{/propiedad/eliminar/__${propiedad.id}__}" class="delete-link">Eliminar</a>
+                <button class="cancel-delete cancel-link">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-link');
+        const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
+        const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
 
+        deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', () => {
+                const targetModalId = deleteButton.getAttribute('data-target');
+                const targetModal = document.querySelector(targetModalId);
+                targetModal.style.display = 'block';
+            });
+        });
+
+        cancelDeleteButtons.forEach((cancelDeleteButton) => {
+            cancelDeleteButton.addEventListener('click', () => {
+                const targetModal = cancelDeleteButton.closest('.modal');
+                targetModal.style.display = 'none';
+            });
+        });
+    </script>
     <script src="/js/dashboard-nav.js"></script>
 </body>
 

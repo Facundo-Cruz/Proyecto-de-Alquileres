@@ -32,11 +32,15 @@ public class PortalControlador {
 
     @Autowired
     private PropietarioServicio propietarioServicio;
+    
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     @GetMapping("/pruebas")
     public String pruebas(ModelMap model) {
-        
-        return "dashboard.html";
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+        model.put("usuarios", usuarios);
+        return "pruebas.html";
     }
 
     @PostMapping("/pruebass")

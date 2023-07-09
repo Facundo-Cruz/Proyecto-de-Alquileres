@@ -104,7 +104,9 @@
                                     <td th:text="${opinion.comentario}"> </td>
                                     <td th:text="${opinion.calificacion}"> </td>
                                     <td>
-                                        <a th:href="@{/opinion/eliminar/__${opinion.id}__}" class="delete-link">Eliminar</a>
+                                        <button class="delete-link" data-toggle="modal"
+                                            th:data-target="'#confirmModal-' + ${opinion.id}"
+                                            type="button">Eliminar</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -114,7 +116,38 @@
             </div>
         </div>
     </div>
+    <!-- Modals -->
+    <div th:each="opinion : ${opiniones}">
+        <div th:id="'confirmModal-' + ${opinion.id}" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar eliminación</h4>
+                <p th:text="'¿Seguro que deseas eliminar esta opinión?'"></p>
+                <a th:href="@{/opinion/eliminar/__${opinion.id}__}" class="delete-link">Eliminar</a>
+                <button class="cancel-delete cancel-link">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-link');
+        const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
+        const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
 
+        deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', () => {
+                const targetModalId = deleteButton.getAttribute('data-target');
+                const targetModal = document.querySelector(targetModalId);
+                targetModal.style.display = 'block';
+            });
+        });
+
+        cancelDeleteButtons.forEach((cancelDeleteButton) => {
+            cancelDeleteButton.addEventListener('click', () => {
+                const targetModal = cancelDeleteButton.closest('.modal');
+                targetModal.style.display = 'none';
+            });
+        });
+    </script>
     <script src="/js/dashboard-nav.js"></script>
 </body>
 

@@ -364,6 +364,6 @@ a{
     text-decoration: none;
     
 }
-a:visited {
+.nav-option:visited {
     color: black; /* Cambia el color según tus preferencias */
   }

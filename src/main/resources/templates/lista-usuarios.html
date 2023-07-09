@@ -13,7 +13,9 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
+    <style>
 
+    </style>
 </head>
 
 <body>
@@ -93,51 +95,84 @@
                                 <img src="/img/search.png" alt="">
                             </div>
                         </section>
-                        <section class="table__body">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th> Id </th>
-                                        <th> Nombre y Apellido </th>
-                                        <th> Email </th>
-                                        <th> Rol </th>
-                                        <th> Estado </th>
-                                        <th> Acciones </th>
-                                    </tr>
-                                </thead>
-                                <tbody th:each="usuario : ${usuarios}">
-                                    <tr>
-                                        <td th:text="${usuario.id}"> 1 </td>
-                                        <td>
-                                            <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="">
-                                            <span th:text="${usuario.nombre + ' ' + usuario.apellido}"></span>
-                                        </td>
-                                        <td th:text="${usuario.email}"> </td>
-                                        <td th:text="${usuario.rol}"> </td>
-                                        <td>
-                                            <p th:if="${usuario.estado == true}" class="status delivered">Habilitado
-                                            </p>
-                                            <p th:if="${usuario.estado == false}" class="status cancelled">
-                                                Deshabilitado</p>
-                                        </td>
-                                        <td>
-                                            <a th:if="${session.usuariosession.id != usuario.id}" class="delete-link"
-                                                th:href="@{/usuario/eliminar/__${usuario.id}__}">Eliminar</a>
-                                            <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"
-                                                th:href="@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar
-                                                Estado</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>
-                    </main>
                 </form>
+                <section class="table__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> Id </th>
+                                <th> Nombre y Apellido </th>
+                                <th> Email </th>
+                                <th> Rol </th>
+                                <th> Estado </th>
+                                <th> Acciones </th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="usuario : ${usuarios}">
+                            <tr>
+                                <td th:text="${usuario.id}"> 1 </td>
+                                <td>
+                                    <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="">
+                                    <span th:text="${usuario.nombre + ' ' + usuario.apellido}"></span>
+                                </td>
+                                <td th:text="${usuario.email}"> </td>
+                                <td th:text="${usuario.rol}"> </td>
+                                <td>
+                                    <p th:if="${usuario.estado == true}" class="status delivered">Habilitado
+                                    </p>
+                                    <p th:if="${usuario.estado == false}" class="status cancelled">
+                                        Deshabilitado</p>
+                                </td>
+                                <td>
+
+                                    <button th:if="${session.usuariosession.id != usuario.id}" class="delete-link" data-toggle="modal"
+                                        th:data-target="'#confirmModal-' + ${usuario.id}" type="button">Eliminar</button>
+                                    <a th:if="${session.usuariosession.id != usuario.id}" class="cancel-link"
+                                        th:href="@{/usuario/cambiarEstado/__${usuario.id}__}">Cambiar
+                                        Estado</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                </main>
+
 
             </div>
         </div>
     </div>
+    <!-- Modals -->
+    <div th:each="usuario : ${usuarios}">
+        <div th:id="'confirmModal-' + ${usuario.id}" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar eliminación</h4>
+                <p th:text="'¿Seguro que deseas eliminar a ' + ${usuario.nombre} + ' ' + ${usuario.apellido} +'?'"></p>
+                <a th:href="@{/usuario/eliminar/__${usuario.id}__}" class="delete-link">Eliminar</a>
+                <button class="cancel-delete cancel-link">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-link');
+        const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
+        const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
 
+        deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', () => {
+                const targetModalId = deleteButton.getAttribute('data-target');
+                const targetModal = document.querySelector(targetModalId);
+                targetModal.style.display = 'block';
+            });
+        });
+
+        cancelDeleteButtons.forEach((cancelDeleteButton) => {
+            cancelDeleteButton.addEventListener('click', () => {
+                const targetModal = cancelDeleteButton.closest('.modal');
+                targetModal.style.display = 'none';
+            });
+        });
+    </script>
     <script src="/js/dashboard-nav.js"></script>
 </body>
 

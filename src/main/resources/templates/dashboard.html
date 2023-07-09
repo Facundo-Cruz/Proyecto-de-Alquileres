@@ -6,13 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,
 				initial-scale=1.0">
-    <title>Reservas</title>
-    <link rel="stylesheet" href="/css/dashboard-nav.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/style-listado-usuarios.css">
-
 </head>
 
 <body>
@@ -82,48 +80,59 @@
         </div>
         <div class="main">
             <div class="box-container">
-                <main class="table">
-                    <div th:replace="fragments/successMessage :: div"></div>
-                    <section class="table__header">
-                        <h1>Tabla de Reservas</h1>
-                    </section>
-                    <section class="table__body">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th> Id </th>
-                                    <th> Cliente </th>
-                                    <th> Propiedad </th>
-                                    <th> Desde </th>
-                                    <th> Hasta </th>
-                                    <th> Estado </th>
-                                    <th> Acciones </th>
-                                </tr>
-                            </thead>
-                            <tbody th:each="reserva : ${reservas}">
-                                <tr>
-                                    <td th:text="${reserva.id}"> </td>
-                                    <td th:text="${reserva.cliente.nombre}"> </td>
-                                    <td th:text="${reserva.propiedad.nombre}"> </td>
-                                    <td th:text="${reserva.fechaDesde}"> </td>
-                                    <td th:text="${reserva.fechaHasta}"> </td>
-                                    <td>
-                                          <p th:if="${reserva.estado == true}" class="status delivered">Habilitado</p>
-                                          <p th:if="${reserva.estado == false}" class="status cancelled">Deshabilitado</p>
-                                    </td>
-                                    <td>
-                                        <a class="delete-link" th:href= "@{/admin/eliminarReserva/__${reserva.id}__}">Eliminar</a>
-                                        <a class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
-                                        <a th:if="${reserva.estado == true}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-        
-        
-                </main>
+
+                <div class="box box1">
+                    <div class="text">
+                        <h2 class="topic-heading" th:text="${propietarios}"></h2>
+                        <h2 class="topic">Propietarios</h2>
+                    </div>
+
+                    <i class="fa-solid fa-user-tie iconos-card"></i>
+                </div>
+
+                <div class="box box2">
+                    <div class="text">
+                        <h2 class="topic-heading" th:text="${clientes}"></h2>
+                        <h2 class="topic">Clientes</h2>
+                    </div>
+
+                    <i class="fa-solid fa-user-group iconos-card"></i>
+                </div>
+
+                <div class="box box3">
+                    <div class="text">
+                        <h2 class="topic-heading" th:text="${reservas}"></h2>
+                        <h2 class="topic">Reservas</h2>
+                    </div>
+
+                    <i class="fa-solid fa-house-user iconos-card"></i>
+                </div>
+
+                <div class="box box4">
+                    <div class="text">
+                        <h2 class="topic-heading" th:text="${propiedades}"></h2>
+                        <h2 class="topic">Publicaciones</h2>
+                    </div>
+
+                    <i class="fa-solid fa-file iconos-card"></i>
+                </div>
             </div>
+
+            <div class="report-container">
+                <div class="wrapper">
+                    <i id="left" class="fa-solid fa-angle-left"></i>
+                    <ul class="carousel">
+                        <li class="card" th:each="admin : ${admins}">
+                            <div class="img"><img th:src="@{/imagen/perfil/__${admin.id}__}" alt="img"
+                                    draggable="false"></div>
+                            <h2 th:text="${admin.nombre}">Blanche Pearson</h2>
+                            <span>Admin</span>
+                        </li>
+                    </ul>
+                    <i id="right" class="fa-solid fa-angle-right"></i>
+                </div>
+            </div>
+
         </div>
     </div>
 

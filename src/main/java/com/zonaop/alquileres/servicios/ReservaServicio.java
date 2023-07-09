@@ -317,4 +317,8 @@ public class ReservaServicio {
         }
 
     }
+    
+    public int contarReservas(){
+        return reservaRepositorio.contarReservas();
+    }
 }

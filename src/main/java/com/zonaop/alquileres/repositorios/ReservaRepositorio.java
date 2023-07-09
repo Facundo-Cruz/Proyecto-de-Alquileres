@@ -33,4 +33,7 @@ public interface ReservaRepositorio extends JpaRepository<Reserva, String> {
 
     @Query("SELECT r FROM Reserva r WHERE r.propiedad.id = :propiedadId AND r.estado = true AND r.fechaDesde <= :fechaHasta AND r.fechaHasta >= :fechaDesde")
     public List<Reserva> verificarDisponibilidad(@Param("fechaDesde") Date fechaDesde, @Param("fechaHasta") Date fechaHasta, @Param("propiedadId") String propiedadId);
+    
+    @Query("SELECT COUNT(r) FROM Reserva r")
+    public int contarReservas();
 }

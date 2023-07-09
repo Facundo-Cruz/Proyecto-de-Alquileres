@@ -6,6 +6,8 @@ import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
+import com.zonaop.alquileres.servicios.ReservaServicio;
+import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +33,23 @@ public class PortalControlador {
     @Autowired
     private PropietarioServicio propietarioServicio;
 
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    private ReservaServicio reservaServicio;
 
     @GetMapping("/pruebas")
-    public String pruebas() {
-
-        return "index.html";
+    public String pruebas(ModelMap model) {
+  
+        return "dashboard.html";
 
     }
 
     @PostMapping("/pruebass")
     public String pruebas2(@RequestParam(value = "archivos[]", required = false) List<MultipartFile> archivos,
             @RequestParam double rating, @RequestParam String comentario) {
-        
+
         System.out.println(rating);
         return "redirect:/";
     }
@@ -64,15 +71,15 @@ public class PortalControlador {
     }
 
     @GetMapping("/")
-    public String index(ModelMap model,HttpSession session) {
+    public String index(ModelMap model, HttpSession session) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
-        if (usuario!=null) {
+        if (usuario != null) {
             if (usuario.getRol().toString().equals("ADMIN")) {
-            return "redirect:/admin/dashboard";
+                return "redirect:/admin/dashboard";
+            }
         }
-        }
-        
+
         model.put("usuario", usuario);
         model.put("propiedades", propiedades);
         return "mainPage.html";
@@ -80,7 +87,7 @@ public class PortalControlador {
 
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam String email,@RequestParam Long telefono, @RequestParam String alias,
+            @RequestParam String email, @RequestParam Long telefono, @RequestParam String alias,
             @RequestParam String contrasena, @RequestParam String rol,
             @RequestParam MultipartFile archivo,
             ModelMap model, RedirectAttributes redirectAttributes) {
@@ -88,12 +95,12 @@ public class PortalControlador {
         try {
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.registrar(nombre, apellido, alias, email,telefono, contrasena, archivo, rol);
+                clienteServicio.registrar(nombre, apellido, alias, email, telefono, contrasena, archivo, rol);
 
             } else {
 
-                propietarioServicio.registrar(nombre, apellido, alias, email,telefono, contrasena, archivo, rol);
-                
+                propietarioServicio.registrar(nombre, apellido, alias, email, telefono, contrasena, archivo, rol);
+
             }
 
             redirectAttributes.addFlashAttribute("exito", "¡Has sido registrado con éxito!");

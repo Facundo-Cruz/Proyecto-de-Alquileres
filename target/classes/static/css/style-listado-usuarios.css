@@ -14,23 +14,8 @@ Code written by:
     padding: 0;
 
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
-body {
-    /* min-height: 100vh; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background: url(/img/casa.jpg) center / cover;
-    
-}
-.contenedor{
-    box-sizing: border-box;
-    padding-top: 20px;
-    padding-bottom: 10px;
-}
 main.table {
     width: 82vw;
     height: 85vh;

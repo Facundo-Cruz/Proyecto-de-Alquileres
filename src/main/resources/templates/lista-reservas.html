@@ -1,68 +1,133 @@
 <!DOCTYPE html>
-<html lang="en" title="Coding design" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
-    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
-    <!-- <link rel="stylesheet" href="/css/nav-listado-usuarios.css"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,
+				initial-scale=1.0">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="/css/dashboard-nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/style-listado-usuarios.css">
-    <link rel="stylesheet" href="/css/estilo-validaciones.css">
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/css/navbar-responsive.css">
-    <!-- <link rel="stylesheet" href="/css/mainPage.css"> -->
+
 </head>
 
 <body>
-    <nav th:replace="fragments/navbar :: nav"></nav> 
-    <div class="contenedor">
+
+    <!-- for header part -->
+    <header>
+
+        <div class="logosec">
+            <a class="logo" href="/">
+                <img src="/img/logo.png" width="50" height="50" alt="Alquileres" />
+            </a>
+            <div class="bars__menu menuicn">
+                <span class="line1__bars-menu"></span>
+                <span class="line2__bars-menu"></span>
+                <span class="line3__bars-menu"></span>
+            </div>
+        </div>
+
+        <div class="message">
+
+            <div class="dp">
+                <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" class="dpicn" alt="dp">
+            </div>
+            <a th:if="${session.usuariosession != null}" class="btn btn-primary" href="/logout">Cerrar
+                Sesion</a>
+        </div>
+
+    </header>
+
+    <div class="main-container">
+        <div class="navcontainer">
+            <nav class="nav">
+                <div class="nav-upper-options">
+                    <div class="nav-option option1">
+                        <i class="fa-solid fa-square iconos"></i>
+                        <h3> Dashboard</h3>
+                    </div>
+
+                    <a th:href="@{/usuario/listar/}" class="option2 nav-option">
+                        <i class="fa-solid fa-user iconos"></i>
+                        <h3> Usuarios</h3>
+                    </a>
+
+
+                    <a th:href="@{/propiedad/listar/}" class="nav-option option3">
+                        <i class="fa-solid fa-house iconos"></i>
+                        <h3> Propiedades</h3>
+                    </a>
+
+                    <a th:href="@{/admin/listarReservas/}" class="nav-option option4">
+                        <i class="fa-solid fa-house-user iconos"></i>
+                        <h3> Reservas</h3>
+                    </a>
+
+                    <a th:href="@{/opinion/listar/}" class="nav-option option4">
+                        <i class="fa-solid fa-comment iconos"></i>
+                        <h3> Opiniones</h3>
+                    </a>
+
+                    <a class="nav-option option4">
+                        <i class="fa-solid fa-sheet-plastic iconos"></i>
+                        <h3> Reportes</h3>
+                    </a>
+
+                </div>
+            </nav>
+        </div>
+        <div class="main">
+            <div class="box-container">
+                <main class="table">
+                    <div th:replace="fragments/successMessage :: div"></div>
+                    <section class="table__header">
+                        <h1>Tabla de Reservas</h1>
+                    </section>
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Cliente </th>
+                                    <th> Propiedad </th>
+                                    <th> Desde </th>
+                                    <th> Hasta </th>
+                                    <th> Estado </th>
+                                    <th> Acciones </th>
+                                </tr>
+                            </thead>
+                            <tbody th:each="reserva : ${reservas}">
+                                <tr>
+                                    <td th:text="${reserva.id}"> </td>
+                                    <td th:text="${reserva.cliente.nombre}"> </td>
+                                    <td th:text="${reserva.propiedad.nombre}"> </td>
+                                    <td th:text="${reserva.fechaDesde}"> </td>
+                                    <td th:text="${reserva.fechaHasta}"> </td>
+                                    <td>
+                                          <p th:if="${reserva.estado == true}" class="status delivered">Habilitado</p>
+                                          <p th:if="${reserva.estado == false}" class="status cancelled">Deshabilitado</p>
+                                    </td>
+                                    <td>
+                                        <a class="delete-link" th:href= "@{/admin/eliminarReserva/__${reserva.id}__}">Eliminar</a>
+                                        <a class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
+                                        <a th:if="${reserva.estado == true}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
         
-        <main class="table">
-            <div th:replace="fragments/successMessage :: div"></div>
-            <section class="table__header">
-                <h1>Tabla de Reservas</h1>
-            </section>
-            <section class="table__body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th> Id </th>
-                            <th> Cliente </th>
-                            <th> Propiedad </th>
-                            <th> Desde </th>
-                            <th> Hasta </th>
-                            <th> Estado </th>
-                            <th> Acciones </th>
-                        </tr>
-                    </thead>
-                    <tbody th:each="reserva : ${reservas}">
-                        <tr>
-                            <td th:text="${reserva.id}"> </td>
-                            <td th:text="${reserva.cliente.nombre}"> </td>
-                            <td th:text="${reserva.propiedad.nombre}"> </td>
-                            <td th:text="${reserva.fechaDesde}"> </td>
-                            <td th:text="${reserva.fechaHasta}"> </td>
-                            <td>
-                                  <p th:if="${reserva.estado == true}" class="status delivered">Habilitado</p>
-                                  <p th:if="${reserva.estado == false}" class="status cancelled">Deshabilitado</p>
-                            </td>
-                            <td>
-                                <a class="delete-link" th:href= "@{/admin/eliminarReserva/__${reserva.id}__}">Eliminar</a>
-                                <a class="cancel-link" th:href= "@{/reserva/modificar/__${reserva.id}__}">Modificar</a>
-                                <a th:if="${reserva.estado == true}" class="modify-link" th:href= "@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-
-        </main>
+        
+                </main>
+            </div>
+        </div>
     </div>
 
+    <script src="/js/dashboard-nav.js"></script>
 </body>
 
 </html>

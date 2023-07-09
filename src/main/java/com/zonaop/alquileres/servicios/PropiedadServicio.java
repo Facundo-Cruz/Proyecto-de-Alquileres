@@ -195,4 +195,7 @@ public class PropiedadServicio {
 
     }
 
+    public int contarPropiedades(){
+        return propiedadRepositorio.contarPropiedades();
+    }
 }

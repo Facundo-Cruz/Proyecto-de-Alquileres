@@ -46,15 +46,16 @@ public class OpinionControlador {
         return "formulario-registro-opinion.html";
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/registrar/{idReserva}")
     public String registroOpinion(@RequestParam(value = "archivos[]",
             required = false) List<MultipartFile> archivos,
             @RequestParam double rating, @RequestParam String comentario,
-            @RequestParam String huesped, @RequestParam String idPropiedad, ModelMap modelo) {
+            @RequestParam String huesped, @RequestParam String idPropiedad,
+            ModelMap modelo, @PathVariable String idReserva) {
 
         try {
 
-            opinionservicio.crearOpinion(idPropiedad, huesped, comentario, rating, archivos);
+            opinionservicio.crearOpinion(idPropiedad, huesped, comentario, rating, archivos, idReserva);
             modelo.put("excelente", "su opinion ha sido emitida satisfactoriamente");
 
         } catch (MiException ex) {

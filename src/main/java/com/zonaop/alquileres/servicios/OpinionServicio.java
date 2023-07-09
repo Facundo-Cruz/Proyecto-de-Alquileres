@@ -7,6 +7,7 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Opinion;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Reserva;
+import com.zonaop.alquileres.enumeraciones.EstadoReserva;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.OpinionRepositorio;
 import com.zonaop.alquileres.repositorios.PropiedadRepositorio;
@@ -29,10 +30,13 @@ public class OpinionServicio {
     private ImagenServicio imagenServicio;
     
     @Autowired
+    private ReservaRepositorio reservaRepositorio;
+    
+    @Autowired
     private PropiedadRepositorio propiedadRepositorio;
 
     @Transactional
-    public void crearOpinion(String idPropiedad, String huesped, String comentario, double calificacion, List<MultipartFile> archivos) throws MiException {
+    public void crearOpinion(String idPropiedad, String huesped, String comentario, double calificacion, List<MultipartFile> archivos, String idReserva) throws MiException {
 
         validarOpinion(huesped, comentario, calificacion, archivos);
 
@@ -48,6 +52,11 @@ public class OpinionServicio {
         List<Opinion> opiniones = propiedad.getOpiniones();
         opiniones.add(opinion);
         propiedadRepositorio.save(propiedad);
+        
+        Optional<Reserva> reservaOp = reservaRepositorio.findById(idReserva);
+        Reserva reserva = reservaOp.get();
+        reserva.setEstado(EstadoReserva.Finalizada);
+        reservaRepositorio.save(reserva);
     }
 
     @Transactional(readOnly = true)

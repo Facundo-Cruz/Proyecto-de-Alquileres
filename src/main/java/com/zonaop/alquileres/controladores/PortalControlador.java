@@ -33,17 +33,10 @@ public class PortalControlador {
     @Autowired
     private PropietarioServicio propietarioServicio;
 
-    @Autowired
-    private UsuarioServicio usuarioServicio;
-
-    @Autowired
-    private ReservaServicio reservaServicio;
-
     @GetMapping("/pruebas")
     public String pruebas(ModelMap model) {
-  
+        
         return "dashboard.html";
-
     }
 
     @PostMapping("/pruebass")

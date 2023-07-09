@@ -21,7 +21,7 @@ and open the template in the editor.
     <div class="contenedor-back">
         <div class="contenedor">
 
-            <form class="formulario-registro-de-usuario" th:action="@{/opinion/registrar}" method="POST"
+            <form class="formulario-registro-de-usuario" th:action="@{/opinion/registrar/__${reserva.id}__}" method="POST"
                 enctype="multipart/form-data">
                 <input type="text" th:value="${reserva.cliente.nombreUsuario}" name="huesped" hidden>
                 <input type="text" th:value="${reserva.propiedad.id}" name="idPropiedad" hidden>

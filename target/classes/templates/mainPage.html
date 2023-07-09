@@ -11,7 +11,6 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="/css/navbar-responsive.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>  
-        <link rel="stylesheet" href="/css/userInterface.css">
     </head>
 
     <body>
@@ -71,7 +70,7 @@
                             <option value="Corrientes">Corrientes</option>
                         </select>
                     </div>
-<!--                    <div class="filtro">
+                   <!-- <div class="filtro">
                         <label>Servicios:</label>
                         <div>
                             <input type="checkbox" id="servicio1" name="servicios" value="Transporte">
@@ -113,7 +112,7 @@
                             <input type="checkbox" id="servicio10" name="servicios" value="Asador">
                             <label for="servicio10">Asador</label>
                         </div>
-                    </div>-->
+                    </div> -->
 
 
                     <div class="filtro">
@@ -156,20 +155,20 @@
                     <h3 th:text="${propiedad.nombre}"></h3>
                     <hr class="horizontal">
 
-                    <p>
-                        <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
-                        <br>
-                        <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
-                        <br>
-                        <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
-                        <br>
-                        <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
-                    </p>
-                    <div class="contenedor">
-                        <a th:href="@{/reserva/registrar/__${propiedad.id}__}" class="btn-aux btn-1">Alquilar</a>
 
-                    </div>
+                <p>
+                    <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
+                    <br>
+                    <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
+                    <br>
+                    <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
+                    <br>
+                    <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
+                </p>
+                <div class="contenedor">
+                    <a th:href="@{/propiedad/mostrar/__${propiedad.id}__}" class="btn-aux btn-1">Ver más</a>
                 </div>
+            </div>
             </div>
         </div>
 

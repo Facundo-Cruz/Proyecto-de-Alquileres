@@ -57,9 +57,19 @@ public class Propiedad {
     private int calificacion;
     @OneToMany
     private List<Servicio> servicios;
+    @OneToMany
+    private List<Opinion> opiniones;
     private String email;
 
     public Propiedad() {
+    }
+
+    public List<Opinion> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(List<Opinion> opiniones) {
+        this.opiniones = opiniones;
     }
 
     public String getEmail() {

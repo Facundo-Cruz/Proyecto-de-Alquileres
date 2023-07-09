@@ -116,5 +116,7 @@ public class PropietarioServicio {
         return propietarioRepositorio.getOne(id);
 
     }
+    
+    
 
 }

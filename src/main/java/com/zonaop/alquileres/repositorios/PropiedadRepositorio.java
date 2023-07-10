@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PropiedadRepositorio extends JpaRepository<Propiedad, String> {
+    
+    @Query("SELECT COUNT(p) FROM Propiedad p")
+    public int contarPropiedades();
 
     @Query("SELECT p FROM Propiedad p WHERE p.tipo = :tipo")
     public List<Propiedad> buscarPorTipo(@Param("tipo") TipoPropiedad tipo);

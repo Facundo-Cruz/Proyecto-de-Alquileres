@@ -14,23 +14,8 @@ Code written by:
     padding: 0;
 
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
-body {
-    /* min-height: 100vh; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background: url(/img/casa.jpg) center / cover;
-    
-}
-.contenedor{
-    box-sizing: border-box;
-    padding-top: 20px;
-    padding-bottom: 10px;
-}
 main.table {
     width: 82vw;
     height: 85vh;
@@ -99,18 +84,18 @@ main.table {
     overflow: overlay;
 }
 
-.table__body::-webkit-scrollbar{
+.table__body::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
 }
 
-.table__body::-webkit-scrollbar-thumb{
+.table__body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-.table__body:hover::-webkit-scrollbar-thumb{ 
+.table__body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
 
@@ -127,7 +112,9 @@ td img {
     vertical-align: middle;
 }
 
-table, th, td {
+table,
+th,
+td {
     border-collapse: collapse;
     padding: 1rem;
     text-align: left;
@@ -216,15 +203,15 @@ thead th span.icon-arrow {
     height: 1.3rem;
     border-radius: 50%;
     border: 1.4px solid transparent;
-    
+
     text-align: center;
     font-size: 1rem;
-    
+
     margin-left: .5rem;
     transition: .2s ease-in-out;
 }
 
-thead th:hover span.icon-arrow{
+thead th:hover span.icon-arrow {
     border: 1.4px solid #6c00bd;
 }
 
@@ -232,16 +219,17 @@ thead th:hover {
     color: #6c00bd;
 }
 
-thead th.active span.icon-arrow{
+thead th.active span.icon-arrow {
     background-color: #6c00bd;
     color: #fff;
 }
 
-thead th.asc span.icon-arrow{
+thead th.asc span.icon-arrow {
     transform: rotate(180deg);
 }
 
-thead th.active,tbody td.active {
+thead th.active,
+tbody td.active {
     color: #6c00bd;
 }
 
@@ -258,7 +246,7 @@ thead th.active,tbody td.active {
     transition: .2s ease-in-out;
 }
 
-.export__file .export__file-btn:hover { 
+.export__file .export__file-btn:hover {
     background-color: #fff;
     transform: scale(1.15);
     cursor: pointer;
@@ -271,7 +259,7 @@ thead th.active,tbody td.active {
 .export__file .export__file-options {
     position: absolute;
     right: 0;
-    
+
     width: 12rem;
     border-radius: .5rem;
     overflow: hidden;
@@ -280,24 +268,24 @@ thead th.active,tbody td.active {
     opacity: 0;
     transform: scale(.8);
     transform-origin: top right;
-    
+
     box-shadow: 0 .2rem .5rem #0004;
-    
+
     transition: .2s;
 }
 
-.export__file input:checked + .export__file-options {
+.export__file input:checked+.export__file-options {
     opacity: 1;
     transform: scale(1);
     z-index: 100;
 }
 
-.export__file .export__file-options label{
+.export__file .export__file-options label {
     display: block;
     width: 100%;
     padding: .6rem 0;
     background-color: #f2f2f2;
-    
+
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -305,18 +293,18 @@ thead th.active,tbody td.active {
     transition: .2s ease-in-out;
 }
 
-.export__file .export__file-options label:first-of-type{
+.export__file .export__file-options label:first-of-type {
     padding: 1rem 0;
     background-color: #86e49d !important;
 }
 
-.export__file .export__file-options label:hover{
+.export__file .export__file-options label:hover {
     transform: scale(1.05);
     background-color: #fff;
     cursor: pointer;
 }
 
-.export__file .export__file-options img{
+.export__file .export__file-options img {
     width: 2rem;
     height: auto;
 }
@@ -330,9 +318,19 @@ thead th.active,tbody td.active {
     border-radius: 4px;
     cursor: pointer;
     border: none;
-  }
-  .cancel-link {
-    background-color: rgb(6, 86, 178);
+    transition: background-color 0.5s ease;
+}
+
+.delete-link:hover {
+    background-color: rgb(195, 11, 11);
+}
+
+.delete-link:active{
+    background-color: rgb(141, 141, 141);
+}
+
+.cancel-link {
+    background-color: rgb(10, 99, 200);
     color: white;
     text-decoration: none;
     padding: 10px 20px;
@@ -340,8 +338,14 @@ thead th.active,tbody td.active {
     border-radius: 4px;
     cursor: pointer;
     border: none;
-  }
-  .modify-link {
+    transition: background-color 0.5s ease;
+}
+.cancel-link:hover{
+    background-color: rgb(10, 73, 145);
+}
+
+
+.modify-link {
     background-color: rgb(29, 179, 52);
     color: white;
     text-decoration: none;
@@ -350,9 +354,49 @@ thead th.active,tbody td.active {
     border-radius: 4px;
     cursor: pointer;
     border: none;
-  }
-  
-  .delete-link:active {
+    transition: background-color 0.5s ease;
+}
+
+.modify-link:active{
+    background-color: rgb(141, 141, 141);
+}
+
+.delete-link:active {
     opacity: 0.5;
     /* Valor de opacidad que desees, por ejemplo 0.8 */
-  }
+}
+
+/* MODAL INICIO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+
+.modal h4 {
+    margin-top: 0;
+}
+
+.modal button {
+    margin-top: 10px;
+}
+
+/* MODAL FINAL */

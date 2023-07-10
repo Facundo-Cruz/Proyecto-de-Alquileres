@@ -1,0 +1,46 @@
+body {
+    /* background: url(/img/fondo-admin.svg) no-repeat center center fixed;
+    background-size: cover; */
+    background: beige;
+}
+.container-admin{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 70vh;
+}
+h1{
+    margin-bottom: 40px;
+}
+.m-b{
+    margin-bottom: 15px;
+}
+
+.m-r{
+    margin-right: 100px;
+}
+
+p{
+    font-size: 24px;
+}
+.img{
+    margin-left: 95px;
+}
+.button {
+    margin-top: 26px;
+    background-color: rgb(0, 119, 255);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    display: block;
+    width: 120px;
+    text-align: center;
+    margin-left: 147px;
+}
+.button:hover{
+    background-color: rgb(0, 85, 182);
+}

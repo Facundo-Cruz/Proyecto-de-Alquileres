@@ -39,8 +39,20 @@ public class UsuarioServicio implements UserDetailsService{
         return usuarioRepositorio.buscarPorNombreUsuario(nombre);
     }
     
+    public List<Usuario> listarAdmins(){
+        return usuarioRepositorio.buscarAdmins();
+    }
+    
+    public int contarPropietarios(){
+        return usuarioRepositorio.contarPropietarios();
+    }
+    public int contarClientes(){
+        return usuarioRepositorio.contarClientes();
+    }
+    
     @Transactional
     public void eliminarPorId(String id){
+        
         usuarioRepositorio.deleteById(id);
     }
     

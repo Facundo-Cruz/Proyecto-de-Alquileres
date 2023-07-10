@@ -1,4 +1,3 @@
-
 package com.zonaop.alquileres.repositorios;
 
 import com.zonaop.alquileres.entidades.Administrador;

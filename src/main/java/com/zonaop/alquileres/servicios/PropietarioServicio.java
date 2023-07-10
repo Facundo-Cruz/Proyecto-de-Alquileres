@@ -23,16 +23,22 @@ public class PropietarioServicio {
 
     @Autowired
     public UsuarioServicio usuarioServicio;
-    
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public void registrar(String nombre,String apellido, String nombreUsuario, String email,Long telefono, String contrasena, MultipartFile archivo, String rol) throws MiException {
+    public void registrar(String nombre, String apellido, String nombreUsuario,
+            String email, Long telefono, String contrasena, MultipartFile archivo,
+            String rol) throws MiException {
 
         usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
-        Propietario propietario = new Propietario();
+        if (telefono == null) {
+            throw new MiException("El número de teléfono no puede ser nulo.");
+        }
 
+        Propietario propietario = new Propietario();
         propietario.setNombre(nombre);
         propietario.setApellido(apellido);
         propietario.setNombreUsuario(nombreUsuario);
@@ -40,33 +46,34 @@ public class PropietarioServicio {
         propietario.setTelefono(telefono);
         propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         propietario.setEstado(Boolean.TRUE);
-
         Imagen imagen = imagenServicio.guardar(archivo);
-
         propietario.setFoto(imagen);
-
         propietario.setRol(Rol.PROPIETARIO);
-
         propietarioRepositorio.save(propietario);
-
     }
 
     @Transactional
-    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, Long telefono, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
+    public void modificar(String id, String nombre, String apellido,
+            String nombreUsuario, String email, Long telefono, String contrasena,
+            MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
-            
+
             Propietario propietario = respuesta.get();
 
-            
             String encodedPassword = propietario.getContrasena();
 
             if (!bCryptPasswordEncoder.matches(passwordActual, encodedPassword)) {
                 throw new MiException("Las contraseña actual no es correcta.");
             }
-            usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
+
+            usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
+
+            if (telefono == null) {
+                throw new MiException("El número de teléfono no puede ser nulo.");
+            }
 
             propietario.setNombre(nombre);
             propietario.setApellido(apellido);
@@ -78,21 +85,14 @@ public class PropietarioServicio {
             String idImagen = null;
 
             if (propietario.getFoto() != null) {
-
                 idImagen = propietario.getFoto().getId();
-
             }
 
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-
             propietario.setFoto(imagen);
-
             propietario.setRol(Rol.PROPIETARIO);
-
             propietarioRepositorio.save(propietario);
-
         }
-
     }
 
     @Transactional
@@ -102,21 +102,12 @@ public class PropietarioServicio {
 
     @Transactional
     public void darBaja(String id) throws MiException {
-
         Propietario propietario = getOne(id);
-
         propietario.setEstado(Boolean.FALSE);
-
         propietarioRepositorio.save(propietario);
-
     }
 
     public Propietario getOne(String id) {
-
         return propietarioRepositorio.getOne(id);
-
     }
-    
-    
-
 }

@@ -4,11 +4,7 @@ import com.zonaop.alquileres.enumeraciones.Localidad;
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,9 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.MapKeyColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -39,8 +34,7 @@ public class Propiedad {
     @Lob
     private String descripcion;
     private long telefono;
-    @OneToOne
-    //Especifica que una propiedad necesita si osi de un propietario para ser persistida
+    @ManyToOne
     @JoinColumn(name = "propietario_id")
     private Propietario propietario;
     @Temporal(TemporalType.DATE)
@@ -211,8 +205,6 @@ public class Propiedad {
     public void setFotos(List<Imagen> fotos) {
         this.fotos = fotos;
     }
-
-    
 
     public Propietario getPropietario() {
         return propietario;

@@ -79,7 +79,7 @@ public class AdministradorControlador {
     public String eliminarReserva(@PathVariable String id, RedirectAttributes p) {
 
         try {
-            reservaservi.EliminarReserva(id);
+            reservaservi.eliminarReserva(id);
             p.addFlashAttribute("exito", "eliminado");
 
             return "redirect:../listarReservas";

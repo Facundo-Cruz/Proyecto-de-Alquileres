@@ -98,18 +98,51 @@ public class ReservaServicio {
 
     }
 
-    @Transactional
-    public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
+//    @Transactional
+//    public void modificarReserva(String id, String huesped, List<Servicio> servicios, Double total, String idOpinion, String idPropiedad, String idCliente, String idServicio) throws MiException {
+//
+////        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
+//
+//        Optional<Reserva> a = reservaRepositorio.findById(id);
+//
+//        Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
+//        Optional<Cliente> c = clienterepo.findById(idCliente);
+//        Optional<Opinion> d = opinionrepo.findById(idOpinion);
+//        Optional<Servicio> e = serviciorepo.findById(idServicio);
+//
+//        Cliente cliente = new Cliente();
+//        Opinion opinion = new Opinion();
+//        Propiedad propiedad = new Propiedad();
+//        Servicio servicio = new Servicio();
+//
+//        if (a.isPresent()) {
+//
+//            Reserva reserva = a.get();
+//
+//            reserva.setHuesped(huesped);
+//            reserva.setCliente(cliente);
+//            reserva.setServicios((List<Servicio>) servicios);
+//            reserva.setTotal(total);
+//
+//
+//            reservaRepositorio.save(reserva);
+//
+//            reservaRepositorio.save(reserva);
+//
+//        }
+//
+//    }
 
-//        validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
+ 
+    
+    @Transactional
+    public void modificarReserva(String id,String huesped, List<Servicio> servicios, Double total,boolean estado) throws MiException {
+
+//      validarReserva(id, huesped, servicios, total, idOpinion, idCliente, idPropiedad, idServicio);
 
         Optional<Reserva> a = reservaRepositorio.findById(id);
 
-        Optional<Propiedad> b = propiedadrepo.findById(idPropiedad);
-        Optional<Cliente> c = clienterepo.findById(idCliente);
-        Optional<Opinion> d = opinionrepo.findById(idOpinion);
-        Optional<Servicio> e = serviciorepo.findById(idServicio);
-
+        
         Cliente cliente = new Cliente();
         Opinion opinion = new Opinion();
         Propiedad propiedad = new Propiedad();
@@ -123,16 +156,17 @@ public class ReservaServicio {
             reserva.setCliente(cliente);
             reserva.setServicios((List<Servicio>) servicios);
             reserva.setTotal(total);
-
-
-            reservaRepositorio.save(reserva);
+            reserva.setEstado(estado);
 
             reservaRepositorio.save(reserva);
+
 
         }
 
     }
 
+    
+    
     @Transactional
     public void cancelarPorId(String id) {
 

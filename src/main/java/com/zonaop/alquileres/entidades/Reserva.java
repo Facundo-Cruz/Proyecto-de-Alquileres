@@ -53,7 +53,7 @@ public class Reserva {
             inverseJoinColumns = @JoinColumn(name = "servicio_id")
     )
     private List<Servicio> servicios;
-    private Double total;
+    private double total;
     private boolean estado;
 
     public Reserva() {

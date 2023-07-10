@@ -16,7 +16,9 @@
     </div>
 
     <div class="imagebox">
-        <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        <a href="#" class="profile-picture-background">
+            <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        </a>
     </div>
     <div class="infobox">
         <div class="heading">

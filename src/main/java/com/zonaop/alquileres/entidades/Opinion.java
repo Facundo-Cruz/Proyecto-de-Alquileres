@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zonaop.alquileres.entidades;
 
 import java.util.List;
@@ -10,16 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Opinion {
     
-    
     @Id
     @GeneratedValue(generator = "uuid")
+    @GenericGenerator( name = "uuid", strategy = "uuid2")
     private String id;
     private String huesped;
     @Lob
@@ -29,14 +23,6 @@ public class Opinion {
     private double calificacion;
     
     public Opinion() {
-    }
-
-    public Opinion(String id, String huesped, String comentario, List<Imagen> fotos, double calificacion) {
-        this.id = id;
-        this.huesped = huesped;
-        this.comentario = comentario;
-        this.fotos = fotos;
-        this.calificacion = calificacion;
     }
 
     public String getId() {
@@ -79,12 +65,4 @@ public class Opinion {
         this.calificacion = calificacion;
     }
 
-    @Override
-    public String toString() {
-        return "Opinion{" + "id=" + id + ", huesped=" + huesped + ", comentario=" + comentario + ", fotos=" + fotos + ", calificacion=" + calificacion + '}';
-    }
-    
-
-    
-    
 }

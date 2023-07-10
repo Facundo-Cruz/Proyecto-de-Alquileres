@@ -1,4 +1,3 @@
-
 package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.Rol;
@@ -13,15 +12,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
-//Anotacion para persistir la entidad
 @Entity
-//Anotacón para decir cual es la estrategia de la herencia y que se cree tambien una tabla de usuarioen la base de datos.
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Usuario {
+    
     @Id
-    //Genera id de forma automatica
     @GeneratedValue(generator = "uuid")
-    //Segunda estrategia en caso de que el primer generador repita un id
     @GenericGenerator( name = "uuid", strategy = "uuid2")
     protected String id;
     @Basic
@@ -32,18 +28,14 @@ public class Usuario {
     protected String email;
     protected String contrasena;
     protected Boolean estado;
-    
-    //El usuario posee una imagen de perfil
     @OneToOne
     protected Imagen foto;
-    
     @Enumerated(EnumType.STRING)
     protected Rol rol;
 
     public Usuario() {
     }
     
-    //Getters y Setters que utilizaran las hijas a la hora de recibir datos mediante el formulario
     public String getId() {
         return id;
     }
@@ -123,7 +115,5 @@ public class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
-    
     
 }

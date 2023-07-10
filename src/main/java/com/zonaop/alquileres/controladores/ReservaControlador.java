@@ -112,30 +112,30 @@ public class ReservaControlador {
         
     }
     
-    @PostMapping("/modificar/{id}")
-    public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
-        
-        try {
-            
-            List<Reserva> reserva = reservaservi.listarReservas();
-            modelo.addAttribute("reserva", reserva);
-            
-            reservaservi.modificarReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
-            
-            return "redirect:../listar";
-            
-        } catch (MiException ex) {
-            
-            List<Reserva> reserva = reservaservi.listarReservas();
-            modelo.put("error", ex.getMessage());
-            
-            modelo.addAttribute("reserva", reserva);
-            
-            return "formularioModificarReserva.html";
-            
-        }
-        
-    }
+//    @PostMapping("/modificar/{id}")
+//    public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
+//        
+//        try {
+//            
+//            List<Reserva> reserva = reservaservi.listarReservas();
+//            modelo.addAttribute("reserva", reserva);
+//            
+//            reservaservi.modificarReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
+//            
+//            return "redirect:../listar";
+//            
+//        } catch (MiException ex) {
+//            
+//            List<Reserva> reserva = reservaservi.listarReservas();
+//            modelo.put("error", ex.getMessage());
+//            
+//            modelo.addAttribute("reserva", reserva);
+//            
+//            return "formularioModificarReserva.html";
+//            
+//        }
+//        
+//    }
     
     @GetMapping("/aceptar/{id}")
     public String aceptar(@PathVariable String id) {

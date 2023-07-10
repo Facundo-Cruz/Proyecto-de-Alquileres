@@ -75,7 +75,7 @@ public class ImagenServicio {
         }
         return null;
     }
-
+    
     @Transactional
     public Imagen traerImagen(String idImagen) throws MiException {
         try {
@@ -86,6 +86,11 @@ public class ImagenServicio {
             return null;
         }
 
+    }
+    
+    @Transactional
+    public void eliminarImagen(String idImagen) throws MiException {
+        imagenRepositorio.deleteById(idImagen);
     }
 
 }

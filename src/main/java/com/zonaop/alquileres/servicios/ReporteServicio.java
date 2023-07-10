@@ -1,7 +1,6 @@
 package com.zonaop.alquileres.servicios;
 
 import com.zonaop.alquileres.entidades.Imagen;
-import com.zonaop.alquileres.entidades.Propietario;
 import com.zonaop.alquileres.entidades.Reporte;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.PropietarioRepositorio;
@@ -24,29 +23,24 @@ public class ReporteServicio {
     private ReporteRepositorio reporteRepositorio;
 
     @Transactional
-    public void crearReporte(String id, String idUsuario, String texto, Imagen foto, Date fechaHasta, String idGenerico) throws MiException {
+    public void crearReporte(String id, String idUsuario, String texto,
+            Imagen foto, Date fechaHasta, String idGenerico) throws MiException {
 
         validarReporte(id, idUsuario, texto);
 
         Reporte reporte = new Reporte();
-
         reporte.setTexto(texto);
         reporte.setFoto(foto);
         reporte.setFechaHasta(fechaHasta);
 
         reporteRepositorio.save(reporte);
-
     }
 
     @Transactional(readOnly = true)
     public List<Reporte> listarReporte() {
-
         List<Reporte> reportes = new ArrayList();
-
         reportes = reporteRepositorio.findAll();
-
         return reportes;
-
     }
     
     @Transactional

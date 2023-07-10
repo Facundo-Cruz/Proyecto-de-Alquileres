@@ -1,7 +1,4 @@
-
 package com.zonaop.alquileres.entidades;
-
-//Entidad propietario que hereda de usuario
 
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,10 +8,9 @@ import javax.persistence.OneToMany;
 public class Propietario extends Usuario{
     
     //Un propietario puede tener multiples propiedades
-    @OneToMany
+    @OneToMany(mappedBy = "propietario")
     private List <Propiedad> propiedades;
-    
-    @OneToMany
+    @OneToMany(mappedBy = "propietario")
     private List<Reserva> reservas;
 
     public Propietario() {

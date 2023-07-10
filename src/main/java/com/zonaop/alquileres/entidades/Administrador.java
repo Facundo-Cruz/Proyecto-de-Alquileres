@@ -1,9 +1,6 @@
-
 package com.zonaop.alquileres.entidades;
 
-//import java.util.List;
 import javax.persistence.Entity;
-//import javax.persistence.OneToMany;
 
 @Entity
 public class Administrador extends Usuario {

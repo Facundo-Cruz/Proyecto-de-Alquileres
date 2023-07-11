@@ -71,6 +71,8 @@ public class UsuarioControlador {
         Usuario perfil;
         List<Reserva> reservasActivas;
         List<Reserva> reservasPendientes;
+        List<Reserva> reservasCanceladas;
+        List<Reserva> reservasFinalizadas;
         if (usuario.getRol().name().equals("PROPIETARIO")) {
 
             perfil = propietarioServicio.getOne(usuario.getId());
@@ -79,22 +81,25 @@ public class UsuarioControlador {
 
             reservasActivas = reservaServicio.listarPorPropietarioActiva(usuario.getId());
             reservasPendientes = reservaServicio.listarPorPropietarioPendiente(usuario.getId());
-            List<Reserva> reservasCanceladas = reservaServicio.listarPorPropietarioCancelada(usuario.getId());
-            List<Reserva> reservasFinalizadas = reservaServicio.listarPorPropietarioFinalizada(usuario.getId());
+            reservasCanceladas = reservaServicio.listarPorPropietarioCancelada(usuario.getId());
+            reservasFinalizadas = reservaServicio.listarPorPropietarioFinalizada(usuario.getId());
             modelo.put("propiedades", propiedades);
-            modelo.put("reservasCanceladas", reservasCanceladas);
-            modelo.put("reservasFinalizadas", reservasFinalizadas);
+
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
 //            reservas activas
             reservasActivas = reservaServicio.listarPorClienteActiva(usuario.getId());
             reservasPendientes = reservaServicio.listarPorClientePendiente(usuario.getId());
+            reservasCanceladas = reservaServicio.listarPorClienteCancelada(usuario.getId());
+            reservasFinalizadas = reservaServicio.listarPorClienteFinalizada(usuario.getId());
 
         }
 
         modelo.put("reservasActivas", reservasActivas);
         modelo.put("reservasPendientes", reservasPendientes);
+        modelo.put("reservasCanceladas", reservasCanceladas);
+        modelo.put("reservasFinalizadas", reservasFinalizadas);
 
         modelo.put("usuario", perfil);
 
@@ -130,18 +135,17 @@ public class UsuarioControlador {
     @PostMapping("/modificar")
     public String modificarUsuario(String id, String nombre, String apellido,
             String nombreUsuario, String email, Long telefono, String password, Imagen foto,
-            String rol, ModelMap modelo, MultipartFile archivo,
-            RedirectAttributes redirectAttributes, String passwordActual) {
+            String rol, ModelMap modelo,RedirectAttributes redirectAttributes, String passwordActual) {
 
         try {
 
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, archivo, passwordActual);
+                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, passwordActual);
 
             } else {
 
-                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, archivo, passwordActual);
+                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, passwordActual);
 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
@@ -155,6 +159,29 @@ public class UsuarioControlador {
 
         }
 
+    }
+
+    @PostMapping("/modificarImagen")
+    public String modificarImagen(String id, String rol, MultipartFile archivo, RedirectAttributes redirectAttributes) {
+        try {
+
+            if (rol.equalsIgnoreCase("cliente")) {
+
+                clienteServicio.modificarImagen(id, archivo);
+
+            } else {
+
+                propietarioServicio.modificarImagen(id, archivo);
+
+            }
+            redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
+            return "redirect:/usuario/perfil";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("error", "La imagen no se ha modificado :c");
+
+            return "redirect:/usuario/perfil";
+
+        }
     }
 
     @GetMapping("/eliminar/{id}")

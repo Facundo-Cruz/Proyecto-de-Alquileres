@@ -124,6 +124,14 @@ public class ReservaServicio {
         List<Reserva> reservas = reservaRepositorio.buscarPorClientePendiente(id);
         return reservas;
     }
+    public List<Reserva> listarPorClienteCancelada(String id) {
+        List<Reserva> reservas = reservaRepositorio.buscarPorClienteCancelada(id);
+        return reservas;
+    }
+    public List<Reserva> listarPorClienteFinalizada(String id) {
+        List<Reserva> reservas = reservaRepositorio.buscarPorClienteFinalizada(id);
+        return reservas;
+    }
 
     public List<Reserva> listarPorPropietarioActiva(String id) {
         List<Reserva> reservas = reservaRepositorio.buscarPorPropietarioActiva(id);

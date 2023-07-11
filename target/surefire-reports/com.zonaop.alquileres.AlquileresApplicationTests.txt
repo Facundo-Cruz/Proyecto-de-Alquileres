@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.zonaop.alquileres.AlquileresApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 334.024 s - in com.zonaop.alquileres.AlquileresApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.354 s - in com.zonaop.alquileres.AlquileresApplicationTests
+>>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc

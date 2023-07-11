@@ -43,7 +43,7 @@ public class PropiedadServicio {
             Date fechaHasta, Double precio, String tipoPropiedad,
             List<MultipartFile> archivos, String idPropietario, Long telefono,
             List<String> serviciosSeleccionados, List<Integer> preciosServicios,
-            List<String> redesSociales, String email) throws MiException {
+            List<String> redesSociales, String email, Integer banos, Integer habitaciones) throws MiException {
 
         validar(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde,
                 fechaHasta, precio, tipoPropiedad, archivos, telefono, email);
@@ -61,6 +61,8 @@ public class PropiedadServicio {
         propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
         propiedad.setTelefono(telefono);
         propiedad.setEmail(email);
+        propiedad.setBanos(banos);
+        propiedad.setHabitaciones(habitaciones);
         if (redesSociales != null && !redesSociales.isEmpty()) {
             propiedad.setRedesSociales(redesSociales);
         }
@@ -124,7 +126,7 @@ public class PropiedadServicio {
             Date fechaHasta, Double precio, String tipoPropiedad,
             List<MultipartFile> archivos, Long telefono,
             List<String> serviciosSeleccionados, List<Integer> preciosServicios,
-            List<String> redesSociales, String email) throws MiException {
+            List<String> redesSociales, String email, Integer banos, Integer habitaciones) throws MiException {
 
         Optional<Propiedad> propiedadOp = propiedadRepositorio.findById(id);
 
@@ -146,6 +148,8 @@ public class PropiedadServicio {
             propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
             propiedad.setTelefono(telefono);
             propiedad.setEmail(email);
+            propiedad.setBanos(banos);
+            propiedad.setHabitaciones(habitaciones);
             if (redesSociales != null && !redesSociales.isEmpty()) {
                 propiedad.setRedesSociales(redesSociales);
             }

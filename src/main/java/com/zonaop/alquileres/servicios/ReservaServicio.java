@@ -82,7 +82,7 @@ public class ReservaServicio {
     }
 
     @Transactional
-    public void modificarReserva(String id, String huesped, Date fechaDeste,
+    public void modificarReserva(String id, Date fechaDeste,
             Date fechaHasta, List<Servicio> servicios, double total)
             throws MiException {
 
@@ -93,7 +93,6 @@ public class ReservaServicio {
             validarFechaCreacion(fechaDeste, fechaHasta, reserva.getPropiedad()
                     .getId());
 
-            reserva.setHuesped(huesped);
             reserva.setServicios(servicios);
             reserva.setTotal(total);
             reservaRepositorio.save(reserva);

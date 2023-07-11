@@ -54,10 +54,28 @@ public class Propiedad {
     @OneToMany
     private List<Opinion> opiniones;
     private String email;
+    private Integer banos;
+    private Integer habitaciones;
 
     public Propiedad() {
     }
 
+    public Integer getBanos() {
+        return banos;
+    }
+
+    public void setBanos(Integer banos) {
+        this.banos = banos;
+    }
+
+    public Integer getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(Integer habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+    
     public List<Opinion> getOpiniones() {
         return opiniones;
     }

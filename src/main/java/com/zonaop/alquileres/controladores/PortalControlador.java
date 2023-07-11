@@ -42,8 +42,9 @@ public class PortalControlador {
 
     @GetMapping("/pruebas")
     public String pruebas(ModelMap model) {
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
-        model.put("usuarios", usuarios);
+        List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
+ 
+        model.put("propiedades", propiedades);
         return "pruebas.html";
     }
 

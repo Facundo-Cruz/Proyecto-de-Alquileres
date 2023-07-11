@@ -10,6 +10,7 @@
 
 </head>
 
+
 <body>
     <div class="info-casa hidden">
         <div class="info-card" id="wow"></div>
@@ -64,8 +65,7 @@
                             </div>
                         </div>
                         <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
-                                        SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
-
+                                            SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
                         <button class="cancelar">cancelar</button>
                     </div>
                 </div>
@@ -125,6 +125,11 @@
                                 <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
                                 <br>
                                 <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
+                            </p>
+                            <p class="estado">
+                                <b>Estado: </b>
+                                <span th:text="${reserva.estado}"></span><img src="/img/check-circle.svg" alt="Icono">
+                                <br>
                             </p>
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}" id="cancelarLink">Cancelar</a>
                             <input type="date" id="fechaHasta" th:value="${reserva.fechaHasta}" hidden>
@@ -192,6 +197,12 @@
                                 <br>
                                 <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                             </p>
+                            <p class="estado">
+                                <b>Estado: </b>
+                                <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">
+                                <br>
+                            </p>
+
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
 
                             <a sec:authorize="hasRole('PROPIETARIO')"
@@ -211,7 +222,7 @@
             <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
                 <div class="container-card">
 
-                    <div class="card" th:each="reserva : ${reservasCaneladas}">
+                    <div class="card" th:each="reserva : ${reservasCanceladas}">
                         <figure>
                             <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
                         </figure>
@@ -257,6 +268,11 @@
                                 <br>
                                 <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                             </p>
+                            <p class="estado">
+                                <b>Estado: </b>
+                                <span th:text="${reserva.estado}"></span><img src="/img/x-circle.svg" alt="Icono">
+                                <br>
+                            </p> >
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
                         </div>
                     </div>
@@ -319,6 +335,7 @@
                                 <br>
                                 <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                             </p>
+                            <b>Estado: </b><span th:text="${reserva.estado}"></span>
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
                         </div>
                     </div>
@@ -367,6 +384,7 @@
             document.getElementById("cancelarLink").style.display = "inline-block";
         }
     </script>
+
 
 </body>
 

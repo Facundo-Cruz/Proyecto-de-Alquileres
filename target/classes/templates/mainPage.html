@@ -23,126 +23,141 @@
             </svg>
             <p>hasta 15% de descuento durante el mes de junio</p>
         </div>
+
+
         <div class="background-searchbox">
             <div class="searchbox">
-                <form th:action="@{/propiedad/filtrar}" method="POST" class="form-filtros">
-                    <div class="filtro">
-                        <label for="tipo">Tipo:</label>
-                        <select id="tipo" name="tipo">
-                            <option value="">Todos</option>
-                            <option value="QUINTA">Quinta</option>
-                            <option value="CASA">Casa</option>
-                            <option value="QUINCHO">Quincho</option>
-                            <option value="CABANA">Cabaña</option>
-                            <option value="SALON">Salón</option>
-                            <option value="CHALET">Chalet</option>
-                            <option value="FINCA">Finca</option>
-                            <option value="BODEGA">Bodega</option>
-                            <option value="OTRO">Otro</option>
-                        </select>
-                    </div>
-                    <div class="filtro">
-                        <label for="localidad">Localidad:</label>
-                        <select id="localidad" name="localidad">
-                            <option value="">Todas</option>
-                            <option value="Mendoza">Mendoza</option>
-                            <option value="Santa_Fe">Santa Fe</option>
-                            <option value="Buenos_Aires">Buenos Aires</option>
-                            <option value="Tucuman">Tucumán</option>
-                            <option value="La_Rioja">La Rioja</option>
-                            <option value="La_Pampa">La Pampa</option>
-                            <option value="Neuquen">Neuquén</option>
-                            <option value="Chubut">Chubut</option>
-                            <option value="Santa_Cruz">Santa Cruz</option>
-                            <option value="Cordoba">Córdoba</option>
-                            <option value="Salta">Salta</option>
-                            <option value="Jujuy">Jujuy</option>
-                            <option value="Entre_Rios">Entre Ríos</option>
-                            <option value="Catamarca">Catamarca</option>
-                            <option value="Chaco">Chaco</option>
-                            <option value="Tierra_Del_Fuego">Tierra del Fuego</option>
-                            <option value="Rio_Negro">Río Negro</option>
-                            <option value="San_Luis">San Luis</option>
-                            <option value="San_Juan">San Juan</option>
-                            <option value="Formosa">Formosa</option>
-                            <option value="Santiago_Del_Estero">Santiago del Estero</option>
-                            <option value="Misiones">Misiones</option>
-                            <option value="Corrientes">Corrientes</option>
-                        </select>
-                    </div>
-                   <!-- <div class="filtro">
-                        <label>Servicios:</label>
-                        <div>
-                            <input type="checkbox" id="servicio1" name="servicios" value="Transporte">
-                            <label for="servicio1">Transporte</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio2" name="servicios" value="Seguridad">
-                            <label for="servicio2">Seguridad</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio3" name="servicios" value="DJ">
-                            <label for="servicio3">DJ</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio4" name="servicios" value="Catering">
-                            <label for="servicio4">Catering</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio5" name="servicios" value="Fotografo">
-                            <label for="servicio5">Fotografo</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio6" name="servicios" value="Chef">
-                            <label for="servicio6">Chef</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio7" name="servicios" value="Bar">
-                            <label for="servicio7">Bar</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio8" name="servicios" value="Show">
-                            <label for="servicio8">Show</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio9" name="servicios" value="Guarderia">
-                            <label for="servicio9">Guardería</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="servicio10" name="servicios" value="Asador">
-                            <label for="servicio10">Asador</label>
-                        </div>
-                    </div> -->
+                <button onclick="toggleDropdown()">Filtros</button>
 
-
-                    <div class="filtro">
-                        <label for="precio">Precio:</label>
-                        <div>
-                            <input type="radio" id="precioAscendente" name="precio" value="true">
-                            <label for="precioAscendente">Menor precio</label>
+                <div id="dropdown" style="display: none;">
+                    <form th:action="@{/propiedad/filtrar}" method="POST" class="form-filtros">
+                        <div class="filtro">
+                            <label for="tipo">Tipo:</label>
+                            <select id="tipo" name="tipo">
+                                <option value="">Todos</option>
+                                <option value="QUINTA">Quinta</option>
+                                <option value="CASA">Casa</option>
+                                <option value="QUINCHO">Quincho</option>
+                                <option value="CABANA">Cabaña</option>
+                                <option value="SALON">Salón</option>
+                                <option value="CHALET">Chalet</option>
+                                <option value="FINCA">Finca</option>
+                                <option value="BODEGA">Bodega</option>
+                                <option value="OTRO">Otro</option>
+                            </select>
                         </div>
-                        <div>
-                            <input type="radio" id="precioDescendente" name="precio" value="false">
-                            <label for="precioDescendente">Mayor precio</label>
+                        <div class="filtro">
+                            <label for="localidad">Localidad:</label>
+                            <select id="localidad" name="localidad">
+                                <option value="">Todas</option>
+                                <option value="Mendoza">Mendoza</option>
+                                <option value="Santa_Fe">Santa Fe</option>
+                                <option value="Buenos_Aires">Buenos Aires</option>
+                                <option value="Tucuman">Tucumán</option>
+                                <option value="La_Rioja">La Rioja</option>
+                                <option value="La_Pampa">La Pampa</option>
+                                <option value="Neuquen">Neuquén</option>
+                                <option value="Chubut">Chubut</option>
+                                <option value="Santa_Cruz">Santa Cruz</option>
+                                <option value="Cordoba">Córdoba</option>
+                                <option value="Salta">Salta</option>
+                                <option value="Jujuy">Jujuy</option>
+                                <option value="Entre_Rios">Entre Ríos</option>
+                                <option value="Catamarca">Catamarca</option>
+                                <option value="Chaco">Chaco</option>
+                                <option value="Tierra_Del_Fuego">Tierra del Fuego</option>
+                                <option value="Rio_Negro">Río Negro</option>
+                                <option value="San_Luis">San Luis</option>
+                                <option value="San_Juan">San Juan</option>
+                                <option value="Formosa">Formosa</option>
+                                <option value="Santiago_Del_Estero">Santiago del Estero</option>
+                                <option value="Misiones">Misiones</option>
+                                <option value="Corrientes">Corrientes</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="filtro">
-                        <label for="calificacion">Mejor Calificación:</label>
-                        <input type="checkbox" id="calificacion" name="calificacion" value="true">
-                    </div>
-                    <div class="filtro">
-                        <input type="submit" value="Buscar">
-                    </div>
-                </form>
-
-
-                <div class="search-results">
-                    <div class="result" id="res">
-                    </div>
+                        <div class="filtro">
+                            <label for="precio">Precio:</label>
+                            <div>
+                                <input type="radio" id="precioAscendente" name="precio" value="true">
+                                <label for="precioAscendente">Menor precio</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="precioDescendente" name="precio" value="false">
+                                <label for="precioDescendente">Mayor precio</label>
+                            </div>
+                        </div>
+                        <div class="filtro">
+                            <label for="calificacion">Mejor Calificación:</label>
+                            <input type="checkbox" id="calificacion" name="calificacion" value="true">
+                        </div>
+                        <div class="filtro">
+                            <input type="submit" value="Buscar">
+                        </div>
+                    </form>
                 </div>
             </div>
-
         </div>
+        
+<!--        //script para que queden seleccionadas las opciones del filtro-->
+        <script>
+            var tipoSelect = document.getElementById("tipo");
+            var localidadSelect = document.getElementById("localidad");
+            var precioAscRadio = document.getElementById("precioAscendente");
+            var precioDescRadio = document.getElementById("precioDescendente");
+            var calificacionCheckbox = document.getElementById("calificacion");
+
+            // Restaurar los valores seleccionados del almacenamiento local, si están disponibles
+            if (localStorage.getItem("filtroTipo")) {
+            tipoSelect.value = localStorage.getItem("filtroTipo");
+            }
+
+            if (localStorage.getItem("filtroLocalidad")) {
+            localidadSelect.value = localStorage.getItem("filtroLocalidad");
+            }
+
+            if (localStorage.getItem("filtroPrecioAscendente")) {
+            precioAscRadio.checked = true;
+            } else if (localStorage.getItem("filtroPrecioDescendente")) {
+            precioDescRadio.checked = true;
+            }
+
+            if (localStorage.getItem("filtroCalificacion")) {
+            calificacionCheckbox.checked = true;
+            }
+
+            // Función para guardar los valores seleccionados en el almacenamiento local
+            function guardarFiltros() {
+            localStorage.setItem("filtroTipo", tipoSelect.value);
+            localStorage.setItem("filtroLocalidad", localidadSelect.value);
+
+            if (precioAscRadio.checked) {
+            localStorage.setItem("filtroPrecioAscendente", "true");
+            localStorage.removeItem("filtroPrecioDescendente");
+            } else if (precioDescRadio.checked) {
+            localStorage.setItem("filtroPrecioDescendente", "true");
+            localStorage.removeItem("filtroPrecioAscendente");
+            }
+
+            if (calificacionCheckbox.checked) {
+            localStorage.setItem("filtroCalificacion", "true");
+            } else {
+            localStorage.removeItem("filtroCalificacion");
+            }
+            }
+
+            // Agregar un evento al formulario para guardar los filtros antes de enviarlo
+            var formFiltros = document.querySelector(".form-filtros");
+            formFiltros.addEventListener("submit", guardarFiltros);
+
+        </script>
+
+
+
+        <div class="search-results">
+            <div class="result" id="res">
+            </div>
+        </div>
+
 
         <!-- cards inicio -->
         <div class="container-card">
@@ -156,19 +171,19 @@
                     <hr class="horizontal">
 
 
-                <p>
-                    <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
-                    <br>
-                    <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
-                    <br>
-                    <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
-                    <br>
-                    <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
-                </p>
-                <div class="contenedor">
-                    <a th:href="@{/propiedad/mostrar/__${propiedad.id}__}" class="btn-aux btn-1">Ver más</a>
+                    <p>
+                        <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
+                        <br>
+                        <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
+                        <br>
+                        <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
+                        <br>
+                        <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
+                    </p>
+                    <div class="contenedor">
+                        <a th:href="@{/propiedad/mostrar/__${propiedad.id}__}" class="btn-aux btn-1">Ver más</a>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 

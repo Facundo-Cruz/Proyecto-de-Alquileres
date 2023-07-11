@@ -57,14 +57,19 @@ public class PropiedadControlador {
             @RequestParam(value = "serviciosSeleccionados", required = false) List<String> serviciosSeleccionados,
             @RequestParam(value = "preciosServicios", required = false) List<Integer> preciosServicios,
             @RequestParam(value = "redesSociales", required = false) List<String> redesSociales,
-            @RequestParam String email) {
+            @RequestParam String email, @RequestParam Integer banos,
+            @RequestParam Integer habitaciones) {
 
         Propietario propietario = (Propietario) session.getAttribute("usuariosession");
         String idPropietario = propietario.getId();
 
         try {
 
-            propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivos, idPropietario, telefono, serviciosSeleccionados, preciosServicios, redesSociales, email);
+            propiedadServicio.crearPropiedad(nombre, direccion, localidad,
+                    codigoPostal, descripcion, fechaDesde, fechaHasta,
+                    precio, tipoPropiedad, archivos, idPropietario,
+                    telefono, serviciosSeleccionados, preciosServicios,
+                    redesSociales, email, banos, habitaciones);
             return "redirect:/";
 
         } catch (MiException ex) {
@@ -84,7 +89,7 @@ public class PropiedadControlador {
     @PostMapping("/filtrar")
     public String filtrarPropiedad(@RequestParam(required = false) TipoPropiedad tipo,
             @RequestParam(required = false) Localidad localidad,
-            @RequestParam( value="servicios[]", required = false) List<Servicio> servicios,
+            @RequestParam(value = "servicios[]", required = false) List<Servicio> servicios,
             @RequestParam(required = false) Boolean precio,
             @RequestParam(required = false) Boolean calificacion,
             ModelMap modelo) {

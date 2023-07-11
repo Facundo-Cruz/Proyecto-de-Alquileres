@@ -128,7 +128,7 @@ public class PortalControlador {
             model.put("email", email);
             model.put("alias", apellido);
             model.put("rol", rol);
-            return "registrar.html";
+            return "formulario-registro-usuario.html";
         }
 
     }

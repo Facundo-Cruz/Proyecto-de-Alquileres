@@ -95,7 +95,7 @@ public class PropiedadControlador {
     }
 
     @GetMapping("/modificar/{id}")
-    public String modificarPropiedad(@PathVariable("id") String idPropiedad, ModelMap modelo) {
+    public String modificarPropiedad(@PathVariable String idPropiedad, ModelMap modelo) {
 
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
 

@@ -1,386 +1,392 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="/css/userInterface.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/userInterface.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    </head>
+</head>
 
-    <body>
-        <div class="info-casa hidden">
-            <div class="info-card" id="wow"></div>
-        </div>
 
-        <div class="imagebox">
+<body>
+    <div class="info-casa hidden">
+        <div class="info-card" id="wow"></div>
+    </div>
+
+    <div class="imagebox">
+        <a href="#" class="profile-picture-background">
             <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        </a>
+    </div>
+    <div class="infobox">
+        <div class="heading">
+            <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
+            <a th:href="@{/usuario/modificar}"><img src="/img/edit.svg" alt=""></a>
         </div>
-        <div class="infobox">
-            <div class="heading">
-                <h2 th:text="${usuario.nombre} +' '+${usuario.apellido}"></h2>
-                <a th:href="@{/usuario/modificar}"><img src="/img/edit.svg" alt=""></a>
-            </div>
-            <div class="info">
-                <p th:text="${usuario.email}"></p>
-                <p th:text="${usuario.telefono}"></p>
-                <div class="social-media">
-                    <a href="#"><img src="/img/instagram.svg" alt=""></a>
-                    <a href="#"><img src="/img/twitter.svg" alt=""></a>
-                </div>
+        <div class="info">
+            <p th:text="${usuario.email}"></p>
+            <p th:text="${usuario.telefono}"></p>
+            <div class="social-media">
+                <a href="#"><img src="/img/instagram.svg" alt=""></a>
+                <a href="#"><img src="/img/twitter.svg" alt=""></a>
             </div>
         </div>
+    </div>
 
-        <div class="house-area">
+    <div class="house-area">
 
-            <div class="housesbox">
-                <!--el th:each deberia ser de house-card que es la imagen de la carta con la casa-->
-                <div class="acordeon" sec:authorize="hasRole('PROPIETARIO')">
-                    <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
-                    <span class="title-acordeon">Mis propiedades</span>
-                </div>
-                <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
-                    <div th:each="propiedad : ${propiedades}" class="house-card">
-                        <img th:src="@{/imagen/__${propiedad.id}__}" alt="Foto propiedad" class="info-image">
-                        <p th:text="${propiedad.nombre}" class="titulo"></p>
-                        <div class="info-datos">
-                            <p th:text="${propiedad.direccion}" class="ubicacion"></p>
-                            <p th:text="${propiedad.descripcion}" class="descripcion"></p>
-                            <p th:text="'Disponible desde el '+${propiedad.fechaDesde}+' hasta el '+${propiedad.fechaHasta}"
-                               class="fecha">
-                            </p>
-                            <div class="email-celu">
-                                <div class="email">
-                                    <img src="/img/mail.svg" class="contact-image" alt="">
-                                    <p th:text="${usuario.email}"></p>
-                                </div>
-                                <div class="celu">
-                                    <img src="/img/phone.svg" class="contact-image" alt="">
-                                    <p th:text="${propiedad.telefono}"></p>
-                                </div>
+        <div class="housesbox">
+            <!--el th:each deberia ser de house-card que es la imagen de la carta con la casa-->
+            <div class="acordeon" sec:authorize="hasRole('PROPIETARIO')">
+                <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
+                <span class="title-acordeon">Mis propiedades</span>
+            </div>
+            <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
+                <div th:each="propiedad : ${propiedades}" class="house-card">
+                    <img th:src="@{/imagen/__${propiedad.id}__}" alt="Foto propiedad" class="info-image">
+                    <p th:text="${propiedad.nombre}" class="titulo"></p>
+                    <div class="info-datos">
+                        <p th:text="${propiedad.direccion}" class="ubicacion"></p>
+                        <p th:text="${propiedad.descripcion}" class="descripcion"></p>
+                        <p th:text="'Disponible desde el '+${propiedad.fechaDesde}+' hasta el '+${propiedad.fechaHasta}"
+                            class="fecha">
+                        </p>
+                        <div class="email-celu">
+                            <div class="email">
+                                <img src="/img/mail.svg" class="contact-image" alt="">
+                                <p th:text="${usuario.email}"></p>
                             </div>
-                            <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
+                            <div class="celu">
+                                <img src="/img/phone.svg" class="contact-image" alt="">
+                                <p th:text="${propiedad.telefono}"></p>
+                            </div>
+                        </div>
+                        <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
                                             SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
-                            <button class="cancelar">cancelar</button>
-                        </div>
+                        <button class="cancelar">cancelar</button>
                     </div>
                 </div>
-
-                <!-- cards reservas inicio -->
-                <hr sec:authorize="hasRole('PROPIETARIO')">
-                <div class="acordeon">
-                    <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
-                    <span class="title-acordeon">Mis Reservas Activas</span>
-                </div>
-                <div class="panel">
-                    <div class="container-card">
-
-                        <div class="card" th:each="reserva : ${reservasActivas}">
-                            <figure>
-                                <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
-                            </figure>
-                            <div class="contenido-card">
-                                <h3 th:text="${reserva.propiedad.nombre}"></h3>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
-                                </p>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
-                                </p>
-                                <div sec:authorize="hasRole('CLIENTE')" class="redes">
-                                    <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
-                                            class="fab fa-facebook"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
-                                            class="fab fa-instagram"></i></a>
-                                </div>
-                                <hr class="horizontal" >
-                                <p>
-                                    <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
-                                    <br>
-                                    <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
-                                    <br>
-                                    <b>Servicios agregados:</b>
-                                    <br>
-                                    <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
-                                    <span th:each="servicio, iterStatus : ${reserva.servicios}">
-                                        <span th:text="${servicio.nombre}"></span>
-                                        <span th:if="${!iterStatus.last}">, </span>
-                                    </span>
-                                    <span></span>
-                                    <br>
-                                    <b>Total: </b>$<span th:text="${reserva.total}"></span>
-                                </p>
-                                <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
-                                <p sec:authorize="hasRole('PROPIETARIO')">
-                                    <b>Cliente: </b> <span
-                                        th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
-                                    <br>
-                                    <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
-                                    <br>
-                                    <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
-                                </p>
-                                <p  class="estado">
-                                    <b>Estado: </b>
-                                    <span th:text="${reserva.estado}"></span><img src="/img/check-circle.svg" alt="Icono">
-                                    <br>  
-                                </p>
-                                <a th:href="@{/reserva/cancelar/__${reserva.id}__}" id="cancelarLink">Cancelar</a>
-                                <input type="date" id="fechaHasta" th:value="${reserva.fechaHasta}" hidden>
-                                <a sec:authorize="hasRole('CLIENTE')" id="calificarLink" th:href="@{/opinion/registro/__${reserva.id}__}">Calificar</a>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="acordeon">
-                    <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
-                    <span class="title-acordeon">Mis Reservas Pendientes</span>
-                </div>
-                <div class="panel">
-                    <div class="container-card">
-
-                        <div class="card" th:each="reserva : ${reservasPendientes}">
-                            <figure>
-                                <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
-                            </figure>
-                            <div class="contenido-card">
-                                <h3 th:text="${reserva.propiedad.nombre}"></h3>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
-                                </p>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
-                                </p>
-                                <div sec:authorize="hasRole('CLIENTE')" class="redes">
-                                    <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
-                                            class="fab fa-facebook"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
-                                            class="fab fa-instagram"></i></a>
-                                </div>
-                                <hr class="horizontal" >
-                                <p>
-                                    <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
-                                    <br>
-                                    <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
-                                    <br>
-                                    <b>Servicios agregados:</b>
-                                    <br>
-                                    <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
-                                    <span th:each="servicio, iterStatus : ${reserva.servicios}">
-                                        <span th:text="${servicio.nombre}"></span>
-                                        <span th:if="${!iterStatus.last}">, </span>
-                                    </span>
-                                    <span></span>
-                                    <br>
-                                    <b>Total: </b>$<span th:text="${reserva.total}"></span>
-                                </p>
-                                <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
-                                <p sec:authorize="hasRole('PROPIETARIO')">
-                                    <b>Cliente: </b> <span
-                                        th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
-                                    <br>
-                                    <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
-                                    <br>
-                                    <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
-                                </p>
-                                <p  class="estado">
-                                    <b>Estado: </b>
-                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">
-                                    <br>  
-                                </p>
-
-                                <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
-
-                                <a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/aceptar/__${reserva.id}__}">Aceptar</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <hr sec:authorize="hasRole('PROPIETARIO')">
-
-                <div class="acordeon" sec:authorize="hasRole('PROPIETARIO')">
-                    <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
-                    <span class="title-acordeon">Mis Reservas Canceladas</span>
-                </div>
-                <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
-                    <div class="container-card">
-
-                        <div class="card" th:each="reserva : ${reservasCanceladas}">
-                            <figure>
-                                <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
-                            </figure>
-                            <div class="contenido-card">
-                                <h3 th:text="${reserva.propiedad.nombre}"></h3>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
-                                </p>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
-                                </p>
-                                <div sec:authorize="hasRole('CLIENTE')" class="redes">
-                                    <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
-                                            class="fab fa-facebook"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
-                                            class="fab fa-instagram"></i></a>
-                                </div>
-                                <hr class="horizontal" >
-                                <p>
-                                    <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
-                                    <br>
-                                    <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
-                                    <br>
-                                    <b>Servicios agregados:</b>
-                                    <br>
-                                    <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
-                                    <span th:each="servicio, iterStatus : ${reserva.servicios}">
-                                        <span th:text="${servicio.nombre}"></span>
-                                        <span th:if="${!iterStatus.last}">, </span>
-                                    </span>
-                                    <span></span>
-                                    <br>
-                                    <b>Total: </b>$<span th:text="${reserva.total}"></span>
-                                </p>
-                                <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
-                                <p sec:authorize="hasRole('PROPIETARIO')">
-                                    <b>Cliente: </b> <span
-                                        th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
-                                    <br>
-                                    <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
-                                    <br>
-                                    <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
-                                </p>
-                                <p  class="estado">
-                                    <b>Estado: </b>
-                                    <span th:text="${reserva.estado}"></span><img src="/img/x-circle.svg" alt="Icono">
-                                    <br>  
-                                </p> >
-                                <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <hr sec:authorize="hasRole('PROPIETARIO')">
-
-                <div class="acordeon" sec:authorize="hasRole('PROPIETARIO')">
-                    <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
-                    <span class="title-acordeon">Mis Reservas Finalizadas</span>
-                </div>
-                <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
-                    <div class="container-card">
-
-                        <div class="card" th:each="reserva : ${reservasFinalizadas}">
-                            <figure>
-                                <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
-                            </figure>
-                            <div class="contenido-card">
-                                <h3 th:text="${reserva.propiedad.nombre}"></h3>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
-                                </p>
-                                <p sec:authorize="hasRole('CLIENTE')">
-                                    <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
-                                </p>
-                                <div sec:authorize="hasRole('CLIENTE')" class="redes">
-                                    <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
-                                            class="fab fa-facebook"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
-                                            class="fab fa-twitter"></i></a>
-                                    <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
-                                            class="fab fa-instagram"></i></a>
-                                </div>
-                                <hr class="horizontal" >
-                                <p>
-                                    <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
-                                    <br>
-                                    <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
-                                    <br>
-                                    <b>Servicios agregados:</b>
-                                    <br>
-                                    <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
-                                    <span th:each="servicio, iterStatus : ${reserva.servicios}">
-                                        <span th:text="${servicio.nombre}"></span>
-                                        <span th:if="${!iterStatus.last}">, </span>
-                                    </span>
-                                    <span></span>
-                                    <br>
-                                    <b>Total: </b>$<span th:text="${reserva.total}"></span>
-                                </p>
-                                <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
-                                <p sec:authorize="hasRole('PROPIETARIO')">
-                                    <b>Cliente: </b> <span
-                                        th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
-                                    <br>
-                                    <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
-                                    <br>
-                                    <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
-                                </p>
-                                <b>Estado: </b><span th:text="${reserva.estado}"></span>
-                                <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- cards reservas fin -->
             </div>
 
+            <!-- cards reservas inicio -->
+            <hr sec:authorize="hasRole('PROPIETARIO')">
+            <div class="acordeon">
+                <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
+                <span class="title-acordeon">Mis Reservas Activas</span>
+            </div>
+            <div class="panel">
+                <div class="container-card">
+
+                    <div class="card" th:each="reserva : ${reservasActivas}">
+                        <figure>
+                            <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
+                        </figure>
+                        <div class="contenido-card">
+                            <h3 th:text="${reserva.propiedad.nombre}"></h3>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
+                            </p>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
+                            </p>
+                            <div sec:authorize="hasRole('CLIENTE')" class="redes">
+                                <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
+                                        class="fab fa-facebook"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                            <hr class="horizontal">
+                            <p>
+                                <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
+                                <br>
+                                <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
+                                <br>
+                                <b>Servicios agregados:</b>
+                                <br>
+                                <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
+                                <span th:each="servicio, iterStatus : ${reserva.servicios}">
+                                    <span th:text="${servicio.nombre}"></span>
+                                    <span th:if="${!iterStatus.last}">, </span>
+                                </span>
+                                <span></span>
+                                <br>
+                                <b>Total: </b>$<span th:text="${reserva.total}"></span>
+                            </p>
+                            <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
+                            <p sec:authorize="hasRole('PROPIETARIO')">
+                                <b>Cliente: </b> <span
+                                    th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
+                                <br>
+                                <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
+                                <br>
+                                <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
+                            </p>
+                            <p class="estado">
+                                <b>Estado: </b>
+                                <span th:text="${reserva.estado}"></span><img src="/img/check-circle.svg" alt="Icono">
+                                <br>
+                            </p>
+                            <a th:href="@{/reserva/cancelar/__${reserva.id}__}" id="cancelarLink">Cancelar</a>
+                            <input type="date" id="fechaHasta" th:value="${reserva.fechaHasta}" hidden>
+                            <a sec:authorize="hasRole('CLIENTE')" id="calificarLink"
+                                th:href="@{/opinion/registro/__${reserva.id}__}">Calificar</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="acordeon">
+                <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
+                <span class="title-acordeon">Mis Reservas Pendientes</span>
+            </div>
+            <div class="panel">
+                <div class="container-card">
+
+                    <div class="card" th:each="reserva : ${reservasPendientes}">
+                        <figure>
+                            <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
+                        </figure>
+                        <div class="contenido-card">
+                            <h3 th:text="${reserva.propiedad.nombre}"></h3>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
+                            </p>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
+                            </p>
+                            <div sec:authorize="hasRole('CLIENTE')" class="redes">
+                                <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
+                                        class="fab fa-facebook"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                            <hr class="horizontal">
+                            <p>
+                                <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
+                                <br>
+                                <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
+                                <br>
+                                <b>Servicios agregados:</b>
+                                <br>
+                                <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
+                                <span th:each="servicio, iterStatus : ${reserva.servicios}">
+                                    <span th:text="${servicio.nombre}"></span>
+                                    <span th:if="${!iterStatus.last}">, </span>
+                                </span>
+                                <span></span>
+                                <br>
+                                <b>Total: </b>$<span th:text="${reserva.total}"></span>
+                            </p>
+                            <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
+                            <p sec:authorize="hasRole('PROPIETARIO')">
+                                <b>Cliente: </b> <span
+                                    th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
+                                <br>
+                                <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
+                                <br>
+                                <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
+                            </p>
+                            <p class="estado">
+                                <b>Estado: </b>
+                                <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">
+                                <br>
+                            </p>
+
+                            <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
+
+                            <a sec:authorize="hasRole('PROPIETARIO')"
+                                th:href="@{/reserva/aceptar/__${reserva.id}__}">Aceptar</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr sec:authorize="hasRole('PROPIETARIO')">
+
+            <div class="acordeon" sec:authorize="hasRole('PROPIETARIO')">
+                <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
+                <span class="title-acordeon">Mis Reservas Canceladas</span>
+            </div>
+            <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
+                <div class="container-card">
+
+                    <div class="card" th:each="reserva : ${reservasCanceladas}">
+                        <figure>
+                            <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
+                        </figure>
+                        <div class="contenido-card">
+                            <h3 th:text="${reserva.propiedad.nombre}"></h3>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
+                            </p>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
+                            </p>
+                            <div sec:authorize="hasRole('CLIENTE')" class="redes">
+                                <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
+                                        class="fab fa-facebook"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                            <hr class="horizontal">
+                            <p>
+                                <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
+                                <br>
+                                <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
+                                <br>
+                                <b>Servicios agregados:</b>
+                                <br>
+                                <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
+                                <span th:each="servicio, iterStatus : ${reserva.servicios}">
+                                    <span th:text="${servicio.nombre}"></span>
+                                    <span th:if="${!iterStatus.last}">, </span>
+                                </span>
+                                <span></span>
+                                <br>
+                                <b>Total: </b>$<span th:text="${reserva.total}"></span>
+                            </p>
+                            <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
+                            <p sec:authorize="hasRole('PROPIETARIO')">
+                                <b>Cliente: </b> <span
+                                    th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
+                                <br>
+                                <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
+                                <br>
+                                <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
+                            </p>
+                            <p class="estado">
+                                <b>Estado: </b>
+                                <span th:text="${reserva.estado}"></span><img src="/img/x-circle.svg" alt="Icono">
+                                <br>
+                            </p> >
+                            <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr sec:authorize="hasRole('PROPIETARIO')">
+
+            <div class="acordeon" sec:authorize="hasRole('PROPIETARIO')">
+                <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
+                <span class="title-acordeon">Mis Reservas Finalizadas</span>
+            </div>
+            <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
+                <div class="container-card">
+
+                    <div class="card" th:each="reserva : ${reservasFinalizadas}">
+                        <figure>
+                            <img th:src="@{/imagen/__${reserva.propiedad.id}__}">
+                        </figure>
+                        <div class="contenido-card">
+                            <h3 th:text="${reserva.propiedad.nombre}"></h3>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Correo:</b> <span th:text="${reserva.propiedad.email}"></span>
+                            </p>
+                            <p sec:authorize="hasRole('CLIENTE')">
+                                <b>Teléfono:</b> <span th:text="${reserva.propiedad.telefono}"></span>
+                            </p>
+                            <div sec:authorize="hasRole('CLIENTE')" class="redes">
+                                <a th:href="${reserva.propiedad.redesSociales[0]}" target="_blank"><i
+                                        class="fab fa-facebook"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[1]}" target="_blank"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                            <hr class="horizontal">
+                            <p>
+                                <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
+                                <br>
+                                <b>Fecha hasta: </b> <span th:text="${reserva.fechaHasta}"></span>
+                                <br>
+                                <b>Servicios agregados:</b>
+                                <br>
+                                <!--                        <span th:if="${not reserva.servicios.isEmpty()}">No hay servicios</span>-->
+                                <span th:each="servicio, iterStatus : ${reserva.servicios}">
+                                    <span th:text="${servicio.nombre}"></span>
+                                    <span th:if="${!iterStatus.last}">, </span>
+                                </span>
+                                <span></span>
+                                <br>
+                                <b>Total: </b>$<span th:text="${reserva.total}"></span>
+                            </p>
+                            <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
+                            <p sec:authorize="hasRole('PROPIETARIO')">
+                                <b>Cliente: </b> <span
+                                    th:text="${reserva.cliente.nombre + ' ' + reserva.cliente.apellido}"></span>
+                                <br>
+                                <b>Teléfono:</b> <span th:text="${reserva.cliente.telefono}"></span>
+                                <br>
+                                <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
+                            </p>
+                            <b>Estado: </b><span th:text="${reserva.estado}"></span>
+                            <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- cards reservas fin -->
         </div>
 
+    </div>
 
-        <script src="/js/userInterface.js"></script>
-        <script>
-            let elementosAcordeon = document.getElementsByClassName("acordeon");
 
-            for (let i = 0; i < elementosAcordeon.length; i++) {
-            elementosAcordeon[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            let panel = this.nextElementSibling;
-            let icon = this.querySelector("i");
+    <script src="/js/userInterface.js"></script>
+    <script>
+        let elementosAcordeon = document.getElementsByClassName("acordeon");
 
-            if (panel.style.display === "block") {
-            panel.style.display = "none";
-            icon.classList.remove("rotated");
-            } else {
-            panel.style.display = "block";
-            icon.classList.add("rotated");
-            }
+        for (let i = 0; i < elementosAcordeon.length; i++) {
+            elementosAcordeon[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                let panel = this.nextElementSibling;
+                let icon = this.querySelector("i");
+
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    icon.classList.remove("rotated");
+                } else {
+                    panel.style.display = "block";
+                    icon.classList.add("rotated");
+                }
             });
-            }
-        </script>
-        <script>
-            // Obtener la fecha actual en formato YYYY-MM-DD
-            var currentDate = new Date().toISOString().split("T")[0];
+        }
+    </script>
+    <script>
+        // Obtener la fecha actual en formato YYYY-MM-DD
+        var currentDate = new Date().toISOString().split("T")[0];
 
-            // Obtener la fecha del campo input
-            var fechaHasta = document.getElementById("fechaHasta").value;
-            // Condicionar la visibilidad del enlace basado en la comparación de fechas
-            if (fechaHasta < currentDate) {
+        // Obtener la fecha del campo input
+        var fechaHasta = document.getElementById("fechaHasta").value;
+        // Condicionar la visibilidad del enlace basado en la comparación de fechas
+        if (fechaHasta < currentDate) {
             document.getElementById("calificarLink").style.display = "inline-block";
             document.getElementById("cancelarLink").style.display = "none";
-            } else {
+        } else {
             document.getElementById("calificarLink").style.display = "none";
             document.getElementById("cancelarLink").style.display = "inline-block";
-            }
-        </script>
+        }
+    </script>
 
-    </body>
+
+</body>
 
 
 </html>

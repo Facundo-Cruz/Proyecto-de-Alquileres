@@ -44,10 +44,16 @@ public class PortalControlador {
     }
 
     @PostMapping("/pruebass")
-    public String pruebas2(@RequestParam(value = "archivos[]", required = false) List<MultipartFile> archivos,
-            @RequestParam double rating, @RequestParam String comentario) {
+    public String pruebas2(@RequestParam(value = "archivos[]", required = false) List<MultipartFile> archivos
+          ) {
 
-        System.out.println(rating);
+        if (archivos == null) {
+            System.out.println("LLEGA NULL");
+        }
+        if (archivos.isEmpty()) {
+            System.out.println("es vacío");
+        }
+        System.out.println(archivos);
         return "redirect:/";
     }
 

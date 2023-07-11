@@ -114,6 +114,15 @@
         </div>
     </div>
 
+    <form class="formulario-registro-de-usuario" th:action="@{/pruebass}" method="POST" enctype="multipart/form-data">
+        
+
+        <label for="imagen">Imagen de perfil:</label>
+        <input class="imagen" type="file" name="archivos[]" accept="image/*" multiple>
+
+        <input class="enviar" type="submit" value="Enviar">
+    </form>
+
 
     <!-- javascript -->
     <script>

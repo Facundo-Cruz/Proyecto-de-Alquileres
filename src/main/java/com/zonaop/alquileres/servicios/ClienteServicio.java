@@ -24,16 +24,22 @@ public class ClienteServicio {
 
     @Autowired
     public UsuarioServicio usuarioServicio;
-    
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public void registrar(String nombre, String apellido, String nombreUsuario, String email,Long telefono, String contrasena, MultipartFile archivo, String rol) throws MiException {
+    public void registrar(String nombre, String apellido, String nombreUsuario,
+            String email, Long telefono, String contrasena, MultipartFile archivo,
+            String rol) throws MiException {
 
         usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
-        Cliente cliente = new Cliente();
+        if (telefono == null) {
+            throw new MiException("El número de teléfono no puede ser nulo.");
+        }
 
+        Cliente cliente = new Cliente();
         cliente.setNombre(nombre);
         cliente.setApellido(apellido);
         cliente.setNombreUsuario(nombreUsuario);
@@ -41,19 +47,16 @@ public class ClienteServicio {
         cliente.setTelefono(telefono);
         cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         cliente.setEstado(Boolean.TRUE);
-
         Imagen imagen = imagenServicio.guardar(archivo);
-
         cliente.setFoto(imagen);
-
         cliente.setRol(Rol.CLIENTE);
-
         clienteRepositorio.save(cliente);
-
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String apellido, String nombreUsuario, String email,Long telefono, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
+    public void modificar(String id, String nombre, String apellido,
+            String nombreUsuario, String email, Long telefono, String contrasena,
+            MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Cliente> respuesta = clienteRepositorio.findById(id);
 
@@ -69,6 +72,10 @@ public class ClienteServicio {
 
             usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
+            if (telefono == null) {
+                throw new MiException("El número de teléfono no puede ser nulo.");
+            }
+
             cliente.setNombre(nombre);
             cliente.setApellido(apellido);
             cliente.setNombreUsuario(nombreUsuario);
@@ -79,21 +86,14 @@ public class ClienteServicio {
             String idImagen = null;
 
             if (cliente.getFoto() != null) {
-
                 idImagen = cliente.getFoto().getId();
-
             }
 
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-
             cliente.setFoto(imagen);
-
             cliente.setRol(Rol.CLIENTE);
-
             clienteRepositorio.save(cliente);
-
         }
-
     }
 
     public List<Cliente> listarClientes() {
@@ -109,17 +109,11 @@ public class ClienteServicio {
     public void darBaja(String id) throws MiException {
 
         Cliente cliente = getOne(id);
-
         cliente.setEstado(Boolean.FALSE);
-
         clienteRepositorio.save(cliente);
-
     }
 
     public Cliente getOne(String id) {
-
         return clienteRepositorio.getOne(id);
-
     }
-
 }

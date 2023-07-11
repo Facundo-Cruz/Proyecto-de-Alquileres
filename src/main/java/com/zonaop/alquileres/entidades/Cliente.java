@@ -1,16 +1,13 @@
 package com.zonaop.alquileres.entidades;
 
-
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-//Entidad cliente que hereda de usuario
 @Entity
 public class Cliente extends Usuario {
 
-    //Un usuario puede tener muchas reservas
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<Reserva> reservas;
 
     public Cliente() {

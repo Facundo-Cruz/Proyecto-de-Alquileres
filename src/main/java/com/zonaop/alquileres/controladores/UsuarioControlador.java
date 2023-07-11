@@ -69,26 +69,32 @@ public class UsuarioControlador {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         Usuario perfil;
-        List<Reserva> reservas;
+        List<Reserva> reservasActivas;
+        List<Reserva> reservasPendientes;
         if (usuario.getRol().name().equals("PROPIETARIO")) {
 
             perfil = propietarioServicio.getOne(usuario.getId());
 
             List<Propiedad> propiedades = propiedadServicio.listarPorPropietario(usuario.getId());
 
-            reservas = reservaServicio.listarPorPropietario(perfil.getId());
-
+            reservasActivas = reservaServicio.listarPorPropietarioActiva(usuario.getId());
+            reservasPendientes = reservaServicio.listarPorPropietarioPendiente(usuario.getId());
+            List<Reserva> reservasCanceladas = reservaServicio.listarPorPropietarioCancelada(usuario.getId());
+            List<Reserva> reservasFinalizadas = reservaServicio.listarPorPropietarioFinalizada(usuario.getId());
             modelo.put("propiedades", propiedades);
-
+            modelo.put("reservasCanceladas", reservasCanceladas);
+            modelo.put("reservasFinalizadas", reservasFinalizadas);
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
-
-            reservas = reservaServicio.listarPorCliente(perfil.getId());
+//            reservas activas
+            reservasActivas = reservaServicio.listarPorClienteActiva(usuario.getId());
+            reservasPendientes = reservaServicio.listarPorClientePendiente(usuario.getId());
 
         }
 
-        modelo.put("reservas", reservas);
+        modelo.put("reservasActivas", reservasActivas);
+        modelo.put("reservasPendientes", reservasPendientes);
 
         modelo.put("usuario", perfil);
 
@@ -123,7 +129,7 @@ public class UsuarioControlador {
 
     @PostMapping("/modificar")
     public String modificarUsuario(String id, String nombre, String apellido,
-            String nombreUsuario, String email,Long telefono, String password, Imagen foto,
+            String nombreUsuario, String email, Long telefono, String password, Imagen foto,
             String rol, ModelMap modelo, MultipartFile archivo,
             RedirectAttributes redirectAttributes, String passwordActual) {
 
@@ -131,7 +137,7 @@ public class UsuarioControlador {
 
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email,telefono, password, archivo, passwordActual);
+                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, archivo, passwordActual);
 
             } else {
 
@@ -155,6 +161,7 @@ public class UsuarioControlador {
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
         try {
+            reservaServicio.eliminarReservasDeCliente(id);
             usuarioServicio.eliminarPorId(id);
             redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
                     + "eliminado con éxito!");

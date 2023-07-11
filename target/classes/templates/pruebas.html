@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimentos</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            border: 2px solid black;
+            margin: 15px 50px;
+            width: 170px;
+            height: 250px;
+        }
+
+        .delete-link {
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cancel-link {
+            background-color: rgb(6, 86, 178);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .modify-link {
+            background-color: rgb(29, 179, 52);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+        }
+
+        .modal h4 {
+            margin-top: 0;
+        }
+
+        .modal button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" th:each="usuario : ${usuarios}">
+            <h4 th:text="${usuario.nombre}"></h4>
+            <h4 th:text="${usuario.apellido}"></h4>
+            <button class="delete-link" data-toggle="modal"
+                th:data-target="'#confirmModal-' + ${usuario.id}">Eliminar</button>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <div th:each="usuario : ${usuarios}">
+        <div th:id="'confirmModal-' + ${usuario.id}" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar eliminación</h4>
+                <p th:text="'¿Seguro que deseas eliminar a ' + ${usuario.nombre} + ' ' + ${usuario.apellido} +'?'"></p>
+                <a href="" class="delete-link">Eliminar</a>
+                <button class="cancel-delete cancel-link">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <form class="formulario-registro-de-usuario" th:action="@{/pruebass}" method="POST" enctype="multipart/form-data">
+        
+
+        <label for="imagen">Imagen de perfil:</label>
+        <input class="imagen" type="file" name="archivos[]" accept="image/*" multiple>
+
+        <input class="enviar" type="submit" value="Enviar">
+    </form>
+
+
+    <!-- javascript -->
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-link');
+        const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
+        const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
+
+        deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', () => {
+                const targetModalId = deleteButton.getAttribute('data-target');
+                const targetModal = document.querySelector(targetModalId);
+                targetModal.style.display = 'block';
+            });
+        });
+
+        cancelDeleteButtons.forEach((cancelDeleteButton) => {
+            cancelDeleteButton.addEventListener('click', () => {
+                const targetModal = cancelDeleteButton.closest('.modal');
+                targetModal.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

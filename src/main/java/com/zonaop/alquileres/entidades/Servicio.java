@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.TipoServicio;
@@ -11,15 +6,14 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Servicio {
-
     
     @Id
     @GeneratedValue(generator = "uuid")
+    @GenericGenerator( name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
     private String descripcion;
@@ -70,10 +64,4 @@ public class Servicio {
         this.precio = precio;
     }
 
-    
-    
-
-   
-    
-    
 }

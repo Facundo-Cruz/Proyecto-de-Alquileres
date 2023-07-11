@@ -36,10 +36,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/reserva")
 public class ReservaControlador {
-
+    
     @Autowired
     private ReservaServicio reservaservi;
-
+    
     @Autowired
     private PropiedadServicio propiedadServicio;
 
@@ -52,7 +52,7 @@ public class ReservaControlador {
         modelo.put("fechasDesde", reservaservi.traerFechasDesde(idCasa));
         modelo.put("fechasHasta", reservaservi.traerFechasHasta(idCasa));
         return "formulario-registro-reserva.html";
-
+        
     }
 
     //ruta para el registro de reserva con sus respectivos datos
@@ -64,33 +64,32 @@ public class ReservaControlador {
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo,
             @RequestParam(value = "servicios", required = false) List<Servicio> servicios,
             RedirectAttributes redirectAttributes) {
-
+        
         try {
-            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta,servicios, total);
+            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta, servicios, total);
             modelo.put("exito", "la reserva se relizo correctamente");
-
+            
         } catch (MiException ex) {
-
+            
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-
+            
             return "redirect:/reserva/registrar/" + idPropiedad;
-
+            
         }
-
+        
         return "redirect:/";
-
+        
     }
-
-
 
     //ruta para modificar el id de una reserva en especifico
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, ModelMap modelo) {
-
+        
         modelo.put("reserva", reservaservi.getOne(id));
-
+        
         List<Reserva> rese = reservaservi.listarReservas();
         modelo.addAttribute("reserva", rese);
+
 
         return "formulario-modificar-reserva.html";
 
@@ -114,38 +113,24 @@ public class ReservaControlador {
         
     }
 
-//    @PostMapping("/modificar/{id}")
-//    public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped, @RequestParam Cliente cliente, @RequestParam Opinion opinion, @RequestParam Propiedad propiedad, @RequestParam List<Servicio> servicios, ModelMap modelo) {
-//
-//        try {
-//
-//            List<Reserva> reserva = reservaservi.listarReservas();
-//            modelo.addAttribute("reserva", reserva);
-//
-//            reservaservi.modificarReserva(id, huesped, servicios, Double.NaN, id, huesped, id, id);
-//
-//            return "redirect:../listar";
-//
-//        } catch (MiException ex) {
-//
-//            List<Reserva> reserva = reservaservi.listarReservas();
-//            modelo.put("error", ex.getMessage());
-//
-//            modelo.addAttribute("reserva", reserva);
-//
-//            return "formulario-modificar-reserva.html";
-//
-//        }
 
-        @PostMapping("/modificar/{id}")
-    public String modificar(@RequestParam(required = false) String id, @RequestParam String huesped,@RequestParam List<Servicio> servicios,@RequestParam double total,@RequestParam boolean estado, ModelMap modelo) {
+
+
+    @PostMapping("/modificar/{id}")
+    public String modificar(@RequestParam String id,
+            @RequestParam String huesped,
+            @RequestParam List<Servicio> servicios,@RequestParam double total, 
+            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta
+            , ModelMap modelo) {
 
         try {
 
             List<Reserva> reserva = reservaservi.listarReservas();
             modelo.addAttribute("reserva", reserva);
 
-            reservaservi.modificarReserva(id, huesped, servicios, total, estado);
+            reservaservi.modificarReserva(id, huesped, fechaDesde, fechaHasta,
+            servicios, total);
 
             return "redirect:../listar";
 
@@ -161,21 +146,14 @@ public class ReservaControlador {
         }
 
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+ }
+
+    
+    @GetMapping("/aceptar/{id}")
+    public String aceptar(@PathVariable String id) {
+        reservaservi.aceptarReserva(id);
+        return "redirect:/usuario/perfil";
     }
-
-      
-
-
+    
+    
 }

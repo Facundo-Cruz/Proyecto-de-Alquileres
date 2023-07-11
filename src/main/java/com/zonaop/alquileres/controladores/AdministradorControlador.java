@@ -7,9 +7,13 @@ package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Reserva;
+import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.excepciones.MiException;
+import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
+import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
+import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,17 +32,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdministradorControlador {
     
     @Autowired
-    ReservaServicio reservaservi;
+    private ReservaServicio reservaservi;
     
+    @Autowired
+    private ClienteServicio clienteServicio;
+
+    @Autowired
+    private PropietarioServicio propietarioServicio;
+
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+
     @Autowired
     private PropiedadServicio propiedadServicio;
     
     @GetMapping("/dashboard")
      public String panelAdministrativo(ModelMap model){
          
-        List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
-         model.put("propiedades", propiedades);
-         return "panelAdmin.html";
+        List<Usuario> usuarios = usuarioServicio.listarAdmins();
+        int propietarios = usuarioServicio.contarPropietarios();
+        int clientes = usuarioServicio.contarClientes();
+        int reservas = reservaservi.contarReservas();
+        int propiedades = propiedadServicio.contarPropiedades();
+        model.put("propiedades", propiedades);
+        model.put("admins", usuarios);
+        model.put("propietarios", propietarios);
+        model.put("clientes", clientes);
+        model.put("reservas", reservas);
+        return "dashboard.html";
      }
      
          //ruta para listar las reservas de las propiedades
@@ -58,7 +79,7 @@ public class AdministradorControlador {
     public String eliminarReserva(@PathVariable String id, RedirectAttributes p) {
 
         try {
-            reservaservi.EliminarReserva(id);
+            reservaservi.eliminarReserva(id);
             p.addFlashAttribute("exito", "eliminado");
 
             return "redirect:../listarReservas";

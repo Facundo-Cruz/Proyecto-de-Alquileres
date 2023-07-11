@@ -1,6 +1,5 @@
 package com.zonaop.alquileres.servicios;
 
-
 import com.zonaop.alquileres.entidades.Usuario;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.UsuarioRepositorio;
@@ -21,53 +20,77 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-
 @Service
-public class UsuarioServicio implements UserDetailsService{
+public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    public void validar(String nombre, String apellido,String nombreUsuario, String email, String contrasena) throws MiException {
 
+    public void validar(String nombre, String apellido, String nombreUsuario, String email, String contrasena) throws MiException {
+       
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new MiException("El nombre no puede ser nulo o vacío.");
+        }
+
+        if (apellido == null || apellido.trim().isEmpty()) {
+            throw new MiException("El apellido no puede ser nulo o vacío.");
+        }
+
+        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+            throw new MiException("El nombre de usuario no puede ser nulo o vacío.");
+        }
+
+        if (email == null || email.trim().isEmpty()) {
+            throw new MiException("El email no puede ser nulo o vacío.");
+        }
+
+        if (contrasena == null || contrasena.isEmpty()) {
+            throw new MiException("La contraseña no puede ser nula o vacía.");
+        }
     }
 
-    public List<Usuario> listarUsuarios(){
+    public List<Usuario> listarUsuarios() {
         return usuarioRepositorio.findAll();
     }
-    public List<Usuario> listarUsuariosPorNombre(String nombre){
+
+    public List<Usuario> listarUsuariosPorNombre(String nombre) {
         return usuarioRepositorio.buscarPorNombreUsuario(nombre);
     }
-    
+
+    public List<Usuario> listarAdmins() {
+        return usuarioRepositorio.buscarAdmins();
+    }
+
+    public int contarPropietarios() {
+        return usuarioRepositorio.contarPropietarios();
+    }
+
+    public int contarClientes() {
+        return usuarioRepositorio.contarClientes();
+    }
+
     @Transactional
-    public void eliminarPorId(String id){
+    public void eliminarPorId(String id) {
+
         usuarioRepositorio.deleteById(id);
     }
-    
+
     @Transactional
-    public void cambiarEstadoPorId(String id){
+    public void cambiarEstadoPorId(String id) {
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-        
+
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
             usuario.setEstado(!usuario.getEstado());
             usuarioRepositorio.save(usuario);
         }
     }
-    
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
         Usuario usuario = usuarioRepositorio.buscarPorEmailUser(email);
-        System.out.println(usuario.getEmail());
-        String encodedPassword = usuario.getContrasena();
 
-            if (bCryptPasswordEncoder.matches("123123A!", encodedPassword)) {
-                System.out.println("COINCIDEN");
-
-                usuarioRepositorio.save(usuario);
-            } else {
-                System.out.println("no COINCIDEN");
-            }
         if (usuario != null && usuario.getEstado()) {
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
@@ -84,13 +107,11 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }
 
-    
-     @Transactional(readOnly = true)
-    public Usuario getOne(String id){
-     
+    @Transactional(readOnly = true)
+    public Usuario getOne(String id) {
+
         return usuarioRepositorio.getOne(id);
-        
+
     }
-    
-    
+
 }

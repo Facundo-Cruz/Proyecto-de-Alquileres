@@ -16,7 +16,9 @@
     </div>
 
     <div class="imagebox">
-        <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        <a href="#" class="profile-picture-background">
+            <img th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        </a>
     </div>
     <div class="infobox">
         <div class="heading">
@@ -63,6 +65,7 @@
                         </div>
                         <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
                                         SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
+
                         <button class="cancelar">cancelar</button>
                     </div>
                 </div>
@@ -97,7 +100,7 @@
                                 <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
                                         class="fab fa-instagram"></i></a>
                             </div>
-                            <hr class="horizontal" >
+                            <hr class="horizontal">
                             <p>
                                 <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
                                 <br>
@@ -125,7 +128,8 @@
                             </p>
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}" id="cancelarLink">Cancelar</a>
                             <input type="date" id="fechaHasta" th:value="${reserva.fechaHasta}" hidden>
-                            <a sec:authorize="hasRole('CLIENTE')" id="calificarLink" th:href="@{/opinion/registro/__${reserva.id}__}">Calificar</a>
+                            <a sec:authorize="hasRole('CLIENTE')" id="calificarLink"
+                                th:href="@{/opinion/registro/__${reserva.id}__}">Calificar</a>
 
                         </div>
                     </div>
@@ -162,7 +166,7 @@
                                 <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
                                         class="fab fa-instagram"></i></a>
                             </div>
-                            <hr class="horizontal" >
+                            <hr class="horizontal">
                             <p>
                                 <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
                                 <br>
@@ -190,7 +194,8 @@
                             </p>
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
 
-                            <a th:href="@{/reserva/aceptar/__${reserva.id}__}">Aceptar</a>
+                            <a sec:authorize="hasRole('PROPIETARIO')"
+                                th:href="@{/reserva/aceptar/__${reserva.id}__}">Aceptar</a>
                         </div>
                     </div>
 
@@ -226,7 +231,7 @@
                                 <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
                                         class="fab fa-instagram"></i></a>
                             </div>
-                            <hr class="horizontal" >
+                            <hr class="horizontal">
                             <p>
                                 <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
                                 <br>
@@ -288,7 +293,7 @@
                                 <a th:href="${reserva.propiedad.redesSociales[2]}" target="_blank"><i
                                         class="fab fa-instagram"></i></a>
                             </div>
-                            <hr class="horizontal" >
+                            <hr class="horizontal">
                             <p>
                                 <b>Fecha desde: </b> <span th:text="${reserva.fechaDesde}"></span>
                                 <br>
@@ -332,36 +337,36 @@
         let elementosAcordeon = document.getElementsByClassName("acordeon");
 
         for (let i = 0; i < elementosAcordeon.length; i++) {
-        elementosAcordeon[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            let panel = this.nextElementSibling;
-            let icon = this.querySelector("i");
+            elementosAcordeon[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                let panel = this.nextElementSibling;
+                let icon = this.querySelector("i");
 
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-                icon.classList.remove("rotated");
-            } else {
-                panel.style.display = "block";
-                icon.classList.add("rotated");
-            }
-        });
-    }
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    icon.classList.remove("rotated");
+                } else {
+                    panel.style.display = "block";
+                    icon.classList.add("rotated");
+                }
+            });
+        }
     </script>
     <script>
         // Obtener la fecha actual en formato YYYY-MM-DD
         var currentDate = new Date().toISOString().split("T")[0];
-      
+
         // Obtener la fecha del campo input
         var fechaHasta = document.getElementById("fechaHasta").value;
         // Condicionar la visibilidad del enlace basado en la comparación de fechas
         if (fechaHasta < currentDate) {
-          document.getElementById("calificarLink").style.display = "inline-block";
-          document.getElementById("cancelarLink").style.display = "none";
+            document.getElementById("calificarLink").style.display = "inline-block";
+            document.getElementById("cancelarLink").style.display = "none";
         } else {
-          document.getElementById("calificarLink").style.display = "none";
-          document.getElementById("cancelarLink").style.display = "inline-block";
+            document.getElementById("calificarLink").style.display = "none";
+            document.getElementById("cancelarLink").style.display = "inline-block";
         }
-      </script>
+    </script>
 
 </body>
 

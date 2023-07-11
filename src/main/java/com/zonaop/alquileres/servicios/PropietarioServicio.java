@@ -27,7 +27,7 @@ public class PropietarioServicio {
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
-    public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
+    public void registrar(String nombre,String apellido, String nombreUsuario, String email,Long telefono, String contrasena, MultipartFile archivo, String rol) throws MiException {
 
         usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
@@ -37,6 +37,7 @@ public class PropietarioServicio {
         propietario.setApellido(apellido);
         propietario.setNombreUsuario(nombreUsuario);
         propietario.setEmail(email);
+        propietario.setTelefono(telefono);
         propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
         propietario.setEstado(Boolean.TRUE);
 
@@ -51,7 +52,7 @@ public class PropietarioServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
+    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, Long telefono, String contrasena, MultipartFile archivo, String passwordActual) throws MiException {
 
         Optional<Propietario> respuesta = propietarioRepositorio.findById(id);
 
@@ -71,6 +72,7 @@ public class PropietarioServicio {
             propietario.setApellido(apellido);
             propietario.setNombreUsuario(nombreUsuario);
             propietario.setEmail(email);
+            propietario.setTelefono(telefono);
             propietario.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
 
             String idImagen = null;
@@ -114,5 +116,7 @@ public class PropietarioServicio {
         return propietarioRepositorio.getOne(id);
 
     }
+    
+    
 
 }

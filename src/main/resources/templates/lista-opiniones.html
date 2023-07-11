@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,
+				initial-scale=1.0">
+    <title>Opiniones</title>
+    <link rel="stylesheet" href="/css/dashboard-nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style-listado-usuarios.css">
+
+</head>
+
+<body>
+
+    <!-- for header part -->
+    <header>
+
+        <div class="logosec">
+            <a class="logo" href="/">
+                <img src="/img/logo.png" width="50" height="50" alt="Alquileres" />
+            </a>
+            <div class="bars__menu menuicn">
+                <span class="line1__bars-menu"></span>
+                <span class="line2__bars-menu"></span>
+                <span class="line3__bars-menu"></span>
+            </div>
+        </div>
+
+        <div class="message">
+
+            <div class="dp">
+                <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" class="dpicn" alt="dp">
+            </div>
+            <a th:if="${session.usuariosession != null}" class="btn btn-primary" href="/logout">Cerrar
+                Sesion</a>
+        </div>
+
+    </header>
+
+    <div class="main-container">
+        <div class="navcontainer">
+            <nav class="nav">
+                <div class="nav-upper-options">
+                    <div class="nav-option option1">
+                        <i class="fa-solid fa-square iconos"></i>
+                        <h3> Dashboard</h3>
+                    </div>
+
+                    <a th:href="@{/usuario/listar/}" class="option2 nav-option">
+                        <i class="fa-solid fa-user iconos"></i>
+                        <h3> Usuarios</h3>
+                    </a>
+
+
+                    <a th:href="@{/propiedad/listar/}" class="nav-option option3">
+                        <i class="fa-solid fa-house iconos"></i>
+                        <h3> Propiedades</h3>
+                    </a>
+
+                    <a th:href="@{/admin/listarReservas/}" class="nav-option option4">
+                        <i class="fa-solid fa-house-user iconos"></i>
+                        <h3> Reservas</h3>
+                    </a>
+
+                    <a th:href="@{/opinion/listar/}" class="nav-option option4">
+                        <i class="fa-solid fa-comment iconos"></i>
+                        <h3> Opiniones</h3>
+                    </a>
+
+                    <a class="nav-option option4">
+                        <i class="fa-solid fa-sheet-plastic iconos"></i>
+                        <h3> Reportes</h3>
+                    </a>
+
+                </div>
+            </nav>
+        </div>
+        <div class="main">
+            <div class="box-container">
+                <main class="table">
+                    <section class="table__header">
+                        <h1>Tabla de Opiniones</h1>
+                    </section>
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Huesped </th>
+                                    <th> Comentario </th>
+                                    <th> Calificación </th>
+                                    <th> Acciones </th>
+                                </tr>
+                            </thead>
+                            <tbody th:each="opinion : ${opiniones}">
+                                <tr>
+                                    <td th:text="${opinion.id}"></td>
+                                    <td th:text="${opinion.huesped}"></td>
+                                    <td th:text="${opinion.comentario}"> </td>
+                                    <td th:text="${opinion.calificacion}"> </td>
+                                    <td>
+                                        <button class="delete-link" data-toggle="modal"
+                                            th:data-target="'#confirmModal-' + ${opinion.id}"
+                                            type="button">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+    <!-- Modals -->
+    <div th:each="opinion : ${opiniones}">
+        <div th:id="'confirmModal-' + ${opinion.id}" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar eliminación</h4>
+                <p th:text="'¿Seguro que deseas eliminar esta opinión?'"></p>
+                <a th:href="@{/opinion/eliminar/__${opinion.id}__}" class="delete-link">Eliminar</a>
+                <button class="cancel-delete cancel-link">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script>
+        const deleteButtons = document.querySelectorAll('.delete-link');
+        const confirmDeleteButtons = document.querySelectorAll('.confirm-delete');
+        const cancelDeleteButtons = document.querySelectorAll('.cancel-delete');
+
+        deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', () => {
+                const targetModalId = deleteButton.getAttribute('data-target');
+                const targetModal = document.querySelector(targetModalId);
+                targetModal.style.display = 'block';
+            });
+        });
+
+        cancelDeleteButtons.forEach((cancelDeleteButton) => {
+            cancelDeleteButton.addEventListener('click', () => {
+                const targetModal = cancelDeleteButton.closest('.modal');
+                targetModal.style.display = 'none';
+            });
+        });
+    </script>
+    <script src="/js/dashboard-nav.js"></script>
+</body>
+
+</html>

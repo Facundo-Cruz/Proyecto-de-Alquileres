@@ -31,7 +31,7 @@ public class UsuarioControlador {
 
     @Autowired
     public PropiedadServicio propiedadServicio;
-    
+
     @Autowired
     public ReservaServicio reservaServicio;
 
@@ -53,9 +53,9 @@ public class UsuarioControlador {
         return "lista-usuarios.html";
 
     }
-    
+
     @PostMapping("/listar/nombres")
-    public String listarUsuariosPorNombre(@RequestParam String nombre,ModelMap model ) {
+    public String listarUsuariosPorNombre(@RequestParam String nombre, ModelMap model) {
 
         List<Usuario> usuarios = usuarioServicio.listarUsuariosPorNombre(nombre);
         model.put("usuarios", usuarios);
@@ -69,23 +69,32 @@ public class UsuarioControlador {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
         Usuario perfil;
+        List<Reserva> reservasActivas;
+        List<Reserva> reservasPendientes;
         if (usuario.getRol().name().equals("PROPIETARIO")) {
 
             perfil = propietarioServicio.getOne(usuario.getId());
 
             List<Propiedad> propiedades = propiedadServicio.listarPorPropietario(usuario.getId());
 
+            reservasActivas = reservaServicio.listarPorPropietarioActiva(usuario.getId());
+            reservasPendientes = reservaServicio.listarPorPropietarioPendiente(usuario.getId());
+            List<Reserva> reservasCanceladas = reservaServicio.listarPorPropietarioCancelada(usuario.getId());
+            List<Reserva> reservasFinalizadas = reservaServicio.listarPorPropietarioFinalizada(usuario.getId());
             modelo.put("propiedades", propiedades);
-
+            modelo.put("reservasCanceladas", reservasCanceladas);
+            modelo.put("reservasFinalizadas", reservasFinalizadas);
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
-            
-            List<Reserva> reservas = reservaServicio.listarPorCliente(usuario.getId());
-            
-            modelo.put("reservas", reservas);
+//            reservas activas
+            reservasActivas = reservaServicio.listarPorClienteActiva(usuario.getId());
+            reservasPendientes = reservaServicio.listarPorClientePendiente(usuario.getId());
 
         }
+
+        modelo.put("reservasActivas", reservasActivas);
+        modelo.put("reservasPendientes", reservasPendientes);
 
         modelo.put("usuario", perfil);
 
@@ -120,7 +129,7 @@ public class UsuarioControlador {
 
     @PostMapping("/modificar")
     public String modificarUsuario(String id, String nombre, String apellido,
-            String nombreUsuario, String email, String password, Imagen foto,
+            String nombreUsuario, String email, Long telefono, String password, Imagen foto,
             String rol, ModelMap modelo, MultipartFile archivo,
             RedirectAttributes redirectAttributes, String passwordActual) {
 
@@ -128,11 +137,11 @@ public class UsuarioControlador {
 
             if (rol.equalsIgnoreCase("cliente")) {
 
-                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, password, archivo, passwordActual);
+                clienteServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, archivo, passwordActual);
 
             } else {
 
-                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, password, archivo, passwordActual);
+                propietarioServicio.modificar(id, nombre, apellido, nombreUsuario, email, telefono, password, archivo, passwordActual);
 
             }
             redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
@@ -152,6 +161,7 @@ public class UsuarioControlador {
     public String eliminarUsuario(@PathVariable String id, RedirectAttributes redirectAttributes) {
 
         try {
+            reservaServicio.eliminarReservasDeCliente(id);
             usuarioServicio.eliminarPorId(id);
             redirectAttributes.addFlashAttribute("exito", "¡El usuario ha sido "
                     + "eliminado con éxito!");
@@ -168,7 +178,7 @@ public class UsuarioControlador {
 
         try {
             usuarioServicio.cambiarEstadoPorId(id);
-   
+
         } catch (Exception error) {
             redirectAttributes.addFlashAttribute("error", error.getMessage());
         } finally {

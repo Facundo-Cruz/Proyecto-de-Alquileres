@@ -2,7 +2,7 @@
 package com.zonaop.alquileres.enumeraciones;
 
 
-public enum estadoReserva {
+public enum EstadoReserva {
    Activa,
    Cancelada,
    Finalizada,

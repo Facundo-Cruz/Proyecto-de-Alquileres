@@ -2,12 +2,18 @@ package com.zonaop.alquileres.controladores;
 
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Propietario;
+import com.zonaop.alquileres.entidades.Servicio;
+import com.zonaop.alquileres.enumeraciones.Localidad;
+import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
+import com.zonaop.alquileres.servicios.ReservaServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/propiedad")
@@ -29,6 +36,9 @@ public class PropiedadControlador {
 
     @Autowired
     public PropietarioServicio propietarioServicio;
+
+    @Autowired
+    public ReservaServicio reservaServicio;
 
     @GetMapping("/registrar")
     public String registrarPropiedad() {
@@ -51,8 +61,7 @@ public class PropiedadControlador {
 
         Propietario propietario = (Propietario) session.getAttribute("usuariosession");
         String idPropietario = propietario.getId();
-        
-      
+
         try {
 
             propiedadServicio.crearPropiedad(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde, fechaHasta, precio, tipoPropiedad, archivos, idPropietario, telefono, serviciosSeleccionados, preciosServicios, redesSociales, email);
@@ -66,10 +75,22 @@ public class PropiedadControlador {
 
     }
 
+//    @PostMapping("/filtrar")
+//    public String index(ModelMap model, @RequestParam(required = false) String tipo) {
+//        List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
+//        model.put("propiedades", propiedades);
+//        return "mainPage.html";
+//    }
     @PostMapping("/filtrar")
-    public String index(ModelMap model, @RequestParam(required = false) String tipo) {
-        List<Propiedad> propiedades = propiedadServicio.listarPropiedadPorTipo(tipo);
-        model.put("propiedades", propiedades);
+    public String filtrarPropiedad(@RequestParam(required = false) TipoPropiedad tipo,
+            @RequestParam(required = false) Localidad localidad,
+            @RequestParam( value="servicios[]", required = false) List<Servicio> servicios,
+            @RequestParam(required = false) Boolean precio,
+            @RequestParam(required = false) Boolean calificacion,
+            ModelMap modelo) {
+
+        List<Propiedad> propiedadesFiltradas = propiedadServicio.filtrarPropiedades(tipo, localidad, servicios, precio, calificacion);
+        modelo.addAttribute("propiedades", propiedadesFiltradas);
         return "mainPage.html";
     }
 
@@ -79,5 +100,39 @@ public class PropiedadControlador {
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
 
         return "formulario-modificar-propiedad.html";
+    }
+
+    @GetMapping("/listar")
+    public String listarUsuarios(ModelMap model) {
+
+        List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
+        model.put("propiedades", propiedades);
+
+        return "lista-propiedades.html";
+
+    }
+
+    @GetMapping("/mostrar/{id}")
+    public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
+
+        model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
+
+        return "precompra-info.html";
+
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminarPropiedad(@PathVariable String id, RedirectAttributes redirect) {
+
+        try {
+            reservaServicio.eliminarReservasDePropiedad(id);
+            propiedadServicio.eliminarPropiedad(id);
+            redirect.addFlashAttribute("exito", "¡Propiedad eliminada correctamente!");
+            return "redirect:../listar";
+        } catch (MiException ex) {
+            redirect.addFlashAttribute("error", ex.getMessage());
+            return "redirect:../listar";
+        }
+
     }
 }

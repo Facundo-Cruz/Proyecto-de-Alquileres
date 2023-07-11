@@ -4,6 +4,7 @@ import com.zonaop.alquileres.entidades.Imagen;
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Reserva;
 import com.zonaop.alquileres.entidades.Servicio;
+import com.zonaop.alquileres.enumeraciones.Localidad;
 
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.enumeraciones.TipoServicio;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,7 +56,7 @@ public class PropiedadServicio {
 
         propiedad.setNombre(nombre);
         propiedad.setDireccion(direccion);
-        propiedad.setLocalidad(localidad);
+        propiedad.setLocalidad(Localidad.valueOf(localidad));
         propiedad.setCodigoPostal(codigoPostal);
         propiedad.setDescripcion(descripcion);
         propiedad.setFechaDesde(fechaDesde);
@@ -95,8 +97,8 @@ public class PropiedadServicio {
                     case "Catering":
                         servicio.setDescripcion("Servicio de catering que ofrece comida y bebidas para eventos especiales, como bodas, fiestas o conferencias, con opciones personalizadas de menús.");
                         break;
-                    case "Animacion":
-                        servicio.setDescripcion("Servicio de animación que incluye actividades interactivas y entretenidas para eventos, como juegos, espectáculos, payasos o magos, con el objetivo de entretener a los asistentes.");
+                    case "Fotografo":
+                        servicio.setDescripcion("Servicio de fotografía que incluye uno o mas fotógrafos que lograran capturar los mejores momentos de tu evento y tener recuerdos de un momento inolvidable.");
                         break;
                     case "Bar":
                         servicio.setDescripcion("Servicio de bar que ofrece bebidas y cócteles para eventos y fiestas, con opciones de barra libre o servicio de bartender profesional.");
@@ -135,7 +137,7 @@ public class PropiedadServicio {
 
             propiedad.setNombre(nombre);
             propiedad.setDireccion(direccion);
-            propiedad.setLocalidad(localidad);
+            propiedad.setLocalidad(Localidad.valueOf(localidad));
             propiedad.setCodigoPostal(tipoPropiedad);
             propiedad.setDescripcion(descripcion);
             propiedad.setFechaDesde(fechaDesde);
@@ -152,11 +154,9 @@ public class PropiedadServicio {
 //                idImagen = propiedad.getFoto().getId();
 //
 //            }
-
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
 
 //            propiedad.setFoto(imagen);
-
             propiedadRepositorio.save(propiedad);
 
         }
@@ -172,6 +172,10 @@ public class PropiedadServicio {
         List<Propiedad> propiedades = propiedadRepositorio.buscarPorTipo(TipoPropiedad.valueOf(tipo));
         return propiedades;
     }
+
+  public List<Propiedad> filtrarPropiedades(TipoPropiedad tipo, Localidad localidad, List<Servicio> servicios, Boolean precio, Boolean calificacion) {
+    return propiedadRepositorio.findByFilters(tipo, localidad, servicios, precio, calificacion);
+}
 
     public List<Propiedad> listarPropiedades() {
         List<Propiedad> propiedades = propiedadRepositorio.findAll();
@@ -191,4 +195,7 @@ public class PropiedadServicio {
 
     }
 
+    public int contarPropiedades(){
+        return propiedadRepositorio.contarPropiedades();
+    }
 }

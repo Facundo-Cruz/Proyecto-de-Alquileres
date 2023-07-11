@@ -1,5 +1,6 @@
 package com.zonaop.alquileres.entidades;
 
+import com.zonaop.alquileres.enumeraciones.Localidad;
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,9 @@ public class Propiedad {
     private String id;
     private String nombre;
     private String direccion;
-    private String localidad;
+    private String ubi;
+    @Enumerated(EnumType.STRING)
+    private Localidad localidad;
     private String codigoPostal;
     @Lob
     private String descripcion;
@@ -54,9 +57,19 @@ public class Propiedad {
     private int calificacion;
     @OneToMany
     private List<Servicio> servicios;
+    @OneToMany
+    private List<Opinion> opiniones;
     private String email;
 
     public Propiedad() {
+    }
+
+    public List<Opinion> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(List<Opinion> opiniones) {
+        this.opiniones = opiniones;
     }
 
     public String getEmail() {
@@ -108,13 +121,23 @@ public class Propiedad {
         this.direccion = direccion;
     }
 
-    public String getLocalidad() {
+    public String getUbi() {
+        return ubi;
+    }
+
+    public void setUbi(String ubi) {
+        this.ubi = ubi;
+    }
+
+    public Localidad getLocalidad() {
         return localidad;
     }
 
-    public void setLocalidad(String localidad) {
+    public void setLocalidad(Localidad localidad) {
         this.localidad = localidad;
     }
+
+
 
     public String getCodigoPostal() {
         return codigoPostal;

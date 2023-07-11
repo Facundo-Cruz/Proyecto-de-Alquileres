@@ -188,9 +188,10 @@
                                 <br>
                                 <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                             </p>
+                            <b>Estado</b><span th:text="${reserva.estado}">
                             <a th:href="@{/reserva/cancelar/__${reserva.id}__}">Cancelar</a>
 
-                            <a th:href="@{/reserva/aceptar/__${reserva.id}__}">Aceptar</a>
+                            <a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/aceptar/__${reserva.id}__}">Aceptar</a>
                         </div>
                     </div>
 

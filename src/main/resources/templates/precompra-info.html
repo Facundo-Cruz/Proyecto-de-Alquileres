@@ -127,6 +127,7 @@
         <p class="titulo" th:text="${propiedad.nombre}"></p>
         <p class="ubicacion" th:text="${propiedad.localidad + ', '+ propiedad.direccion}"> </span></p>
         <div class="linea">
+
             <div class="puntuacion">
                 <span class="cant">4</span>
                 <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
@@ -160,6 +161,7 @@
         <p class="heading">servicios</p>
         <div class="top-line"></div>
         <div class="servicios">
+
             <th:block th:each="servicio : ${propiedad.servicios}">
 
                 <div class="items" th:if="${servicio.nombre == 'Transporte'}">
@@ -207,7 +209,9 @@
         <div class="comentario" th:each="opinion : ${propiedad.opiniones}">
             <img class="foto-perfil" src="/img/perfil.webp" alt="">
             <div class="mensaje">
-                <p class="nombre-perfil" th:text="${opinion.huesped}"></p>
+                <!-- PORFAVOR no olvidarse de agregar el numero de estrellas en nombre perfil
+                     en nombre perfil es el nombre del huesped-->
+                <p class="nombre-perfil" th:text="${opinion.huesped + ' ingresar numero estrellas ' + '⭐'}"></p>
                 <p class="comment" th:text="${opinion.comentario}"></p>
             </div>
             <div class="adjuntado">

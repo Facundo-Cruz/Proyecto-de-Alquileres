@@ -7,13 +7,13 @@ import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.AdministradorRepositorio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class AdministradorServicio {
-
 
     @Autowired
     public AdministradorRepositorio administradorRepositorio;
@@ -25,9 +25,12 @@ public class AdministradorServicio {
     public UsuarioServicio usuarioServicio;
 
     @Transactional
-    public void registrar(String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo, String rol) throws MiException {
+    public void registrar(String nombre, String apellido, String nombreUsuario,
+            String email, String contrasena, MultipartFile archivo, String rol,
+            Long telefono)
+            throws MiException {
 
-        usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
+        usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
         Administrador administrador = new Administrador();
 
@@ -35,21 +38,17 @@ public class AdministradorServicio {
         administrador.setApellido(apellido);
         administrador.setNombreUsuario(nombreUsuario);
         administrador.setEmail(email);
-        administrador.setContrasena(contrasena);
+        administrador.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
+        administrador.setTelefono(telefono);
         administrador.setEstado(Boolean.TRUE);
-
         Imagen imagen = imagenServicio.guardar(archivo);
-
         administrador.setFoto(imagen);
-
         administrador.setRol(Rol.ADMIN);
-
         administradorRepositorio.save(administrador);
-
     }
 
     @Transactional
-    public void modificar(String id, String nombre,String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
+    public void modificar(String id, String nombre, String apellido, String nombreUsuario, String email, String contrasena, MultipartFile archivo) throws MiException {
 
         Optional<Administrador> respuesta = administradorRepositorio.findById(id);
 
@@ -57,7 +56,7 @@ public class AdministradorServicio {
 
             Administrador administrador = respuesta.get();
 
-            usuarioServicio.validar(nombre,apellido, nombreUsuario, email, contrasena);
+            usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
 
             administrador.setNombre(nombre);
             administrador.setNombreUsuario(nombreUsuario);
@@ -67,38 +66,24 @@ public class AdministradorServicio {
             String idImagen = null;
 
             if (administrador.getFoto() != null) {
-
                 idImagen = administrador.getFoto().getId();
-
             }
 
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-
             administrador.setFoto(imagen);
-
             administrador.setRol(Rol.ADMIN);
-
             administradorRepositorio.save(administrador);
-
         }
-
     }
 
     @Transactional
     public void darBaja(String id) throws MiException {
-
-        Administrador administrador=getOne(id);
-        
+        Administrador administrador = getOne(id);
         administrador.setEstado(Boolean.FALSE);
-        
         administradorRepositorio.save(administrador);
-
     }
 
     public Administrador getOne(String id) {
-
         return administradorRepositorio.getOne(id);
-
     }
-
 }

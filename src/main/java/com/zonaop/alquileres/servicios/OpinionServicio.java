@@ -24,133 +24,108 @@ import org.springframework.web.multipart.MultipartFile;
 public class OpinionServicio {
 
     @Autowired
-    private OpinionRepositorio opinionrepo;
+    private OpinionRepositorio opinionRepositorio;
 
     @Autowired
     private ImagenServicio imagenServicio;
-    
+
     @Autowired
     private ReservaRepositorio reservaRepositorio;
-    
+
     @Autowired
     private PropiedadRepositorio propiedadRepositorio;
 
     @Transactional
-    public void crearOpinion(String idPropiedad, String huesped, String comentario, double calificacion, List<MultipartFile> archivos, String idReserva) throws MiException {
+    public void crearOpinion(String idPropiedad, String huesped, String comentario,
+            double calificacion, List<MultipartFile> archivos, String idReserva)
+            throws MiException {
 
         validarOpinion(huesped, comentario, calificacion, archivos);
 
         Opinion opinion = new Opinion();
         Optional<Propiedad> propiedadOp = propiedadRepositorio.findById(idPropiedad);
-        Propiedad propiedad = propiedadOp.get();
-        List<Imagen> imagenes = imagenServicio.guardarList(archivos);
-        opinion.setFotos(imagenes);
-        opinion.setHuesped(huesped);
-        opinion.setComentario(comentario);
-        opinion.setCalificacion(calificacion);
-        opinionrepo.save(opinion);
-        List<Opinion> opiniones = propiedad.getOpiniones();
-        opiniones.add(opinion);
-        propiedadRepositorio.save(propiedad);
-        
         Optional<Reserva> reservaOp = reservaRepositorio.findById(idReserva);
-        Reserva reserva = reservaOp.get();
-        reserva.setEstado(EstadoReserva.Finalizada);
-        reservaRepositorio.save(reserva);
+
+        if (propiedadOp.isPresent() && reservaOp.isPresent()) {
+
+            Propiedad propiedad = propiedadOp.get();
+            List<Imagen> imagenes = imagenServicio.guardarList(archivos);
+            opinion.setFotos(imagenes);
+            opinion.setHuesped(huesped);
+            opinion.setComentario(comentario);
+            opinion.setCalificacion(calificacion);
+            opinionRepositorio.save(opinion);
+
+            List<Opinion> opiniones = propiedad.getOpiniones();
+            opiniones.add(opinion);
+            propiedadRepositorio.save(propiedad);
+
+            Reserva reserva = reservaOp.get();
+            reserva.setEstado(EstadoReserva.Finalizada);
+            reservaRepositorio.save(reserva);
+        }
     }
 
-    @Transactional(readOnly = true)
     public List<Opinion> listarOpiniones() {
-
-        List<Opinion> op = new ArrayList();
-
-        op = opinionrepo.findAll();
-
-        return op;
-
+        List<Opinion> opiniones = opinionRepositorio.findAll();
+        return opiniones;
     }
 
     public List<Opinion> listarOpinionesPorCalificacionDesc() {
-
-        List<Opinion> opi = new ArrayList();
-
-        opi = opinionrepo.findAllOrderByCalificacionDesc();
-
-        return opi;
-
+        List<Opinion> opiniones = opinionRepositorio.findAllOrderByCalificacionDesc();
+        return opiniones;
     }
 
     @Transactional
-    public void modificarOpinion(String id, String huesped, String comentario, int calificacion, List<MultipartFile> archivos) throws MiException {
+    public void modificarOpinion(String id, String huesped, String comentario,
+            int calificacion, List<MultipartFile> archivos) throws MiException {
 
         validarOpinion(huesped, comentario, calificacion, archivos);
 
-        Optional<Opinion> opi = opinionrepo.findById(id);
+        Optional<Opinion> opinionOp = opinionRepositorio.findById(id);
 
-        Opinion o = new Opinion();
+        if (opinionOp.isPresent()) {
 
-        if (opi.isPresent()) {
-
-            o = opi.get();
-
+            Opinion opinion = opinionOp.get();
+            opinion.setHuesped(huesped);
+            opinion.setComentario(comentario);
+            opinion.setCalificacion(calificacion);
+            opinion.setFotos(imagenServicio.guardarList(archivos));
+            opinionRepositorio.save(opinion);
         }
-
-        o.setHuesped(huesped);
-        o.setComentario(comentario);
-        o.setCalificacion(calificacion);
-//        o.setFotos(fotos);
-
-        opinionrepo.save(o);
-
     }
 
     @Transactional
     public void eliminarOpinion(String id) {
-
-        Optional<Opinion> opiniones = opinionrepo.findById(id);
-
+        Optional<Opinion> opiniones = opinionRepositorio.findById(id);
         if (opiniones.isPresent()) {
-
             Opinion opinion = opiniones.get();
-
-            opinionrepo.delete(opinion);
-
+            opinionRepositorio.delete(opinion);
         }
-
     }
 
     @Transactional(readOnly = true)
     public Opinion getOne(String id) {
-
-        return opinionrepo.getOne(id);
-
+        return opinionRepositorio.getOne(id);
     }
 
-    private void validarOpinion(String huesped, String comentario, double calificacion, List<MultipartFile> archivos) throws MiException {
+    private void validarOpinion(String huesped, String comentario,
+            double calificacion, List<MultipartFile> archivos) throws MiException {
 
-        if (huesped == null || huesped.isEmpty()) {
-
-            throw new MiException("el huesped no puede ser nulo o estar vacio");
-
+        if (huesped == null || huesped.trim().isEmpty()) {
+            throw new MiException("El nombre del huésped no puede ser nulo o vacío.");
         }
 
-        if (comentario == null || comentario.isEmpty()) {
-
-            throw new MiException("el comentario no puede ser nulo o estar vacio");
-
+        if (comentario == null || comentario.trim().isEmpty()) {
+            throw new MiException("El comentario no puede ser nulo o vacío.");
         }
 
-        if (calificacion == 0) {
-
-            throw new MiException("la calificacion no puede ser cero");
-
+        if (calificacion < 0 || calificacion > 5) {
+            throw new MiException("La calificación debe estar entre 0 y 5.");
         }
 
-//        if(fotos==null || fotos.isEmpty()){
-//        
-//        throw new MiException("las fotos no pueden ser nulas o vacias");
-//        
-//    }
+        if (archivos == null) {
+            throw new MiException("Los archivos adjuntados no puede ser nulos.");
+        }
     }
-
 }

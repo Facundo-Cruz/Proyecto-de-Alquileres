@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,13 +21,11 @@ public class Reporte {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator( name = "uuid", strategy = "uuid2")
     private String id;
-    @ManyToOne
+    @OneToOne
     private Cliente cliente;
     @OneToOne
-    @JoinColumn(name="opinion_id")
     private Opinion opinion;
-    @ManyToOne
-    @JoinColumn(name="propiedad_id")
+    @OneToOne
     private Propiedad propiedad;
     private String texto;
     @OneToOne
@@ -38,7 +35,6 @@ public class Reporte {
     private String idGenerico;
     private Boolean estadoAviso;
     private String aviso;
-    
     @Enumerated (EnumType.STRING)
     private TipoReporte tipoReporte;
 

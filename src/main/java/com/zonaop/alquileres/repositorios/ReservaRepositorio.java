@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zonaop.alquileres.repositorios;
 
 import com.zonaop.alquileres.entidades.Reserva;
@@ -24,6 +19,12 @@ public interface ReservaRepositorio extends JpaRepository<Reserva, String> {
     
     @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId AND r.estado = 'Pendiente'")
     public List<Reserva> buscarPorClientePendiente(@Param("clienteId") String clienteId);
+    
+    @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId AND r.estado = 'Cancelada'")
+    public List<Reserva> buscarPorClienteCancelada(@Param("clienteId") String clienteId);
+    
+    @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId AND r.estado = 'Finalizada'")
+    public List<Reserva> buscarPorClienteFinalizada(@Param("clienteId") String clienteId);
     
     @Query("SELECT r FROM Reserva r WHERE r.propietario.id = :propietarioId")
     public List<Reserva> buscarPorPropietario(@Param("propietarioId") String propietarioId);
@@ -54,4 +55,5 @@ public interface ReservaRepositorio extends JpaRepository<Reserva, String> {
     
     @Query("SELECT COUNT(r) FROM Reserva r")
     public int contarReservas();
+    
 }

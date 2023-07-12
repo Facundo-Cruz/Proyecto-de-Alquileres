@@ -3,6 +3,7 @@ package com.zonaop.alquileres.controladores;
 // @author lauty
 import com.zonaop.alquileres.entidades.Propiedad;
 import com.zonaop.alquileres.entidades.Usuario;
+import com.zonaop.alquileres.servicios.AdministradorServicio;
 import com.zonaop.alquileres.servicios.ClienteServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
@@ -35,6 +36,9 @@ public class PortalControlador {
     
     @Autowired
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired 
+    private AdministradorServicio administradorServicio;
 
     @GetMapping("/pruebas")
     public String pruebas(ModelMap model) {
@@ -44,11 +48,28 @@ public class PortalControlador {
     }
 
     @PostMapping("/pruebass")
-    public String pruebas2(@RequestParam(value = "archivos[]", required = false) List<MultipartFile> archivos,
-            @RequestParam double rating, @RequestParam String comentario) {
+    public String pruebas2(@RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam String email, @RequestParam Long telefono, @RequestParam String alias,
+            @RequestParam String contrasena, @RequestParam String rol,
+            @RequestParam MultipartFile archivo,
+            ModelMap model, RedirectAttributes redirectAttributes) {
 
-        System.out.println(rating);
-        return "redirect:/";
+        try {
+            if (rol.equalsIgnoreCase("admin")) {
+
+                 administradorServicio.registrar(nombre, apellido, alias, email,
+                         contrasena, archivo, rol, telefono);
+                
+            }
+            return "redirect:/login";
+        } catch (Exception ex) {
+            model.put("error", ex.getMessage());
+            model.put("email", email);
+            model.put("alias", apellido);
+            model.put("rol", rol);
+            return "registrar.html";
+        }
+
     }
 
     @GetMapping("/registrar")
@@ -107,7 +128,7 @@ public class PortalControlador {
             model.put("email", email);
             model.put("alias", apellido);
             model.put("rol", rol);
-            return "registrar.html";
+            return "formulario-registro-usuario.html";
         }
 
     }

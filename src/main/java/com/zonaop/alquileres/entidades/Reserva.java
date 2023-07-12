@@ -1,25 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zonaop.alquileres.entidades;
 
 import com.zonaop.alquileres.enumeraciones.EstadoReserva;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,9 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Reserva {
 
     @Id
-    //Genera id de forma automatica
     @GeneratedValue(generator = "uuid")
-    //Segunda estrategia en caso de que el primer generador repita un id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String huesped;
@@ -40,7 +30,6 @@ public class Reserva {
     @Temporal(TemporalType.DATE)
     private Date fechaDesde;
     @OneToOne
-    @JoinColumn(name = "propiedad_id")
     private Propiedad propiedad;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -48,6 +37,7 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "propietario_id")
     private Propietario propietario;
+    
     @ManyToMany
     @JoinTable(
             name = "reserva_servicio",

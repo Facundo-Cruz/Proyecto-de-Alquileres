@@ -16,26 +16,26 @@
             <div class="info-card" id="wow"></div>
         </div>
 
-        <div class="imagebox">
-            <form id="form-imagen" class="profile-picture-background" th:action="@{/usuario/modificarImagen}" method="POST" enctype="multipart/form-data">
-                <a href="#" onclick="abrirSeleccionImagen()">
-                    <img id="profile-picture" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
-                </a>
-                <input id="input-imagen" type="file" style="display: none;" name="archivo" accept="image/jpeg" onchange="submitFormImagen()">
-                <input type="hidden" name="id" th:value="${usuario.id}">
-                <input type="hidden" name="rol" th:value="${usuario.rol}">
-            </form>
-        </div>
+       <div class="imagebox">
+    <form id="form-imagen" class="profile-picture-background" th:action="@{/usuario/modificarImagen}" method="POST" enctype="multipart/form-data">
+        <a href="#" onclick="abrirSeleccionImagen()">
+            <img id="profile-picture" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
+        </a>
+        <input id="input-imagen" type="file" style="display: none;" name="archivo" accept="image/jpeg" onchange="submitFormImagen()">
+        <input type="hidden" name="id" th:value="${usuario.id}">
+        <input type="hidden" name="rol" th:value="${usuario.rol}">
+    </form>
+</div>
 
-        <script>
-            function abrirSeleccionImagen() {
-            document.getElementById('input-imagen').click();
-            }
+<script>
+    function abrirSeleccionImagen() {
+        document.getElementById('input-imagen').click();
+    }
 
-            function submitFormImagen() {
-            document.getElementById('form-imagen').submit();
-            }
-        </script>
+    function submitFormImagen() {
+        document.getElementById('form-imagen').submit();
+    }
+</script>
 
 
         <div class="infobox">

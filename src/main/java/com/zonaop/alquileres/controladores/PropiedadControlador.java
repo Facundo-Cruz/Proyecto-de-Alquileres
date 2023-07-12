@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class PropiedadControlador {
     public ReservaServicio reservaServicio;
 
     @GetMapping("/registrar")
+    @PreAuthorize("hasRole('PROPIETARIO')")
     public String registrarPropiedad() {
 
         return "formulario-registro-propiedad.html";
@@ -100,6 +102,7 @@ public class PropiedadControlador {
     }
 
     @GetMapping("/modificar/{id}")
+    @PreAuthorize("hasRole('PROPIETARIO')")
     public String modificarPropiedad(@PathVariable String idPropiedad, ModelMap modelo) {
 
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));

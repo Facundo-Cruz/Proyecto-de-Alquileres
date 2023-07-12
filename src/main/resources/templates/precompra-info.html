@@ -89,6 +89,8 @@
         </div>
         <div class="bottom-line"></div>
     </div>
+
+    
     <div class="comentarios" >
         <p class="heading">Comentarios</p>
         <div class="top-line"></div>
@@ -98,7 +100,16 @@
                 <p class="nombre-perfil" th:text="${opinion.huesped}"></p>
                 <p class="comment" th:text="${opinion.comentario}"></p>
             </div>
+            <div class="adjuntado">
+                <!--hacer un th:each que contenga todas las 
+                    imagenes que suban al comentario-->
+                <img src="/img/building.jpg" alt="bang">
+            </div>
         </div>
+
+
+
+
     </div>
     <script src="/js/navbar-responsive.js"></script>
     <script src="/js/precompra.js"></script>

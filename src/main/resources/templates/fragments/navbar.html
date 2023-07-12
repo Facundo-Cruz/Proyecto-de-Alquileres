@@ -44,37 +44,8 @@
                             <!-- antes era class "publicar"-->
                              <a  th:if="${session.usuariosession == null}" class="ancle" th:href="@{/login}">Publicar</a>
 
-                            <!-- antes era class "publicar"-->
-                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
-                                aria-expanded="false" aria-label="discover" th:if="${session.usuariosession != null}"
-                                th:href="@{/propiedad/registrar/}">Publicar <i class="bx bx-chevron-down"
-                                    aria-hidden="true"></i>
-                            </button> -->
-                            <div id="dropdown2" class="dropdown">
-                                <ul role="menu">
-                                    <li>
-                                        <span class="dropdown-link-title">Test</span>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                </ul>
-                                <ul role="menu">
-                                    <li>
-                                        <span class="dropdown-link-title">Test</span>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                </ul>
+                           
                             </div>
-                        </div>
                     </li>
                     <li>
                         <div class="content" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')">

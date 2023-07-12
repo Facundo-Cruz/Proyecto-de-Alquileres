@@ -12,8 +12,44 @@
     <link rel="stylesheet" href="/css/navbar-responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
-        .contenedor-form{
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        .contenedor-form {
             display: flex;
+        }
+
+        .filtro{
+            font-family: "Poppins", sans-serif;
+            margin: 0 10px;
+        }
+        .filtro select {
+            background-color: rgb(200, 240, 203);
+            color: black;
+            padding: 12px;
+            width: 250px;
+            border: none;
+            font-size: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: button;
+            appearance: button;
+            outline: none;
+        }
+
+        .filtrar input {
+            background-color: rgb(57, 176, 99);
+            color: black;
+            padding: 12px;
+            width: 100px;
+            border: none;
+            font-size: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: button;
+            appearance: button;
+            outline: none;
+        }
+
+        .filtro select option {
+            padding: 30px;
         }
     </style>
 </head>
@@ -77,7 +113,7 @@
                             <option value="OTRO">Otro</option>
                         </select>
                     </div>
-                    
+
                     <div class="filtro">
                         <div>
                             <input type="radio" id="precioAscendente" name="precio" value="true">
@@ -92,7 +128,7 @@
                         <label for="calificacion">Mejor Calificación:</label>
                         <input type="checkbox" id="calificacion" name="calificacion" value="true">
                     </div>
-                    <div class="filtro">
+                    <div class="filtrar">
                         <input type="submit" value="Filtrar">
                     </div>
                 </div>

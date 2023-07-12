@@ -186,8 +186,56 @@
                 <i class="icon fa fa-chevron-left fa-fw" aria-hidden="true"></i>
                 <span class="title-acordeon">Mis propiedades</span>
             </div>
+
             <div class="panel" sec:authorize="hasRole('PROPIETARIO')">
-                <div th:each="propiedad : ${propiedades}" class="house-card">
+                <!-- INICIO CARD PROPIEDAD -->
+                <div class="container-card">
+
+                    <div class="card" th:each="propiedad : ${propiedades}">
+                        <figure>
+                            <img th:src="@{/imagen/__${propiedad.id}__}">
+                        </figure>
+                        <div class="contenido-card">
+                            <p>
+                                <b>Nombre: </b><span th:text="${propiedad.nombre}" class="ubicacion"></span>
+                            </p>
+                            <p>
+                                <b>Localidad: </b><span th:text="${propiedad.localidad}" class="ubicacion"></span>
+                            </p>
+                            <p>
+                                <b>Dirección: </b><span th:text="${propiedad.direccion}" class="ubicacion"></span>
+                            </p>
+                            <p>
+                                <b>CP: </b><span th:text="${propiedad.codigoPostal}" class="ubicacion"></span>
+                            </p>
+                            <p>
+                                <b>Teléfono: </b><span th:text="${propiedad.telefono}" class="ubicacion"></span>
+                            </p>
+                            <p>
+                                <b>Email: </b><span th:text="${propiedad.email}" class="ubicacion"></span>
+                            </p>
+                            <p>
+                                <b>Fechas Desde:</b><span th:text="' '+${propiedad.fechaDesde}"
+                                class="fecha"></span>
+                            </p>
+                            <p>
+                                <b>Fechas Hasta:</b><span th:text="' '+${propiedad.fechaHasta}"
+                                class="fecha"></span>
+                            </p>
+                            <p>
+                                <b>Precio: </b><span th:text="'$'+${propiedad.precio}" class="ubicacion"></span>
+                            </p>
+                            <button class="delete-link" data-toggle="modal"
+                            th:data-target="'#confirmModal-' + ${propiedad.id}" type="button">Cancelar</button>
+                            <a id="calificarLink"
+                                th:href="@{/propiedad/modificar/__${propiedad.id}__}" >Modificar</a>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- FIN CARD PROPIEDAD  -->
+                <!-- <div th:each="propiedad : ${propiedades}" class="house-card">
                     <img th:src="@{/imagen/__${propiedad.id}__}" alt="Foto propiedad" class="info-image">
                     <p th:text="${propiedad.nombre}" class="titulo"></p>
                     <div class="info-datos">
@@ -206,11 +254,9 @@
                                 <p th:text="${propiedad.telefono}"></p>
                             </div>
                         </div>
-                        <!--BOTON DE CANCELAR RESERVA AGREGAR FUNCIONALIDAD 
-                                                SI NO SE PUEDE ASI NOMAS USAR TH:ONCLICK-->
                         <button class="cancelar">cancelar</button>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- cards reservas inicio -->
@@ -603,7 +649,7 @@
         </div>
     </div>
 
-    <div >
+    <div>
         <div class="comment-modal" id="comentario-modal">
             <div class="comment-modal-content">
                 <span class="comment-modal-close" onclick="closeCommentModal()">&times;</span>
@@ -613,6 +659,16 @@
         </div>
     </div>
 
+    <div th:each="propiedad : ${propiedades}">
+        <div th:id="'confirmModal-' + ${propiedad.id}" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar Eliminación</h4>
+                <p th:text="'¿Estás seguro de eliminar esta propiedad ' + ${propiedad.nombre} + '?'"></p>
+                <a th:href="@{/propiedad/eliminar/__${propiedad.id}__}" class="delete-link">Eliminar</a>
+                <button class="cancel-delete cancel-link">Cerrar</button>
+            </div>
+        </div>
+    </div>
     <script src="/js/userInterface.js"></script>
     <script>
         let elementosAcordeon = document.getElementsByClassName("acordeon");

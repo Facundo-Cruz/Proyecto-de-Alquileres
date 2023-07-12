@@ -46,8 +46,8 @@ public class ReservaServicio {
 
     @Transactional
     public void crearReserva(String idCliente, String idPropiedad, String huesped,
-            Date fechaDeste, Date fechaHasta, List<Servicio> servicios, double total)
-            throws MiException {
+            Date fechaDeste, Date fechaHasta, List<Servicio> servicios,
+            double total, String comentario)throws MiException {
 
         validarFechaCreacion(fechaDeste, fechaHasta, idPropiedad);
 
@@ -68,6 +68,9 @@ public class ReservaServicio {
             reserva.setPropiedad(propiedad);
             reserva.setTotal(total);
             reserva.setEstado(EstadoReserva.Pendiente);
+            if (comentario != null & !comentario.trim().isEmpty()) {
+                reserva.setComentario(comentario);
+            }
             if (servicios != null) {
                 reserva.setServicios(servicios);
             }
@@ -83,7 +86,7 @@ public class ReservaServicio {
 
     @Transactional
     public void modificarReserva(String id, Date fechaDeste,
-            Date fechaHasta, List<Servicio> servicios, double total)
+            Date fechaHasta, List<Servicio> servicios, double total, String comentario)
             throws MiException {
 
         Optional<Reserva> reservaOp = reservaRepositorio.findById(id);
@@ -92,7 +95,8 @@ public class ReservaServicio {
             Reserva reserva = reservaOp.get();
             validarFechaCreacion(fechaDeste, fechaHasta, reserva.getPropiedad()
                     .getId());
-
+            
+            reserva.setComentario(comentario);
             reserva.setServicios(servicios);
             reserva.setTotal(total);
             reservaRepositorio.save(reserva);

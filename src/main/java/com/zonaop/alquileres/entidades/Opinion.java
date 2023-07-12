@@ -4,8 +4,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -21,10 +24,22 @@ public class Opinion {
     @OneToMany
     private List<Imagen> fotos;
     private double calificacion;
+    @ManyToOne
+    @JoinColumn(name = "propiedad_id")
+    private Propiedad propiedad;
     
     public Opinion() {
     }
 
+    public Propiedad getPropiedad() {
+        return propiedad;
+    }
+
+    public void setPropiedad(Propiedad propiedad) {
+        this.propiedad = propiedad;
+    }
+
+    
     public String getId() {
         return id;
     }

@@ -50,7 +50,7 @@ public class Propiedad {
     private int calificacion;
     @OneToMany
     private List<Servicio> servicios;
-    @OneToMany
+    @OneToMany(mappedBy = "propiedad")
     private List<Opinion> opiniones;
     private String email;
     private Integer banos;

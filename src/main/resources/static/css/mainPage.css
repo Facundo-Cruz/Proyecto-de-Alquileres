@@ -323,4 +323,8 @@
 	}
 }
 /* ------estilos cards reservas fin------ */
-
+.img-star {
+    width: 20px; /* Ajusta el ancho de la imagen según tus necesidades */
+    height: 20px; /* Ajusta la altura de la imagen según tus necesidades */
+    margin-right: 5px; /* Ajusta el margen derecho entre las estrellas según tus necesidades */
+  }

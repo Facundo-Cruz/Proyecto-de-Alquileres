@@ -7,7 +7,7 @@ function validarFormulario() {
     var pass = document.querySelector(".password1").value;
     var pass1 = document.querySelector(".password").value;
     var imagenes = document.querySelector(".imagen").value;
-    var propietario = document.querySelector(".radio:checked");
+    var propietario = document.querySelector(".campo").value;
 
     // Validación requerida
     if (
@@ -15,9 +15,7 @@ function validarFormulario() {
         apellido.trim() === "" ||
         alias.trim() === "" ||
         email.trim() === "" ||
-        propietario.trim( ) ===""||
-        cliente.trim() ===""||
-        imagenes.trim() === "" ||
+        propietario.trim() === "" ||
         pass1.trim() === "" ||
         pass.trim() === ""
     ) {
@@ -31,17 +29,30 @@ function validarFormulario() {
         return false; // Evita enviar el formulario si las contraseñas no coinciden
     }
 
-    // Validación de formato de contraseña
-    var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    if (!passwordRegex.test(pass)) {
-        alert("La contraseña debe tener al menos 6 caracteres, una mayúscula y un carácter especial.");
+    // Validación de la contraseña
+    if (!validarContrasena(pass)) {
         return false; // Evita enviar el formulario si la contraseña no cumple el formato
     }
 
-    // Resto de la lógica del formulario...
-
     return true; // Envía el formulario si todos los campos están completos y las validaciones pasan
 }
+
+function validarContrasena(pass) {
+    var passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    if (!passwordRegex.test(pass)) {
+        alert("La contraseña debe tener al menos 6 caracteres, una mayúscula y un número.");
+        return false; // Evita enviar el formulario si la contraseña no cumple el formato
+    }
+    return true; // La contraseña cumple el formato
+}
+
+// Asignar el evento submit al formulario
+var formulario = document.querySelector(".formulario-registro-de-usuario");
+formulario.addEventListener("submit", function(event) {
+    if (!validarFormulario()) {
+        event.preventDefault(); // Evita que el formulario se envíe si la validación no pasa
+    }
+});
 
 function mostrarPrimeraOp() {
     var opciones = document.getElementById("campo").options.value;

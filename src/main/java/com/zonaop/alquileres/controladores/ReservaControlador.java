@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -91,14 +92,6 @@ public class ReservaControlador {
         modelo.put("reserva", reserva);
         modelo.addAttribute("propiedad", reserva.getPropiedad());
         
-<<<<<<< HEAD
-        modelo.put("reserva", reservaservi.getOne(id));
-        
-        List<Reserva> rese = reservaservi.listarReservas();
-        modelo.addAttribute("reserva", rese);
-
-=======
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
 
         return "formulario-modificar-reserva.html";
 
@@ -122,42 +115,22 @@ public class ReservaControlador {
 
     }
 
-<<<<<<< HEAD
-
-
-
-    @PostMapping("/modificar/{id}")
-    public String modificar(@RequestParam String id,
-            @RequestParam String huesped,
-            @RequestParam List<Servicio> servicios,@RequestParam double total, 
-            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
-            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta
-            , ModelMap modelo) {
-=======
     @PostMapping("/modificado")
     public String modificar(@RequestParam String id,
             @RequestParam List<Servicio> servicios, @RequestParam double total,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta,
              ModelMap modelo) {
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
 
         try {
 
             List<Reserva> reserva = reservaservi.listarReservas();
             modelo.addAttribute("reserva", reserva);
 
-<<<<<<< HEAD
-            reservaservi.modificarReserva(id, huesped, fechaDesde, fechaHasta,
-            servicios, total);
-
-            return "redirect:../listar";
-=======
             reservaservi.modificarReserva(id, fechaDesde, fechaHasta,
                     servicios, total);
 
             return "redirect:../usuario/perfil";
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
 
         } catch (MiException ex) {
 
@@ -170,20 +143,13 @@ public class ReservaControlador {
 
         }
 
-<<<<<<< HEAD
-        
- }
-
-    
-=======
     }
 
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
     @GetMapping("/aceptar/{id}")
     public String aceptar(@PathVariable String id) {
         reservaservi.aceptarReserva(id);
         return "redirect:/usuario/perfil";
     }
-    
-    
 }
+
+

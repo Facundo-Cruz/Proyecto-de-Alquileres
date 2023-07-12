@@ -56,8 +56,7 @@
 
             </div>
 
-
-<<<<<<< HEAD
+            
             <form class="formulario-registro-de-reserva" th:action="@{/reserva/modificar/__{reserva.id}__}" method="POST">
                
                 <input hidden th:value="${reserva.id}" name="id">
@@ -79,7 +78,7 @@
               
                
                <input type="date" id="propiedadFechaDesde" th:value="${propiedad.fechaDesde}" hidden>
-=======
+
             <form class="formulario-registro-de-reserva" th:action="@{/reserva/modificado}" method="POST">
 
                 <input hidden th:value="${reserva.id}" name="id">
@@ -100,7 +99,7 @@
 
 
                 <input type="date" id="propiedadFechaDesde" th:value="${propiedad.fechaDesde}" hidden>
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
+
                 <input type="date" id="propiedadFechaHasta" th:value="${propiedad.fechaHasta}" hidden>
                 <span id="precio-dia" th:text="${propiedad.precio}" style="display: none;"></span>
                 <div id="diferencia-fechas" style="display: none;"></div>
@@ -110,17 +109,17 @@
                 <div class="servicios">
                     <div class="op" th:each="servicio : ${propiedad.servicios}">
                         <div class="opr">
-<<<<<<< HEAD
+
                           
                             <input class="etiqueta-check"  type="checkbox" th:id="'opcion' + ${servicio.id}"
                                 name="servicios" th:value="${servicio.id}" onchange="actualizarPrecioTotal(this)">
                             <label th:for="'opcion' + ${servicio.id}" th:field="${servicio}" 
-=======
+
 
                             <input class="etiqueta-check" type="checkbox" th:id="'opcion' + ${servicio.id}"
                                 name="servicios" th:value="${servicio.id}" onchange="actualizarPrecioTotal(this)">
                             <label th:for="'opcion' + ${servicio.id}" th:field="${servicio}"
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
+
                                 th:text="${servicio.nombre}"></label>
                         </div>
                         <div class="opr">
@@ -139,10 +138,9 @@
                     <div class="valores" id="total">
                         <label for="precio">Total:</label>
                         <label class="caja-precio-v"></label>
-<<<<<<< HEAD
+
                         <input hidden th:value="${reserva.total}" name ="total">
-=======
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
+
                     </div>
                 </div>
                 <input type="number" name="total" id="miInputNumber" hidden>
@@ -170,13 +168,12 @@
         fechaIngreso.addEventListener('change', calcularDiferenciaFechas);
         fechaEgreso.addEventListener('change', calcularDiferenciaFechas);
 
-<<<<<<< HEAD
-=======
+
         document.addEventListener('DOMContentLoaded', function () {
             // Aquí colocas tu código existente o las llamadas a tus funciones
             calcularDiferenciaFechas();
         });
->>>>>>> a6233673ce492ad404e9e174ae8bfcc0e9337fbc
+
         function calcularDiferenciaFechas() {
             const fechaDesde = new Date(fechaIngreso.value);
             const fechaHasta = new Date(fechaEgreso.value);

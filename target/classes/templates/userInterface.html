@@ -304,10 +304,9 @@
                                     <span th:if="${!iterStatus.last}">, </span>
                                 </span>
                                 <br>
-                                <button type="button" class="cancel-link" onclick="openCommentModal()">Ver
+                                <button sec:authorize="hasRole('PROPIETARIO')" type="button" class="cancel-link" onclick="openCommentModal()">Ver
                                     comentario</button>
-                                <br>
-                                <br>
+                                <br sec:authorize="hasRole('PROPIETARIO')">
                                 <b>Total: </b>$<span th:text="${reserva.total}"></span>
                             </p>
 
@@ -391,6 +390,9 @@
                                 </span>
                                 <span></span>
                                 <br>
+                                <button sec:authorize="hasRole('PROPIETARIO')" type="button" class="cancel-link" onclick="openCommentModal()">Ver
+                                    comentario</button>
+                                <br sec:authorize="hasRole('PROPIETARIO')">
                                 <b>Total: </b>$<span th:text="${reserva.total}"></span>
                             </p>
                             <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
@@ -476,7 +478,11 @@
                                     <span th:if="${!iterStatus.last}">, </span>
                                 </span>
                                 <span></span>
+                                <button sec:authorize="hasRole('PROPIETARIO')" type="button" class="cancel-link" onclick="openCommentModal()">Ver
+                                    comentario</button>
+                                <br sec:authorize="hasRole('PROPIETARIO')">
                                 <br>
+                                
                                 <b>Total: </b>$<span th:text="${reserva.total}"></span>
                             </p>
                             <hr class="horizontal" sec:authorize="hasRole('PROPIETARIO')">
@@ -555,6 +561,9 @@
                                     <span th:if="${!iterStatus.last}">, </span>
                                 </span>
                                 <span></span>
+                                <button sec:authorize="hasRole('PROPIETARIO')" type="button" class="cancel-link" onclick="openCommentModal()">Ver
+                                    comentario</button>
+                                <br sec:authorize="hasRole('PROPIETARIO')"> 
                                 <br>
                                 <b>Total: </b>$<span th:text="${reserva.total}"></span>
                             </p>
@@ -649,7 +658,7 @@
         </div>
     </div>
 
-    <div>
+    <div sec:authorize="hasRole('PROPIETARIO')">
         <div class="comment-modal" id="comentario-modal">
             <div class="comment-modal-content">
                 <span class="comment-modal-close" onclick="closeCommentModal()">&times;</span>

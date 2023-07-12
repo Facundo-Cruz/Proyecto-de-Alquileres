@@ -16,6 +16,7 @@ import com.zonaop.alquileres.servicios.ReservaServicio;
 import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdministradorControlador {
-    
+
     @Autowired
     private ReservaServicio reservaservi;
-    
+
     @Autowired
     private ClienteServicio clienteServicio;
 
@@ -45,10 +47,10 @@ public class AdministradorControlador {
 
     @Autowired
     private PropiedadServicio propiedadServicio;
-    
+
     @GetMapping("/dashboard")
-     public String panelAdministrativo(ModelMap model){
-         
+    public String panelAdministrativo(ModelMap model) {
+
         List<Usuario> usuarios = usuarioServicio.listarAdmins();
         int propietarios = usuarioServicio.contarPropietarios();
         int clientes = usuarioServicio.contarClientes();
@@ -60,9 +62,9 @@ public class AdministradorControlador {
         model.put("clientes", clientes);
         model.put("reservas", reservas);
         return "dashboard.html";
-     }
-     
-         //ruta para listar las reservas de las propiedades
+    }
+
+    //ruta para listar las reservas de las propiedades
     @GetMapping("/listarReservas")
 
     public String listarReservas(ModelMap modelo) {
@@ -73,8 +75,8 @@ public class AdministradorControlador {
         return "lista-reservas.html";
 
     }
-    
-        //ruta para eliminar una reserva por id 
+
+    //ruta para eliminar una reserva por id 
     @GetMapping("/eliminarReserva/{id}")
     public String eliminarReserva(@PathVariable String id, RedirectAttributes p) {
 

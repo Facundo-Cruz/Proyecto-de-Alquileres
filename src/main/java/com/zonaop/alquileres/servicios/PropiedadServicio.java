@@ -121,9 +121,9 @@ public class PropiedadServicio {
         propiedadRepositorio.save(propiedad);
     }
 
-    public void modificarPropiedad(String id, String nombre, String direccion, String localidad,
-            String codigoPostal, String descripcion, Date fechaDesde,
-            Date fechaHasta, Double precio, String tipoPropiedad,
+    public void modificarPropiedad(String id, String nombre,
+            String descripcion, Date fechaDesde,
+            Date fechaHasta, Double precio,
             List<MultipartFile> archivos, Long telefono,
             List<String> serviciosSeleccionados, List<Integer> preciosServicios,
             List<String> redesSociales, String email, Integer banos, Integer habitaciones) throws MiException {
@@ -134,18 +134,11 @@ public class PropiedadServicio {
 
             Propiedad propiedad = propiedadOp.get();
 
-            validar(nombre, direccion, localidad, codigoPostal, descripcion, fechaDesde,
-                    fechaHasta, precio, tipoPropiedad, archivos, telefono, email);
-
             propiedad.setNombre(nombre);
-            propiedad.setDireccion(direccion);
-            propiedad.setLocalidad(Localidad.valueOf(localidad));
-            propiedad.setCodigoPostal(codigoPostal);
             propiedad.setDescripcion(descripcion);
             propiedad.setFechaDesde(fechaDesde);
             propiedad.setFechaHasta(fechaHasta);
             propiedad.setPrecio(precio);
-            propiedad.setTipo(TipoPropiedad.valueOf(tipoPropiedad));
             propiedad.setTelefono(telefono);
             propiedad.setEmail(email);
             propiedad.setBanos(banos);

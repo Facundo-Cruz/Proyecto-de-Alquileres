@@ -105,11 +105,11 @@ public class PropiedadControlador {
         return "mainPage.html";
     }
 
-    @GetMapping("/modificar/{idPropiedad}")
+    @GetMapping("/modificar/{id}")
     @PreAuthorize("hasRole('PROPIETARIO')")
-    public String modificarPropiedad(@PathVariable String idPropiedad, ModelMap modelo) {
+    public String modificarPropiedad(@PathVariable String id, ModelMap modelo) {
 
-        modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
+        modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
 
         return "formulario-modificar-propiedad.html";
     }

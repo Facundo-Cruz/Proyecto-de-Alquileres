@@ -82,7 +82,7 @@ public class ReservaServicio {
     }
 
     @Transactional
-    public void modificarReserva(String id, String huesped, Date fechaDeste,
+    public void modificarReserva(String id, Date fechaDeste,
             Date fechaHasta, List<Servicio> servicios, double total)
             throws MiException {
 
@@ -93,7 +93,6 @@ public class ReservaServicio {
             validarFechaCreacion(fechaDeste, fechaHasta, reserva.getPropiedad()
                     .getId());
 
-            reserva.setHuesped(huesped);
             reserva.setServicios(servicios);
             reserva.setTotal(total);
             reservaRepositorio.save(reserva);
@@ -122,6 +121,14 @@ public class ReservaServicio {
 
     public List<Reserva> listarPorClientePendiente(String id) {
         List<Reserva> reservas = reservaRepositorio.buscarPorClientePendiente(id);
+        return reservas;
+    }
+    public List<Reserva> listarPorClienteCancelada(String id) {
+        List<Reserva> reservas = reservaRepositorio.buscarPorClienteCancelada(id);
+        return reservas;
+    }
+    public List<Reserva> listarPorClienteFinalizada(String id) {
+        List<Reserva> reservas = reservaRepositorio.buscarPorClienteFinalizada(id);
         return reservas;
     }
 

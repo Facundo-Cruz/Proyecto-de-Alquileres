@@ -56,7 +56,7 @@ public class ClienteServicio {
     @Transactional
     public void modificar(String id, String nombre, String apellido,
             String nombreUsuario, String email, Long telefono, String contrasena,
-            MultipartFile archivo, String passwordActual) throws MiException {
+            String passwordActual) throws MiException {
 
         Optional<Cliente> respuesta = clienteRepositorio.findById(id);
 
@@ -83,7 +83,20 @@ public class ClienteServicio {
             cliente.setTelefono(telefono);
             cliente.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
 
-            String idImagen = null;
+            cliente.setRol(Rol.CLIENTE);
+            clienteRepositorio.save(cliente);
+        }
+    }
+    public void modificarImagen(String id, MultipartFile archivo) throws MiException{
+        Optional<Cliente> respuesta = clienteRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+            
+            
+
+            Cliente cliente = respuesta.get();
+            
+             String idImagen = null;
 
             if (cliente.getFoto() != null) {
                 idImagen = cliente.getFoto().getId();
@@ -91,8 +104,8 @@ public class ClienteServicio {
 
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
             cliente.setFoto(imagen);
-            cliente.setRol(Rol.CLIENTE);
             clienteRepositorio.save(cliente);
+            
         }
     }
 

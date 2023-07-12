@@ -7,6 +7,7 @@ import com.zonaop.alquileres.excepciones.MiException;
 import com.zonaop.alquileres.repositorios.AdministradorRepositorio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +26,8 @@ public class AdministradorServicio {
 
     @Transactional
     public void registrar(String nombre, String apellido, String nombreUsuario,
-            String email, String contrasena, MultipartFile archivo, String rol)
+            String email, String contrasena, MultipartFile archivo, String rol,
+            Long telefono)
             throws MiException {
 
         usuarioServicio.validar(nombre, apellido, nombreUsuario, email, contrasena);
@@ -36,7 +38,8 @@ public class AdministradorServicio {
         administrador.setApellido(apellido);
         administrador.setNombreUsuario(nombreUsuario);
         administrador.setEmail(email);
-        administrador.setContrasena(contrasena);
+        administrador.setContrasena(new BCryptPasswordEncoder().encode(contrasena));
+        administrador.setTelefono(telefono);
         administrador.setEstado(Boolean.TRUE);
         Imagen imagen = imagenServicio.guardar(archivo);
         administrador.setFoto(imagen);

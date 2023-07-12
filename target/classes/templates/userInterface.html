@@ -16,26 +16,31 @@
             <div class="info-card" id="wow"></div>
         </div>
 
-       <div class="imagebox">
-    <form id="form-imagen" class="profile-picture-background" th:action="@{/usuario/modificarImagen}" method="POST" enctype="multipart/form-data">
-        <a href="#" onclick="abrirSeleccionImagen()">
-            <img id="profile-picture" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="Foto de perfil" class="profile-picture">
-        </a>
-        <input id="input-imagen" type="file" style="display: none;" name="archivo" accept="image/jpeg" onchange="submitFormImagen()">
-        <input type="hidden" name="id" th:value="${usuario.id}">
-        <input type="hidden" name="rol" th:value="${usuario.rol}">
-    </form>
-</div>
+        <div class="imagebox">
+            <form id="form-imagen" class="profile-picture-background" th:action="@{/usuario/modificarImagen}" method="POST" enctype="multipart/form-data">
+                <a href="#" onclick="abrirSeleccionImagen()">
+                    <img id="profile-picture" th:if="${usuario.foto.mime.equals('application/octet-stream')}"
+                         src="/img/fotoPerfil.jpg" alt="imagen alternativa" class="profile-picture" />
 
-<script>
-    function abrirSeleccionImagen() {
-        document.getElementById('input-imagen').click();
-    }
+                    <img id="profile-picture" th:unless="${usuario.foto.mime.equals('application/octet-stream')}"
+                         th:src="@{/imagen/perfil/__${usuario.id}__}" alt="imagen del usuario" class="profile-picture" />
+                </a>
 
-    function submitFormImagen() {
-        document.getElementById('form-imagen').submit();
-    }
-</script>
+                <input id="input-imagen" type="file" style="display: none;" name="archivo" accept="image/jpeg" onchange="submitFormImagen()">
+                <input type="hidden" name="id" th:value="${usuario.id}">
+                <input type="hidden" name="rol" th:value="${usuario.rol}">
+            </form>
+        </div>
+
+        <script>
+            function abrirSeleccionImagen() {
+            document.getElementById('input-imagen').click();
+            }
+
+            function submitFormImagen() {
+            document.getElementById('form-imagen').submit();
+            }
+        </script>
 
 
         <div class="infobox">
@@ -145,12 +150,12 @@
                                 </p>
                                 <p class="estado">
                                     <b>Estado: </b>
-                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
-                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
-                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
-                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
-                                          <img src="/img/check-circle.svg" alt="Icono">
-<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
+                                    <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                    <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                    <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                    <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                    <img src="/img/check-circle.svg" alt="Icono">
+                                    <!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p>
                                 <a th:href="@{/reserva/cancelar/__${reserva.id}__}" id="cancelarLink">Cancelar</a>
@@ -219,14 +224,14 @@
                                     <br>
                                     <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                                 </p>
-                               <p class="estado">
+                                <p class="estado">
                                     <b>Estado: </b>
-                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
-                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
-                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
-                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
-                                          <img src="/img/clock.svg" alt="Icono">
-<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
+                                    <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                    <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                    <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                    <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                    <img src="/img/clock.svg" alt="Icono">
+                                    <!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p>
 
@@ -297,12 +302,12 @@
                                 </p>
                                 <p class="estado">
                                     <b>Estado: </b>
-                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
-                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
-                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
-                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
-                                          <img src="/img/x.svg" alt="Icono">
-<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
+                                    <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                    <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                    <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                    <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                    <img src="/img/x-circle.svg" alt="Icono">
+                                    <!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p> 
                                 <a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar</a>
@@ -369,12 +374,12 @@
                                 </p>
                                 <p class="estado">
                                     <b>Estado: </b>
-                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
-                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
-                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
-                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
-                                          <img src="/img/flag.svg" alt="Icono">
-<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
+                                    <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                    <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                    <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                    <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                    <img src="/img/flag.svg" alt="Icono">
+                                    <!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p>
                                 <a  sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar</a>

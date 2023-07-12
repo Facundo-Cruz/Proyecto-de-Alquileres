@@ -113,5 +113,6 @@ public class UsuarioServicio implements UserDetailsService {
         return usuarioRepositorio.getOne(id);
 
     }
+    
 
 }

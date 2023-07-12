@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -37,6 +38,8 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "propietario_id")
     private Propietario propietario;
+    @Lob
+    private String comentario;
     
     @ManyToMany
     @JoinTable(
@@ -53,6 +56,14 @@ public class Reserva {
 
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+    
     public EstadoReserva getEstado() {
         return estado;
     }

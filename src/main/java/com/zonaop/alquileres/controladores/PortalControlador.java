@@ -96,6 +96,16 @@ public class PortalControlador {
     public String index(ModelMap model, HttpSession session) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        Usuario perfil;
+        if(usuario!=null){
+            if (usuario.getRol().name().equals("PROPIETARIO")) {
+            perfil=propietarioServicio.getOne(usuario.getId());
+        }else{
+            perfil=clienteServicio.getOne(usuario.getId());
+        }
+            model.put("perfil", perfil);
+        }
+        
         if (usuario != null) {
             if (usuario.getRol().toString().equals("ADMIN")) {
                 return "redirect:/admin/dashboard";

@@ -42,10 +42,10 @@
                     <li>
                         <div class="content">
                             <!-- antes era class "publicar"-->
-                             <a  th:if="${session.usuariosession == null}" class="ancle" th:href="@{/login}">Publicar</a>
+                            <a  th:if="${session.usuariosession == null}" class="ancle" th:href="@{/login}">Publicar</a>
 
-                           
-                            </div>
+
+                        </div>
                     </li>
                     <li>
                         <div class="content" th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')">
@@ -88,7 +88,7 @@
                     </li>
                     <li>
                         <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/propiedad/listar/}">Listar Propiedades</a>
-                        
+
                     </li>
                     <li>
                         <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/admin/listarReservas/}">Listar Reservas</a>
@@ -104,12 +104,19 @@
         <div class="nav-end">
             <div class="right-container">
                 <a th:if="${session.usuariosession != null}" href="#profile" th:href="@{/usuario/perfil}">
-                    <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30"
-                        alt="imagen del usuario" />
+                    <img th:if="${perfil.foto.mime.equals('application/octet-stream')}"
+                         src="/img/fotoPerfil.jpg" width="30" height="30"
+                         alt="imagen alternativa" />
+
+                    <img th:unless="${perfil.foto.mime.equals('application/octet-stream')}"
+                         th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30"
+                         alt="imagen del usuario" />
+
+
                 </a>
                 <!-- antes estos botones eran class "publicar"-->
                 <a th:if="${session.usuariosession == null}" class="btn btn-primary"
-                    th:href="@{/registrar}">Registrate</a>
+                   th:href="@{/registrar}">Registrate</a>
                 <a th:if="${session.usuariosession == null}" class="btn btn-primary" th:href="@{/login}">Iniciar
                     Sesion</a>
                 <a th:if="${session.usuariosession != null}" class="btn btn-primary" href="/logout">Cerrar

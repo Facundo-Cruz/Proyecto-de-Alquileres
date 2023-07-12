@@ -127,17 +127,13 @@
         <p class="titulo" th:text="${propiedad.nombre}"></p>
         <p class="ubicacion" th:text="${propiedad.localidad + ', '+ propiedad.direccion}"> </span></p>
         <div class="linea">
-<<<<<<< HEAD
-            <div class="puntuacion" th:text="${propiedad.calificacion + ' ⭐'}">
 
-=======
             <div class="puntuacion">
                 <span class="cant">4</span>
                 <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
                     <i class="fas fa-star"></i>
                 </span>
                 <span class="calificaciones" th:text="${cantCalificaciones}+' calificaciones'"></span>
->>>>>>> a40fbeaaaf0ec5c99efd284fcd5325d7a18fe9a6
             </div>
 
             <div class="compra">
@@ -165,47 +161,7 @@
         <p class="heading">servicios</p>
         <div class="top-line"></div>
         <div class="servicios">
-<<<<<<< HEAD
-            <!-- 
 
-                agregar un th:if a los items basados en el tipo
-                de servicio que esta disponible cosa de que la gente no se 
-                confunda cuando vea otros 5 servicios que no tiene
-
-            -->
-            <div class="items">
-                <i class='bx bx-bus'></i>
-                <p class="servicio-tipo">transporte</p>
-            </div>
-            <div class="items">
-                <i class='bx bx-bus'></i>
-                <p class="servicio-tipo">seguridad</p>
-            </div>
-            <div class="items">
-                <i class='bx bxs-music'></i>
-                <p class="servicio-tipo">dj</p>
-            </div>
-            <div class="items">
-                <i class='bx bx-bowl-hot'></i>
-                <p class="servicio-tipo">catering</p>
-            </div>
-            <div class="items">
-                <i class='bx bx-camera'></i>
-                <p class="servicio-tipo">fotografo</p>
-            </div>
-            <div class="items">
-                <i class='bx bx-bus'></i>
-                <p class="servicio-tipo">chef</p>
-            </div>
-            <div class="items">
-                <i class='bx bxs-drink'></i>
-                <p class="servicio-tipo">bar</p>
-            </div>
-            <div class="items">
-                <i class='bx bxs-hot'></i>
-                <p class="servicio-tipo">asador</p>
-            </div>
-=======
             <th:block th:each="servicio : ${propiedad.servicios}">
 
                 <div class="items" th:if="${servicio.nombre == 'Transporte'}">
@@ -241,7 +197,6 @@
                     <p class="servicio-tipo">asador</p>
                 </div>
             </th:block>
->>>>>>> a40fbeaaaf0ec5c99efd284fcd5325d7a18fe9a6
 
         </div>
         <div class="bottom-line"></div>

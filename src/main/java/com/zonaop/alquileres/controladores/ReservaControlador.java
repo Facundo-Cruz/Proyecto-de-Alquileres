@@ -62,14 +62,15 @@ public class ReservaControlador {
     @PostMapping("/registro")
     public String registroReserva(@RequestParam String idCliente,
             @RequestParam String idPropiedad, @RequestParam String huesped,
-            @RequestParam double total,
+            @RequestParam double total,@RequestParam String comentario,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, ModelMap modelo,
             @RequestParam(value = "servicios", required = false) List<Servicio> servicios,
             RedirectAttributes redirectAttributes) {
 
         try {
-            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde, fechaHasta, servicios, total);
+            reservaservi.crearReserva(idCliente, idPropiedad, huesped, fechaDesde,
+                    fechaHasta, servicios, total, comentario);
             modelo.put("exito", "la reserva se relizo correctamente");
 
         } catch (MiException ex) {
@@ -123,7 +124,7 @@ public class ReservaControlador {
             @RequestParam List<Servicio> servicios, @RequestParam double total,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta,
-             ModelMap modelo) {
+             ModelMap modelo, @RequestParam String comentario) {
 
         try {
 
@@ -131,7 +132,7 @@ public class ReservaControlador {
             modelo.addAttribute("reserva", reserva);
 
             reservaservi.modificarReserva(id, fechaDesde, fechaHasta,
-                    servicios, total);
+                    servicios, total, comentario);
 
             return "redirect:../usuario/perfil";
 

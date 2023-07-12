@@ -38,6 +38,12 @@ body{
     border-radius: 50%;
 }
 
+.peepoLeave{
+    width: 4%;
+    padding-left: 67%;
+    padding-bottom: 5%;
+}
+
 .infobox{
     display: flex;
     flex-wrap: wrap;
@@ -112,6 +118,10 @@ body{
     /* flex-wrap: wrap; */
 }
 
+.panel{
+    display: flex;
+}
+
 .house-card{
     display: flex;
     justify-content: center;
@@ -127,7 +137,8 @@ body{
 }
 
 .house-card img{
-    width: 94%;
+    width: 400px;
+    height: 270px;
     margin-top: 2%;
 }
 
@@ -395,7 +406,7 @@ hr {
 }
 
 .status {
-    padding: .4rem 0;
+    padding: .4rem .4rem;
     border-radius: 2rem;
     text-align: center;
 }

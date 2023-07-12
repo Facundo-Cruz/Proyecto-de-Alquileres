@@ -6,6 +6,7 @@ import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.enumeraciones.Localidad;
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.excepciones.MiException;
+import com.zonaop.alquileres.servicios.OpinionServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
@@ -40,6 +41,9 @@ public class PropiedadControlador {
 
     @Autowired
     public ReservaServicio reservaServicio;
+    
+    @Autowired
+    public OpinionServicio opinionServicio;
 
     @GetMapping("/registrar")
     @PreAuthorize("hasRole('PROPIETARIO')")
@@ -103,11 +107,42 @@ public class PropiedadControlador {
 
     @GetMapping("/modificar/{id}")
     @PreAuthorize("hasRole('PROPIETARIO')")
-    public String modificarPropiedad(@PathVariable String idPropiedad, ModelMap modelo) {
+    public String modificarPropiedad(@PathVariable String id, ModelMap modelo) {
 
-        modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
+        modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
 
         return "formulario-modificar-propiedad.html";
+    }
+    
+    @PostMapping("/modificar")
+    public String modificarPropiedad(@RequestParam String id,@RequestParam String nombre,
+            @RequestParam String descripcion, @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, @RequestParam Double precio,
+            @RequestParam("archivos[]") List<MultipartFile> archivos,
+            ModelMap modelo, HttpSession session, @RequestParam long telefono,
+            @RequestParam(value = "serviciosSeleccionados", required = false) List<String> serviciosSeleccionados,
+            @RequestParam(value = "preciosServicios", required = false) List<Integer> preciosServicios,
+            @RequestParam(value = "redesSociales", required = false) List<String> redesSociales,
+            @RequestParam String email, @RequestParam Integer banos,
+            @RequestParam Integer habitaciones,RedirectAttributes redirectAttributes) {
+        
+        
+        
+        
+         try {
+             
+             propiedadServicio.modificarPropiedad(id, nombre, descripcion, fechaDesde, fechaHasta, precio, archivos, telefono, serviciosSeleccionados, preciosServicios, redesSociales, email, banos, habitaciones);
+            redirectAttributes.addFlashAttribute("exito", "¡Ha modificado con éxito!");
+            return "redirect:/usuario/perfil";
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+//            redirectAttributes.addFlashAttribute("email", email);
+//            redirectAttributes.addFlashAttribute("alias", apellido);
+//            redirectAttributes.addFlashAttribute("rol", rol);
+            return "redirect:/propiedad/modificar";
+
+        }
+        
     }
 
     @GetMapping("/listar")
@@ -124,7 +159,7 @@ public class PropiedadControlador {
     public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
 
         model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
-
+        model.put("cantCalificaciones", opinionServicio.contarOpinionesDePropiedad(id));
         return "precompra-info.html";
 
     }

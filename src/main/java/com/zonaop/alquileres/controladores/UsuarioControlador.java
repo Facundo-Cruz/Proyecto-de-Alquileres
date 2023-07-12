@@ -82,13 +82,13 @@ public class UsuarioControlador {
             perfil = propietarioServicio.getOne(usuario.getId());
 
             List<Propiedad> propiedades = propiedadServicio.listarPorPropietario(usuario.getId());
-
+            List<Reserva> reservas = reservaServicio.listarReservas();
             reservasActivas = reservaServicio.listarPorPropietarioActiva(usuario.getId());
             reservasPendientes = reservaServicio.listarPorPropietarioPendiente(usuario.getId());
             reservasCanceladas = reservaServicio.listarPorPropietarioCancelada(usuario.getId());
             reservasFinalizadas = reservaServicio.listarPorPropietarioFinalizada(usuario.getId());
             modelo.put("propiedades", propiedades);
-
+            modelo.put("reservas", reservas);
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
@@ -140,7 +140,7 @@ public class UsuarioControlador {
     @PostMapping("/modificar")
     public String modificarUsuario(String id, String nombre, String apellido,
             String nombreUsuario, String email, Long telefono, String password, Imagen foto,
-            String rol, ModelMap modelo,RedirectAttributes redirectAttributes, String passwordActual) {
+            String rol, ModelMap modelo, RedirectAttributes redirectAttributes, String passwordActual) {
 
         try {
 

@@ -25,7 +25,7 @@
         <p class="titulo" th:text="${propiedad.nombre}"></p>
         <p class="ubicacion" th:text="${propiedad.localidad + ', '+ propiedad.direccion}"> </span></p>
         <div class="linea">
-            <div class="puntuacion" th:text="${propiedad.calificacion + ' estrellas'}">
+            <div class="puntuacion" th:text="${propiedad.calificacion + ' ⭐'}">
 
             </div>
             <div class="compra">
@@ -53,6 +53,13 @@
         <p class="heading">servicios</p>
         <div class="top-line"></div>
         <div class="servicios">
+            <!-- 
+
+                agregar un th:if a los items basados en el tipo
+                de servicio que esta disponible cosa de que la gente no se 
+                confunda cuando vea otros 5 servicios que no tiene
+
+            -->
             <div class="items">
                 <i class='bx bx-bus'></i>
                 <p class="servicio-tipo">transporte</p>
@@ -97,7 +104,9 @@
         <div class="comentario" th:each="opinion : ${opiniones}">
             <img class="foto-perfil" src="/img/building.jpg" alt="">
             <div class="mensaje">
-                <p class="nombre-perfil" th:text="${opinion.huesped}"></p>
+                <!-- PORFAVOR no olvidarse de agregar el numero de estrellas en nombre perfil
+                     en nombre perfil es el nombre del huesped-->
+                <p class="nombre-perfil" th:text="${opinion.huesped + ' ingresar numero estrellas ' + '⭐'}"></p>
                 <p class="comment" th:text="${opinion.comentario}"></p>
             </div>
             <div class="adjuntado">

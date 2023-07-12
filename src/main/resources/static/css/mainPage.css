@@ -72,7 +72,7 @@
 .searchbox {
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     height: 30%;
@@ -323,4 +323,101 @@
 	}
 }
 /* ------estilos cards reservas fin------ */
+
+/* --------extracto del filtro ----------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.contenedor-form {
+    display: flex;
+    background-color: #036666;
+    padding: 1.5%;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.filtro {
+    font-family: "Poppins", sans-serif;
+    margin: 0 10px;
+}
+
+.filtro select {
+    background-color: #358F80;
+    color: white !important;
+    color: black;
+    padding: 2.5vh 5vw;
+    width: 19vw;
+    border: none;
+    font-size: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: 4px;
+}
+
+.filtro select::-webkit-scrollbar {
+    display: none;
+}
+
+.filtrar input {
+    background-color: #358F80;
+    color: white !important;
+    color: black;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+    font-size: 20px;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    cursor: pointer;
+}
+
+.filtro select option {
+    padding: 30px;
+}
+
+.filtro input {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+    background-color: #78C6A3 !important;
+    color: white;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #78C6A3 !important;
+    color: white;
+}
+
+.filtro label {
+    cursor: pointer;
+    padding: 9% 10%;
+    display: block;
+    justify-content: center;
+    width: fit-content;
+    border-radius: 6px;
+    color: white !important;
+}
+
+.radios{
+    display: flex;
+    align-items: center;
+    background-color:#358F80;
+    border-radius: 6px;
+    height: fit-content;
+}
+
+.checkers{
+    background-color: #358F80;
+    display: block;
+    justify-content: center;
+    border-radius: 6px;
+}
+
 

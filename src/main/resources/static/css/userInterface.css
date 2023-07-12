@@ -112,6 +112,10 @@ body{
     /* flex-wrap: wrap; */
 }
 
+.panel{
+    display: flex;
+}
+
 .house-card{
     display: flex;
     justify-content: center;
@@ -127,7 +131,8 @@ body{
 }
 
 .house-card img{
-    width: 94%;
+    width: 400px;
+    height: 270px;
     margin-top: 2%;
 }
 

@@ -104,15 +104,8 @@
         <div class="nav-end">
             <div class="right-container">
                 <a th:if="${session.usuariosession != null}" href="#profile" th:href="@{/usuario/perfil}">
-                    <img th:if="${perfil.foto.mime.equals('application/octet-stream')}"
-                         src="/img/fotoPerfil.jpg" width="30" height="30"
-                         alt="imagen alternativa" />
-
-                    <img th:unless="${perfil.foto.mime.equals('application/octet-stream')}"
-                         th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30"
-                         alt="imagen del usuario" />
-
-
+                    <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30" alt=""
+                         onerror="this.src='/img/fotoPerfil.jpg'; this.onerror=null;">
                 </a>
                 <!-- antes estos botones eran class "publicar"-->
                 <a th:if="${session.usuariosession == null}" class="btn btn-primary"

@@ -38,6 +38,12 @@ body{
     border-radius: 50%;
 }
 
+.peepoLeave{
+    width: 4%;
+    padding-left: 67%;
+    padding-bottom: 5%;
+}
+
 .infobox{
     display: flex;
     flex-wrap: wrap;

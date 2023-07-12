@@ -182,7 +182,10 @@
                         <br>
                         <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
                         <br>
-                        <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
+                        <!-- <span th:text="${propiedad.calificacion} + '⭐'"></span> -->
+                        <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
+                           <img src="/img/star.svg" alt="estrella" class="img-star" style="width: 24px; height: 24px; margin-top: 8px;">
+                        </span>
                     </p>
                     <div class="contenedor">
                         <a th:href="@{/propiedad/mostrar/__${propiedad.id}__}" class="btn-aux btn-1">Ver más</a>

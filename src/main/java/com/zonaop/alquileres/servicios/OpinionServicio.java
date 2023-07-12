@@ -54,10 +54,14 @@ public class OpinionServicio {
             opinion.setHuesped(huesped);
             opinion.setComentario(comentario);
             opinion.setCalificacion(calificacion);
+            opinion.setPropiedad(propiedad);
             opinionRepositorio.save(opinion);
 
             List<Opinion> opiniones = propiedad.getOpiniones();
             opiniones.add(opinion);
+            int cantidad = opinionRepositorio.contarPropiedades(propiedad.getId());
+            int total = (int) (propiedad.getCalificacion()+calificacion);
+            propiedad.setCalificacion(total/cantidad);
             propiedadRepositorio.save(propiedad);
 
             Reserva reserva = reservaOp.get();
@@ -76,6 +80,9 @@ public class OpinionServicio {
         return opiniones;
     }
 
+    public int contarOpinionesDePropiedad(String id){
+        return opinionRepositorio.contarPropiedades(id);
+    }
     @Transactional
     public void modificarOpinion(String id, String huesped, String comentario,
             int calificacion, List<MultipartFile> archivos) throws MiException {

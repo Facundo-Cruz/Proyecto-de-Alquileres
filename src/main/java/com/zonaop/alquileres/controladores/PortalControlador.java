@@ -45,7 +45,7 @@ public class PortalControlador {
     public String pruebas(ModelMap model) {
         List<Propiedad> propiedades = propiedadServicio.listarPropiedades();
  
-        model.put("propiedades", propiedades);
+        model.put("propiedad", propiedades.get(0));
         return "pruebas.html";
     }
 

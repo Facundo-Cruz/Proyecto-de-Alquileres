@@ -6,6 +6,7 @@ import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.enumeraciones.Localidad;
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.excepciones.MiException;
+import com.zonaop.alquileres.servicios.OpinionServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
@@ -40,6 +41,9 @@ public class PropiedadControlador {
 
     @Autowired
     public ReservaServicio reservaServicio;
+    
+    @Autowired
+    public OpinionServicio opinionServicio;
 
     @GetMapping("/registrar")
     @PreAuthorize("hasRole('PROPIETARIO')")
@@ -124,7 +128,7 @@ public class PropiedadControlador {
     public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
 
         model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
-
+        model.put("cantCalificaciones", opinionServicio.contarOpinionesDePropiedad(id));
         return "precompra-info.html";
 
     }

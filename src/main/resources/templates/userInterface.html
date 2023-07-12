@@ -145,7 +145,12 @@
                                 </p>
                                 <p class="estado">
                                     <b>Estado: </b>
-                                    <span th:text="${reserva.estado}"></span><img src="/img/check-circle.svg" alt="Icono">
+                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                          <img src="/img/check-circle.svg" alt="Icono">
+<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p>
                                 <a th:href="@{/reserva/cancelar/__${reserva.id}__}" id="cancelarLink">Cancelar</a>
@@ -214,9 +219,14 @@
                                     <br>
                                     <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                                 </p>
-                                <p class="estado">
+                               <p class="estado">
                                     <b>Estado: </b>
-                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">
+                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                          <img src="/img/clock.svg" alt="Icono">
+<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p>
 
@@ -287,10 +297,15 @@
                                 </p>
                                 <p class="estado">
                                     <b>Estado: </b>
-                                    <span th:text="${reserva.estado}"></span><img src="/img/x-circle.svg" alt="Icono">
+                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                          <img src="/img/x.svg" alt="Icono">
+<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
                                     <br>
                                 </p> 
-                                <a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
+                                <a sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar</a>
                             </div>
                         </div>
 
@@ -352,8 +367,17 @@
                                     <br>
                                     <b>Email:</b> <span th:text="${reserva.cliente.email}"></span>
                                 </p>
-                                <b>Estado: </b><span th:text="${reserva.estado}"></span>
-                                <a  sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar(Por hacer)</a>
+                                <p class="estado">
+                                    <b>Estado: </b>
+                                          <span th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</span>
+                                          <span th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</span>
+                                          <span th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</span>
+                                          <span th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</span>
+                                          <img src="/img/flag.svg" alt="Icono">
+<!--                                    <span th:text="${reserva.estado}"></span><img src="/img/clock.svg" alt="Icono">-->
+                                    <br>
+                                </p>
+                                <a  sec:authorize="hasRole('PROPIETARIO')" th:href="@{/reserva/cancelar/__${reserva.id}__}">Eliminar</a>
                             </div>
                         </div>
 

@@ -15,6 +15,7 @@ import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,7 @@ public class UsuarioControlador {
     private PropietarioServicio propietarioServicio;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasRole('ADMIN')")
     public String listarUsuarios(ModelMap model) {
 
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
@@ -55,6 +57,7 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/listar/nombres")
+    @PreAuthorize("hasRole('ADMIN')")
     public String listarUsuariosPorNombre(@RequestParam String nombre, ModelMap model) {
 
         List<Usuario> usuarios = usuarioServicio.listarUsuariosPorNombre(nombre);
@@ -65,6 +68,7 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/perfil")
+    @PreAuthorize("hasAnyRole('CLIENTE', 'PROPIETARIO')")
     public String mostrarPerfil(HttpSession session, ModelMap modelo) {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
@@ -78,13 +82,13 @@ public class UsuarioControlador {
             perfil = propietarioServicio.getOne(usuario.getId());
 
             List<Propiedad> propiedades = propiedadServicio.listarPorPropietario(usuario.getId());
-
+            List<Reserva> reservas = reservaServicio.listarReservas();
             reservasActivas = reservaServicio.listarPorPropietarioActiva(usuario.getId());
             reservasPendientes = reservaServicio.listarPorPropietarioPendiente(usuario.getId());
             reservasCanceladas = reservaServicio.listarPorPropietarioCancelada(usuario.getId());
             reservasFinalizadas = reservaServicio.listarPorPropietarioFinalizada(usuario.getId());
             modelo.put("propiedades", propiedades);
-
+            modelo.put("reservas", reservas);
         } else {
 
             perfil = clienteServicio.getOne(usuario.getId());
@@ -108,6 +112,7 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/modificar")
+    @PreAuthorize("hasAnyRole('CLIENTE', 'PROPIETARIO')")
     public String modificarUsuario(HttpSession session, ModelMap modelo) {
 
         Usuario usuario = (Usuario) session.getAttribute("usuariosession");
@@ -135,7 +140,7 @@ public class UsuarioControlador {
     @PostMapping("/modificar")
     public String modificarUsuario(String id, String nombre, String apellido,
             String nombreUsuario, String email, Long telefono, String password, Imagen foto,
-            String rol, ModelMap modelo,RedirectAttributes redirectAttributes, String passwordActual) {
+            String rol, ModelMap modelo, RedirectAttributes redirectAttributes, String passwordActual) {
 
         try {
 

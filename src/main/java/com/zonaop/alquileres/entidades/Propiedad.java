@@ -27,7 +27,6 @@ public class Propiedad {
     private String id;
     private String nombre;
     private String direccion;
-    private String ubi;
     @Enumerated(EnumType.STRING)
     private Localidad localidad;
     private String codigoPostal;
@@ -51,7 +50,7 @@ public class Propiedad {
     private int calificacion;
     @OneToMany
     private List<Servicio> servicios;
-    @OneToMany
+    @OneToMany(mappedBy = "propiedad")
     private List<Opinion> opiniones;
     private String email;
     private Integer banos;
@@ -131,14 +130,6 @@ public class Propiedad {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public String getUbi() {
-        return ubi;
-    }
-
-    public void setUbi(String ubi) {
-        this.ubi = ubi;
     }
 
     public Localidad getLocalidad() {

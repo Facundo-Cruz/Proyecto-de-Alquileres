@@ -6,6 +6,7 @@ import com.zonaop.alquileres.entidades.Servicio;
 import com.zonaop.alquileres.enumeraciones.Localidad;
 import com.zonaop.alquileres.enumeraciones.TipoPropiedad;
 import com.zonaop.alquileres.excepciones.MiException;
+import com.zonaop.alquileres.servicios.OpinionServicio;
 import com.zonaop.alquileres.servicios.PropiedadServicio;
 import com.zonaop.alquileres.servicios.PropietarioServicio;
 import com.zonaop.alquileres.servicios.ReservaServicio;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,8 +41,12 @@ public class PropiedadControlador {
 
     @Autowired
     public ReservaServicio reservaServicio;
+    
+    @Autowired
+    public OpinionServicio opinionServicio;
 
     @GetMapping("/registrar")
+    @PreAuthorize("hasRole('PROPIETARIO')")
     public String registrarPropiedad() {
 
         return "formulario-registro-propiedad.html";
@@ -100,6 +106,7 @@ public class PropiedadControlador {
     }
 
     @GetMapping("/modificar/{id}")
+    @PreAuthorize("hasRole('PROPIETARIO')")
     public String modificarPropiedad(@PathVariable String idPropiedad, ModelMap modelo) {
 
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idPropiedad));
@@ -121,7 +128,7 @@ public class PropiedadControlador {
     public String mostrarPropiedad(ModelMap model, @PathVariable String id) {
 
         model.put("propiedad", propiedadServicio.buscarPropiedadPorId(id));
-
+        model.put("cantCalificaciones", opinionServicio.contarOpinionesDePropiedad(id));
         return "precompra-info.html";
 
     }

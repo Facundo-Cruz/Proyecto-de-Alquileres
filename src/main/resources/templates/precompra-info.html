@@ -9,35 +9,147 @@
     <link rel="stylesheet" href="/css/botones.css">
     <link rel="stylesheet" href="/css/navbar-responsive.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .box {
+            display: flex;
+            justify-content: center;
+            background-color: #c6ceca;
+        }
+
+        .wrapper {
+            display: flex;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .wrapper i {
+            top: 50%;
+            height: 44px;
+            width: 44px;
+            color: #343F4F;
+            cursor: pointer;
+            font-size: 1.15rem;
+            position: absolute;
+            text-align: center;
+            line-height: 44px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.1s linear;
+        }
+
+        .wrapper i:active {
+            transform: translateY(-50%) scale(0.9);
+        }
+
+        .wrapper i:hover {
+            background: #f2f2f2;
+        }
+
+        .wrapper i:first-child {
+            left: -22px;
+            display: none;
+        }
+
+        .wrapper i:last-child {
+            right: -22px;
+        }
+
+        .wrapper .carousel {
+            font-size: 0px;
+            cursor: pointer;
+            overflow: hidden;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+        }
+
+        .carousel.dragging {
+            cursor: grab;
+            scroll-behavior: auto;
+        }
+
+        .carousel.dragging img {
+            pointer-events: none;
+        }
+
+        .carousel img {
+            height: 340px;
+            object-fit: cover;
+            user-select: none;
+            margin-left: 14px;
+            width: calc(100% / 3);
+            border-radius: 10px;
+        }
+
+        .carousel img:first-child {
+            margin-left: 0px;
+        }
+
+        @media screen and (max-width: 900px) {
+            .carousel img {
+                width: calc(100% / 2);
+            }
+        }
+
+        @media screen and (max-width: 550px) {
+            .carousel img {
+                width: 100%;
+            }
+        }
+
+        .fa-star {
+            font-size: 25px;
+            color: rgb(255, 204, 0);
+        }
+
+        .cant {
+            font-size: 25px;
+        }
+    </style>
 </head>
 
 <body>
     <nav th:replace="fragments/navbar :: nav"></nav>
-    <div class="slide-box">
-        <div th:each="imagen, iterStat : ${propiedad.fotos}" class="slide fade">
-            <div class="numero" th:text="${iterStat.index + 1} + '/' + ${propiedad.fotos.size()}"></div>
-            <img th:src="@{/imagen/propiedad/__${imagen.id}__}" alt="Imagen" />
+
+    <div class="box">
+        <div class="wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <div class="carousel">
+                <th:block th:each="foto : ${propiedad.fotos}">
+                    <img th:src="@{/imagen/propiedad/__${foto.id}__}" alt="img" draggable="false">
+                </th:block>
+            </div>
+            <i id="right" class="fa-solid fa-angle-right"></i>
         </div>
-        <a class="antes" onclick="moveSlide(-1)">&#10094;</a>
-        <a class="despues" onclick="moveSlide(1)">&#10095;</a>
     </div>
     <div class="info">
         <p class="titulo" th:text="${propiedad.nombre}"></p>
         <p class="ubicacion" th:text="${propiedad.localidad + ', '+ propiedad.direccion}"> </span></p>
         <div class="linea">
+<<<<<<< HEAD
             <div class="puntuacion" th:text="${propiedad.calificacion + ' ⭐'}">
 
+=======
+            <div class="puntuacion">
+                <span class="cant">4</span>
+                <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
+                    <i class="fas fa-star"></i>
+                </span>
+                <span class="calificaciones" th:text="${cantCalificaciones}+' calificaciones'"></span>
+>>>>>>> a40fbeaaaf0ec5c99efd284fcd5325d7a18fe9a6
             </div>
+
             <div class="compra">
                 <p class="precio"><span th:text="${propiedad.precio}"></span> us$/dia</p>
-                <a  th:if="${session.usuariosession == null}"
-                th:href="@{/login}" class="rent-button">Alquilar</a>
-                <a th:href="@{/reserva/registrar/__${propiedad.id}__}" class="rent-button" sec:authorize="hasRole('CLIENTE')">Alquilar</a>
+                <a th:if="${session.usuariosession == null}" th:href="@{/login}" class="rent-button">Alquilar</a>
+                <a th:href="@{/reserva/registrar/__${propiedad.id}__}" class="rent-button"
+                    sec:authorize="hasRole('CLIENTE')">Alquilar</a>
             </div>
         </div>
     </div>
     <div class="description">
-        <div class="top-line" ></div>
+        <div class="top-line"></div>
         <span th:text="${propiedad.descripcion}"></span>
         <br><br>
         <h3>Servicios disponibles:</h3>
@@ -53,6 +165,7 @@
         <p class="heading">servicios</p>
         <div class="top-line"></div>
         <div class="servicios">
+<<<<<<< HEAD
             <!-- 
 
                 agregar un th:if a los items basados en el tipo
@@ -92,17 +205,54 @@
                 <i class='bx bxs-hot'></i>
                 <p class="servicio-tipo">asador</p>
             </div>
+=======
+            <th:block th:each="servicio : ${propiedad.servicios}">
+
+                <div class="items" th:if="${servicio.nombre == 'Transporte'}">
+                    <i class='bx bx-bus'></i>
+                    <p class="servicio-tipo">transporte</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'Seguridad'}">
+                    <i class="fas fa-shield-alt"></i>
+                    <p class="servicio-tipo">seguridad</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'DJ'}">
+                    <i class='bx bxs-music'></i>
+                    <p class="servicio-tipo">dj</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'Catering'}">
+                    <i class='bx bx-bowl-hot'></i>
+                    <p class="servicio-tipo">catering</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'Fotografo'}">
+                    <i class='bx bx-camera'></i>
+                    <p class="servicio-tipo">fotografo</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'Chef'}">
+                    <i class='bx bx-bus'></i>
+                    <p class="servicio-tipo">chef</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'Bar'}">
+                    <i class='bx bxs-drink'></i>
+                    <p class="servicio-tipo">bar</p>
+                </div>
+                <div class="items" th:if="${servicio.nombre == 'Asador'}">
+                    <i class='bx bxs-hot'></i>
+                    <p class="servicio-tipo">asador</p>
+                </div>
+            </th:block>
+>>>>>>> a40fbeaaaf0ec5c99efd284fcd5325d7a18fe9a6
 
         </div>
         <div class="bottom-line"></div>
     </div>
 
-    
-    <div class="comentarios" >
+
+    <div class="comentarios">
         <p class="heading">Comentarios</p>
         <div class="top-line"></div>
-        <div class="comentario" th:each="opinion : ${opiniones}">
-            <img class="foto-perfil" src="/img/building.jpg" alt="">
+        <div class="comentario" th:each="opinion : ${propiedad.opiniones}">
+            <img class="foto-perfil" src="/img/perfil.webp" alt="">
             <div class="mensaje">
                 <!-- PORFAVOR no olvidarse de agregar el numero de estrellas en nombre perfil
                      en nombre perfil es el nombre del huesped-->
@@ -112,7 +262,10 @@
             <div class="adjuntado">
                 <!--hacer un th:each que contenga todas las 
                     imagenes que suban al comentario-->
-                <img src="/img/building.jpg" alt="bang">
+                <!-- <img th:src="@{/imagen/propiedad/__${img.id}__}" alt="bang"> -->
+                <th:block th:each="foto : ${opinion.fotos}">
+                    <img th:src="@{/imagen/propiedad/__${foto.id}__}" alt="img">
+                </th:block>
             </div>
         </div>
 
@@ -135,6 +288,81 @@
         guarderia
         asador
     -->
+    <script>
+        const carousel = document.querySelector(".carousel"),
+            firstImg = carousel.querySelectorAll("img")[0],
+            arrowIcons = document.querySelectorAll(".wrapper i");
+
+        let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+
+        const showHideIcons = () => {
+            // showing and hiding prev/next icon according to carousel scroll left value
+            let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
+            arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+            arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+        }
+
+        arrowIcons.forEach(icon => {
+            icon.addEventListener("click", () => {
+                let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+                // if clicked icon is left, reduce width value from the carousel scroll left else add to it
+                carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+                setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+            });
+        });
+
+        const autoSlide = () => {
+            // if there is no image left to scroll then return from here
+            if (carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
+
+            positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
+            let firstImgWidth = firstImg.clientWidth + 14;
+            // getting difference value that needs to add or reduce from carousel left to take middle img center
+            let valDifference = firstImgWidth - positionDiff;
+
+            if (carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
+                return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+            }
+            // if user is scrolling to the left
+            carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+        }
+
+        const dragStart = (e) => {
+            // updatating global variables value on mouse down event
+            isDragStart = true;
+            prevPageX = e.pageX || e.touches[0].pageX;
+            prevScrollLeft = carousel.scrollLeft;
+        }
+
+        const dragging = (e) => {
+            // scrolling images/carousel to left according to mouse pointer
+            if (!isDragStart) return;
+            e.preventDefault();
+            isDragging = true;
+            carousel.classList.add("dragging");
+            positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+            carousel.scrollLeft = prevScrollLeft - positionDiff;
+            showHideIcons();
+        }
+
+        const dragStop = () => {
+            isDragStart = false;
+            carousel.classList.remove("dragging");
+
+            if (!isDragging) return;
+            isDragging = false;
+            autoSlide();
+        }
+
+        carousel.addEventListener("mousedown", dragStart);
+        carousel.addEventListener("touchstart", dragStart);
+
+        document.addEventListener("mousemove", dragging);
+        carousel.addEventListener("touchmove", dragging);
+
+        document.addEventListener("mouseup", dragStop);
+        carousel.addEventListener("touchend", dragStop);
+    </script>
 </body>
 
 </html>

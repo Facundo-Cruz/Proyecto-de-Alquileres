@@ -42,41 +42,9 @@
                     <li>
                         <div class="content">
                             <!-- antes era class "publicar"-->
-                            <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
-                                aria-expanded="false" aria-label="discover" th:if="${session.usuariosession == null}"
-                                th:href="@{/login}">Publicar <i class="bx bx-chevron-down" aria-hidden="true"></i>
-                            </button>
+                            <a  th:if="${session.usuariosession == null}" class="ancle" th:href="@{/login}">Publicar</a>
 
-                            <!-- antes era class "publicar"-->
-                            <!-- <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
-                                aria-expanded="false" aria-label="discover" th:if="${session.usuariosession != null}"
-                                th:href="@{/propiedad/registrar/}">Publicar <i class="bx bx-chevron-down"
-                                    aria-hidden="true"></i>
-                            </button> -->
-                            <div id="dropdown2" class="dropdown">
-                                <ul role="menu">
-                                    <li>
-                                        <span class="dropdown-link-title">Test</span>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                </ul>
-                                <ul role="menu">
-                                    <li>
-                                        <span class="dropdown-link-title">Test</span>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                    <li role="menuitem">
-                                        <a class="dropdown-link" href="#">Test</a>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                     </li>
                     <li>
@@ -113,14 +81,14 @@
                         </div>
                     </li>
                     <li>
-                        <a class="ancle" th:href="@{/propiedad/registrar/}">Publicar</a>
+                        <a sec:authorize="hasRole('PROPIETARIO')" class="ancle" th:href="@{/propiedad/registrar/}">Publicar</a>
                     </li>
                     <li>
                         <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/usuario/listar/}">Listar Usuarios</a>
                     </li>
                     <li>
                         <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/propiedad/listar/}">Listar Propiedades</a>
-                        
+
                     </li>
                     <li>
                         <a th:if="${session.usuariosession != null}" sec:authorize="hasRole('ADMIN')" class="ancle" th:href="@{/admin/listarReservas/}">Listar Reservas</a>
@@ -136,12 +104,19 @@
         <div class="nav-end">
             <div class="right-container">
                 <a th:if="${session.usuariosession != null}" href="#profile" th:href="@{/usuario/perfil}">
-                    <img th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30"
-                        alt="imagen del usuario" />
+                    <img th:if="${perfil.foto.mime.equals('application/octet-stream')}"
+                         src="/img/fotoPerfil.jpg" width="30" height="30"
+                         alt="imagen alternativa" />
+
+                    <img th:unless="${perfil.foto.mime.equals('application/octet-stream')}"
+                         th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" width="30" height="30"
+                         alt="imagen del usuario" />
+
+
                 </a>
                 <!-- antes estos botones eran class "publicar"-->
                 <a th:if="${session.usuariosession == null}" class="btn btn-primary"
-                    th:href="@{/registrar}">Registrate</a>
+                   th:href="@{/registrar}">Registrate</a>
                 <a th:if="${session.usuariosession == null}" class="btn btn-primary" th:href="@{/login}">Iniciar
                     Sesion</a>
                 <a th:if="${session.usuariosession != null}" class="btn btn-primary" href="/logout">Cerrar

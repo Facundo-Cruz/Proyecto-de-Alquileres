@@ -118,6 +118,10 @@ body{
     /* flex-wrap: wrap; */
 }
 
+.panel{
+    display: flex;
+}
+
 .house-card{
     display: flex;
     justify-content: center;
@@ -133,7 +137,8 @@ body{
 }
 
 .house-card img{
-    width: 94%;
+    width: 400px;
+    height: 270px;
     margin-top: 2%;
 }
 
@@ -398,4 +403,28 @@ hr {
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
+}
+
+.status {
+    padding: .4rem .4rem;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.status.delivered {
+    background-color: #86e49d;
+    color: #006b21;
+}
+
+.status.cancelled {
+    background-color: #d893a3;
+    color: #b30021;
+}
+
+.status.pending {
+    background-color: #ebc474;
+}
+
+.status.shipped {
+    background-color: #6fcaea;
 }

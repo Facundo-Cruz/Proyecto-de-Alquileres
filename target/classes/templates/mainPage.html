@@ -190,26 +190,28 @@
                 <hr class="horizontal">
 
 
-                <p>
-                    <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
-                    <br>
-                    <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
-                    <br>
-                    <b><i class="fas fa-bath icono"></i> Baños: </b><span th:text="${propiedad.banos}"></span>
-                    <br>
-                    <b><i class="fas fa-bed icono"></i> Habitaciones: </b><span
-                        th:text="${propiedad.habitaciones}"></span>
-                    <br>
-                    <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
-                    <br>
-                    <b>Calificación: </b> <span th:text="${propiedad.calificacion} + '⭐'"></span>
-                </p>
-                <div class="contenedor">
-                    <a th:href="@{/propiedad/mostrar/__${propiedad.id}__}" class="btn-aux btn-1">Ver más</a>
+                    <p>
+                        <b>Disponible desde: </b> <span th:text="${propiedad.fechaDesde}"></span>
+                        <br>
+                        <b>hasta: </b> <span th:text="${propiedad.fechaHasta}"></span>
+                        <br>
+                        <b><i class="fas fa-bath icono"></i> Baños: </b><span th:text="${propiedad.banos}"></span>
+                        <br>
+                        <b><i class="fas fa-bed icono"></i> Habitaciones: </b><span th:text="${propiedad.habitaciones}"></span>
+                        <br>
+                        <b>Precio: </b>$<span th:text="${propiedad.precio}"></span>
+                        <br>
+                        <!-- <span th:text="${propiedad.calificacion} + '⭐'"></span> -->
+                        <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
+                           <img src="/img/star.svg" alt="estrella" class="img-star" style="width: 24px; height: 24px; margin-top: 8px;">
+                        </span>
+                    </p>
+                    <div class="contenedor">
+                        <a th:href="@{/propiedad/mostrar/__${propiedad.id}__}" class="btn-aux btn-1">Ver más</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
     <footer class="footer">

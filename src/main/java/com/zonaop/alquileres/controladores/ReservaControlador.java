@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,7 @@ public class ReservaControlador {
 
     //ruta para el registro de reserva
     @GetMapping("/registrar/{idCasa}")
+    @PreAuthorize("hasRole('CLIENTE')")
     public String registrarReserva(@PathVariable String idCasa, ModelMap modelo, HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("usuariosession");
         modelo.put("propiedad", propiedadServicio.buscarPropiedadPorId(idCasa));
@@ -115,6 +117,7 @@ public class ReservaControlador {
     }
 
     @PostMapping("/modificado")
+    @PreAuthorize("hasRole('PROPIETARIO')")
     public String modificar(@RequestParam String id,
             @RequestParam List<Servicio> servicios, @RequestParam double total,
             @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,

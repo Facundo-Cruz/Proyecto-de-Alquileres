@@ -12,6 +12,7 @@ import com.zonaop.alquileres.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,8 +72,9 @@ public class PortalControlador {
         }
 
     }
-
+    
     @GetMapping("/registrar")
+    @PreAuthorize("isAnonymous()")
     public String registrar() {
 
         return "formulario-registro-usuario.html";
@@ -80,6 +82,7 @@ public class PortalControlador {
     }
 
     @GetMapping("/login")
+    @PreAuthorize("isAnonymous()")
     public String login(@RequestParam(required = false) String error, ModelMap model) {
         if (error != null) {
             model.put("error", "¡Usuario o contraseña invalidos!");

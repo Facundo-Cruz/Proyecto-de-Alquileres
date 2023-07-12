@@ -108,8 +108,10 @@
                                     <td th:text="${reserva.fechaDesde}"> </td>
                                     <td th:text="${reserva.fechaHasta}"> </td>
                                     <td>
-                                          <p th:if="${reserva.estado == true}" class="status delivered">Habilitado</p>
-                                          <p th:if="${reserva.estado == false}" class="status cancelled">Deshabilitado</p>
+                                          <p th:if="${reserva.estado.toString == 'Activa'}" class="status delivered">Activa</p>
+                                          <p th:if="${reserva.estado.toString == 'Cancelada'}" class="status cancelled">Cancelada</p>
+                                          <p th:if="${reserva.estado.toString == 'Pendiente'}" class="status pending">Pendiente</p>
+                                          <p th:if="${reserva.estado.toString == 'Finalizada'}" class="status shipped">Finalizada</p>
                                     </td>
                                     <td>
                                         <button class="delete-link" data-toggle="modal"

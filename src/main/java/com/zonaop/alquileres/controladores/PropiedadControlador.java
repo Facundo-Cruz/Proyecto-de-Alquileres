@@ -139,7 +139,7 @@ public class PropiedadControlador {
 //            redirectAttributes.addFlashAttribute("email", email);
 //            redirectAttributes.addFlashAttribute("alias", apellido);
 //            redirectAttributes.addFlashAttribute("rol", rol);
-            return "redirect:/propiedad/modificar";
+            return "redirect:/propiedad/modificar/{id}";
 
         }
         

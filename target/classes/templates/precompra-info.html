@@ -129,7 +129,7 @@
         <div class="linea">
 
             <div class="puntuacion">
-                <span class="cant">4</span>
+                <span class="cant" th:text="${propiedad.calificacion}"></span>
                 <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
                     <i class="fas fa-star"></i>
                 </span>
@@ -211,7 +211,10 @@
             <div class="mensaje">
                 <!-- PORFAVOR no olvidarse de agregar el numero de estrellas en nombre perfil
                      en nombre perfil es el nombre del huesped-->
-                <p class="nombre-perfil" th:text="${opinion.huesped + ' ingresar numero estrellas ' + '⭐'}"></p>
+                <span class="nombre-perfil" th:text="${opinion.huesped}"></span>
+                <span th:each="n : ${#numbers.sequence(1, propiedad.calificacion)}">
+                    ⭐
+                </span>
                 <p class="comment" th:text="${opinion.comentario}"></p>
             </div>
             <div class="adjuntado">
